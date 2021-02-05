@@ -40,12 +40,12 @@ La définition des besoins (problèmes auxquels répond le projet) et des object
 https://www.gloomaps.com/ofQ4YqnlT9
 
 # Liste des routes
-www.kroon.fr/signup
-www.kroon.fr/login
-www.kroon.fr/home
-www.kroon.fr/listen
-www.kroon.fr/myAccount
-www.kroon.fr/blindtest
+www.kroon.fr/signup,
+www.kroon.fr/login,
+www.kroon.fr/home,
+www.kroon.fr/listen,
+www.kroon.fr/myAccount,
+www.kroon.fr/blindtest,
 www.kroon.fr/leaderboard
 
 # User-stories
@@ -68,14 +68,17 @@ www.kroon.fr/leaderboard
         - avoir accès aux leaderboards)
 
     - en tant qu'admin
+      (- accéder au back office )
         - supprimer des commentaires
         - supprimer des sons 
-        - 
-
+        - paramétrés les comptes (gestion des rôles, suppression...)
+       
     - en tant que modérateur
+      (- accéder au back office )
+        - supprimer des commentaires
+        - supprimer des sons 
+        - paramétrés les comptes (gestion des rôles, suppression...)
 
-
-    - 
 
 
 réponses : majoritairement écrite + possible d'ajouter PJ/lien YT...
