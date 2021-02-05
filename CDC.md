@@ -21,12 +21,12 @@ La définition des besoins (problèmes auxquels répond le projet) et des object
 
 
 
-### idées fonctionnalités supplémentaires :
+# idées fonctionnalités supplémentaires :
 - contraintes de son à écouter/répondre pour poster
 - blind test
 - classement des meilleurs helpeurs (badge...)
 
-### Technologies prévues
+# Technologies prévues
 - Symfony (BACK) / peut-être NodeJS
 - React (FRONT)
 
@@ -40,13 +40,13 @@ La définition des besoins (problèmes auxquels répond le projet) et des object
 https://www.gloomaps.com/ofQ4YqnlT9
 
 # Liste des routes
-www.kroon.fr/signup,
-www.kroon.fr/login,
-www.kroon.fr/home,
-www.kroon.fr/listen,
-www.kroon.fr/myAccount,
-www.kroon.fr/blindtest,
-www.kroon.fr/leaderboard
+- www.kroon.fr/signup,
+- www.kroon.fr/login,
+- www.kroon.fr/home,
+- www.kroon.fr/listen,
+- www.kroon.fr/myAccount,
+- www.kroon.fr/blindtest,
+- www.kroon.fr/leaderboard
 
 # User-stories
     - en tant que utilisateur non loggé
@@ -79,7 +79,47 @@ www.kroon.fr/leaderboard
         - supprimer des sons 
         - paramétrés les comptes (gestion des rôles, suppression...)
 
+# rôles de chacun
+1) Product Owner
+Connaît le produit et représente les intérêts et les besoins du client/des utilisateurs purement fonctionnels (pas techniques)
+Tranche en cas de conflits fonctionnels (pas techniques)
+En général c'est le porteur du projet (s'il est dans le groupe)
 
+2) Scrum master
+Garant de la méthode du projet : il gère le respect des conventions définies dans le groupe
+S'assure que toutes les tâches sont bien attribuées, suivies, accomplies
+Assure la communication au sein du groupe : il vérifie que tout le monde a les bonnes informations
+Gère l'outil de suivi du projet
+Anime la réunion du matin et gère l'avancement du projet
 
-réponses : majoritairement écrite + possible d'ajouter PJ/lien YT...
+3) Lead dev front & Lead dev back
+Choisit les orientations importantes, choix techniques importants
+S'assure du bon fonctionnement de sa partie du projet
+
+Référents techniques
+
+4) Git master
+Garant du bon fonctionnement du versionning avec Git.
+Responsable du bon fonctionnement du versionning, vérifie les PR et merge, gère les conflits etc.
+
+5) Référent par librairie/techno particulière (exemples : Bootstrap, Google Maps... )
+S'informe, se documente sur cette techno, sa sémantique, son utilisation.
+Restitue les informations au groupe.
+=> Fichier commun (google sheet à créer)
+
+Amélie : Lead Back
+
+Dimitri : Lead Front 
+
+Damien : Scrum Master / Git Master
+
+Jordan : PO
+
+Idées :
+réponses : majoritairement écrites + possible d'ajouter PJ/lien YT...
 sans compte : accès en lecture audio des sons + lecture visuelle des commentaires, pas d'ajout ni de réponse soi-même sans être logger.
+
+### Documents relatifs à la BDD
+- Le MCD
+
+- Le dico de données
