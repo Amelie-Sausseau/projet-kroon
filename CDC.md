@@ -126,3 +126,61 @@ sans compte : accès en lecture audio des sons + lecture visuelle des commentair
 - Le MCD
 
 - Le dico de données
+    # users
+        - ID (int)
+        - Nickname (varchar)
+        - mail
+        - password
+        - created at
+        - updated at
+        - ID role
+        - isActive
+        - avatar
+        (- Nb de commentaires postés
+        - Nb de sons postés)
+
+    # Posts
+        - ID
+        - Title
+        - ID category
+        - ID User
+        - Sounds
+        - Text
+        - created at
+        - updated at
+        - isClosed
+        - isBlocked
+        - isActive
+
+    # comments
+        - ID
+        - ID user
+        - ID Post
+        - Text
+        - Likes/votes
+        - created at
+        - isValidated
+        - isBlocked
+
+    # categories
+        - ID
+        - Title
+        - created at
+        - updated at
+
+    # roles
+        - ID
+        - Name
+        - role_string
+        - created at
+        - updated at
+
+    # users_fav
+        - ID users
+        - ID Posts
+
+    Nom|Description|Type|Commentaire|Entité|
+-|-|-|-|-|
+Nom|Nom de la personne|texte court|-|Personne|
+Prénom|Prénom de la personne|texte court|-|Personne|
+DateEmprunt|Date d'emprunt|date|attribut de la relation|Personne/Livre|
