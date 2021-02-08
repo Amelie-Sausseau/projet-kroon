@@ -22,9 +22,10 @@ La définition des besoins (problèmes auxquels répond le projet) et des object
 
 
 # idées fonctionnalités supplémentaires :
-- contraintes de son à écouter/répondre pour poster
-- blind test
-- classement des meilleurs helpeurs (badge...)
+- Contraintes de son à écouter/répondre pour poster
+- Blind test
+- Classement des meilleurs helpeurs (badge...)
+- Clôturer sa demande 
 
 # Technologies prévues
 - Symfony (BACK) / peut-être NodeJS
@@ -42,11 +43,13 @@ https://www.gloomaps.com/ofQ4YqnlT9
 # Liste des routes
 - www.kroon.fr/signup,
 - www.kroon.fr/login,
+- www.krron.fr/contact,
 - www.kroon.fr/home,
 - www.kroon.fr/listen,
 - www.kroon.fr/myAccount,
 - www.kroon.fr/blindtest,
 - www.kroon.fr/leaderboard
+- www.kroon.fr/CGU,
 
 # User-stories
     - en tant que utilisateur non loggé
