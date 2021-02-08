@@ -125,10 +125,20 @@ sans compte : accès en lecture audio des sons + lecture visuelle des commentair
 ### Documents relatifs à la BDD
 - Le MCD
 
+# Dictionnaire de données
+
+A partir des infos disponibles (maquettes, cahier des charges, descriptions fonctionnelles), nous avons **listé toutes les informations nécessaires au fonctionnement** de l'application dans un _dictionnaire de données_, selon cette méthode :
+
+- **Nous avons nommé chaque information**
+- **Le type** (nombre, texte, booléen, calculé à partir d'autres informations).
+
+> Certaines informations ne seront pas rattachées qu'à une seule entité. Ces informations vont nous aider à construire les relations.
+
 - Le dico de données
+
     # users
-        - ID (int)
-        - Nickname (varchar)
+        - ID 
+        - Nickname
         - mail
         - password
         - created at
@@ -138,6 +148,19 @@ sans compte : accès en lecture audio des sons + lecture visuelle des commentair
         - avatar
         (- Nb de commentaires postés
         - Nb de sons postés)
+
+    Nom|Description|Type|Commentaire|Entité|
+    -|-|-|-|-|
+    ID|ID de l'utilisateur|TINYINT|-|Users|
+    Nickname|Pseudo de l'utilisateur|VARCHAR|-|Users|
+    Mail|Adresse mail de l'utilisateur|VARCHAR|-|Users|
+    password|mot de passe de l'utilisateur|VARCHAR|-|Users|
+    ID Rôle|Rôle de l'utilisateur|TINYINT|-|Roles|
+    isActive|Statut de l'utilisateur|BOOL|-|Users|
+    avatar|Avatar de l'utilisateur|VARCHAR|-|Users|
+    created at|date de création|DATETIME|-|Users|
+    updated at|date de mise à jour|DATETIME|-|Users|
+        
 
     # Posts
         - ID
@@ -149,8 +172,25 @@ sans compte : accès en lecture audio des sons + lecture visuelle des commentair
         - created at
         - updated at
         - isClosed
+        - isSolved        
         - isBlocked
         - isActive
+
+    Nom|Description|Type|Commentaire|Entité|
+    -|-|-|-|-|
+    ID|Id du post|INT|-|Posts|
+    Title |Titre du post|VARCHAR|-|Posts|
+    ID category|id de la catégorie du post|INT|-|Categories|
+    ID User|id de l'utilisateur qui créé le post |INT|-|Users|
+    Sounds|l'enregistrement du son de l'utilisateur|VARCHAR|-|Posts|
+    Text|description du post ou info pour trouver l'origine du son|BLOB|-|Posts|
+    created at|date de création|DATETIME|-|Posts|
+    updated at|date de mise à jour|DATETIME|-|Posts|
+    isClosed|post créé et archivé|BOOL|-|Posts|
+    isBlocked|post bloqué pour contenu abusif|BOOL|-|Posts|
+    isSolved|post bloqué pour contenu abusif|BOOL|-|Posts|
+    isActive|post validé et non archivé|BOOL|-|Posts|
+
 
     # comments
         - ID
@@ -160,13 +200,31 @@ sans compte : accès en lecture audio des sons + lecture visuelle des commentair
         - Likes/votes
         - created at
         - isValidated
-        - isBlocked
+
+    Nom|Description|Type|Commentaire|Entité|
+    -|-|-|-|-|
+    ID|ID du commentaire|int (AI)|-|Comments|
+    ID user|ID de l'utilisateur|int|-|Users|
+    ID Post|ID du post|int|-|Posts|
+    Text|Commentaire de l'utilisateur|text|-|Comments|
+    Likes/votes|Vote de l'utilisateur|int|-|Comments|
+    created at|Date de création|datetime|-|Comments|
+    isValidated|Commentaire approuvé ou non|BOOL|-|Comments|
+
 
     # categories
         - ID
         - Title
         - created at
         - updated at
+
+    Nom|Description|Type|Commentaire|Entité|
+    -|-|-|-|-|
+    ID|ID de la catégorie|int (AI)|-|Categories|
+    Title|Nom de la catégorie|varchar|-|Categories|
+    created at|Date de création|datetime|-|Categories|
+    updated at|Date de la màj|datetime|-|Categories|
+
 
     # roles
         - ID
@@ -175,12 +233,22 @@ sans compte : accès en lecture audio des sons + lecture visuelle des commentair
         - created at
         - updated at
 
+    Nom|Description|Type|Commentaire|Entité|
+    -|-|-|-|-|
+    ID|ID du rôle|int (AI)|-|Roles|
+    Name|Nom du rôle|varchar|-|Roles|
+    Role_string|Nom du rôle|varchar|-|Roles|
+    created at|Date de création|datetime|-|Roles|
+    updated at|Date de la màj|datetime|-|Roles|
+
     # users_fav
         - ID users
         - ID Posts
 
     Nom|Description|Type|Commentaire|Entité|
--|-|-|-|-|
-Nom|Nom de la personne|texte court|-|Personne|
-Prénom|Prénom de la personne|texte court|-|Personne|
-DateEmprunt|Date d'emprunt|date|attribut de la relation|Personne/Livre|
+    -|-|-|-|-|
+    ID users|ID de l'utilisateur|int (AI)|-|Users|
+    ID Posts|ID du post|int (AI)|-|Posts|
+
+
+
