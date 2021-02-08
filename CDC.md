@@ -14,241 +14,214 @@ La définition des besoins (problèmes auxquels répond le projet) et des object
 
 # Fonctionnalités 
 
-### MVP - (Minimum Viable Product)
-    - Déposer un son
-    - Ecouter un son
-    - Proposer une réponse au son recherché
+## MVP (Minimum Viable Product)
+- Déposer un son
+- Ecouter un son
+- Commenter un son
+- Clôturer une demande
+- Gestion de rôles
 
-
-
-# idées fonctionnalités supplémentaires :
-- Contraintes de son à écouter/répondre pour poster
-- Blind test
-- Classement des meilleurs helpeurs (badge...)
-- Clôturer sa demande 
+## Idées fonctionnalités supplémentaires
+- Contraintes minimum d'utilisation avant accès à toutes les fonctionnalités
+- Intégrer des blind tests pour la communauté
+- Classer les meilleurs contributeurs de la communauté
+- Créer un backoffice pour gérer le contenu et les utilisteurs
 
 # Technologies prévues
-- Symfony (BACK) / peut-être NodeJS
+- Symfony (BACK) => peut-être NodeJS
 - React (FRONT)
 
 # Cible
- - 7 à 99 ans (grand public)
+
+Le site est orienté pour le grand public, pour les utilisateurs de 7 ans et plus
 
 # Navigateurs disponibles
-- Autant que possible
 
-# L'arborescence de l'application
-https://www.gloomaps.com/ofQ4YqnlT9
+Autant que possible
+
+# Documents références
+
+Arborescence du site : https://www.gloomaps.com/ofQ4YqnlT9
+
+MCD : Schema + Requête MOCODO dans le dossier ./MCD
 
 # Liste des routes
-- www.kroon.fr/signup,
-- www.kroon.fr/login,
-- www.krron.fr/contact,
-- www.kroon.fr/home,
-- www.kroon.fr/listen,
-- www.kroon.fr/myAccount,
-- www.kroon.fr/blindtest,
-- www.kroon.fr/leaderboard
-- www.kroon.fr/CGU,
 
-# User-stories
-    - en tant que utilisateur non loggé
-        - Je dois pouvoir me connecter
-        - je dois pouvoir m'inscrire
-        - faire mdp oublié
-        - écouter des sons / lire les commentaires
+| route                        | method | description     | controller     | nom                        |
+| ------------------           | ------ | --------------- | -----------    | -------------------        |     
+| /signup                      | GET    | Inscription     | -              | -                          | 
+| /login                       | GET    | Connexion       | -              | -                          | 
+| /home                        | GET    | Accueil         | -              | -                          | 
+| /contact                     | GET    | Contact         | -              | -                          | 
+| /account                     | GET    | Compte          | -              | -                          | 
+| /cgu                         | GET    | CGU             | -              | -                          | 
+| /listen                      | ???    | Enregistrement  | -              | -                          |
 
-    - en tant que utilisateur loggé
-        - Je dois pouvoir me déconnecter 
-        - écouter des sons / lire les commentaires
-        - proposer un son
-        - commenter un son
-        - avoir accès à mes sons postés & leurs réponses
-        - avoir accès aux réponses que j'ai proposé
-        - Accéder à mon compte
-            - changer mes infos personnelles (nom, email, mdp)
-        (- avoir accès aux bllindtest
-        - avoir accès aux leaderboards)
+| route                        | method | description     | controller     | nom                        |
+| ------------------           | ------ | --------------- | -----------    | -------------------        |  
+| /leaderboard                 | GET    | Classement      | -              | -                          | 
+| /blindtest                   | GET    | Blindtest       | -              | -                          | 
 
-    - en tant qu'admin
-      (- accéder au back office )
-        - supprimer des commentaires
-        - supprimer des sons 
-        - paramétrés les comptes (gestion des rôles, suppression...)
-       
-    - en tant que modérateur
-      (- accéder au back office )
-        - supprimer des commentaires
-        - supprimer des sons 
-        - paramétrés les comptes (gestion des rôles, suppression...)
+# User stories
 
-# rôles de chacun
-1) Product Owner
-Connaît le produit et représente les intérêts et les besoins du client/des utilisateurs purement fonctionnels (pas techniques)
-Tranche en cas de conflits fonctionnels (pas techniques)
-En général c'est le porteur du projet (s'il est dans le groupe)
+## Visiteur
 
-2) Scrum master
-Garant de la méthode du projet : il gère le respect des conventions définies dans le groupe
-S'assure que toutes les tâches sont bien attribuées, suivies, accomplies
-Assure la communication au sein du groupe : il vérifie que tout le monde a les bonnes informations
-Gère l'outil de suivi du projet
-Anime la réunion du matin et gère l'avancement du projet
+| En tant que | Je veux pouvoir | Afin de (si besoin/nécessaire) |
+|--|--|--|
+| Visiteur | créer un compte | - |
+| Visiteur | me connecter | - |
+| Visiteur | réinitialiser mon mot de passe | - |
+| Visiteur | écouter les sons publiés | - |
+| Visiteur | lire les commentaires | - |
+|--|--|--|
 
-3) Lead dev front & Lead dev back
-Choisit les orientations importantes, choix techniques importants
-S'assure du bon fonctionnement de sa partie du projet
+## Utilisateur
 
-Référents techniques
+| En tant que | Je veux pouvoir | Afin de (si besoin/nécessaire) |
+|--|--|--|
+| Utilisateur | me déconnecter | - |
+| Utilisateur | accéder à mon compte | modifier mes coordonnées |
+| Utilisateur | - | lister mes favoris |
+| Utilisateur | - | lister mes sons postés |
+| Utilisateur | - | lister mes sons commentés |
+| Utilisateur | écouter les sons publiés | - |
+| Utilisateur | lire les commentaires | - |
+| Utilisateur | proposer un son | - |
+| Utilisateur | commenter un son | - |
+| Utilisateur | mettre un son en favori | - |
+| Utilisateur | signaler un compte | - | 
+|--|--|--|
 
-4) Git master
-Garant du bon fonctionnement du versionning avec Git.
-Responsable du bon fonctionnement du versionning, vérifie les PR et merge, gère les conflits etc.
+## Modérateur
 
-5) Référent par librairie/techno particulière (exemples : Bootstrap, Google Maps... )
-S'informe, se documente sur cette techno, sa sémantique, son utilisation.
-Restitue les informations au groupe.
-=> Fichier commun (google sheet à créer)
+| En tant que | Je veux pouvoir | Afin de (si besoin/nécessaire) |
+|--|--|--|
+| Modérateur | supprimer un post | - |
+| Modérateur | supprimer un commentaire | - |
+| Modérateur | gérer les utilisateurs | - |
+|--|--|--|
 
-Amélie : Lead Back
+## Administrateur
 
-Dimitri : Lead Front 
+| En tant que | Je veux pouvoir | Afin de (si besoin/nécessaire) |
+|--|--|--|
+| Administrateur | supprimer un post | - |
+| Administrateur | supprimer un commentaire | - |
+| Administrateur | gérer les rôles | attribuer ou retirer un rôle |
+| Administrateur | gérer les utilisateurs| - |
+|--|--|--|
 
-Damien : Scrum Master / Git Master
+# Rôles
 
-Jordan : PO
+>## Product Owner : Jordan
 
-Idées :
-réponses : majoritairement écrites + possible d'ajouter PJ/lien YT...
-sans compte : accès en lecture audio des sons + lecture visuelle des commentaires, pas d'ajout ni de réponse soi-même sans être logger.
+- Connaît le produit et représente les intérêts et les besoins du client/des utilisateurs purement fonctionnels (pas techniques)
+- Tranche en cas de conflits fonctionnels (pas techniques)
 
-### Documents relatifs à la BDD
-- Le MCD
+>## Scrum master : Damien
 
-# Dictionnaire de données
+- Garant de la méthode du projet : il gère le respect des conventions définies dans le groupe
+- S'assure que toutes les tâches sont bien attribuées, suivies, accomplies
+- Assure la communication au sein du groupe : il vérifie que tout le monde a les bonnes informations
+- Anime la réunion du matin et gère l'avancement du projet
+- Gère l'outil de suivi du projet
+
+>## Lead Dev - Front : Dimitri
+>## Lead Dev - Back : Amélie
+- Choisit les orientations importantes, choix techniques importants
+- S'assure du bon fonctionnement de sa partie du projet
+
+>## Git master : Damien
+- Garant du bon fonctionnement du versionning avec Git.
+- Responsable du bon fonctionnement du versionning, vérifie les PR et merge, gère les conflits etc.
+
+# Documents relatifs à la BDD
+
+## Dictionnaire de données
 
 A partir des infos disponibles (maquettes, cahier des charges, descriptions fonctionnelles), nous avons **listé toutes les informations nécessaires au fonctionnement** de l'application dans un _dictionnaire de données_, selon cette méthode :
 
-- **Nous avons nommé chaque information**
-- **Le type** (nombre, texte, booléen, calculé à partir d'autres informations).
+- **Tous les informations sont coupées par entité**
+- **Chaque champ dans ces entités est indiqué avec son type** (int, text, boolean, etc.)
 
-> Certaines informations ne seront pas rattachées qu'à une seule entité. Ces informations vont nous aider à construire les relations.
+> Certaines informations ne seront pas rattachées qu'à une seule entité et seront donc liées à d'autres entités par l'intermédiaire de clés étrangères et d'une table pivot
 
-- Le dico de données
+## Users
 
-    # users
-        - ID 
-        - Nickname
-        - mail
-        - password
-        - created at
-        - updated at
-        - ID role
-        - isActive
-        - avatar
-        (- Nb de commentaires postés
-        - Nb de sons postés)
+Nom|Description|Type|Commentaire|Entité|
+-|-|-|-|-|
+id|id de l'utilisateur|TINYINT|-|Users|
+role_id|Rôle de l'utilisateur|TINYINT|-|Roles|
+name|Pseudo de l'utilisateur|VARCHAR|-|Users|
+email|Adresse mail de l'utilisateur|VARCHAR|-|Users|
+password|Mot de passe de l'utilisateur|VARCHAR|-|Users|
+avatar|Avatar de l'utilisateur|VARCHAR|-|Users|
+isActive|Statut de l'utilisateur|BOOL|-|Users|
+created at|Date de création|DATETIME|-|Users|
+updated at|Date de mise à jour|DATETIME|-|Users|
+-|-|-|-|-|
+> Mémo : Nb. de commentaires et de sons postés
 
-    Nom|Description|Type|Commentaire|Entité|
-    -|-|-|-|-|
-    ID|ID de l'utilisateur|TINYINT|-|Users|
-    Nickname|Pseudo de l'utilisateur|VARCHAR|-|Users|
-    Mail|Adresse mail de l'utilisateur|VARCHAR|-|Users|
-    password|mot de passe de l'utilisateur|VARCHAR|-|Users|
-    ID Rôle|Rôle de l'utilisateur|TINYINT|-|Roles|
-    isActive|Statut de l'utilisateur|BOOL|-|Users|
-    avatar|Avatar de l'utilisateur|VARCHAR|-|Users|
-    created at|date de création|DATETIME|-|Users|
-    updated at|date de mise à jour|DATETIME|-|Users|
-        
+> Mémo 2 : Gestion du "isActive" avec un seul "status"
 
-    # Posts
-        - ID
-        - Title
-        - ID category
-        - ID User
-        - Sounds
-        - Text
-        - created at
-        - updated at
-        - isClosed
-        - isSolved        
-        - isBlocked
-        - isActive
+# Posts
 
-    Nom|Description|Type|Commentaire|Entité|
-    -|-|-|-|-|
-    ID|Id du post|INT|-|Posts|
-    Title |Titre du post|VARCHAR|-|Posts|
-    ID category|id de la catégorie du post|INT|-|Categories|
-    ID User|id de l'utilisateur qui créé le post |INT|-|Users|
-    Sounds|l'enregistrement du son de l'utilisateur|VARCHAR|-|Posts|
-    Text|description du post ou info pour trouver l'origine du son|BLOB|-|Posts|
-    created at|date de création|DATETIME|-|Posts|
-    updated at|date de mise à jour|DATETIME|-|Posts|
-    isClosed|post créé et archivé|BOOL|-|Posts|
-    isBlocked|post bloqué pour contenu abusif|BOOL|-|Posts|
-    isSolved|post bloqué pour contenu abusif|BOOL|-|Posts|
-    isActive|post validé et non archivé|BOOL|-|Posts|
+Nom|Description|Type|Commentaire|Entité|
+-|-|-|-|-|
+id|Id du post|INT|-|Posts|
+user_id|Id de l'utilisateur qui créé le post |INT|-|Users|
+category_id|Id de la catégorie du post|INT|-|Categories|
+title|Titre du post|VARCHAR|-|Posts|
+sound|Enregistrement du son de l'utilisateur|VARCHAR|-|Posts|
+body|Description du post|TEXT|Servira pour la recherche|Posts|
+isClosed|Fermeture du post|BOOL|-|Posts|
+isBlocked|Blocage du post|BOOL|-|Posts|
+isSolved|Résolution du post|BOOL|-|Posts|
+isActive|Archivage du post|BOOL|-|Posts|
+created at|Date de création|DATETIME|-|Posts|
+updated at|Date de mise à jour|DATETIME|-|Posts|
+-|-|-|-|-|
+> Mémo : Gestion des "isXXX" avec un seul "status"
 
+# Comments
 
-    # comments
-        - ID
-        - ID user
-        - ID Post
-        - Text
-        - Likes/votes
-        - created at
-        - isValidated
+Nom|Description|Type|Commentaire|Entité|
+-|-|-|-|-|
+id|Id du commentaire|INT (AI)|-|Comments|
+user_id|Id de l'utilisateur|INT|-|Users|
+post_id|Id du post|INT|-|Posts|
+body|Commentaire de l'utilisateur|TEXT|-|Comments|
+likes|Vote de l'utilisateur|INT|-|Comments|
+isValidated|Commentaire approuvé ou non|BOOLEAN|-|Comments|
+createdAt|Date de création|DATETIME|-|Comments|
+updatedAt|Date de mise à jour|DATETIME|-|Comments|
+-|-|-|-|-|
 
-    Nom|Description|Type|Commentaire|Entité|
-    -|-|-|-|-|
-    ID|ID du commentaire|int (AI)|-|Comments|
-    ID user|ID de l'utilisateur|int|-|Users|
-    ID Post|ID du post|int|-|Posts|
-    Text|Commentaire de l'utilisateur|text|-|Comments|
-    Likes/votes|Vote de l'utilisateur|int|-|Comments|
-    created at|Date de création|datetime|-|Comments|
-    isValidated|Commentaire approuvé ou non|BOOL|-|Comments|
+# Tags
 
+Nom|Description|Type|Commentaire|Entité|
+-|-|-|-|-|
+id|id de la catégorie|INT (AI)|-|Categories|
+name|Nom de la catégorie|VARCHAR|-|Categories|
+createdAt|Date de création|DATETIME|-|Categories|
+updatedAt|Date de mise à jour|DATETIME|-|Categories|
+-|-|-|-|-|
 
-    # categories
-        - ID
-        - Title
-        - created at
-        - updated at
+# Roles
 
-    Nom|Description|Type|Commentaire|Entité|
-    -|-|-|-|-|
-    ID|ID de la catégorie|int (AI)|-|Categories|
-    Title|Nom de la catégorie|varchar|-|Categories|
-    created at|Date de création|datetime|-|Categories|
-    updated at|Date de la màj|datetime|-|Categories|
+Nom|Description|Type|Commentaire|Entité|
+-|-|-|-|-|
+id|id du rôle|INT (AI)|-|Roles|
+name|Nom du rôle|VARCHAR|-|Roles|
+role_string|Nom du rôle|VARCHAR|-|Roles|
+createdAt|Date de création|DATETIME|-|Roles|
+updatedAt|Date de mise à jour|DATETIME|-|Roles|
+-|-|-|-|-|
 
+# User_Post_Fav
 
-    # roles
-        - ID
-        - Name
-        - role_string
-        - created at
-        - updated at
-
-    Nom|Description|Type|Commentaire|Entité|
-    -|-|-|-|-|
-    ID|ID du rôle|int (AI)|-|Roles|
-    Name|Nom du rôle|varchar|-|Roles|
-    Role_string|Nom du rôle|varchar|-|Roles|
-    created at|Date de création|datetime|-|Roles|
-    updated at|Date de la màj|datetime|-|Roles|
-
-    # users_fav
-        - ID users
-        - ID Posts
-
-    Nom|Description|Type|Commentaire|Entité|
-    -|-|-|-|-|
-    ID users|ID de l'utilisateur|int (AI)|-|Users|
-    ID Posts|ID du post|int (AI)|-|Posts|
-
-
-
+Nom|Description|Type|Commentaire|Entité|
+-|-|-|-|-|
+user_id|id de l'utilisateur|INT|-|Users|
+post_id|id du post|INT|-|Posts|
+-|-|-|-|-|
