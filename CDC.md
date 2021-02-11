@@ -15,20 +15,30 @@ La définition des besoins (problèmes auxquels répond le projet) et des object
 # Fonctionnalités 
 
 ## MVP (Minimum Viable Product)
-- Déposer un son
+- Créer un compte
+- Enregistrer un son
+- Publier un son
 - Ecouter un son
 - Commenter un son
 - Clôturer une demande
 - Gestion de rôles
+- Signalements
+- Ajouter en favori
+- Mettre un like
 
 ## Idées fonctionnalités supplémentaires
-- Contraintes minimum d'utilisation avant accès à toutes les fonctionnalités
-- Intégrer des blind tests pour la communauté
-- Classer les meilleurs contributeurs de la communauté
 - Créer un backoffice pour gérer le contenu et les utilisteurs
+- Trier les posts par catégories
+- Page de profil pour chaque utilisateur
+- Page de réinitialisation du mot de passe
+- Mail de confirmation à l'inscription
+- Intégration d'un mode nuit
+- Contraintes d'utilisation avant accès à toutes les fonctionnalités
+- Classer les meilleurs contributeurs de la communauté
+- Intégrer des blind tests pour la communauté
 
 # Technologies prévues
-- Symfony (BACK) => peut-être NodeJS
+- Symfony (BACK)
 - React (FRONT)
 
 # Cible
@@ -41,26 +51,145 @@ Autant que possible
 
 # Documents références
 
-Arborescence du site : https://www.gloomaps.com/ofQ4YqnlT9
+Arborescence du site : https://whimsical.com/architecture-kroon-XZgZaDQUP8wLJYFJSUU1hi
+
+Wireframes du site : https://whimsical.com/kroon-6bguRPwKo51w9FqHR4YPGZ
 
 MCD : Schema + Requête MOCODO dans le dossier ./MCD
 
-# Liste des routes
+# Liste des routes - FRONT
 
-| route                        | method | description     | controller     | nom                        |
-| ------------------           | ------ | --------------- | -----------    | -------------------        |     
-| /signup                      | GET    | Inscription     | -              | -                          | 
-| /login                       | GET    | Connexion       | -              | -                          | 
-| /home                        | GET    | Accueil         | -              | -                          | 
-| /contact                     | GET    | Contact         | -              | -                          | 
-| /account                     | GET    | Compte          | -              | -                          | 
-| /cgu                         | GET    | CGU             | -              | -                          | 
-| /listen                      | ???    | Enregistrement  | -              | -                          |
+## Main
 
-| route                        | method | description     | controller     | nom                        |
-| ------------------           | ------ | --------------- | -----------    | -------------------        |  
-| /leaderboard                 | GET    | Classement      | -              | -                          | 
-| /blindtest                   | GET    | Blindtest       | -              | -                          | 
+| route                              | method | description     | controller        | nom                        |
+| ------------------                 | ------ | --------------- | -----------       | -------------------        |
+| /                                  | GET    | Accueil         |                   | -                          |
+| /                                  | POST   | Publier post    |                   | -                          |
+| /contact                           | GET    | Contact         |                   | -                          |
+| /contact                           | POST   | Formulaire      |                   | -                          |
+| /cgu                               | GET    | CGU             |                   | -                          |
+
+## Authentification
+
+| route                              | method | description     | controller        | nom                        |
+| ------------------                 | ------ | --------------- | -----------       | -------------------        |
+| /inscription                       | GET    | Inscription     |                   | -                          |
+| /inscription                       | POST   | Fomulaire       |                   | -                          |
+| /connexion                         | GET    | Connexion       |                   | -                          |
+| /connexion                         | POST   | Formulaire      |                   | -                          |
+| /deconnexion                       | POST   | Formulaire      |                   | -                          |
+
+## Users
+
+| route                              | method | description     | controller        | nom                        |
+| ------------------                 | ------ | --------------- | -----------       | -------------------        |
+| /compte                            | GET    | Compte          |                   | -                          |
+| /compte                            | PUT    | Mise à jour     |                   | -                          |
+| /compte/{slug}/favoris             | GET    | Liste favoris   |                   | -                          |
+| /compte/{slug}/favoris             | DELETE | Annuler favori  |                   | -                          |
+| /compte/{slug}/commentaires        | GET    | Liste comments  |                   | -                          |
+| /compte/{slug}/publications        | GET    | Liste posts     |                   | -                          |
+
+## Posts
+
+| route                              | method | description     | controller        | nom                        |
+| ------------------                 | ------ | --------------- | -----------       | -------------------        |
+| /publications                      | GET    | Liste posts     |                   | -                          |
+| /publications/{slug}               | GET    | Affiche post    |                   | -                          |
+| /publications/{slug}               | PUT    | Mise à jour     |                   | -                          |
+| /publications/{slug}               | DELETE | Supprimer post  |                   | -                          |
+| /publications/{slug}               | PUT    | Report post     |                   | -                          |
+| /publications/{slug}               | PUT    | Chgt status     |                   | -                          |
+| /publications/{slug}               | PUT    | Chgt isActive   |                   | -                          |
+
+## Comments
+
+| route                              | method | description     | controller        | nom                        |
+| ------------------                 | ------ | --------------- | -----------       | -------------------        |
+| /publis/{slug}/comment             | POST   | Publier comment |                   | -                          |
+| /publis/{slug}/comment/{id}/update | PUT    | Mise à jour     |                   | -                          |
+| /publis/{slug}/comment             | DELETE | Supprimercomment|                   | -                          |
+| /publis/{slug}/comment             | PUT    | Report comment  |                   | -                          |
+| /publis/{slug}/comment             | PUT    | Chgt isActive   |                   | -                          |
+
+## Tags
+
+| route                              | method | description     | controller        | nom                        |
+| ------------------                 | ------ | --------------- | -----------       | -------------------        |
+| /categories                        | GET    | Liste tags      |                   | -                          |
+| /categories/{name}/publications    | GET    | Posts / Tag     |                   | -                          |
+
+## Fonctionnalités futures
+
+| route                              | method | description     | controller         | nom                        |
+| ------------------                 | ------ | --------------- | -----------        | -------------------        |
+| /classement                        | GET    | Classement      | -                  | -                          |
+| /blindtest                         | GET    | Blindtest       | -                  | -                          |
+
+# Liste des routes - API
+
+## Authentification
+
+| route                              | method | description     | controller         | nom                        |
+| ------------------                 | ------ | --------------- | -----------        | -------------------        |
+| /api/v1/signup                     | POST   | Inscription     | ApiAuth            | api_v1_account_signup      |
+| /api/v1/login                      | POST   | Formulaire      | ApiAuth            | api_v1_account_login       |
+| /api/v1/logout                     | POST   | Deconnexion     | ApiAuth            | api_v1_account_logout      | 
+
+## Users 
+
+| route                              | method | description     | controller         | nom                        |
+| ------------------                 | ------ | --------------- | -----------        | -------------------        | 
+| /api/v1/users                      | GET    | Liste users     | ApiUser            | api_v1_user_browse         |
+| /api/v1/users/{id}                 | GET    | Détail user     | ApiUser            | api_v1_user_read           |
+| /api/v1/users/{id}                 | PUT    | Mise à jour     | ApiUser            | api_v1_user_edit           |
+| /api/v1/users                      | POST   | Ajout user      | ApiUser            | api_v1_user_add            |
+| /api/v1/users/{id}/bookmarks       | GET    | Liste favoris   | ApiUser            | api_v1_user_bookmark_browse|
+| /api/v1/users/{id}/comments        | GET    | Liste comments  | ApiUser            | api_v1_user_comment_browse |
+| /api/v1/users/{id}/posts           | GET    | Liste posts     | ApiUser            | api_v1_user_post_browse    |
+
+## Entité : Post
+
+| route                              | method | description     | controller         | nom                        |
+| ------------------                 | ------ | --------------- | -----------        | -------------------        |
+| /api/v1/posts                      | GET    | Liste posts     | ApiPost            | api_v1_post_browse         |
+| /api/v1/posts/{id}                 | GET    | Détail post     | ApiPost            | api_v1_post_read           |
+| /api/v1/posts                      | POST   | Ajout post      | ApiPost            | api_v1_post_add            |
+| /api/v1/posts/{id}                 | PUT    | Mise à jour     | ApiPost            | api_v1_post_edit           |
+| /api/v1/posts/{id}                 | DELETE | Supprimer       | ApiPost            | api_v1_post_delete         |
+| /api/v1/posts/{id}/bookmark        | POST   | Ajouter favori  | ApiPost            | api_v1_post_add_bookmark   |
+| /api/v1/posts/{id}/bookmark        | DELETE | Supprimer favori| ApiPost            | api_v1_post_delete_bookmark|
+
+## Entité : Comment
+
+| route                              | method | description     | controller         | nom                        |
+| ------------------                 | ------ | --------------- | -----------        | -------------------        |
+| /api/v1/comments                   | GET    | Liste comments  | ApiComment         | api_v1_comment_browse      |
+| /api/v1/comments/{id}              | GET    | Détail comment  | ApiComment         | api_v1_comment_read        |
+| /api/v1/comments                   | POST   | Ajout comment   | ApiComment         | api_v1_comment_add         |
+| /api/v1/comments/{id}              | PUT    | Modifier        | ApiComment         | api_v1_comment_edit        |
+| /api/v1/comments/{id}              | DELETE | Supprimer       | ApiComment         | api_v1_comment_delete      |
+| /api/v1/comments/{id}/like         | POST   | Ajouter like    | ApiComment         | api_v1_comment_add_like    |
+| /api/v1/comments/{id}/like         | DELETE | Supprimer like  | ApiComment         | api_v1_comment_delete_like |
+
+## Entité : Tag
+
+| route                              | method | description     | controller         | nom                        |
+| ------------------                 | ------ | --------------- | -----------        | -------------------        |
+| /api/v1/tags                       | GET    | Liste tags      | Apitag             | api_v1_tag_browse          |
+| /api/v1/tags/{id}                  | GET    | Détail tag      | ApiTag             | api_v1_tag_read            |
+| /api/v1/tags/{id}/posts            | GET    | Posts / tag     | ApiTag             | api_v1_tag_read_posts      |
+| /api/v1/tags                       | POST   | Ajout tag       | Apitag             | api_v1_tag_add             |
+| /api/v1/tags/{id}                  | PUT    | Modifier tag    | Apitag             | api_v1_tag_edit            |
+| /api/v1/tags/{id}                  | DELETE | Supprimer tag   | Apitag             | api_v1_tag_delete          |
+
+## Entité : Highlight
+
+| route                              | method | description     | controller         | nom                        |
+| ------------------                 | ------ | --------------- | -----------        | -------------------        |
+| /api/v1/best/posts/{limit}         | GET    | Liste X posts   | ApiHighlight       | api_v1_highlight_read_ps   |
+| /api/v1/best/lastposts/{limit}     | GET    | X last posts    | ApiHighlight       | api_v1_highlight_read_lps  |
+| /api/v1/best/users/{limit}         | GET    | Liste X best usr| ApiHighlight       | api_v1_highlight_read_bus  |
 
 # User stories
 
@@ -70,7 +199,6 @@ MCD : Schema + Requête MOCODO dans le dossier ./MCD
 |--|--|--|
 | Visiteur | créer un compte | - |
 | Visiteur | me connecter | - |
-| Visiteur | réinitialiser mon mot de passe | - |
 | Visiteur | écouter les sons publiés | - |
 | Visiteur | lire les commentaires | - |
 |--|--|--|
@@ -84,31 +212,34 @@ MCD : Schema + Requête MOCODO dans le dossier ./MCD
 | Utilisateur | - | lister mes favoris |
 | Utilisateur | - | lister mes sons postés |
 | Utilisateur | - | lister mes sons commentés |
-| Utilisateur | écouter les sons publiés | - |
+| Utilisateur | écouter les posts publiés | - |
 | Utilisateur | lire les commentaires | - |
-| Utilisateur | proposer un son | - |
-| Utilisateur | commenter un son | - |
-| Utilisateur | mettre un son en favori | - |
-| Utilisateur | signaler un compte | - | 
+| Utilisateur | proposer un post | - |
+| Utilisateur | commenter un post | - |
+| Utilisateur | modifier mon post | - |
+| Utilisateur | mettre un post en favori | - |
+| Utilisateur | mettre un like sur un commentaire | - |
+| Utilisateur | signaler un post | - |
+| Utilisateur | signaler un commentaire | - | 
 |--|--|--|
 
 ## Modérateur
 
 | En tant que | Je veux pouvoir | Afin de (si besoin/nécessaire) |
 |--|--|--|
-| Modérateur | supprimer un post | - |
-| Modérateur | supprimer un commentaire | - |
-| Modérateur | gérer les utilisateurs | - |
+| Modérateur | désactiver un post | - |
+| Modérateur | désactiver un commentaire | - |
+| Modérateur | gérer les utilisateurs | activer ou désactiver un compte |
 |--|--|--|
 
 ## Administrateur
 
 | En tant que | Je veux pouvoir | Afin de (si besoin/nécessaire) |
 |--|--|--|
-| Administrateur | supprimer un post | - |
-| Administrateur | supprimer un commentaire | - |
+| Administrateur | désactiver un post | - |
+| Administrateur | désactiver un commentaire | - |
 | Administrateur | gérer les rôles | attribuer ou retirer un rôle |
-| Administrateur | gérer les utilisateurs| - |
+| Administrateur | gérer les utilisateurs| activer ou désactiver un compte |
 |--|--|--|
 
 # Rôles
@@ -150,38 +281,35 @@ A partir des infos disponibles (maquettes, cahier des charges, descriptions fonc
 
 Nom|Description|Type|Commentaire|Entité|
 -|-|-|-|-|
-id|id de l'utilisateur|TINYINT|-|Users|
-role_id|Rôle de l'utilisateur|TINYINT|-|Roles|
+id|Id de l'utilisateur|INT (AI)|-|Users|
+role|Rôle de l'utilisateur|TINYINT|-|Roles|
 name|Pseudo de l'utilisateur|VARCHAR|-|Users|
+slug|Slug de l'utilisateur|VARCHAR|-|Users|
 email|Adresse mail de l'utilisateur|VARCHAR|-|Users|
 password|Mot de passe de l'utilisateur|VARCHAR|-|Users|
+bio|Slug de l'utilisateur|VARCHAR|-|Users|
 avatar|Avatar de l'utilisateur|VARCHAR|-|Users|
 isActive|Statut de l'utilisateur|BOOL|-|Users|
-created at|Date de création|DATETIME|-|Users|
-updated at|Date de mise à jour|DATETIME|-|Users|
+createdAt|Date de création|DATETIME|-|Users|
+updatedAt|Date de mise à jour|DATETIME|-|Users|
 -|-|-|-|-|
-> Mémo : Nb. de commentaires et de sons postés
-
-> Mémo 2 : Gestion du "isActive" avec un seul "status"
 
 # Posts
 
 Nom|Description|Type|Commentaire|Entité|
 -|-|-|-|-|
-id|Id du post|INT|-|Posts|
+id|Id du post|INT (AI)|-|Posts|
 user_id|Id de l'utilisateur qui créé le post |INT|-|Users|
-category_id|Id de la catégorie du post|INT|-|Categories|
+tag_id|Id de la catégorie du post|INT|-|Categories|
 title|Titre du post|VARCHAR|-|Posts|
 sound|Enregistrement du son de l'utilisateur|VARCHAR|-|Posts|
 body|Description du post|TEXT|Servira pour la recherche|Posts|
-isClosed|Fermeture du post|BOOL|-|Posts|
-isBlocked|Blocage du post|BOOL|-|Posts|
-isSolved|Résolution du post|BOOL|-|Posts|
+status|Résolution du post|INT|-|Posts|
+isReported|Signalement du post|INT|-|Posts|
 isActive|Archivage du post|BOOL|-|Posts|
-created at|Date de création|DATETIME|-|Posts|
-updated at|Date de mise à jour|DATETIME|-|Posts|
+createdAt|Date de création|DATETIME|-|Posts|
+updatedAt|Date de mise à jour|DATETIME|-|Posts|
 -|-|-|-|-|
-> Mémo : Gestion des "isXXX" avec un seul "status"
 
 # Comments
 
@@ -192,7 +320,8 @@ user_id|Id de l'utilisateur|INT|-|Users|
 post_id|Id du post|INT|-|Posts|
 body|Commentaire de l'utilisateur|TEXT|-|Comments|
 likes|Vote de l'utilisateur|INT|-|Comments|
-isValidated|Commentaire approuvé ou non|BOOLEAN|-|Comments|
+isReported|Signalement du commentaire|INT|-|Comments|
+isActive|Commentaire approuvé ou non|BOOLEAN|-|Comments|
 createdAt|Date de création|DATETIME|-|Comments|
 updatedAt|Date de mise à jour|DATETIME|-|Comments|
 -|-|-|-|-|
@@ -201,27 +330,24 @@ updatedAt|Date de mise à jour|DATETIME|-|Comments|
 
 Nom|Description|Type|Commentaire|Entité|
 -|-|-|-|-|
-id|id de la catégorie|INT (AI)|-|Categories|
+id|Id de la catégorie|INT (AI)|-|Categories|
 name|Nom de la catégorie|VARCHAR|-|Categories|
 createdAt|Date de création|DATETIME|-|Categories|
 updatedAt|Date de mise à jour|DATETIME|-|Categories|
 -|-|-|-|-|
 
-# Roles
-
-Nom|Description|Type|Commentaire|Entité|
--|-|-|-|-|
-id|id du rôle|INT (AI)|-|Roles|
-name|Nom du rôle|VARCHAR|-|Roles|
-role_string|Nom du rôle|VARCHAR|-|Roles|
-createdAt|Date de création|DATETIME|-|Roles|
-updatedAt|Date de mise à jour|DATETIME|-|Roles|
--|-|-|-|-|
-
-# User_Post_Fav
+# User_Post ( Table pivot - Favoris)
 
 Nom|Description|Type|Commentaire|Entité|
 -|-|-|-|-|
 user_id|id de l'utilisateur|INT|-|Users|
 post_id|id du post|INT|-|Posts|
+-|-|-|-|-|
+
+# User_Comment ( Table pivot - Like )
+
+Nom|Description|Type|Commentaire|Entité|
+-|-|-|-|-|
+user_id|id de l'utilisateur|INT|-|Users|
+comment_id|id du post|INT|-|Comments|
 -|-|-|-|-|
