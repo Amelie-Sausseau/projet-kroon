@@ -282,7 +282,7 @@ A partir des infos disponibles (maquettes, cahier des charges, descriptions fonc
 Nom|Description|Type|Commentaire|Entité|
 -|-|-|-|-|
 id|Id de l'utilisateur|INT (AI)|-|Users|
-role|Rôle de l'utilisateur|TINYINT|-|Roles|
+role|Rôle de l'utilisateur|VARCHAR|-|Users|
 name|Pseudo de l'utilisateur|VARCHAR|-|Users|
 slug|Slug de l'utilisateur|VARCHAR|-|Users|
 email|Adresse mail de l'utilisateur|VARCHAR|-|Users|
@@ -306,7 +306,7 @@ sound|Enregistrement du son de l'utilisateur|VARCHAR|-|Posts|
 body|Description du post|TEXT|Servira pour la recherche|Posts|
 isClosed|Fermeture du post|BOOL|-|Posts|
 isSolved|Résolution du post|BOOL|-|Posts|
-isReported|Signalement du post|INT|-|Posts|
+isReported|Signalement du post|BOOL|-|Posts|
 isActive|Archivage du post|BOOL|-|Posts|
 createdAt|Date de création|DATETIME|-|Posts|
 updatedAt|Date de mise à jour|DATETIME|-|Posts|
@@ -321,8 +321,8 @@ user_id|Id de l'utilisateur|INT|-|Users|
 post_id|Id du post|INT|-|Posts|
 body|Commentaire de l'utilisateur|TEXT|-|Comments|
 likes|Vote de l'utilisateur|INT|-|Comments|
-isReported|Signalement du commentaire|INT|-|Comments|
-isActive|Commentaire approuvé ou non|BOOLEAN|-|Comments|
+isReported|Signalement du commentaire|BOOL|-|Comments|
+isActive|Commentaire approuvé ou non|BOOL|-|Comments|
 createdAt|Date de création|DATETIME|-|Comments|
 updatedAt|Date de mise à jour|DATETIME|-|Comments|
 -|-|-|-|-|
