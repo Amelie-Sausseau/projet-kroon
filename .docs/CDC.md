@@ -304,7 +304,8 @@ tag_id|Id de la catégorie du post|INT|-|Categories|
 title|Titre du post|VARCHAR|-|Posts|
 sound|Enregistrement du son de l'utilisateur|VARCHAR|-|Posts|
 body|Description du post|TEXT|Servira pour la recherche|Posts|
-status|Résolution du post|INT|-|Posts|
+isClosed|Fermeture du post|BOOL|-|Posts|
+isSolved|Résolution du post|BOOL|-|Posts|
 isReported|Signalement du post|INT|-|Posts|
 isActive|Archivage du post|BOOL|-|Posts|
 createdAt|Date de création|DATETIME|-|Posts|
