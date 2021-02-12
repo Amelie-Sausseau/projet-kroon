@@ -1,0 +1,19 @@
+.footer {
+    display: flex;
+    justify-content: center;
+    background-color:  #1D3557;
+    height: 15vh;
+    align-items:center;
+}
+
+.sound {
+      border: 1px solid #E63946;
+      background-color: #E63946;
+    font-size: small;
+      color: #F1FAEE;
+      font-weight: bold;
+      width: 80vw;
+      border-radius: 0.5rem;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
