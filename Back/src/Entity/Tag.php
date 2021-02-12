@@ -19,12 +19,14 @@ class Tag
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * @Groups("post:test")
+     * @Groups("tag:allPosts")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("post:test")
+     * @Groups("tag:allPosts")
+
      */
     private $name;
 
@@ -42,6 +44,7 @@ class Tag
 
     /**
      * @ORM\ManyToMany(targetEntity=Post::class, mappedBy="tags")
+     * @Groups("tag:allPosts")
      */
     private $posts;
 

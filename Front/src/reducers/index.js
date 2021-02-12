@@ -2,6 +2,7 @@ import {
     PLAY_START,
     STOP_RECORD,
     CHANGE_URL,
+    SAVE_POSTS,
    
   } from "../actions";
   
@@ -10,6 +11,8 @@ import {
         record: false,
         recordedSound: false,
         url: '',
+        data:[],
+        loading: true,
   
   };
   export default (state = initialState, action = {}) => {
@@ -26,12 +29,11 @@ import {
               record: false,
               recordedSound: true,
             }
-        case CHANGE_URL:
+          case SAVE_POSTS:
             return {
               ...state,
-             url: value,
+              data: action.data,
             }
-  
         default:
             return state;
     };
