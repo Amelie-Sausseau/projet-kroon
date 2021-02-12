@@ -8,7 +8,7 @@ import { playStart, stopRecord } from 'src/actions';
 
 const mapStateToProps = (state) => ({
  record: state.record,
- recordedSound: state.recorded,
+ recordedSound: state.recordedSound,
  url: state.value
 });
 
