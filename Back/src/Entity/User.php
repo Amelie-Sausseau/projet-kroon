@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Serializer\Annotation\Groups;
+
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
@@ -16,56 +18,67 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("post:test")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("post:test")
      */
     private $role;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("post:test")
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("post:test")
      */
     private $slug;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("post:test")
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("post:test")
      */
     private $password;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Groups("post:test")
      */
     private $bio;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("post:test")
      */
     private $avatar;
 
     /**
      * @ORM\Column(type="boolean", options={"default":true})
+     * @Groups("post:test")
      */
     private $isActive;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups("post:test")
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     * @Groups("post:test")
      */
     private $updatedAt;
 

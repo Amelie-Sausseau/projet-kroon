@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Serializer\Annotation\Groups;
+
 /**
  * @ORM\Entity(repositoryClass=PostRepository::class)
  */
@@ -16,67 +18,80 @@ class Post
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("post:test")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("post:test")
      */
     private $title;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("post:test")
      */
     private $sound;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups("post:test")
      */
     private $body;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Groups("post:test")
      */
     private $isClosed;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Groups("post:test")
      */
     private $isSolved;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Groups("post:test")
      */
     private $isReported;
 
     /**
      * @ORM\Column(type="boolean", options={"default":true})
+     * @Groups("post:test")
      */
     private $isActive;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups("post:test")
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     * @Groups("post:test")
      */
     private $updatedAt;
 
     /**
      * @ORM\ManyToMany(targetEntity=Tag::class, inversedBy="posts")
+     * @Groups("post:test")
      */
     private $tags;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="posts")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups("post:test")
      */
     private $user;
 
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="post")
+     * @Groups("post:test")
      */
     private $comments;
 
