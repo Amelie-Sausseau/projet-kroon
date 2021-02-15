@@ -1,29 +1,56 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 import kroonLogo from './kroon_vFinale.svg';
-/* import { NavLink } from 'react-router-dom';
 
 // on importe notre fonction utilitaire permettant de
 // transformer le slug en url
-import { getRecipeUrlByTitle } from '../../utils/recipes'; */
 
-import './nav.css';
+import './nav.scss';
 
 const Nav = () => (
 
   <nav className="nav">
-    <img src={kroonLogo} alt="Logo Kroon" />
+    <NavLink
+      className="logo"
+      to="/"
+      exact
+    >
+      <img src={kroonLogo} alt="Logo Kroon" />
+    </NavLink>
     <ul>
       <li>
-        Accueil
+        <NavLink
+          className="nav__link"
+          to="/"
+          activeClassName="nav__link--active"
+          exact
+        >
+          Accueil
+        </NavLink>
       </li>
       <li>
-        Catégories
+        <NavLink
+          className="nav__link"
+          to="/categories"
+          activeClassName="nav__link--active"
+          exact
+        >
+          Catégories
+        </NavLink>
       </li>
       <li className="auth">
-        Connexion
+        <NavLink
+          className="nav__link"
+          to="/connexion"
+          activeClassName="nav__link--active"
+          exact
+        >
+          Connexion
+        </NavLink>
       </li>
     </ul>
+
   </nav>
 );
 

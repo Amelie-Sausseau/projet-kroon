@@ -1,14 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import { NavLink } from 'react-router-dom';
 import './signup.scss';
 
 const SignupForm = ({ isClosed, toggle, manageSubmit }) => (
   <div className="signup">
     <form autoComplete="off" className="box">
       <h4>Kroon</h4>
-      <h5>Je crée mon compte</h5>
-
+      <div className="loginContainer">
+        <NavLink
+          className="connexion"
+          to="/connexion"
+          activeClassName="connexion--active"
+          exact
+        >
+          Je me connecte
+        </NavLink>
+        <NavLink
+          className="connexion"
+          to="/nouveaucompte"
+          activeClassName="connexion--active"
+          exact
+        >
+          Je crée mon compte
+        </NavLink>
+      </div>
       <input type="text" placeholder="username" required className="username" />
       <input type="text" placeholder="email" required className="password" />
       <input type="text" placeholder="password" required className="password" />

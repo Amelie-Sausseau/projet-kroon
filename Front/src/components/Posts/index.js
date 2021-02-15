@@ -9,11 +9,11 @@ const Posts = ({ data }) => {
   return (
     <div>
       <h1>Titre</h1>
-      {/* <ReactAudioPlayer
-        src={url}
+      <ReactAudioPlayer
+        /* src={url} */
         controls
         preload='auto'
-      /> */}
+      />
       <p>Desciprion</p>
     </div>
   );

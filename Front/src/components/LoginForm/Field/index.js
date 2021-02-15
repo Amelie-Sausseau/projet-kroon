@@ -7,42 +7,54 @@ import './field.scss';
 
 // == Composant
 const Field = ({
-  type, name, placeholder, value, setValue,
-}) => (
-  <div className="field">
-    <label
-      className="field-label"
-    >
-      {placeholder}
-    </label>
-    <input
-      type={type}
-      name={name}
-      value={value}
-      placeholder={placeholder}
-      className="field-input"
-      onChange={
-            (e) => {
-              // on pourrait :
-              // - regarder au niveau du target de l'évènement le nom du champ,
-              // setValue(e.target.name, e.target.value);
-              // - utiliser le nom du champ pour transmettre l'info
-              // setValue(name, e.target.value);
-              // laisser la responsabilité à un composant de plus haut niveau
-              // de déterminer ce qu'il va faire de cette faire.
-              setValue(e.target.value);
-            }
-        }
-    />
+  value,
+  type,
+  name,
+  placeholder,
+  onChange,
+}) => {
+  const handleChange = (evt) => {
+    onChange(evt.target.value, name);
+  };
 
-  </div>
-);
+  const inputId = `field-${name}`;
 
-// on définit la valeur de certaines props par défaut
-// on fixe des valeurs par défaut pour toutes les props non obligatoire (et seulement)
+  return (
+    <div className={value.length > 0 ? 'field field--has-content' : 'field'}>
+      <input
+        // React - state
+        value={value}
+        onChange={handleChange}
+        // infos de base
+        id={inputId}
+        type={type}
+        className="field-input"
+        placeholder={placeholder}
+        name={name}
+      />
+
+      <label
+        htmlFor={inputId}
+        className="field-label"
+      >
+        {placeholder}
+      </label>
+    </div>
+  );
+};
+
+Field.propTypes = {
+  value: PropTypes.string,
+  type: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
+
+// Valeurs par défaut pour les props
 Field.defaultProps = {
+  value: '',
   type: 'text',
-  placeholder: '',
 };
 
 // == Export
