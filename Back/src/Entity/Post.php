@@ -18,84 +18,90 @@ class Post
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups("post:test")
+     * @Groups("post:all")
      * @Groups("tag:allPosts")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("post:test")
+     * @Groups("post:all")
      * @Groups("tag:allPosts")
      */
     private $title;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("post:all")
      * @Groups("tag:allPosts")
      */
     private $sound;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups("post:all")
      * @Groups("tag:allPosts")
      */
     private $body;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Groups("post:all")
      * @Groups("tag:allPosts")
      */
     private $isClosed;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Groups("post:all")
      * @Groups("tag:allPosts")
      */
     private $isSolved;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Groups("post:all")
      * @Groups("tag:allPosts")
      */
     private $isReported;
 
     /**
      * @ORM\Column(type="boolean", options={"default":true})
+     * @Groups("post:all")
      * @Groups("tag:allPosts")
      */
     private $isActive;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups("post:test")
+     * @Groups("post:all")
      * @Groups("tag:allPosts")
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
-     * @Groups("post:test")
+     * @Groups("post:all")
      * @Groups("tag:allPosts")
      */
     private $updatedAt;
 
     /**
      * @ORM\ManyToMany(targetEntity=Tag::class, inversedBy="posts")
-     * @Groups("post:test")
+     * @Groups("post:all")
      */
     private $tags;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="posts")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups("post:test")
+     * @Groups("post:all")
      */
     private $user;
 
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="post")
-     * @Groups("post:test")
+     * @Groups("post:all")
      */
     private $comments;
 
