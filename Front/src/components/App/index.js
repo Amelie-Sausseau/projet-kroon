@@ -19,7 +19,14 @@ const App = ({manageLoad, loading}) => {
   
 return(
   <div className="app">
-bonjour
+{loading && <div>Application en cours de chargement</div>}
+{!loading && (
+  <>
+<Posts />
+
+
+</>
+)}
   </div>
 );
 }

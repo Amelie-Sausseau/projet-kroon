@@ -12,7 +12,7 @@ import {
         recordedSound: false,
         url: '',
         data:[],
-        loading: true,
+        loading: false,
   
   };
   export default (state = initialState, action = {}) => {
@@ -33,6 +33,7 @@ import {
             return {
               ...state,
               data: action.data,
+              loading: false,
             }
         default:
             return state;
