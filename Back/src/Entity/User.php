@@ -19,30 +19,35 @@ class User
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * @Groups("post:test")
+     * @Groups("user:add")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("post:test")
+     * @Groups("user:add")
      */
     private $role;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("post:test")
+     * @Groups("user:add")
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("post:test")
+     * @Groups("user:add")
      */
     private $slug;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("post:test")
+     * @Groups("user:add")
      */
     private $email;
 
@@ -55,30 +60,35 @@ class User
     /**
      * @ORM\Column(type="text", nullable=true)
      * @Groups("post:test")
+     * @Groups("user:add")
      */
     private $bio;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups("post:test")
+     * @Groups("user:add")
      */
     private $avatar;
 
     /**
      * @ORM\Column(type="boolean", options={"default":true})
      * @Groups("post:test")
+     * @Groups("user:add")
      */
     private $isActive;
 
     /**
      * @ORM\Column(type="datetime")
      * @Groups("post:test")
+     * @Groups("user:add")
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      * @Groups("post:test")
+     * @Groups("user:add")
      */
     private $updatedAt;
 
