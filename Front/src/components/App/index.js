@@ -23,6 +23,7 @@ return(
 {!loading && (
   <>
 <Posts />
+<Mic />
 
 
 </>

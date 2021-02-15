@@ -17,10 +17,10 @@ export const stopRecord = () => ({
   type: STOP_RECORD,
 })
 
-export const changeUrl = () => ({
+export const changeUrl = (value) => ({
 
   type: CHANGE_URL,
-  value: value,
+  newValue: value,
 })
 
 export const fetchPosts = () => ({

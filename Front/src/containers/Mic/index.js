@@ -2,14 +2,14 @@ import { connect } from 'react-redux';
 
 import Mic from 'src/components/Mic';
 
-import { playStart, stopRecord } from 'src/actions';
+import { playStart, stopRecord, changeUrl  } from 'src/actions';
 
 
 
 const mapStateToProps = (state) => ({
  record: state.record,
  recordedSound: state.recordedSound,
- url: state.value
+ url: state.url
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -18,7 +18,13 @@ const mapDispatchToProps = (dispatch) => ({
   },
   stopRecord: () => {
     dispatch(stopRecord());
-  }
+  },
+
+  changeNewUrl :(value) =>{
+    dispatch(changeUrl(value))
+  },
+
+  
 
 });
 

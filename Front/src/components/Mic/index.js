@@ -7,20 +7,20 @@ import React from 'react';
 import './mic.css';
 
 
-const Mic = ({playStart, stopRecord, record, recordedSound, url}) => {
+const Mic = ({playStart, stopRecord, record, recordedSound, url, changeNewUrl}) => {
 
   function onData(recorded) {
     console.log('recordedBlob play is: ', recorded);
   };
 
-  function onStop(recordedBlob){
+ function onStop (recordedBlob) {
     console.log('chunk of real-time data is: ', recordedBlob);
-
-    url=  recordedBlob,
-    recordedSound = true
+    recordedSound = true;
+    changeNewUrl(recordedBlob.blobURL) 
   }
-  const htmlClass = record ? 'button_play' : 'button_start';
 
+  console.log(url, 'salut');
+  const htmlClass = record ? 'button_play' : 'button_start';
 return(
     <div>
     <button onClick={playStart} type="button" className={htmlClass}>

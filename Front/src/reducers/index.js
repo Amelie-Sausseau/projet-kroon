@@ -21,12 +21,19 @@ import {
         case PLAY_START: 
             return {
                 ...state,
-                record: true,
+                record: !state.record,
+                recordedSound: true,
+
             };
+        case CHANGE_URL:
+            return {
+              ...state,
+              url: action.newValue
+            }
         case STOP_RECORD:
             return {
               ...state,
-              record: false,
+              record: !state.record,
               recordedSound: true,
             }
           case SAVE_POSTS:

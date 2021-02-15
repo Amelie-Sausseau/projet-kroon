@@ -1,14 +1,22 @@
 div {
-    background-color: #4f4f4f;
+    background-color: #1D3557;
 }
 
 .posts{
     display: flex;
     flex-direction: row;
-    margin:1rem 1rem 1rem 5rem;
+    margin:1rem 0 1rem 5rem;
 }
 
-.posts_descrption{
-    display: flex;
-    flex-direction: row;
+.posts_description{
+    margin-left: 3rem;
+    color: white;
+}
+
+.title, .description{
+    text-align: left;
+}
+
+button{
+    text-align: center;
 }
