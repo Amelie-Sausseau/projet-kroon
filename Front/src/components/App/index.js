@@ -2,6 +2,10 @@
 // == Import npm
 import React, { useEffect, useState } from 'react';
 
+// On importe le composant Route qui permet d'afficher les composant
+// qu'il contient seulement si la route matche avec l'url courante.
+import { Route } from 'react-router-dom';
+
 // == Import
 import './styles.css';
 import LoginForm from 'src/components/LoginForm';
@@ -11,6 +15,8 @@ import Mic from 'src/containers/Mic';
 import Posts from 'src/containers/Posts';
 import Nav from 'src/components/Nav';
 import Contact from 'src/components/Contact';
+import Categories from 'src/components/Categories';
+import HomeUsers from 'src/components/homeUsers';
 
 // import LoginForm from 'src/containers/LoginForm';
 
@@ -27,12 +33,21 @@ const App = ({ manageLoad, loading }) => {
       {!loading && (
       <>
         <Nav />
-        <Contact />
-        <Footer />
-
+        <Route path="/categories" exact>
+          <Categories />
+        </Route>
+        <Route path="/accueil" exact>
+          <HomeUsers />
+        </Route>
+        <Route path="/connexion" exact>
+          <LoginForm />
+        </Route>
+        <Route path="/contact" exact>
+          <Contact />
+        </Route>
       </>
       )}
-
+      <Footer />
     </div>
   );
 };
