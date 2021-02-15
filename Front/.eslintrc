@@ -5,6 +5,7 @@
     "browser": true
   },
   "rules": {
+    "linebreak-style": 0,
     "brace-style": ["error", "stroustrup"],
     "no-param-reassign": [
       "error",
@@ -31,12 +32,14 @@
     "react/destructuring-assignment": "warn",
     "react/no-unescaped-entities": "off",
     "react/jsx-props-no-spreading": "off",
-    "react/state-in-constructor": "off"
+    "react/state-in-constructor": "off",
   },
   "settings": {
     "import/resolver": {
       "alias": {
-        "extensions": [".js"],
+        "node":{
+                  "extensions": [".js"],
+                  "paths": ["src"],
         "map": [
           ["src", "./src"],
           ["app", "./src"]
@@ -45,3 +48,5 @@
     }
   }
 }
+
+        }

@@ -43,8 +43,26 @@ class UserController extends AbstractController
         $infoFromClient = json_decode($request->getContent(), true);
 
         $user = new User();
-        //$user->setUser($user->find($infoFromClient['user']));
-        //$user->setTitle(($infoFromClient['title']));
+        $user->setRole($user->find($infoFromClient['role'])); 
+        $user->setName($user->find($infoFromClient['name']));
+        $user->setSlug($user->find($infoFromClient['name']) . "#" . uniqid());
+        $user->setSlug($user->find($infoFromClient['email']));
+
+        // récupérer le mot de passe en clair
+        $rawPassword = $user->getPassword($user->find($infoFromClient['password']));
+
+        if (! empty($rawPassword))
+        {
+            // l'encoder
+            $encodedPassword = $passwordEncoder->encodePassword($user, $rawPassword);
+        
+            // le renseigner dans l'objet
+            $user->setPassword($encodedPassword);
+        }
+
+        $user->setSlug($user->find($infoFromClient['bio'])); // Facultatif !!
+        $user->setSlug($user->find($infoFromClient['avatar'])); // A finir (dossier assets)
+
         // dd($user);
         $em->persist($user);
         $em->flush();
