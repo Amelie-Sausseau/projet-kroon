@@ -42,6 +42,9 @@ const App = ({ manageLoad, loading }) => {
         <Route path="/connexion" exact>
           <LoginForm />
         </Route>
+        <Route path="/nouveaucompte" exact>
+          <SignupForm />
+        </Route>
         <Route path="/contact" exact>
           <Contact />
         </Route>

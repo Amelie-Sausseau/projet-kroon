@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
-import Field from './Field';
+// import Field from './Field';
 // import { useField } from './hooks';
 
 import './login.scss';
@@ -12,20 +12,20 @@ const LoginForm = ({ isClosed, toggle, manageSubmit }) => (
     <form autoComplete="off" className="box">
       <h4>Kroon</h4>
       <NavLink
-        className="nav__link"
+        className="connexion"
         to="/connexion"
-        activeClassName="nav__link--active"
+        activeClassName="connexion--active"
         exact
       >
-        <h5>Je me connecte</h5>
+        Je me connecte
       </NavLink>
       <NavLink
-        className="nav__link"
-        to="/connexion"
-        activeClassName="nav__link--active"
+        className="connexion"
+        to="/nouveaucompte"
+        activeClassName="connexion--active"
         exact
       >
-        <h5>Je crée mon compte</h5>
+        Je crée mon compte
       </NavLink>
       <input type="text" placeholder="username" required className="username" />
       <input type="text" placeholder="password" required className="password" />

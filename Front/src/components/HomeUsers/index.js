@@ -10,40 +10,40 @@ const HomeUsers = () => (
     <h1>Edito</h1>
 
     <PostCard />
-    <h2 >Derniers sons</h2>
+    <h2>Derniers sons</h2>
 
-  <div className="last_soungs">
+    <div className="last_sounds">
 
-    <div className="last_posts">
+      <div className="last_posts">
         <h3>Titre du son</h3>
         <div>Img Cat</div>
-    </div>
-    <div className="last_posts">
+      </div>
+      <div className="last_posts">
         <h3>Titre du son</h3>
         <div>Img Cat</div>
-    </div>
-    <div className="last_posts">
+      </div>
+      <div className="last_posts">
         <h3>Titre du son</h3>
         <div>Img Cat</div>
+      </div>
     </div>
-  </div>
-  <h2 >Meilleurs contributeurs</h2>
+    <h2>Meilleurs contributeurs</h2>
 
-<div className="last_soungs">
+    <div className="last_sounds">
 
-  <div className="last_posts">
-      <h3>Titre du son</h3>
-      <div>Img Cat</div>
-  </div>
-  <div className="last_posts">
-      <h3>Titre du son</h3>
-      <div>Img Cat</div>
-  </div>
-  <div className="last_posts">
-      <h3>Titre du son</h3>
-      <div>Img Cat</div>
-  </div>
-</div>
+      <div className="last_posts">
+        <h3>Titre du son</h3>
+        <div>Img Cat</div>
+      </div>
+      <div className="last_posts">
+        <h3>Titre du son</h3>
+        <div>Img Cat</div>
+      </div>
+      <div className="last_posts">
+        <h3>Titre du son</h3>
+        <div>Img Cat</div>
+      </div>
+    </div>
 
   </div>
 );
