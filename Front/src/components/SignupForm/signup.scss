@@ -177,9 +177,12 @@ h1 {
 }
 .connexion {
   font-family: 'Quicksand', sans-serif;
-  color: #cbcbcb;
+  color: #cfcfcf;
   margin-top: 1vh;
-  padding:1rem
+  padding:1rem;
+  background-color: #f9f9f9;
+  border-radius: 1rem;
+  margin-bottom: 2rem;
 }
 
 .connexion--active {
@@ -192,4 +195,9 @@ font-size: small;
   border-radius: 1rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+.loginContainer {
+  margin-bottom: 2rem;
 }

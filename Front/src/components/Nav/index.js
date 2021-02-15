@@ -11,8 +11,13 @@ import './nav.scss';
 const Nav = () => (
 
   <nav className="nav">
-    <img src={kroonLogo} alt="Logo Kroon" />
-
+    <NavLink
+      className="logo"
+      to="/"
+      exact
+    >
+      <img src={kroonLogo} alt="Logo Kroon" />
+    </NavLink>
     <ul>
       <li>
         <NavLink

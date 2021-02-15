@@ -7,22 +7,24 @@ const SignupForm = ({ isClosed, toggle, manageSubmit }) => (
   <div className="signup">
     <form autoComplete="off" className="box">
       <h4>Kroon</h4>
-      <NavLink
-        className="connexion"
-        to="/connexion"
-        activeClassName="connexion--active"
-        exact
-      >
-        Je me connecte
-      </NavLink>
-      <NavLink
-        className="connexion"
-        to="/nouveaucompte"
-        activeClassName="connexion--active"
-        exact
-      >
-        Je crée mon compte
-      </NavLink>
+      <div className="loginContainer">
+        <NavLink
+          className="connexion"
+          to="/connexion"
+          activeClassName="connexion--active"
+          exact
+        >
+          Je me connecte
+        </NavLink>
+        <NavLink
+          className="connexion"
+          to="/nouveaucompte"
+          activeClassName="connexion--active"
+          exact
+        >
+          Je crée mon compte
+        </NavLink>
+      </div>
       <input type="text" placeholder="username" required className="username" />
       <input type="text" placeholder="email" required className="password" />
       <input type="text" placeholder="password" required className="password" />
