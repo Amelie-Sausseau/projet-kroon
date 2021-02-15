@@ -25,7 +25,6 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=64)
-     * @Groups({"stories:list", "story:view", "app_users:list", "app_user:view"})
      */
     private $name;
 

@@ -225,6 +225,18 @@ class Post
     }
 
     /**
+    * @ORM\PrePersist
+    * @ORM\PreUpdate
+    */
+    public function updatedTimestamps(): void
+    {
+    $this->setUpdatedAt(new \DateTime('now'));
+        if ($this->getCreatedAt() === null) {
+            $this->setCreatedAt(new DateTime('now'));
+        }
+    }
+
+    /**
      * @return Collection|Tag[]
      */
     public function getTags(): Collection
