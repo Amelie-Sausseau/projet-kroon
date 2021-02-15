@@ -7,8 +7,8 @@
 /*     background-image: -webkit-gradient(linear, left bottom, left top, from(#00a8e8), to(#1f3044));
     background-image: -o-linear-gradient(bottom, #00a8e8 0%, #1f3044 100%);
     background-image: linear-gradient(0deg, #00a8e8 0%, #1f3044 100%); */
-    width: 100px;
-    height: 100px;
+    width: 10rem;
+    height: 10rem;
     border-radius: 50%;
     text-indent: -1000em;
     cursor: pointer;
@@ -24,8 +24,8 @@
 /*     background-image: -webkit-gradient(linear, left bottom, left top, from(#ff2038), to(#b30003));
     background-image: -o-linear-gradient(bottom, #ff2038 0%, #b30003 100%);
     background-image: linear-gradient(0deg, #ff2038 0%, #b30003 100%); */
-    width: 100px;
-    height: 100px;
+    width: 10rem;
+    height: 10rem;
     border-radius: 50%;
     text-indent: -1000em;
     cursor: pointer;
@@ -34,12 +34,17 @@
 
   .button_stop{
     background-color: #00a8e8;
-    width: 25px;
-    height: 25px;
+    width: 3rem;
+    height: 2rem;
     border-radius: 50%;
     border: solid 0px;
     position: relative;
-    bottom: 4rem;
-    border: solid 2px #1d3557;
+    bottom: 7.5rem;
+    border: solid 3px white;
+    padding-bottom: 25px;
  }
 
+ .audioPlayer{
+   position: relative;
+   bottom: 5rem;
+ }

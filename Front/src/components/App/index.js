@@ -11,16 +11,13 @@ import './styles.css';
 import LoginForm from 'src/components/LoginForm';
 import SignupForm from 'src/components/SignupForm';
 import Footer from 'src/components/Footer';
-import Mic from 'src/containers/Mic';
 import Posts from 'src/containers/Posts';
 import Nav from 'src/components/Nav';
-<<<<<<< HEAD
-=======
 import Contact from 'src/components/Contact';
 import Categories from 'src/components/Categories';
 import HomeUsers from 'src/components/homeUsers';
+import HomeLogin from '../HomeLogin';
 
->>>>>>> f08333af523964282c6b9d1eee6f885655e6f0e6
 // import LoginForm from 'src/containers/LoginForm';
 
 // == Composant
@@ -32,24 +29,18 @@ const App = ({ manageLoad, loading }) => {
 
   return (
     <div className="app">
-<<<<<<< HEAD
-
-=======
->>>>>>> f08333af523964282c6b9d1eee6f885655e6f0e6
       {loading && <div>Application en cours de chargement</div>}
       {!loading && (
       <>
         <Nav />
-<<<<<<< HEAD
-        <LoginForm />
-        <Footer />
-
-=======
         <Route path="/categories" exact>
           <Categories />
         </Route>
         <Route path="/accueil" exact>
           <HomeUsers />
+        </Route>
+        <Route path="/moncompte" exact>
+          <HomeLogin />
         </Route>
         <Route path="/connexion" exact>
           <LoginForm />
@@ -57,7 +48,6 @@ const App = ({ manageLoad, loading }) => {
         <Route path="/contact" exact>
           <Contact />
         </Route>
->>>>>>> f08333af523964282c6b9d1eee6f885655e6f0e6
       </>
       )}
       <Footer />

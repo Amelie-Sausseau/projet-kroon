@@ -37,12 +37,14 @@ const Mic = ({
       </div>
       {
    recordedSound && (
+    <div className="audioPlayer">
    <ReactAudioPlayer
      src={url}
      controls
      preload="auto"
-     className="audioPlayer"
+     
    />
+   </div>
    )
 }
     </div>
