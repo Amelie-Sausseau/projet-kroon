@@ -2,28 +2,21 @@ import ReactAudioPlayer from 'react-audio-player';
 
 import React from 'react';
 
-import './posts.css';
+import './posts.scss';
 
-
-const Posts = ({data}) => {
-console.log(data);
-return(
-  <div className="posts">
-      <ReactAudioPlayer
-       /*  src={url} */
+const Posts = ({ data }) => {
+  console.log(data);
+  return (
+    <div>
+      <h1>Titre</h1>
+      {/* <ReactAudioPlayer
+        src={url}
         controls
         preload='auto'
-      />
-    <div className="posts_description">
-      <h1 className="title">Titre</h1>
-      <p className="description">Desciprion</p>
-      <button>Se connecter</button>
-      <button>S'inscrire</button>
+      /> */}
+      <p>Desciprion</p>
     </div>
-  </div>
-)};
-
-
-
+  );
+};
 
 export default Posts;

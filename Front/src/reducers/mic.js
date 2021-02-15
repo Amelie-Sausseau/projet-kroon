@@ -1,4 +1,5 @@
 import {
+<<<<<<< HEAD
     PLAY_START,
     STOP_RECORD,
     CHANGE_URL,
@@ -46,3 +47,50 @@ import {
     };
   };
   
+=======
+  PLAY_START,
+  STOP_RECORD,
+  CHANGE_URL,
+  SAVE_POSTS,
+
+} from '../actions';
+
+const initialState = {
+
+  record: false,
+  recordedSound: false,
+  url: '',
+  data: [],
+  loading: false,
+
+};
+export default (state = initialState, action = {}) => {
+  switch (action.type) {
+    case PLAY_START:
+      return {
+        ...state,
+        record: !state.record,
+
+      };
+    case CHANGE_URL:
+      return {
+        ...state,
+        url: action.newValue,
+      };
+    case STOP_RECORD:
+      return {
+        ...state,
+        record: !state.record,
+        recordedSound: true,
+      };
+    case SAVE_POSTS:
+      return {
+        ...state,
+        data: action.data,
+        loading: false,
+      };
+    default:
+      return state;
+  }
+};
+>>>>>>> a3e58d49998c5da106fc2ca84f5d23c7ef66489b

@@ -1,27 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Field from './Field';
-// import { useField } from './hooks';
+import './signup.scss';
 
-import './login.scss';
-
-const LoginForm = ({ isClosed, toggle, manageSubmit }) => (
-  <div className="login">
+const SignupForm = ({ isClosed, toggle, manageSubmit }) => (
+  <div className="signup">
     <form autoComplete="off" className="box">
       <h4>Kroon</h4>
-      <h5>Je me connecte</h5>
+      <h5>Je crée mon compte</h5>
+
       <input type="text" placeholder="username" required className="username" />
+      <input type="text" placeholder="email" required className="password" />
       <input type="text" placeholder="password" required className="password" />
-      <p className="reset-pswd">Mot de passe oublié</p>
+      <input type="text" placeholder="confirm password" required className="password" />
       <div className="btn-container">
         <button type="submit" value="Submit" className="btn1">
-          Connexion
+          Créer mon compte
         </button>
       </div>
     </form>
   </div>
-
 );
 
-export default LoginForm;
+export default SignupForm;
