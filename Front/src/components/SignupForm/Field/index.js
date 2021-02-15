@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // == Import : local
-import './field.scss';
+import 'src/components/SignupForm/field.scss';
 
 // == Composant
 const Field = ({

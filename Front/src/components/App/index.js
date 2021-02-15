@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import './styles.css';
 import Nav from 'src/components/Nav';
 import LoginForm from 'src/components/LoginForm';
+import SignupForm from 'src/components/SignupForm';
 import Footer from 'src/components/Footer';
 import Mic from 'src/containers/Mic';
 import Posts from 'src/containers/Posts';
@@ -22,8 +23,9 @@ return(
 {loading && <div>Application en cours de chargement</div>}
 {!loading && (
   <>
-<Posts />
-
+<Nav />
+<LoginForm />
+<Footer />
 
 </>
 )}

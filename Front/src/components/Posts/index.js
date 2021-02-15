@@ -2,7 +2,7 @@ import ReactAudioPlayer from 'react-audio-player';
 
 import React from 'react';
 
-import './posts.css';
+import './posts.scss';
 
 
 const Posts = ({data}) => {

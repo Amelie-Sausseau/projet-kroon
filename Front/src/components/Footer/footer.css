@@ -1,9 +1,12 @@
 .footer {
     display: flex;
+    position: relative;
+    width: 100%;
     justify-content: center;
     background-color:  #1D3557;
     height: 15vh;
     align-items:center;
+    margin-top: auto;
 }
 
 .sound {
