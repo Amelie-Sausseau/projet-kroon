@@ -23,6 +23,7 @@ const Mic = ({playStart, stopRecord, record, recordedSound, url, changeNewUrl}) 
   const htmlClass = record ? 'button_play' : 'button_start';
 return(
     <div>
+    <div className="button">
     <button onClick={playStart} type="button" className={htmlClass}>
      <ReactMic
        noiseSuppression={true}
@@ -33,12 +34,14 @@ return(
      />
     </button>
     <button onClick={stopRecord} type="button" className="button_stop">II</button>
+    </div>
 {        
    recordedSound && (
         <ReactAudioPlayer
         src={url}
         controls
         preload='auto'
+        className="audioPlayer"
       />
        )
 }

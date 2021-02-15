@@ -13,10 +13,10 @@ import Posts from 'src/containers/Posts';
 
 // == Composant
 const App = ({manageLoad, loading}) => {
-/*   useEffect(
+  useEffect(
     manageLoad,
     [],
-  ); */
+  );
   
 return(
   <div className="app">

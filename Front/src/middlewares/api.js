@@ -5,7 +5,7 @@ import { FETCH_POSTS, savePosts } from 'src/actions';
 export default (store) => (next) => (action) => {
   switch (action.type) {
     case FETCH_POSTS:
-      axios.get('http://localhost:8000/api/v1/users/')
+      axios.get('http://ec2-54-174-21-167.compute-1.amazonaws.com/api/v1/posts/')
         .then((response) => {
           console.log(response);
           store.dispatch(savePosts(response));
