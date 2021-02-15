@@ -21,21 +21,17 @@ const App = ({manageLoad, loading}) => {
   
 return(
   <div className="app">
+
 {loading && <div>Application en cours de chargement</div>}
 {!loading && (
   <>
-<<<<<<< HEAD
 <Nav />
 <LoginForm />
 <Footer />
-=======
-<Posts />
-<Mic />
-
->>>>>>> 18574a25b308ebe629db300bfc04ebdd72427cab
 
 </>
 )}
+
   </div>
 );
 }

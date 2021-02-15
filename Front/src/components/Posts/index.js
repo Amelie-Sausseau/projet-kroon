@@ -8,22 +8,13 @@ import './posts.scss';
 const Posts = ({data}) => {
 console.log(data);
 return(
-  <div className="posts">
-      <ReactAudioPlayer
-       /*  src={url} */
+    <div>
+<h1>Titre</h1>
+{/* <ReactAudioPlayer
+        src={url}
         controls
         preload='auto'
-      />
-    <div className="posts_description">
-      <h1 className="title">Titre</h1>
-      <p className="description">Desciprion</p>
-      <button>Se connecter</button>
-      <button>S'inscrire</button>
-    </div>
+      /> */}
+<p>Desciprion</p>
   </div>
 )};
-
-
-
-
-export default Posts;
