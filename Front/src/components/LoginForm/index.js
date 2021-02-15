@@ -11,8 +11,8 @@ const LoginForm = ({ isClosed, toggle, manageSubmit }) => (
     <form autoComplete="off" className="box">
       <h4>Kroon</h4>
       <h5>Je me connecte</h5>
-      <input type="text" placeholder="username" required className="username" />
-      <input type="text" placeholder="password" required className="password" />
+      <Field type="text" placeholder="username" required className="username" />
+      <Field type="text" placeholder="password" required className="password" />
       <p className="reset-pswd">Mot de passe oublié</p>
       <div className="btn-container">
         <button type="submit" value="Submit" className="btn1">
