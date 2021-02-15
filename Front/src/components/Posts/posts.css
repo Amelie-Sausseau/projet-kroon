@@ -4,13 +4,14 @@ div {
 
 .posts{
     display: flex;
-    flex-direction: row;
-    margin:1rem 0 1rem 5rem;
+    flex-direction: column;
+    margin: 2rem auto;
+
 }
 
 .posts_description{
-    margin-left: 3rem;
     color: white;
+    margin: auto;
 }
 
 .title, .description{

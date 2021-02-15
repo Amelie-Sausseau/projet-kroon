@@ -15,25 +15,28 @@ export default (store) => (next) => (action) => {
         
       next(action);
       break;
+      /* case FETCH_FAVORITES: {
+        const { token } = store.getState().user;
 
+        axios.post('http://localhost:3001/favorites', {},
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then((response) => {
+            store.dispatch(saveFavorites(response.data.favorites));
+            console.log(response.data);
+          }).catch((error) => {
+            // TODO
+            console.log('error');
+          }).finally((response) => {
+            // TODO
+          });
+        next(action);
+        break;
+      } */
     default:
       next(action);
   }
 };
-
-
-// {
-//   axios.get('http://localhost:8000/api/v1/users/')
-//   .then((response) => {
-//     console.log(response);
-//     setName('test');
-//     console.log(name);
-//   })
-//   .catch(() => {
-//     setError(true);
-//   })
-// };
-// .finally((response) => {
-//   console.error('finally');
-
-// })

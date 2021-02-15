@@ -7,9 +7,9 @@ import { playStart, stopRecord, changeUrl  } from 'src/actions';
 
 
 const mapStateToProps = (state) => ({
- record: state.record,
- recordedSound: state.recordedSound,
- url: state.url
+ record: state.mic.record,
+ recordedSound: state.mic.recordedSound,
+ url: state.mic.url
 });
 
 const mapDispatchToProps = (dispatch) => ({

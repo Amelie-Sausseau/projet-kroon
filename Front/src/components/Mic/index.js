@@ -32,7 +32,7 @@ return(
        onData={onData}
      />
     </button>
-    <button onClick={stopRecord} type="button">Stop</button>
+    <button onClick={stopRecord} type="button" className="button_stop">II</button>
 {        
    recordedSound && (
         <ReactAudioPlayer

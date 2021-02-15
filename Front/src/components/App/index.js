@@ -8,14 +8,15 @@ import LoginForm from 'src/components/LoginForm';
 import Footer from 'src/components/Footer';
 import Mic from 'src/containers/Mic';
 import Posts from 'src/containers/Posts';
+// import LoginForm from 'src/containers/LoginForm';
 
 
 // == Composant
 const App = ({manageLoad, loading}) => {
-  useEffect(
+/*   useEffect(
     manageLoad,
     [],
-  );
+  ); */
   
 return(
   <div className="app">
