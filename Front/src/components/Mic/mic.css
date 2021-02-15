@@ -30,5 +30,16 @@
     cursor: pointer;
   
   }
+
+  .button_stop{
+    background-color: #00a8e8;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    position:absolute;
+    top: 14rem;
+    left: 15rem;
+
+  }
   
   

@@ -4,11 +4,20 @@ div {
 
 .posts{
     display: flex;
-    flex-direction: row;
-    margin:1rem 1rem 1rem 5rem;
+    flex-direction: column;
+    margin: 2rem auto;
+
 }
 
-.posts_descrption{
-    display: flex;
-    flex-direction: row;
+.posts_description{
+    color: white;
+    margin: auto;
+}
+
+.title, .description{
+    text-align: left;
+}
+
+button{
+    text-align: center;
 }
