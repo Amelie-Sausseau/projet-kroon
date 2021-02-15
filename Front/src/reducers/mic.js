@@ -21,7 +21,7 @@ import {
         case PLAY_START: 
             return {
                 ...state,
-                record: !state.record,
+                record: true,
 
             };
         case CHANGE_URL:
@@ -32,7 +32,7 @@ import {
         case STOP_RECORD:
             return {
               ...state,
-              record: !state.record,
+              record: false,
               recordedSound: true,
             }
           case SAVE_POSTS:

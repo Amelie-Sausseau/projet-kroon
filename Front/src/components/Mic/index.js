@@ -21,6 +21,7 @@ const Mic = ({playStart, stopRecord, record, recordedSound, url, changeNewUrl}) 
 
   console.log(url, 'salut');
   const htmlClass = record ? 'button_play' : 'button_start';
+
 return(
     <div>
     <div className="button">
