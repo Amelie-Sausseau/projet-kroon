@@ -46,6 +46,7 @@ class PostController extends AbstractController
         // dd($post);
         $em->persist($post);
         $em->flush();
+        
 
         return $this->json($post, 201, [], ['groups' => 'post:add']);
     }
