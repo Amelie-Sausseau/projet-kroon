@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 // == Import npm
 import React, { useEffect, useState } from 'react';
 
@@ -8,7 +9,9 @@ import SignupForm from 'src/components/SignupForm';
 import Footer from 'src/components/Footer';
 import Mic from 'src/containers/Mic';
 import Posts from 'src/containers/Posts';
-import Nav from '../../Nav';
+import Nav from 'src/components/Nav';
+import Contact from 'src/components/Contact';
+
 // import LoginForm from 'src/containers/LoginForm';
 
 // == Composant
@@ -25,7 +28,7 @@ const App = ({ manageLoad, loading }) => {
       {!loading && (
       <>
         <Nav />
-        <SignupForm />
+        <Contact />
         <Footer />
 
       </>
