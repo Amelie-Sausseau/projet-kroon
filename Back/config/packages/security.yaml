@@ -19,7 +19,7 @@ security:
                 authenticators:
                     - App\Security\UserAuthenticator
             logout:
-                path: app_logout
+                path: api_v1_logout
                 # where to redirect after logout
                 # target: app_any_route
 
