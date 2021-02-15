@@ -20,7 +20,7 @@ export default (state = initialState, action = {}) => {
     case PLAY_START:
       return {
         ...state,
-        record: !state.record,
+        record: true,
 
       };
     case CHANGE_URL:
@@ -31,7 +31,7 @@ export default (state = initialState, action = {}) => {
     case STOP_RECORD:
       return {
         ...state,
-        record: !state.record,
+        record: false,
         recordedSound: true,
       };
     case SAVE_POSTS:

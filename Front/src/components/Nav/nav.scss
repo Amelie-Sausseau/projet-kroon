@@ -9,6 +9,10 @@ font-weight: 700;
 border-bottom: 1px solid #fff;
 }
 
+.nav__link--active{
+      text-decoration: underline;
+    }
+
 ul {
   display: flex;
   flex-direction: row;
@@ -40,4 +44,8 @@ img {
   max-width: 25vw;
   margin-top: auto;
   margin-bottom: auto;
+}
+nav__link--active {
+  text-decoration: underline;
+  color: #f0f;
 }

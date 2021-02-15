@@ -6,13 +6,13 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id
@@ -24,16 +24,8 @@ class User
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Groups("post:test")
-     * @Groups("user:add")
-     */
-    private $role;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Groups("post:test")
-     * @Groups("user:add")
+     * @ORM\Column(type="string", length=64)
+     * @Groups({"stories:list", "story:view", "app_users:list", "app_user:view"})
      */
     private $name;
 
@@ -42,55 +34,52 @@ class User
      * @Groups("post:test")
      * @Groups("user:add")
      */
+    private $role = [];
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $password;
+
+    /**
+     * @ORM\Column(type="datetime", options={"default": "CURRENT_TIMESTAMP"})
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Groups("post:test")
+     */
     private $slug;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("post:test")
-     * @Groups("user:add")
      */
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Groups("post:test")
-     */
-    private $password;
-
-    /**
      * @ORM\Column(type="text", nullable=true)
      * @Groups("post:test")
-     * @Groups("user:add")
      */
     private $bio;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups("post:test")
-     * @Groups("user:add")
      */
     private $avatar;
 
     /**
      * @ORM\Column(type="boolean", options={"default":true})
      * @Groups("post:test")
-     * @Groups("user:add")
      */
     private $isActive;
-
-    /**
-     * @ORM\Column(type="datetime")
-     * @Groups("post:test")
-     * @Groups("user:add")
-     */
-    private $createdAt;
-
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     * @Groups("post:test")
-     * @Groups("user:add")
-     */
-    private $updatedAt;
 
     /**
      * @ORM\OneToMany(targetEntity=Post::class, mappedBy="user")
@@ -101,6 +90,11 @@ class User
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="user")
      */
     private $comments;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $apiToken;
 
     public function __construct()
     {
@@ -113,16 +107,50 @@ class User
         return $this->id;
     }
 
-    public function getRole(): ?string
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
     {
-        return $this->role;
+        $role = $this->role;
+        // guarantee every user at least has ROLE_USER
+        $role[] = 'ROLE_USER';
+
+        return array_unique($role);
     }
 
-    public function setRole(string $role): self
+    /**
+     * @see UserInterface
+     */
+    public function getDisplayRole(): string
+    {
+        if (in_array("ROLE_ADMIN", $this->role))
+        {
+            return "Administrateur";
+        }
+        else 
+        {
+            return "Utilisateur";   
+        }
+
+        return "";
+    }
+
+    public function setRole(array $role): self
     {
         $this->role = $role;
 
         return $this;
+    }
+
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUsername(): string
+    {
+        return (string) $this->username;
     }
 
     public function getName(): ?string
@@ -292,4 +320,51 @@ class User
 
         return $this;
     }
+
+    /**
+     * @see UserInterface
+     */
+    public function getSalt()
+    {
+        // not needed when using the "bcrypt" algorithm in security.yaml
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+    /**
+    * @ORM\PrePersist
+    * @ORM\PreUpdate
+    */
+    public function updatedTimestamps(): void
+    {
+    $this->setUpdatedAt(new \DateTime('now'));
+        if ($this->getCreatedAt() === null) {
+            $this->setCreatedAt(new \DateTime('now'));
+        }
+    }
+
+    public function getApiToken(): ?string
+    {
+        return $this->apiToken;
+    }
+
+    public function setApiToken(?string $apiToken): self
+    {
+        $this->apiToken = $apiToken;
+
+        return $this;
+    } 
+
 }
