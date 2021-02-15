@@ -15,7 +15,7 @@ const Nav = () => (
 <img src={kroonLogo} alt="Logo Kroon" /> 
     <ul>
         <li>
-            navbar
+            Accueil
         </li>
         <li>
             Catégories

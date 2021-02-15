@@ -14,10 +14,10 @@ import Posts from 'src/containers/Posts';
 
 // == Composant
 const App = ({manageLoad, loading}) => {
-/*   useEffect(
+useEffect(
     manageLoad,
     [],
-  ); */
+  ); 
   
 return(
   <div className="app">
@@ -26,7 +26,7 @@ return(
 {!loading && (
   <>
 <Nav />
-<LoginForm />
+<SignupForm />
 <Footer />
 
 </>
@@ -37,14 +37,3 @@ return(
 }
 // == Export
 export default App;
-
-/* 
-{loading && <div>Application en cours de chargement</div>}
-{!loading && (
-<Nav />
-<Mic />
-<LoginForm />
-<Footer />
-<Posts />
-<h1>bonjour</h1>
- */

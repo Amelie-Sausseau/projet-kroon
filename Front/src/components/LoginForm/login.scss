@@ -53,13 +53,6 @@ h1 {
         font-size: 18px;
       }
     }
-    .reset-pswd {
-      float: right;
-      margin-right: 10px;
-      font-size: 15px;
-      color: #F1FAEE;
-      cursor: pointer;
-    }
     .signup-btn{
         margin: 40px;
         display: block;
@@ -98,9 +91,10 @@ h1 {
     }
   }
   .box h4 {
-    font-family: 'Source Sans Pro', sans-serif;
-    color: #5c6bc0; 
-    font-size: 18px;
+    font-family: 'Quicksand', sans-serif;
+    color: #5c6bc0;
+    padding-top: 1rem;
+    font-size: 4rem;
   }
   
   .box h4 span {
@@ -111,16 +105,14 @@ h1 {
   }
   
   .box h5 {
-    font-family: 'Source Sans Pro', sans-serif;
-    font-size: 13px;
-    color: #a1a4ad;
+    font-family: 'Quicksand', sans-serif;
+    color: #cbcbcb;
     margin-top: 1vh;
   }
   
   .box input[type = "text"],.box input[type = "password"] {
     display: block;
     margin: 20px auto;
-    background: #262e49;
     border: 0;
     border-radius: 5px;
     padding: 14px 10px;
@@ -165,8 +157,9 @@ h1 {
   .reset-pswd {
     float: right;
     margin-right: 10px;
-    font-size: 15px;
-    color: #F1FAEE;
     cursor: pointer;
-    color: #f0f;
+    color: #cbcbcb;
+    font-weight: bold;
+    font-size: small;
+    padding-bottom: 5rem;
   }

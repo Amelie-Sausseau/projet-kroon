@@ -18,3 +18,5 @@ return(
 <p>Desciprion</p>
   </div>
 )};
+
+export default Posts;

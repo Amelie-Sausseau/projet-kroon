@@ -3,20 +3,20 @@
     position: relative;
     width: 100%;
     justify-content: center;
-    background-color:  #1D3557;
+    background-color:  #fff;
     height: 15vh;
     align-items:center;
     margin-top: auto;
 }
 
 .sound {
-      border: 1px solid #E63946;
-      background-color: #E63946;
+      border: 1px solid #fff;
+      background-color: #1f1f1f;
     font-size: small;
-      color: #F1FAEE;
+      color: #fff;
       font-weight: bold;
       width: 80vw;
-      border-radius: 0.5rem;
-      padding-top: 0.5rem;
-      padding-bottom: 0.5rem;
+      border-radius: 1rem;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
     }

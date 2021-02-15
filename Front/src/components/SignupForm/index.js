@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import 'src/components/SignupForm/styles.scss';
+import './signup.scss';
 
 const SignupForm = ({ isClosed, toggle, manageSubmit }) => {
   return (
