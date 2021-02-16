@@ -11,7 +11,8 @@ import './styles.css';
 import LoginForm from 'src/components/LoginForm';
 import SignupForm from 'src/components/SignupForm';
 import Footer from 'src/components/Footer';
-import Posts from 'src/containers/Posts';
+// import Mic from 'src/containers/Mic';
+// import Posts from 'src/containers/Posts';
 import Nav from 'src/components/Nav';
 import Contact from 'src/components/Contact';
 import Categories from 'src/components/Categories';
@@ -45,6 +46,9 @@ const App = ({ manageLoad, loading }) => {
         </Route>
         <Route path="/connexion" exact>
           <LoginForm />
+        </Route>
+        <Route path="/nouveaucompte" exact>
+          <SignupForm />
         </Route>
         <Route path="/contact" exact>
           <Contact />

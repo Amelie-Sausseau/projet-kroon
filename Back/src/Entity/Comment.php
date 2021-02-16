@@ -16,43 +16,50 @@ class Comment
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups("post:test")
+     * @Groups({"user:one"})
+     * @Groups({"post:one"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="text")
-     * @Groups("post:test")
+     * @Groups({"user:one"})
+     * @Groups({"post:one"})
      */
     private $body;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Groups("post:test")
+     * @Groups({"user:one"})
+     * @Groups({"post:one"})
      */
     private $likes;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
-     * @Groups("post:test")
+     * @Groups({"user:one"})
+     * @Groups({"post:one"})
      */
     private $isReported;
 
     /**
      * @ORM\Column(type="boolean", options={"default":true})
-     * @Groups("post:test")
+     * @Groups({"user:one"})
+     * @Groups({"post:one"})
      */
     private $isActive;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups("post:test")
+     * @Groups({"user:one"})
+     * @Groups({"post:one"})
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
-     * @Groups("post:test")
+     * @Groups({"user:one"})
+     * @Groups({"post:one"})
      */
     private $updatedAt;
 
@@ -167,5 +174,17 @@ class Comment
         $this->post = $post;
 
         return $this;
+    }
+
+    /**
+    * @ORM\PrePersist
+    * @ORM\PreUpdate
+    */
+    public function updatedTimestamps(): void
+    {
+    $this->setUpdatedAt(new \DateTime('now'));
+        if ($this->getCreatedAt() === null) {
+            $this->setCreatedAt(new \DateTime('now'));
+        }
     }
 }

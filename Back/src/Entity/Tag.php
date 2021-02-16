@@ -18,27 +18,29 @@ class Tag
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups("post:test")
-     * @Groups("tag:allPosts")
+     * @Groups({"user:one"})
+     * @Groups({"post:all", "post:one"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("tag:allPosts")
-
+     * @Groups({"user:one"})
+     * @Groups({"post:all", "post:one"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups("post:test")
+     * @Groups({"user:one"})
+     * @Groups({"post:all", "post:one"})
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
-     * @Groups("post:test")
+     * @Groups({"user:one"})
+     * @Groups({"post:all", "post:one"})
      */
     private $updatedAt;
 
@@ -119,5 +121,17 @@ class Tag
         }
 
         return $this;
+    }
+
+    /**
+    * @ORM\PrePersist
+    * @ORM\PreUpdate
+    */
+    public function updatedTimestamps(): void
+    {
+    $this->setUpdatedAt(new \DateTime('now'));
+        if ($this->getCreatedAt() === null) {
+            $this->setCreatedAt(new \DateTime('now'));
+        }
     }
 }
