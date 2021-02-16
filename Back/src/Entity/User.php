@@ -32,8 +32,6 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"user:all", "user:one"})
-     * @Groups({"post:all", "post:one"})
      */
     private $role = [];
 
