@@ -9,8 +9,8 @@ export default (store) => (next) => (action) => {
     case FETCH_POSTS:
       axios.get(`${url}/api/v1/posts/`)
         .then((response) => {
-          /*           console.log(response.data);
- */ store.dispatch(savePosts(response.data));
+          console.log(response.data);
+          store.dispatch(savePosts(response.data));
         }).catch((error) => {
           console.error('error');
         });

@@ -11,6 +11,7 @@ const initialState = {
     password:'',
     logged: false,
     username:'',
+    homeLogin: false,
 }
 
 const usersReducer = (state = initialState, action = {}) => {

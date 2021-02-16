@@ -22,7 +22,6 @@ const HomeUsers = ({ posts }) => (
      ))
 
    }
-
       <h2>Derniers sons</h2>
 
       <div className="last_soungs">
@@ -63,8 +62,8 @@ const HomeUsers = ({ posts }) => (
       </div>
 
     </div>
-
   </div>
+
 );
 
 /* HomeUsers.propTypes = {
