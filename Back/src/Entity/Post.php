@@ -18,90 +18,92 @@ class Post
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups("post:all")
-     * @Groups("tag:allPosts")
+     * @Groups({"user:one"})
+     * @Groups({"post:all", "post:one"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("post:all")
-     * @Groups("tag:allPosts")
+     * @Groups({"user:one"})
+     * @Groups({"post:all", "post:one"})
      */
     private $title;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("post:all")
-     * @Groups("tag:allPosts")
+     * @Groups({"user:one"})
+     * @Groups({"post:all", "post:one"})
      */
     private $sound;
 
     /**
      * @ORM\Column(type="text")
-     * @Groups("post:all")
-     * @Groups("tag:allPosts")
+     * @Groups({"user:one"})
+     * @Groups({"post:all", "post:one"})
      */
     private $body;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
-     * @Groups("post:all")
-     * @Groups("tag:allPosts")
+     * @Groups({"user:one"})
+     * @Groups({"post:all", "post:one"})
      */
     private $isClosed;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
-     * @Groups("post:all")
-     * @Groups("tag:allPosts")
+     * @Groups({"user:one"})
+     * @Groups({"post:all", "post:one"})
      */
     private $isSolved;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
-     * @Groups("post:all")
-     * @Groups("tag:allPosts")
+     * @Groups({"user:one"})
+     * @Groups({"post:all", "post:one"})
      */
     private $isReported;
 
     /**
      * @ORM\Column(type="boolean", options={"default":true})
-     * @Groups("post:all")
-     * @Groups("tag:allPosts")
+     * @Groups({"user:one"})
+     * @Groups({"post:all", "post:one"})
      */
     private $isActive;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups("post:all")
-     * @Groups("tag:allPosts")
+     * @Groups({"user:one"})
+     * @Groups({"post:all", "post:one"})
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
-     * @Groups("post:all")
-     * @Groups("tag:allPosts")
+     * @Groups({"user:one"})
+     * @Groups({"post:all", "post:one"})
      */
     private $updatedAt;
 
     /**
      * @ORM\ManyToMany(targetEntity=Tag::class, inversedBy="posts")
-     * @Groups("post:all")
+     * @Groups({"user:one"})
+     * @Groups({"post:all", "post:one"})
      */
     private $tags;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="posts")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups("post:all")
+     * 
+     * @Groups({"post:all", "post:one"})
      */
     private $user;
 
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="post")
-     * @Groups("post:all")
+     * @Groups({"post:one"})
      */
     private $comments;
 

@@ -18,20 +18,22 @@ class User implements UserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups("post:test")
-     * @Groups("user:add")
+     * @Groups({"user:all", "user:one"})
+     * @Groups({"post:all", "post:one"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Groups({"user:all", "user:one"})
+     * @Groups({"post:all", "post:one"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("post:test")
-     * @Groups("user:add")
+     * @Groups({"user:all", "user:one"})
+     * @Groups({"post:all", "post:one"})
      */
     private $role = [];
 
@@ -42,51 +44,62 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="datetime", options={"default": "CURRENT_TIMESTAMP"})
+     * @Groups({"user:all", "user:one"})
+     * @Groups({"post:all", "post:one"})
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     * @Groups({"user:all", "user:one"})
+     * @Groups({"post:all", "post:one"})
      */
     private $updatedAt;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("post:test")
+     * @Groups({"user:all", "user:one"})
+     * @Groups({"post:all", "post:one"})
      */
     private $slug;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("post:test")
+     * @Groups({"user:one"})
+     * 
      */
     private $email;
 
     /**
      * @ORM\Column(type="text", nullable=true)
-     * @Groups("post:test")
+     * @Groups({"user:all", "user:one"})
+     * 
      */
     private $bio;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups("post:test")
+     * @Groups({"user:all", "user:one"})
+     * 
      */
     private $avatar;
 
     /**
      * @ORM\Column(type="boolean", options={"default":true})
-     * @Groups("post:test")
+     * @Groups({"user:all", "user:one"})
+     * @Groups({"post:all", "post:one"})
      */
     private $isActive;
 
     /**
      * @ORM\OneToMany(targetEntity=Post::class, mappedBy="user")
+     * @Groups({"user:one"})
      */
     private $posts;
 
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="user")
+     * @Groups({"user:one"})
      */
     private $comments;
 
