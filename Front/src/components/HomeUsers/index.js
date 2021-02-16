@@ -2,48 +2,66 @@ import React from 'react';
 /* import PropTypes from 'prop-types';
  */
 import PostCard from 'src/components/PostCard';
-
-/* import './home.scss';
+/* import ImageGallery from 'react-image-gallery';
  */
-const HomeUsers = () => (
+
+import './style.scss';
+
+const HomeUsers = ({posts}) => (
+  <div>
   <div className="home">
     <h1>Edito</h1>
+    <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.  </div>
+   {
+     posts.map((data) => (
+       
+          <PostCard key={data.id} {...data}/>
+          ))
+         
+   }
+   
 
-    <PostCard />
-    <h2>Derniers sons</h2>
+    <h2 >Derniers sons</h2>
 
-    <div className="last_sounds">
-
-      <div className="last_posts">
+  <div className="last_soungs">
+{/*   <ImageGallery items={images} />*/}
+     <div className="last_posts">
         <h3>Titre du son</h3>
         <div>Img Cat</div>
-      </div>
-      <div className="last_posts">
+    </div>
+
+    <div className="last_posts">
         <h3>Titre du son</h3>
         <div>Img Cat</div>
-      </div>
-      <div className="last_posts">
+    </div>
+
+    <div className="last_posts">
         <h3>Titre du son</h3>
         <div>Img Cat</div>
       </div>
     </div>
-    <h2>Meilleurs contributeurs</h2>
+
+
+  </div>
+
+  <h2 >Meilleurs contributeurs</h2>
 
     <div className="last_sounds">
 
-      <div className="last_posts">
-        <h3>Titre du son</h3>
-        <div>Img Cat</div>
-      </div>
-      <div className="last_posts">
-        <h3>Titre du son</h3>
-        <div>Img Cat</div>
-      </div>
-      <div className="last_posts">
-        <h3>Titre du son</h3>
-        <div>Img Cat</div>
-      </div>
-    </div>
+  <div className="last_posts">
+      <h3>Titre du son</h3>
+      <div>Img Cat</div>
+  </div>
+  <div className="last_posts">
+      <h3>Titre du son</h3>
+      <div>Img Cat</div>
+  </div>
+  <div className="last_posts">
+      <h3>Titre du son</h3>
+      <div>Img Cat</div>
+  </div>
+  
+</div>
 
   </div>
 );

@@ -1,0 +1,8 @@
+.field {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    justify-content: space-around;
+}
