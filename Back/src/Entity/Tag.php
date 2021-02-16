@@ -20,6 +20,8 @@ class Tag
      * @ORM\Column(type="integer")
      * @Groups({"user:one"})
      * @Groups({"post:all", "post:one"})
+     * @Groups({"comment:one"})
+     * @Groups({"tag:all", "tag:one", "tag:allPosts"})
      */
     private $id;
 
@@ -27,6 +29,8 @@ class Tag
      * @ORM\Column(type="string", length=255)
      * @Groups({"user:one"})
      * @Groups({"post:all", "post:one"})
+     * @Groups({"comment:one"})
+     * @Groups({"tag:all", "tag:one", "tag:allPosts"})
      */
     private $name;
 
@@ -34,6 +38,8 @@ class Tag
      * @ORM\Column(type="datetime")
      * @Groups({"user:one"})
      * @Groups({"post:all", "post:one"})
+     * @Groups({"comment:one"})
+     * @Groups({"tag:all", "tag:one", "tag:allPosts"})
      */
     private $createdAt;
 
@@ -41,12 +47,14 @@ class Tag
      * @ORM\Column(type="datetime", nullable=true)
      * @Groups({"user:one"})
      * @Groups({"post:all", "post:one"})
+     * @Groups({"comment:one"})
+     * @Groups({"tag:all", "tag:one", "tag:allPosts"})
      */
     private $updatedAt;
 
     /**
      * @ORM\ManyToMany(targetEntity=Post::class, mappedBy="tags")
-     * @Groups("tag:allPosts")
+     * @Groups({"tag:allPosts"})
      */
     private $posts;
 
