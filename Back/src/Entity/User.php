@@ -32,8 +32,8 @@ class User implements UserInterface
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Ignore()
+     * @ORM\Column(type="json")
+     * @Groups({"user:all", "user:one"})
      */
     private $role = [];
 
@@ -103,10 +103,6 @@ class User implements UserInterface
      */
     private $comments;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $apiToken;
 
     public function __construct()
     {
@@ -124,33 +120,16 @@ class User implements UserInterface
      */
     public function getRoles(): array
     {
-        $role = $this->role;
+        $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $role[] = 'ROLE_USER';
+        $roles[] = 'ROLE_USER';
 
-        return array_unique($role);
+        return array_unique($roles);
     }
 
-    /**
-     * @see UserInterface
-     */
-    public function getDisplayRole(): string
+    public function setRoles(array $roles): self
     {
-        if (in_array("ROLE_ADMIN", $this->role))
-        {
-            return "Administrateur";
-        }
-        else 
-        {
-            return "Utilisateur";   
-        }
-
-        return "";
-    }
-
-    public function setRole(array $role): self
-    {
-        $this->role = $role;
+        $this->roles = $roles;
 
         return $this;
     }
@@ -162,7 +141,7 @@ class User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->username;
+        return (string)$this->email;
     }
 
     public function getName(): ?string
@@ -366,17 +345,5 @@ class User implements UserInterface
             $this->setCreatedAt(new \DateTime('now'));
         }
     }
-
-    public function getApiToken(): ?string
-    {
-        return $this->apiToken;
-    }
-
-    public function setApiToken(?string $apiToken): self
-    {
-        $this->apiToken = $apiToken;
-
-        return $this;
-    } 
 
 }
