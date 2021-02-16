@@ -32,6 +32,7 @@ const App = ({ manageLoad, loading }) => {
       {loading && <div>Application en cours de chargement</div>}
       {!loading && (
       <>
+        
         <Nav />
         <Route path="/categories" exact>
           <Categories />
