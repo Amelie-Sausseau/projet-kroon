@@ -32,19 +32,19 @@ const Mic = ({
             onStop={onStop}
             onData={onData}
           />
+          <div className="salut">salut</div>
+
         </button>
         <button onClick={stopRecord} type="button" className="button_stop">II</button>
       </div>
       {
    recordedSound && (
-    <div className="audioPlayer">
    <ReactAudioPlayer
      src={url}
      controls
      preload="auto"
-     
+     className="audioPlayer"
    />
-   </div>
    )
 }
     </div>

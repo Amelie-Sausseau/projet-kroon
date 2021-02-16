@@ -55,11 +55,26 @@ const App = ({ manageLoad, loading, homeLogin }) => {
           <Contact />
           <Footer />  
         </Route>  
+      </>
+      )}
+      {!loading && homeLogin && (
+      <>
+        <Nav />
+        <Route path="/categories" exact>
+          <Categories />
+          <Footer />  
+        </Route>
+        <Route path="/" exact>
+          <HomeUsers />
+          <Footer />  
+        </Route>
         <Route path="/poster" exact>
           <HomeLogin />
         </Route>
-
- 
+        <Route path="/contact" exact>
+          <Contact />
+          <Footer />  
+        </Route> 
       </>
       )}
     </div>

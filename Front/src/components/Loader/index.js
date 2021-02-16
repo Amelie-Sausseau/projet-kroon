@@ -8,7 +8,7 @@ import './style.css';
 
 const Loader = () => (
 
-<div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+<div className="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 );
 
 // TODO : ternaire si Logged or not
