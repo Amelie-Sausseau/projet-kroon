@@ -28,8 +28,8 @@ class UserController extends AbstractController
     /**
      * @Route("/{id}", name="read", methods="GET")
      */
-    public function read(User $user): Response
-    {
+    public function read(User $user)
+    { 
         return $this->json($user, 200, [
             'Access-Control-Allow-Origin' => '*'
         ], ['groups' => 'user:one']);
