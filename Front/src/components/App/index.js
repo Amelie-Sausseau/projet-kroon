@@ -17,10 +17,8 @@ import Footer from 'src/components/Footer';
 import Contact from 'src/components/Contact';
 import Categories from 'src/components/Categories';
 import HomeUsers from 'src/components/homeUsers';
-import HomeLogin from '../HomeLogin';
 import Loader from 'src/components/Loader';
-
-
+import HomeLogin from '../HomeLogin';
 
 // import LoginForm from 'src/containers/LoginForm';
 
@@ -34,16 +32,16 @@ const App = ({ manageLoad, loading, homeLogin }) => {
   return (
     <div className="app">
       {loading && <Loader />}
-      {!loading && !homeLogin &&(
-       <>
+      {!loading && !homeLogin && (
+      <>
         <Nav />
         <Route path="/categories" exact>
           <Categories />
-          <Footer />  
+          <Footer />
         </Route>
         <Route path="/" exact>
           <HomeUsers />
-          <Footer />  
+          <Footer />
         </Route>
         <Route path="/connexion" exact>
           <LoginForm />

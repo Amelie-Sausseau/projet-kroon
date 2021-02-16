@@ -6,18 +6,17 @@ import React from 'react';
 import './posts.scss';
 
 const Posts = ({ posts }) => {
-  
   console.log(posts);
 
   return (
     <div>
- {
+      {
   posts.map((data) => (
-    <div >
+    <div>
 
-    <h1>{data.title}</h1>
-    <ReactAudioPlayer controls preload='auto' /* src={url} */ />
-    <p>{data.body}</p>
+      <h1>{data.title}</h1>
+      <ReactAudioPlayer controls preload="auto" /* src={url} */ />
+      <p>{data.body}</p>
     </div>
 
   ))
@@ -25,7 +24,6 @@ const Posts = ({ posts }) => {
     </div>
   );
 };
-
 
 Posts.propTypes = {
   // je veux que ma props recipes soit un tableau
@@ -40,8 +38,4 @@ Posts.propTypes = {
   ).isRequired,
 };
 
-
 export default Posts;
-
-
-

@@ -23,7 +23,7 @@ const Mic = ({
 
   return (
     <div>
-      <div className="button">
+      <div className="button"><span>Play !</span>
         <button onClick={playStart} type="button" className={htmlClass}>
           <ReactMic
             noiseSuppression
