@@ -1,176 +1,45 @@
-@use 'src/styles/vars';
 
-h1 {
-    padding: 1vh;
-  }
-  .signin {
-    position: absolute;
-  
-    .login-button {
-      display: block;
-      background: #F1FAEE;
-      padding: 10px;
-      // margin-left: auto;
-      // margin-right: auto;
-      border: none;
-      border-radius: 5px;
-      color: white;
-      font-size: 18px;
-      cursor: pointer;
-    }
-  }
-  
   .signup {
     position: relative;
-    bottom: 5rem;
+    bottom: 4rem;
     height: 1px;
     width: 100vw;
     background: white;
     border-radius: 10px;
     font-family: 'Quicksand', sans-serif;
-    h1 {
-      color: #F1FAEE;
-      text-align: center;
-    }
-    .username {
-      // margin: 5px 10%;
-      padding: 10px;
-      input {
-        width: 90%;
-        border: none;
-        border-bottom: 2px solid #F1FAEE;
-        padding: 10px;
-        font-size: 18px;
-        border-radius: 1rem;
-      }
-    }
-    .password {
-      padding: 10px;
-      margin: 5px 10%;
-      input {
-        width: 90%;
-        border: none;
-        padding: 10px;
-        border-bottom: 2px solid #F1FAEE;
-        font-size: 18px;
-        font-family: 'Quicksand', sans-serif;
-        border-radius: 1rem;
-      }
-    }
-    .reset-pswd {
-      float: right;
-      margin-right: 10px;
-      cursor: pointer;
-      font-size: 1vh;
-      font-weight: 700;
-      color: #cbcbcb;
-    }
-    .signup-btn{
-        // margin: 40px;
-        display: block;
-        background: #F1FAEE;
-        // margin: 10vh auto;
-        padding: 10px;
-        border: none;
-        border-radius: 5px;
-        color: white;
-        font-size: 18px;
-        cursor: pointer;
-    }
-    .btn-container {
-      margin: 40px;
-      .login-btn {
-        font-size: 8px;
-        border: none;
-        border-radius: 20px;
-        color: white;
-        cursor: pointer;
-      }
-      .login-btn:focus {
-        outline: none;
-      }
-      .login-button {
-        display: block;
-        background: #F1FAEE;
-        margin: 30vh auto;
-        // padding: 10px;
-        border: none;
-        border-radius: 5px;
-        color: white;
-        font-size: 18px;
-        cursor: pointer;
-      }
-    }
-  }
-  .box h4 {
-    color: #1f1f1f; 
-    font-weight: bold;
-    font-family: 'Quicksand', sans-serif;
-  }
-  
-  .box h4 span {
-    color: #dfdeee;
-    font-weight: lighter;
-    letter-spacing: 1.5px;
-    margin-top: 1vh;
-  }
-  
-  .box h5 {
-    font-family: 'Source Sans Pro', sans-serif;
-    color: #cbcbcb;
-    margin-top: 1vh;
-  }
-  
-  .box input[type = "text"],.box input[type = "password"] {
-    display: block;
-    // margin: 20px auto;
-    background: #f9f9f9;
-    border: solid 1px #fcfcfc;
-    border-radius: 1rem;
-    padding: 14px 10px;
-    width: 320px;
-    outline: none;
-    font-family: 'Quicksand', sans-serif;
-    color: #1f1f1f;
-        -webkit-transition: all .2s ease-out;
-      -moz-transition: all .2s ease-out;
-      -ms-transition: all .2s ease-out;
-      -o-transition: all .2s ease-out;
-      transition: all .2s ease-out;
-    
-  }
-  ::-webkit-input-placeholder {
-    color: #cfcfcf;
-  }
-  
-  .box input[type = "text"]:focus,.box input[type = "password"]:focus {
-    border: 1px solid #79A6FE;
-    border-radius: 1rem;
-    
-  }
 
-  .btn1 {
-    border:0;
-    background: #1f1f1f;
-    color: #dfdeee;
-    margin-top: 1vh;
-    margin-bottom: 1vh;
-    width: auto;
-    height: auto;
-    font-family: 'Quicksand', sans-serif;
-    transition: 0.3s;
-    cursor: pointer;      
-    border: 1px solid #fff;
-      background-color: #1f1f1f;
-    font-size: small;
-      color: #fff;
-      font-weight: bold;
-      width: 80vw;
-      border-radius: 1rem;
-      padding-top: 1rem;
-      padding-bottom: 1rem;
-  }
+    }
 
-  .btn1:hover {
-    background: #1f1f1f;
-  }
+    .title{
+      height: 34px;
+      width: 100%;
+      border-radius: 3px;
+      border: 1px solid transparent;
+      border-top: none;
+      border-bottom: 1px solid #DDD;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #FFF, 0 1px 0 #FFF;
+    }
+    
+    .description{
+      height: 34px;
+      width: 100%;
+      border-radius: 3px;
+      border: 1px solid transparent;
+      border-top: none;
+      border-bottom: 1px solid #DDD;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #FFF, 0 1px 0 #FFF;
+    }
+    
+    .categories{
+      height: 34px;
+      width: 20rem;
+      border-radius: 15px;
+      border: 1px solid transparent;
+      border-top: none;
+      border-bottom: 1px solid #DDD;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #FFF, 0 1px 0 #FFF;
+      background-color: #f9f9f9;
+    
+    }
+   
+ 

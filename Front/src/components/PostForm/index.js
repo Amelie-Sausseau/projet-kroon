@@ -6,17 +6,14 @@ import './postform.scss';
 const PostForm = ({ isClosed, toggle, manageSubmit }) => (
   <div className="signup">
     <form autoComplete="off" className="box">
-      <select className="password" placeholder="Catégories">
-          <option>Film</option>
-          <option>Film</option>
+      <select className="categories" placeholder="Catégories">
+          <option className="categories">Film</option>
+          <option className="categories">Film</option>
       </select>
-      <input type="text" placeholder="Tître" required className="password" />
-      <input type="text" placeholder="Description" required className="password" />
-      <div className="btn-container">
-        <button type="submit" value="Submit" className="btn1">
-          Poster
-        </button>
-      </div>
+      <input type="text" placeholder="Tître" required className="title" />
+      <input type="text" placeholder="Description" required className="description" />
+      <div className="button"><span>Click Me</span></div>
+
     </form>
   </div>
 );

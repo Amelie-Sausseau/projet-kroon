@@ -8,11 +8,12 @@ import PostCard from 'src/components/PostCard';
 import './style.scss';
 
 const HomeUsers = ({posts}) => (
-  <div>
   <div className="home">
+    <div>
+  <div >
     <h1>Edito</h1>
     <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.  </div>
-   {
+{/*    {
      posts.map((data) => (
        
           <PostCard key={data.id} {...data}/>
@@ -20,7 +21,7 @@ const HomeUsers = ({posts}) => (
          
    }
    
-
+ */}
     <h2 >Derniers sons</h2>
 
   <div className="last_soungs">
@@ -62,7 +63,7 @@ const HomeUsers = ({posts}) => (
   </div>
   
 </div>
-
+</div>
   </div>
 );
 
