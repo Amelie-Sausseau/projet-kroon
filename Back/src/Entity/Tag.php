@@ -18,33 +18,43 @@ class Tag
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups("post:test")
-     * @Groups("tag:allPosts")
+     * @Groups({"user:one"})
+     * @Groups({"post:all", "post:one"})
+     * @Groups({"comment:one"})
+     * @Groups({"tag:all", "tag:one", "tag:allPosts"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("tag:allPosts")
-
+     * @Groups({"user:one"})
+     * @Groups({"post:all", "post:one"})
+     * @Groups({"comment:one"})
+     * @Groups({"tag:all", "tag:one", "tag:allPosts"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups("post:test")
+     * @Groups({"user:one"})
+     * @Groups({"post:all", "post:one"})
+     * @Groups({"comment:one"})
+     * @Groups({"tag:all", "tag:one", "tag:allPosts"})
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
-     * @Groups("post:test")
+     * @Groups({"user:one"})
+     * @Groups({"post:all", "post:one"})
+     * @Groups({"comment:one"})
+     * @Groups({"tag:all", "tag:one", "tag:allPosts"})
      */
     private $updatedAt;
 
     /**
      * @ORM\ManyToMany(targetEntity=Post::class, mappedBy="tags")
-     * @Groups("tag:allPosts")
+     * @Groups({"tag:allPosts"})
      */
     private $posts;
 

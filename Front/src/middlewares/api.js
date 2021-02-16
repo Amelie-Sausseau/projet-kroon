@@ -2,20 +2,22 @@ import axios from 'axios';
 
 import { FETCH_POSTS, savePosts } from 'src/actions';
 
+import { url } from 'src/utils';
+
 export default (store) => (next) => (action) => {
   switch (action.type) {
     case FETCH_POSTS:
-      axios.get('http://ec2-54-87-133-135.compute-1.amazonaws.com/api/v1/posts/')
+      axios.get(`${url}/api/v1/posts/`)
         .then((response) => {
-          console.log(response);
-          store.dispatch(savePosts(response));
+          /*           console.log(response.data);
+ */ store.dispatch(savePosts(response.data));
         }).catch((error) => {
           console.error('error');
         });
-        
+
       next(action);
       break;
-      /* case FETCH_FAVORITES: {
+      /* case FETCH_POSTS_USER_LOGIN: {
         const { token } = store.getState().user;
 
         axios.post('http://localhost:3001/favorites', {},

@@ -17,6 +17,7 @@ import Nav from 'src/components/Nav';
 import Contact from 'src/components/Contact';
 import Categories from 'src/components/Categories';
 import HomeUsers from 'src/components/homeUsers';
+import HomeLogin from '../HomeLogin';
 
 // import LoginForm from 'src/containers/LoginForm';
 
@@ -31,26 +32,33 @@ const App = ({ manageLoad, loading }) => {
     <div className="app">
       {loading && <div>Application en cours de chargement</div>}
       {!loading && (
-      <>
-        <Nav />
-        <Route path="/categories" exact>
-          <Categories />
-        </Route>
-        <Route path="/accueil" exact>
-          <HomeUsers />
-        </Route>
-        <Route path="/connexion" exact>
-          <LoginForm />
-        </Route>
-        <Route path="/nouveaucompte" exact>
-          <SignupForm />
-        </Route>
-        <Route path="/contact" exact>
-          <Contact />
-        </Route>
-      </>
+        <>
+          <Nav />
+          <Route path="/categories" exact>
+            <Categories />
+          </Route>
+          <Route path="/accueil" exact>
+            <HomeUsers />
+          </Route>
+          <Route path="/moncompte" exact>
+            <HomeLogin />
+          </Route>
+          <Route path="/connexion" exact>
+            <LoginForm />
+          </Route>
+          <Route path="/nouveaucompte" exact>
+            <SignupForm />
+          </Route>
+          <Route path="/contact" exact>
+            <Contact />
+          </Route>
+          <Route path="/poster" exact>
+            <HomeLogin />
+          </Route>
+        </>
       )}
       <Footer />
+
     </div>
   );
 };

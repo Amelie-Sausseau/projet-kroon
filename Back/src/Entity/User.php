@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\Ignore;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -18,20 +19,25 @@ class User implements UserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups("post:test")
-     * @Groups("user:add")
+     * @Groups({"user:all", "user:one"})
+     * @Groups({"post:all", "post:one"})
+     * @Groups({"comment:all", "comment:one"})
+     * @Groups({"tag:allPosts"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Groups({"user:all", "user:one"})
+     * @Groups({"post:all", "post:one"})
+     * @Groups({"comment:all", "comment:one"})
+     * @Groups({"tag:allPosts"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("post:test")
-     * @Groups("user:add")
+     * @Ignore()
      */
     private $role = [];
 
@@ -42,51 +48,67 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="datetime", options={"default": "CURRENT_TIMESTAMP"})
+     * @Groups({"user:all", "user:one"})
+     * @Groups({"post:all", "post:one"})
+     * @Groups({"comment:all", "comment:one"})
+     * @Groups({"tag:allPosts"})
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     * @Groups({"user:all", "user:one"})
+     * @Groups({"post:all", "post:one"})
+     * @Groups({"comment:all", "comment:one"})
+     * @Groups({"tag:allPosts"})
      */
     private $updatedAt;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("post:test")
+     * @Groups({"user:all", "user:one"})
+     * @Groups({"post:all", "post:one"})
+     * @Groups({"comment:all", "comment:one"})
+     * @Groups({"tag:allPosts"})
      */
     private $slug;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("post:test")
+     * @Groups({"user:one"})
      */
     private $email;
 
     /**
      * @ORM\Column(type="text", nullable=true)
-     * @Groups("post:test")
+     * @Groups({"user:all", "user:one"})
      */
     private $bio;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups("post:test")
+     * @Groups({"user:all", "user:one"})
      */
     private $avatar;
 
     /**
      * @ORM\Column(type="boolean", options={"default":true})
-     * @Groups("post:test")
+     * @Groups({"user:all", "user:one"})
+     * @Groups({"post:all", "post:one"})
+     * @Groups({"comment:all", "comment:one"})
+     * @Groups({"tag:allPosts"})
      */
     private $isActive;
 
     /**
      * @ORM\OneToMany(targetEntity=Post::class, mappedBy="user")
+     * @Groups({"user:one"})
      */
     private $posts;
 
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="user")
+     * @Groups({"user:one"})
      */
     private $comments;
 

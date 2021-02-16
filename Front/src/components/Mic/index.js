@@ -23,7 +23,7 @@ const Mic = ({
 
   return (
     <div>
-      <div className="button">
+      <div className="button"><span>Play !</span>
         <button onClick={playStart} type="button" className={htmlClass}>
           <ReactMic
             noiseSuppression
@@ -37,12 +37,13 @@ const Mic = ({
       </div>
       {
    recordedSound && (
-   <ReactAudioPlayer
-     src={url}
-     controls
-     preload="auto"
-     className="audioPlayer"
-   />
+   <div className="audioPlayer">
+     <ReactAudioPlayer
+       src={url}
+       controls
+       preload="auto"
+     />
+   </div>
    )
 }
     </div>

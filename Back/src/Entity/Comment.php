@@ -16,55 +16,70 @@ class Comment
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups("post:test")
+     * @Groups({"user:one"})
+     * @Groups({"post:one"})
+     * @Groups({"comment:all", "comment:one"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="text")
-     * @Groups("post:test")
+     * @Groups({"user:one"})
+     * @Groups({"post:one"})
+     * @Groups({"comment:all", "comment:one"})
      */
     private $body;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Groups("post:test")
+     * @Groups({"user:one"})
+     * @Groups({"post:one"})
+     * @Groups({"comment:all", "comment:one"})
      */
     private $likes;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
-     * @Groups("post:test")
+     * @Groups({"user:one"})
+     * @Groups({"post:one"})
+     * @Groups({"comment:all", "comment:one"})
      */
     private $isReported;
 
     /**
      * @ORM\Column(type="boolean", options={"default":true})
-     * @Groups("post:test")
+     * @Groups({"user:one"})
+     * @Groups({"post:one"})
+     * @Groups({"comment:all", "comment:one"})
      */
     private $isActive;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups("post:test")
+     * @Groups({"user:one"})
+     * @Groups({"post:one"})
+     * @Groups({"comment:all", "comment:one"})
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
-     * @Groups("post:test")
+     * @Groups({"user:one"})
+     * @Groups({"post:one"})
+     * @Groups({"comment:all", "comment:one"})
      */
     private $updatedAt;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups("post:test")
+     * @Groups({"comment:all", "comment:one"})
      */
     private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity=Post::class, inversedBy="comments")
+     * @Groups({"comment:one"})
      */
     private $post;
 
