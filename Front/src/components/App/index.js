@@ -5,7 +5,7 @@ import React, { useEffect } from 'react';
 // On importe le composant Route qui permet d'afficher les composant
 // qu'il contient seulement si la route matche avec l'url courante.
 import { Route } from 'react-router-dom';
-
+import PropTypes from 'prop-types';
 // == Import
 import './styles.css';
 import LoginForm from 'src/components/LoginForm';
@@ -59,9 +59,6 @@ const App = ({ manageLoad, loading, homeLogin }) => {
       )}
       {!loading && homeLogin && (
       <>
-        {/*         <Nav /> */}
-        {/*        <Burger/>
- */}
         <Route path="/categories" exact>
           <Categories />
           <Footer />
@@ -82,5 +79,12 @@ const App = ({ manageLoad, loading, homeLogin }) => {
     </div>
   );
 };
+
+App.propTypes = {
+  manageLoad: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+  homeLogin: PropTypes.bool.isRequired,
+};
+
 // == Export
 export default App;
