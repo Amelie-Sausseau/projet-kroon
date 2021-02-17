@@ -82,7 +82,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="edit", methods="PUT")
+     * @Route("/{id}", name="edit", methods="PUT", requirements={"id"="\d+"})
      */
     public function edit(Request $request, EntityManagerInterface $em, UserRepository $user): Response
     {
