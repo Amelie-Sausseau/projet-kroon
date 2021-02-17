@@ -13,7 +13,6 @@ import SignupForm from 'src/components/SignupForm';
 import Footer from 'src/components/Footer';
 import Contact from 'src/components/Contact';
 import Categories from 'src/components/Categories';
-import HomeUsers from 'src/components/homeUsers';
 import Loader from 'src/components/Loader';
 import Burger from 'src/containers/Burger';
 import HomeLogin from 'src/components/HomeLogin';
@@ -35,14 +34,9 @@ const App = ({ manageLoad, loading, homeLogin }) => {
       {loading && <Loader />}
       {!loading && !homeLogin && (
       <>
-        {/* <Nav /> */}
         <Burger />
         <Route path="/categories" exact>
           <Categories />
-          <Footer />
-        </Route>
-        <Route path="/" exact>
-          <HomeUsers />
           <Footer />
         </Route>
         <Route path="/connexion" exact>
@@ -61,10 +55,6 @@ const App = ({ manageLoad, loading, homeLogin }) => {
       <>
         <Route path="/categories" exact>
           <Categories />
-          <Footer />
-        </Route>
-        <Route path="/" exact>
-          <HomeUsers />
           <Footer />
         </Route>
         <Route path="/poster" exact>
