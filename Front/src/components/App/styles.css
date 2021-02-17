@@ -9,3 +9,9 @@
   margin: auto;
   background-color: #F1F1F1;
 }
+
+.logo{
+  margin-top: 0px;
+  margin-bottom: 0px;
+  position: sticky;
+}
