@@ -8,8 +8,8 @@ import PostCard from 'src/components/PostCard';
 import './style.scss';
 
 const HomeUsers = ({ posts }) => (
-  <div>
-    <div className="home">
+  <div className="home">
+    <div >
       <h1>Edito</h1>
       <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
         has been the industry's standard dummy text ever since the 1500s, when an unknown printer

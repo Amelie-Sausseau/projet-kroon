@@ -31,18 +31,19 @@
   }
 
   .button_stop{
-    background: rgb(31,97,234);
-    background: linear-gradient(315deg, rgba(31,97,234,1) 0%, rgba(105,184,233,1) 100%);    width: 3rem;
+    background: rgb(162,162,162);
+    background: linear-gradient(315deg, rgba(162,162,162,1) 0%, rgba(227,227,227,1) 53%, rgba(225,225,225,1) 100%);
+    width: 3rem;
     height: 2rem;
     border-radius: 50%;
     border: solid 0px;
     position: relative;
     bottom: 7.5rem;
-    border: solid 3px white;
+    border: solid 3px #f1f1f1;
     padding-bottom: 25px;
  }
 
  .audioPlayer{
    position: relative;
-   bottom: 5rem;
+   bottom: 4.5rem;
  }

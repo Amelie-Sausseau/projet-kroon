@@ -1,6 +1,8 @@
 /* eslint-disable import/no-unresolved */
 // == Import npm
 import React, { useEffect, useState } from 'react';
+import kroonLogo from './kroon_vFinale.svg';
+
 
 // On importe le composant Route qui permet d'afficher les composant
 // qu'il contient seulement si la route matche avec l'url courante.
@@ -37,7 +39,7 @@ const App = ({ manageLoad, loading, homeLogin }) => {
       {loading && <Loader />}
       {!loading && !homeLogin && (
       <>
-        {/* <Nav /> */}
+        <img src={kroonLogo} alt="Logo Kroon" />
         <Burger/>
         <Route path="/categories" exact>
           <Categories />
@@ -61,9 +63,9 @@ const App = ({ manageLoad, loading, homeLogin }) => {
       )}
       {!loading && homeLogin && (
       <>
-{/*         <Nav />*/} 
-{/*        <Burger/>
- */}        <Route path="/categories" exact>
+      <img src={kroonLogo} alt="Logo Kroon" />
+        <Burger/>
+       <Route path="/categories" exact>
           <Categories />
           <Footer />  
         </Route>

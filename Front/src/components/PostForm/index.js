@@ -11,7 +11,7 @@ const PostForm = ({ isClosed, toggle, manageSubmit }) => (
       </select>
       <input type="text" placeholder="Tître" required className="title" />
       <input type="text" placeholder="Description" required className="description" />
-      <div className="buttonSubmit"><span>Click Me</span></div>
+      <div className="buttonSubmit"><span>Envoyer</span></div>
 
     </form>
 );

@@ -14,7 +14,7 @@ const Burger = ({ isClosed, toggleFunction }) => {
  console.log(toggleFunction);
   // ici, on veut toujours la classe settings
   // et seulement la classe settings--closed si isClosed est vrai
-const className = classnames('settings', { 'settings--closed active': isClosed });
+const className = classnames('settings', { 'settings--closed active': !isClosed });
  return (
     <div className={className}>
 
@@ -29,7 +29,7 @@ const className = classnames('settings', { 'settings--closed active': isClosed }
         }
       >
   <span></span>
-  <span></span>
+  <span className="span"></span>
   <span></span>
       </button>
     </div>
