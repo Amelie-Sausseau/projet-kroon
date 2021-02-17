@@ -12,17 +12,18 @@ import LoginForm from 'src/components/LoginForm';
 import SignupForm from 'src/components/SignupForm';
 import Footer from 'src/components/Footer';
 // import Mic from 'src/containers/Mic';
-// import Posts from 'src/containers/Posts';
-import Nav from 'src/components/Nav';
+/* import Posts from 'src/containers/Posts';
+ */import Nav from 'src/components/Nav';
 import Contact from 'src/components/Contact';
 import Categories from 'src/components/Categories';
 import HomeUsers from 'src/components/homeUsers';
+import Loader from 'src/components/Loader';
 import HomeLogin from '../HomeLogin';
 
 // import LoginForm from 'src/containers/LoginForm';
 
 // == Composant
-const App = ({ manageLoad, loading }) => {
+const App = ({ manageLoad, loading, homeLogin }) => {
   useEffect(
     manageLoad,
     [],
@@ -30,19 +31,17 @@ const App = ({ manageLoad, loading }) => {
 
   return (
     <div className="app">
-      {loading && <div>Application en cours de chargement</div>}
-      {!loading && (
+      {loading && <Loader />}
+      {!loading && !homeLogin && (
       <>
-        
         <Nav />
         <Route path="/categories" exact>
           <Categories />
+          <Footer />
         </Route>
-        <Route path="/accueil" exact>
+        <Route path="/" exact>
           <HomeUsers />
-        </Route>
-        <Route path="/moncompte" exact>
-          <HomeLogin />
+          <Footer />
         </Route>
         <Route path="/connexion" exact>
           <LoginForm />
@@ -52,10 +51,30 @@ const App = ({ manageLoad, loading }) => {
         </Route>
         <Route path="/contact" exact>
           <Contact />
-        </Route>
+          <Footer />  
+        </Route>  
       </>
       )}
-      <Footer />
+      {!loading && homeLogin && (
+      <>
+        <Nav />
+        <Route path="/categories" exact>
+          <Categories />
+          <Footer />  
+        </Route>
+        <Route path="/" exact>
+          <HomeUsers />
+          <Footer />  
+        </Route>
+        <Route path="/poster" exact>
+          <HomeLogin />
+        </Route>
+        <Route path="/contact" exact>
+          <Contact />
+          <Footer />  
+        </Route> 
+      </>
+      )}
     </div>
   );
 };

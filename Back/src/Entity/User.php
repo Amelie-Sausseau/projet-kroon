@@ -21,8 +21,6 @@ class User implements UserInterface
      * @ORM\Column(type="integer")
      * @Groups({"user:all", "user:one"})
      * @Groups({"post:all", "post:one"})
-     * @Groups({"comment:all", "comment:one"})
-     * @Groups({"tag:allPosts"})
      */
     private $id;
 
@@ -30,15 +28,14 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=64)
      * @Groups({"user:all", "user:one"})
      * @Groups({"post:all", "post:one"})
-     * @Groups({"comment:all", "comment:one"})
-     * @Groups({"tag:allPosts"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="json")
+     * @Groups({"user:all", "user:one"})
      */
-    private $role = [];
+    private $roles = [];
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -49,8 +46,6 @@ class User implements UserInterface
      * @ORM\Column(type="datetime", options={"default": "CURRENT_TIMESTAMP"})
      * @Groups({"user:all", "user:one"})
      * @Groups({"post:all", "post:one"})
-     * @Groups({"comment:all", "comment:one"})
-     * @Groups({"tag:allPosts"})
      */
     private $createdAt;
 
@@ -58,8 +53,6 @@ class User implements UserInterface
      * @ORM\Column(type="datetime", nullable=true)
      * @Groups({"user:all", "user:one"})
      * @Groups({"post:all", "post:one"})
-     * @Groups({"comment:all", "comment:one"})
-     * @Groups({"tag:allPosts"})
      */
     private $updatedAt;
 
@@ -67,26 +60,27 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255)
      * @Groups({"user:all", "user:one"})
      * @Groups({"post:all", "post:one"})
-     * @Groups({"comment:all", "comment:one"})
-     * @Groups({"tag:allPosts"})
      */
     private $slug;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"user:one"})
+     * 
      */
     private $email;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      * @Groups({"user:all", "user:one"})
+     * 
      */
     private $bio;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"user:all", "user:one"})
+     * 
      */
     private $avatar;
 
@@ -94,8 +88,6 @@ class User implements UserInterface
      * @ORM\Column(type="boolean", options={"default":true})
      * @Groups({"user:all", "user:one"})
      * @Groups({"post:all", "post:one"})
-     * @Groups({"comment:all", "comment:one"})
-     * @Groups({"tag:allPosts"})
      */
     private $isActive;
 

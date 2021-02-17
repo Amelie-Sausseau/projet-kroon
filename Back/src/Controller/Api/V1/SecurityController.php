@@ -2,41 +2,49 @@
 
 namespace App\Controller\Api\V1;
 
+use App\Entity\User;
+use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use LogicException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-
-use App\Form\LoginType;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @Route("api/v1", name="api_v1_")
+ * @Route("/api", name="api_")
  */
 class SecurityController extends AbstractController
 {
+    /**
+     * @Route("/login_check", name="login_check")
+     * @return JsonResponse
+     */
+    public function api_login(): JsonResponse
+    {
+        $user = $this->getUser();
+
+        return new JsonResponse([
+            'email' => $user->getEmail(),
+            'roles' => $user->getRoles()
+        ]);
+    }
+
     /**
      * @Route("/login", name="login")
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
-        // }
-
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        $form = $this->createForm(LoginType::class, [
-            'login[_username]' => $lastUsername,
-        ]);
-
-        return $this->render('security/login.html.twig', array(
-            'form' => $form->createView(),
-            'error' => $error,
-        ));
+        return $this->render('security/login.html.twig', [
+            'last_username' => $lastUsername, 
+            'error' => $error]);
     }
 
     /**

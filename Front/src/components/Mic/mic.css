@@ -3,27 +3,25 @@
     outline: none;
     display: block;
     border: none;
-    background-color: #00a8e8;
-/*     background-image: -webkit-gradient(linear, left bottom, left top, from(#00a8e8), to(#1f3044));
-    background-image: -o-linear-gradient(bottom, #00a8e8 0%, #1f3044 100%);
-    background-image: linear-gradient(0deg, #00a8e8 0%, #1f3044 100%); */
+    background-image:url("./playbutton_blue.png");
+    background-size:11.5rem;
+    background-position: 79.65rem;
     width: 10rem;
     height: 10rem;
     border-radius: 50%;
     text-indent: -1000em;
-    cursor: pointer;
-  
   }
+
+
   
   .button_play  {
     margin: 50px auto;
     outline: none;
     display: block;
     border: none;
-    background-color: #ff2038;
-/*     background-image: -webkit-gradient(linear, left bottom, left top, from(#ff2038), to(#b30003));
-    background-image: -o-linear-gradient(bottom, #ff2038 0%, #b30003 100%);
-    background-image: linear-gradient(0deg, #ff2038 0%, #b30003 100%); */
+    background-image:url("./playbutton_red.png");
+    background-size:11rem;
+    background-position: 76.5rem;
     width: 10rem;
     height: 10rem;
     border-radius: 50%;
@@ -33,8 +31,8 @@
   }
 
   .button_stop{
-    background-color: #00a8e8;
-    width: 3rem;
+    background: rgb(31,97,234);
+    background: linear-gradient(315deg, rgba(31,97,234,1) 0%, rgba(105,184,233,1) 100%);    width: 3rem;
     height: 2rem;
     border-radius: 50%;
     border: solid 0px;

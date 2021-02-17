@@ -4,7 +4,7 @@ import React from 'react';
 
 import './posts.scss';
 
-const PostCard = () =>
+const PostCard = ({title, }) =>
 /*   console.log(data);
  */ (
    <div>

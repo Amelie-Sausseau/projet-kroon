@@ -34,9 +34,15 @@ DirectoryIndex index.php
     # RewriteCond %{HTTP:Authorization} .+
     # RewriteRule ^ - [E=HTTP_AUTHORIZATION:%0]
 
+<<<<<<< HEAD
 	RewriteCond %{HTTP:Authorization} ^(.*)
 
 	RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
+=======
+        RewriteCond %{HTTP:Authorization} ^(.*)
+
+        RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
+>>>>>>> 0212439e953058abf3fa1316696c0ed47cc4e992
 
     # Redirect to URI without front controller to prevent duplicate content
     # (with and without `/index.php`). Only do this redirect on the initial

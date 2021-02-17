@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 // import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import kroonLogo from './kroon_vFinale.svg';
@@ -9,8 +9,8 @@ import kroonLogo from './kroon_vFinale.svg';
 import './nav.scss';
 
 const Nav = () => (
-
   <nav className="nav">
+
     <NavLink
       className="logo"
       to="/"
@@ -50,10 +50,8 @@ const Nav = () => (
         </NavLink>
       </li>
     </ul>
-
   </nav>
 );
-
 // TODO : ternaire si Logged or not
 
 export default Nav;

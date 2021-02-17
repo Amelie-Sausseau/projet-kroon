@@ -7,14 +7,14 @@ import { url } from 'src/utils';
 export default (store) => (next) => (action) => {
   switch (action.type) {
     case FETCH_POSTS:
-      axios.get(url + '/api/v1/posts/')
+      axios.get(`${url}/api/v1/posts/`)
         .then((response) => {
-/*           console.log(response.data);
- */          store.dispatch(savePosts(response.data));
+          console.log(response.data);
+          store.dispatch(savePosts(response.data));
         }).catch((error) => {
           console.error('error');
         });
-        
+
       next(action);
       break;
       /* case FETCH_POSTS_USER_LOGIN: {

@@ -15,7 +15,9 @@ import './style.scss';
 const HomeLogin = () => (
   <div className="home_login">
     <h1>Propose ton son!</h1>
+    <div className="mic">
     <Mic/>
+    </div>
     <PostForm/>
     
 {/*     <PostCard/>

@@ -7,7 +7,8 @@ import { fetchPosts } from '../../actions';
 // on branche la prop loading de App sur l'infor dans le state
 
 const mapStateToProps = (state) => ({
-  loading: state.loading,
+  loading: state.mic.loading,
+  homeLogin: state.users.homeLogin,
 });
 
 const mapDispatchToProps = (dispatch) => ({
