@@ -6,7 +6,7 @@ import { fetchFavorites } from 'src/actions/recipes';
 export default (store) => (next) => (action) => {
   switch (action.type) {
     case LOG_IN: {
-      const { email, password } = store.getState().user;
+      const { email, password } = store.getState().users;
 
       axios.post(
         'http://localhost:3001/login',
@@ -25,7 +25,7 @@ export default (store) => (next) => (action) => {
         // axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
 
         // au moment ou on se loggue, on va récupérer nos favoris
-        store.dispatch(fetchFavorites());
+        // store.dispatch(fetchFavorites());
       }).catch((error) => {
         console.log('error');
       });

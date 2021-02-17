@@ -1,6 +1,8 @@
 import {
     LOG_OUT,
     SAVE_USER_DATA,
+    TOGGLE_MENU,
+    CHANGE_USER_FIELD
 } from 'src/actions/users'
 
 
@@ -12,6 +14,7 @@ const initialState = {
     logged: false,
     username:'',
     homeLogin: false,
+    menuIsClosed: true,
 }
 
 const usersReducer = (state = initialState, action = {}) => {
@@ -30,6 +33,17 @@ const usersReducer = (state = initialState, action = {}) => {
                 logged: true,
                 username: action.data.username,
                 token: action.data.token,
+                email: action.data.email,
+            };
+        case TOGGLE_MENU:
+            return {
+                ...state,
+                menuIsClosed: !state.menuIsClosed,
+            };
+        case CHANGE_USER_FIELD:
+            return {
+                ...state,
+                [action.fieldName]: action.fieldValue,
             };
               default:
                 return { ...state };

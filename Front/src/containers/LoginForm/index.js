@@ -14,16 +14,16 @@ import LoginForm from 'src/components/LoginForm';
 import { changeUserField, logIn, logOut } from '../../actions/user';
 
 const mapStateToProps = (state) => ({
-  email: state.user.email,
-  password: state.user.password,
-  isLogged: state.user.logged,
-  loggedMessage: state.user.logged ? `connecté en tant que ${state.user.username}` : '',
+  email: state.users.email,
+  password: state.users.password,
+  isLogged: state.users.logged,
+  loggedMessage: state.users.logged ? `connecté en tant que ${state.user.username}` : '',
 });
 
 const mapDispatchToProps = (dispatch) => ({
-//   changeField: (fieldValue, fieldName) => {
-//     dispatch(changeUserField(fieldValue, fieldName));
-//   },
+  changeField: (fieldValue, fieldName) => {
+    dispatch(changeUserField(fieldValue, fieldName));
+  },
   handleLogin: () => {
     dispatch(logIn());
   },

@@ -12,7 +12,7 @@ const initialState = {
   recordedSound: false,
   url: '',
   data: [],
-  loading: true,
+  loading: false,
 
 };
 export default (state = initialState, action = {}) => {

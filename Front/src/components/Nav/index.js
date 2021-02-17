@@ -16,8 +16,8 @@ const Nav = () => (
       to="/"
       exact
     >
-      <img src={kroonLogo} alt="Logo Kroon" />
-    </NavLink>
+{/*       <img src={kroonLogo} alt="Logo Kroon" />
+ */}    </NavLink>
     <ul>
       <li>
         <NavLink
