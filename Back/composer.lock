@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b4887daed7614f570841f1e1a2eb1e4e",
+    "content-hash": "992b0ee788c06a56fd88798bb32f1e84",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -1751,109 +1751,6 @@
             "time": "2020-09-14T14:23:00+00:00"
         },
         {
-<<<<<<< HEAD
-            "name": "lcobucci/clock",
-            "version": "2.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/lcobucci/clock.git",
-                "reference": "353d83fe2e6ae95745b16b3d911813df6a05bfb3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/lcobucci/clock/zipball/353d83fe2e6ae95745b16b3d911813df6a05bfb3",
-                "reference": "353d83fe2e6ae95745b16b3d911813df6a05bfb3",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.4 || ^8.0"
-            },
-            "require-dev": {
-                "infection/infection": "^0.17",
-                "lcobucci/coding-standard": "^6.0",
-                "phpstan/extension-installer": "^1.0",
-                "phpstan/phpstan": "^0.12",
-                "phpstan/phpstan-deprecation-rules": "^0.12",
-                "phpstan/phpstan-phpunit": "^0.12",
-                "phpstan/phpstan-strict-rules": "^0.12",
-                "phpunit/php-code-coverage": "9.1.4",
-                "phpunit/phpunit": "9.3.7"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Lcobucci\\Clock\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Luís Cobucci",
-                    "email": "lcobucci@gmail.com"
-                }
-            ],
-            "description": "Yet another clock abstraction",
-            "support": {
-                "issues": "https://github.com/lcobucci/clock/issues",
-                "source": "https://github.com/lcobucci/clock/tree/2.0.x"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/lcobucci",
-                    "type": "github"
-                },
-                {
-                    "url": "https://www.patreon.com/lcobucci",
-                    "type": "patreon"
-                }
-            ],
-            "time": "2020-08-27T18:56:02+00:00"
-        },
-        {
-            "name": "lcobucci/jwt",
-            "version": "4.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/lcobucci/jwt.git",
-                "reference": "7959c5ee8d50e75b8e39ff9e11041208c22a542a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/lcobucci/jwt/zipball/7959c5ee8d50e75b8e39ff9e11041208c22a542a",
-                "reference": "7959c5ee8d50e75b8e39ff9e11041208c22a542a",
-                "shasum": ""
-            },
-            "require": {
-                "ext-hash": "*",
-                "ext-json": "*",
-                "ext-mbstring": "*",
-                "ext-openssl": "*",
-                "ext-sodium": "*",
-                "lcobucci/clock": "^2.0",
-                "php": "^7.4 || ^8.0"
-            },
-            "require-dev": {
-                "infection/infection": "^0.21",
-                "lcobucci/coding-standard": "^6.0",
-                "mikey179/vfsstream": "^1.6.7",
-                "phpbench/phpbench": "^1.0@alpha",
-                "phpstan/extension-installer": "^1.0",
-                "phpstan/phpstan": "^0.12",
-                "phpstan/phpstan-deprecation-rules": "^0.12",
-                "phpstan/phpstan-phpunit": "^0.12",
-                "phpstan/phpstan-strict-rules": "^0.12",
-                "phpunit/php-invoker": "^3.1",
-                "phpunit/phpunit": "^9.5"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Lcobucci\\JWT\\": "src"
-                }
-=======
             "name": "lcobucci/jwt",
             "version": "3.4.5",
             "source": {
@@ -1897,7 +1794,6 @@
                     "compat/json-exception-polyfill.php",
                     "compat/lcobucci-clock-polyfill.php"
                 ]
->>>>>>> 0212439e953058abf3fa1316696c0ed47cc4e992
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1905,11 +1801,7 @@
             ],
             "authors": [
                 {
-<<<<<<< HEAD
-                    "name": "Luís Cobucci",
-=======
                     "name": "Luís Otávio Cobucci Oblonczyk",
->>>>>>> 0212439e953058abf3fa1316696c0ed47cc4e992
                     "email": "lcobucci@gmail.com",
                     "role": "Developer"
                 }
@@ -1921,11 +1813,7 @@
             ],
             "support": {
                 "issues": "https://github.com/lcobucci/jwt/issues",
-<<<<<<< HEAD
-                "source": "https://github.com/lcobucci/jwt/tree/4.1.1"
-=======
                 "source": "https://github.com/lcobucci/jwt/tree/3.4.5"
->>>>>>> 0212439e953058abf3fa1316696c0ed47cc4e992
             },
             "funding": [
                 {
@@ -1937,11 +1825,7 @@
                     "type": "patreon"
                 }
             ],
-<<<<<<< HEAD
-            "time": "2021-02-16T09:59:04+00:00"
-=======
             "time": "2021-02-16T09:40:01+00:00"
->>>>>>> 0212439e953058abf3fa1316696c0ed47cc4e992
         },
         {
             "name": "lexik/jwt-authentication-bundle",
@@ -3973,16 +3857,16 @@
         },
         {
             "name": "symfony/flex",
-            "version": "v1.12.1",
+            "version": "v1.12.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/flex.git",
-                "reference": "394f3e4dc03ea2a5448aeedc9658c8b596b1d39f"
+                "reference": "e472606b4b3173564f0edbca8f5d32b52fc4f2c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/flex/zipball/394f3e4dc03ea2a5448aeedc9658c8b596b1d39f",
-                "reference": "394f3e4dc03ea2a5448aeedc9658c8b596b1d39f",
+                "url": "https://api.github.com/repos/symfony/flex/zipball/e472606b4b3173564f0edbca8f5d32b52fc4f2c9",
+                "reference": "e472606b4b3173564f0edbca8f5d32b52fc4f2c9",
                 "shasum": ""
             },
             "require": {
@@ -3999,7 +3883,7 @@
             "type": "composer-plugin",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.9-dev"
+                    "dev-main": "1.12-dev"
                 },
                 "class": "Symfony\\Flex\\Flex"
             },
@@ -4021,7 +3905,7 @@
             "description": "Composer plugin for Symfony",
             "support": {
                 "issues": "https://github.com/symfony/flex/issues",
-                "source": "https://github.com/symfony/flex/tree/v1.12.1"
+                "source": "https://github.com/symfony/flex/tree/v1.12.2"
             },
             "funding": [
                 {
@@ -4037,7 +3921,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-02-02T16:29:45+00:00"
+            "time": "2021-02-16T14:05:05+00:00"
         },
         {
             "name": "symfony/form",
@@ -5207,16 +5091,16 @@
         },
         {
             "name": "symfony/polyfill-intl-grapheme",
-            "version": "v1.22.0",
+            "version": "v1.22.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-grapheme.git",
-                "reference": "267a9adeb8ecb8071040a740930e077cdfb987af"
+                "reference": "5601e09b69f26c1828b13b6bb87cb07cddba3170"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-intl-grapheme/zipball/267a9adeb8ecb8071040a740930e077cdfb987af",
-                "reference": "267a9adeb8ecb8071040a740930e077cdfb987af",
+                "url": "https://api.github.com/repos/symfony/polyfill-intl-grapheme/zipball/5601e09b69f26c1828b13b6bb87cb07cddba3170",
+                "reference": "5601e09b69f26c1828b13b6bb87cb07cddba3170",
                 "shasum": ""
             },
             "require": {
@@ -5268,7 +5152,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-intl-grapheme/tree/v1.22.0"
+                "source": "https://github.com/symfony/polyfill-intl-grapheme/tree/v1.22.1"
             },
             "funding": [
                 {
@@ -5284,20 +5168,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-07T16:49:33+00:00"
+            "time": "2021-01-22T09:19:47+00:00"
         },
         {
             "name": "symfony/polyfill-intl-icu",
-            "version": "v1.22.0",
+            "version": "v1.22.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-icu.git",
-                "reference": "b2b1e732a6c039f1a3ea3414b3379a2433e183d6"
+                "reference": "af1842919c7e7364aaaa2798b29839e3ba168588"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-intl-icu/zipball/b2b1e732a6c039f1a3ea3414b3379a2433e183d6",
-                "reference": "b2b1e732a6c039f1a3ea3414b3379a2433e183d6",
+                "url": "https://api.github.com/repos/symfony/polyfill-intl-icu/zipball/af1842919c7e7364aaaa2798b29839e3ba168588",
+                "reference": "af1842919c7e7364aaaa2798b29839e3ba168588",
                 "shasum": ""
             },
             "require": {
@@ -5355,7 +5239,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-intl-icu/tree/v1.22.0"
+                "source": "https://github.com/symfony/polyfill-intl-icu/tree/v1.22.1"
             },
             "funding": [
                 {
@@ -5371,20 +5255,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-07T16:49:33+00:00"
+            "time": "2021-01-22T09:19:47+00:00"
         },
         {
             "name": "symfony/polyfill-intl-idn",
-            "version": "v1.22.0",
+            "version": "v1.22.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-idn.git",
-                "reference": "0eb8293dbbcd6ef6bf81404c9ce7d95bcdf34f44"
+                "reference": "2d63434d922daf7da8dd863e7907e67ee3031483"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-intl-idn/zipball/0eb8293dbbcd6ef6bf81404c9ce7d95bcdf34f44",
-                "reference": "0eb8293dbbcd6ef6bf81404c9ce7d95bcdf34f44",
+                "url": "https://api.github.com/repos/symfony/polyfill-intl-idn/zipball/2d63434d922daf7da8dd863e7907e67ee3031483",
+                "reference": "2d63434d922daf7da8dd863e7907e67ee3031483",
                 "shasum": ""
             },
             "require": {
@@ -5442,7 +5326,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-intl-idn/tree/v1.22.0"
+                "source": "https://github.com/symfony/polyfill-intl-idn/tree/v1.22.1"
             },
             "funding": [
                 {
@@ -5458,20 +5342,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-07T16:49:33+00:00"
+            "time": "2021-01-22T09:19:47+00:00"
         },
         {
             "name": "symfony/polyfill-intl-normalizer",
-            "version": "v1.22.0",
+            "version": "v1.22.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-normalizer.git",
-                "reference": "6e971c891537eb617a00bb07a43d182a6915faba"
+                "reference": "43a0283138253ed1d48d352ab6d0bdb3f809f248"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-intl-normalizer/zipball/6e971c891537eb617a00bb07a43d182a6915faba",
-                "reference": "6e971c891537eb617a00bb07a43d182a6915faba",
+                "url": "https://api.github.com/repos/symfony/polyfill-intl-normalizer/zipball/43a0283138253ed1d48d352ab6d0bdb3f809f248",
+                "reference": "43a0283138253ed1d48d352ab6d0bdb3f809f248",
                 "shasum": ""
             },
             "require": {
@@ -5526,7 +5410,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-intl-normalizer/tree/v1.22.0"
+                "source": "https://github.com/symfony/polyfill-intl-normalizer/tree/v1.22.1"
             },
             "funding": [
                 {
@@ -5542,20 +5426,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-07T17:09:11+00:00"
+            "time": "2021-01-22T09:19:47+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.22.0",
+            "version": "v1.22.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "f377a3dd1fde44d37b9831d68dc8dea3ffd28e13"
+                "reference": "5232de97ee3b75b0360528dae24e73db49566ab1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/f377a3dd1fde44d37b9831d68dc8dea3ffd28e13",
-                "reference": "f377a3dd1fde44d37b9831d68dc8dea3ffd28e13",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/5232de97ee3b75b0360528dae24e73db49566ab1",
+                "reference": "5232de97ee3b75b0360528dae24e73db49566ab1",
                 "shasum": ""
             },
             "require": {
@@ -5606,7 +5490,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.22.0"
+                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.22.1"
             },
             "funding": [
                 {
@@ -5622,7 +5506,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-07T16:49:33+00:00"
+            "time": "2021-01-22T09:19:47+00:00"
         },
         {
             "name": "symfony/polyfill-php56",
@@ -5694,7 +5578,7 @@
         },
         {
             "name": "symfony/polyfill-php73",
-            "version": "v1.22.0",
+            "version": "v1.22.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php73.git",
@@ -5753,7 +5637,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php73/tree/v1.22.0"
+                "source": "https://github.com/symfony/polyfill-php73/tree/v1.22.1"
             },
             "funding": [
                 {
@@ -5773,7 +5657,7 @@
         },
         {
             "name": "symfony/polyfill-php80",
-            "version": "v1.22.0",
+            "version": "v1.22.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php80.git",
@@ -5836,7 +5720,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php80/tree/v1.22.0"
+                "source": "https://github.com/symfony/polyfill-php80/tree/v1.22.1"
             },
             "funding": [
                 {
