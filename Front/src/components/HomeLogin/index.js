@@ -18,7 +18,9 @@ const HomeLogin = () => (
     <div className="mic">
     <Mic/>
     </div>
+    <div className="form">
     <PostForm/>
+    </div>
     
 {/*     <PostCard/>
  */}

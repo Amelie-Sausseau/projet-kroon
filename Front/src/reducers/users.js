@@ -13,7 +13,7 @@ const initialState = {
     password:'',
     logged: false,
     username:'',
-    homeLogin: false,
+    homeLogin: true,
     menuIsClosed: true,
 }
 
