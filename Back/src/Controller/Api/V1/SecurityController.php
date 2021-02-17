@@ -2,22 +2,24 @@
 
 namespace App\Controller\Api\V1;
 
+use App\Entity\User;
+use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use LogicException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-
-use App\Form\LoginType;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @Route("api/v1", name="api_v1_")
+ * @Route("/api", name="api_")
  */
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("/login_check", name="api_check")
+     * @Route("/login_check", name="login_check")
      * @return JsonResponse
      */
     public function api_login(): JsonResponse
@@ -26,7 +28,7 @@ class SecurityController extends AbstractController
 
         return new JsonResponse([
             'email' => $user->getEmail(),
-            'roles' => $user->getRoles(),
+            'roles' => $user->getRoles()
         ]);
     }
 
@@ -40,7 +42,9 @@ class SecurityController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('security/login.html.twig', [
+            'last_username' => $lastUsername, 
+            'error' => $error]);
     }
 
     /**
