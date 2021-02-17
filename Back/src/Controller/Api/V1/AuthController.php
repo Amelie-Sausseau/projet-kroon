@@ -17,7 +17,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class AuthController extends AbstractController
 {
     /**
-     * @Route("/signup", name="signup")
+     * @Route("/register", name="register")
      */
     public function register(Request $request, UserPasswordEncoderInterface $encoder, UserRepository $userRepository): Response
     {
@@ -39,7 +39,7 @@ class AuthController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('api_v1_login');
+            return $this->redirectToRoute('api_login');
         }
         
         return $this->render('user/register.html.twig', [
