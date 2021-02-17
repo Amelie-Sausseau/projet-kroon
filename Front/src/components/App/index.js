@@ -13,15 +13,13 @@ import SignupForm from 'src/components/SignupForm';
 import Footer from 'src/components/Footer';
 // import Mic from 'src/containers/Mic';
 /* import Posts from 'src/containers/Posts';
- */import Nav from 'src/components/Nav';
+import Nav from 'src/components/Nav'; */
 import Contact from 'src/components/Contact';
 import Categories from 'src/components/Categories';
 import HomeUsers from 'src/components/homeUsers';
 import Loader from 'src/components/Loader';
-import HomeLogin from '../HomeLogin';
 import Burger from 'src/containers/Burger';
-
-
+import HomeLogin from '../HomeLogin';
 
 // import LoginForm from 'src/containers/LoginForm';
 
@@ -38,7 +36,7 @@ const App = ({ manageLoad, loading, homeLogin }) => {
       {!loading && !homeLogin && (
       <>
         {/* <Nav /> */}
-        <Burger/>
+        <Burger />
         <Route path="/categories" exact>
           <Categories />
           <Footer />
@@ -55,29 +53,30 @@ const App = ({ manageLoad, loading, homeLogin }) => {
         </Route>
         <Route path="/contact" exact>
           <Contact />
-          <Footer />  
-        </Route>  
+          <Footer />
+        </Route>
       </>
       )}
       {!loading && homeLogin && (
       <>
-{/*         <Nav />*/} 
-{/*        <Burger/>
- */}        <Route path="/categories" exact>
+        {/*         <Nav /> */}
+        {/*        <Burger/>
+ */}
+        <Route path="/categories" exact>
           <Categories />
-          <Footer />  
+          <Footer />
         </Route>
         <Route path="/" exact>
           <HomeUsers />
-          <Footer />  
+          <Footer />
         </Route>
         <Route path="/poster" exact>
           <HomeLogin />
         </Route>
         <Route path="/contact" exact>
           <Contact />
-          <Footer />  
-        </Route> 
+          <Footer />
+        </Route>
       </>
       )}
     </div>
