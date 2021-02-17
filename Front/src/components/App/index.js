@@ -1,6 +1,6 @@
 /* eslint-disable import/no-unresolved */
 // == Import npm
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 // On importe le composant Route qui permet d'afficher les composant
 // qu'il contient seulement si la route matche avec l'url courante.
@@ -11,17 +11,17 @@ import './styles.css';
 import LoginForm from 'src/components/LoginForm';
 import SignupForm from 'src/components/SignupForm';
 import Footer from 'src/components/Footer';
-// import Mic from 'src/containers/Mic';
-/* import Posts from 'src/containers/Posts';
-import Nav from 'src/components/Nav'; */
 import Contact from 'src/components/Contact';
 import Categories from 'src/components/Categories';
 import HomeUsers from 'src/components/homeUsers';
 import Loader from 'src/components/Loader';
 import Burger from 'src/containers/Burger';
-import HomeLogin from '../HomeLogin';
+import HomeLogin from 'src/components/HomeLogin';
 
-// import LoginForm from 'src/containers/LoginForm';
+/* import Mic from 'src/containers/Mic';
+ import Posts from 'src/containers/Posts';
+import Nav from 'src/components/Nav';
+import LoginForm from 'src/containers/LoginForm'; */
 
 // == Composant
 const App = ({ manageLoad, loading, homeLogin }) => {
