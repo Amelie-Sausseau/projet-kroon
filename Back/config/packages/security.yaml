@@ -60,4 +60,4 @@ security:
     access_control:
         - { path: ^/api/v1/users/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/v1/posts$, methods: ['GET'], roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/v1/posts$, methods: [GET], roles: IS_AUTHENTICATED_ANONYMOUSLY }
