@@ -39,7 +39,7 @@ class UserController extends AbstractController
     /**
      * @Route("/register", name="register")
      */
-    public function register(Request $request, UserPasswordEncoderInterface $encoder, UserRepository $userRepository): Response
+    public function register(Request $request, UserPasswordEncoderInterface $encoder): Response
     {
         $user = new User();
 
@@ -58,6 +58,13 @@ class UserController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
+
+             // on gère l'image après un 1er flush car on a besoin de l'id pour générer le nom
+             $avatar = $form->get('avatar')->getData();
+             $fileUploader->moveQuestionImage($avatar, $user);
+ 
+             // il faut penser à flush à nouveau pour prendre en compte le nom de l'image
+             $entityManager->flush();
 
             return $this->redirectToRoute('api_login');
         }

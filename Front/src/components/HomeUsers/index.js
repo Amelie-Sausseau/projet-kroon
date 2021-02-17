@@ -1,9 +1,4 @@
 import React from 'react';
-/* import PropTypes from 'prop-types';
- */
-import PostCard from 'src/components/PostCard';
-/* import ImageGallery from 'react-image-gallery';
- */
 
 import './style.scss';
 
@@ -15,17 +10,10 @@ const HomeUsers = ({ posts }) => (
         has been the industry's standard dummy text ever since the 1500s, when an unknown printer
         took a galley of type and scrambled it to make a type specimen book.
       </div>
- {/*      {
-     posts.map((data) => (
 
-       <PostCard key={data.id} {...data} />
-     ))
-
-   } */}
       <h2>Derniers sons</h2>
 
       <div className="last_soungs">
-        {/*   <ImageGallery items={images} /> */}
         <div className="last_posts">
           <h3>Titre du son</h3>
           <div>Img Cat</div>
@@ -65,17 +53,5 @@ const HomeUsers = ({ posts }) => (
   </div>
 
 );
-
-/* HomeUsers.propTypes = {
-  // je veux que ma props recipes soit un tableau
-  recipes: PropTypes.arrayOf(
-    // plus précisément un tableau d'objet (d'une forme particulière)
-    PropTypes.shape({
-      // un objet, oui, mais un objet qui a une propriété id de type numérique
-      id: PropTypes.number.isRequired,
-    }).isRequired,
-  ).isRequired,
-  title: PropTypes.string.isRequired,
-}; */
 
 export default HomeUsers;
