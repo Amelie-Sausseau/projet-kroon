@@ -27,7 +27,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="read", methods="GET")
+     * @Route("/{id}", name="read", methods="GET", requirements={"id"="\d+"})
      */
     public function read(User $user)
     { 
