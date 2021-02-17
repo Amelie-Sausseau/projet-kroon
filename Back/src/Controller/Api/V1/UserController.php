@@ -27,7 +27,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="read", methods="GET")
+     * @Route("/{id}", name="read", methods="GET", requirements={"id"="\d+"})
      */
     public function read(User $user)
     { 
@@ -37,80 +37,52 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/register", name="register")
+     * @Route("/register", name="register", methods="POST")
      */
-    public function register(Request $request, UserPasswordEncoderInterface $encoder): Response
+    public function register(Request $request, UserPasswordEncoderInterface $encoder, EntityManagerInterface $entityManager, UserRepository $userRepo, User $user): Response
     {
+        $infoFromClient = json_decode($request->getContent(), true);
+
         $user = new User();
 
         $form = $this->createForm(RegisterType::class, $user);
 
-
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            // Encodage du mot de passe
-            $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
-            // Assignartion du rôle par défaut VIA le nom du rôle et non l'ID
-            //$role = $userRepository->findOneByRoleString('ROLE_USER');
-            //$user->setRole($role);
+        if ($form->isValid()) {
+            // Assignation du rôle par défaut 
+            $user->setRoles(["ROLE_USER"]);
+            $user->setName($userRepo->find($infoFromClient['name']));
+            $user->setSlug($userRepo->find($infoFromClient['name']) . "#" . uniqid());
+            $user->setEmail($userRepo->find($infoFromClient['email']));
+
+            // récupérer le mot de passe en clair
+            $rawPassword = $user->getPassword($userRepo->find($infoFromClient['password']));
+
+            if (! empty($rawPassword))
+            {
+                // l'encoder
+                $encodedPassword = $encoder->encodePassword($user, $rawPassword);
+            
+                // le renseigner dans l'objet
+                $user->setPassword($encodedPassword);
+            }
+
+            $user->setBio($userRepo->find($infoFromClient['bio']));
+            $user->setAvatar($userRepo->find($infoFromClient['avatar']));
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
 
-             // on gère l'image après un 1er flush car on a besoin de l'id pour générer le nom
-             $avatar = $form->get('avatar')->getData();
-             $fileUploader->moveQuestionImage($avatar, $user);
- 
-             // il faut penser à flush à nouveau pour prendre en compte le nom de l'image
-             $entityManager->flush();
-
-            return $this->redirectToRoute('api_login');
+            return $this->redirectToRoute('api_login'); // => REDIRECTION CONNEXION REACT
         }
         
-        return $this->render('user/register.html.twig', [
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/", name="add", methods="POST")
-     */
-    public function add(Request $request, EntityManagerInterface $em, UserRepository $user): Response
-    {
-        $infoFromClient = json_decode($request->getContent(), true);
-
-        $user = new User();
-        $user->setRoles($user->find($infoFromClient['roles'])); 
-        $user->setName($user->find($infoFromClient['name']));
-        $user->setSlug($user->find($infoFromClient['name']) . "#" . uniqid());
-        $user->setSlug($user->find($infoFromClient['email']));
-
-        // récupérer le mot de passe en clair
-        $rawPassword = $user->getPassword($user->find($infoFromClient['password']));
-
-        if (! empty($rawPassword))
-        {
-            // l'encoder
-            $encodedPassword = $passwordEncoder->encodePassword($user, $rawPassword);
-        
-            // le renseigner dans l'objet
-            $user->setPassword($encodedPassword);
-        }
-
-        $user->setSlug($user->find($infoFromClient['bio'])); // Facultatif !!
-        $user->setSlug($user->find($infoFromClient['avatar'])); // A finir (dossier assets)
-
-        // dd($user);
-        $em->persist($user);
-        $em->flush();
-
         return $this->json($user, 201, [], ['groups' => 'user:add']);
     }
 
     /**
-     * @Route("/{id}", name="edit", methods="PUT")
+     * @Route("/{id}", name="edit", methods="PUT", requirements={"id"="\d+"})
      */
     public function edit(Request $request, EntityManagerInterface $em, UserRepository $user): Response
     {
