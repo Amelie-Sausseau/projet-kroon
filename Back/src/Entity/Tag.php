@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\TagRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -61,6 +62,19 @@ class Tag
     public function __construct()
     {
         $this->posts = new ArrayCollection();
+        $this->createdAt = new DateTime();
+    }
+
+    /**
+    * @ORM\PrePersist
+    * @ORM\PreUpdate
+    */
+    public function updatedTimestamps(): void
+    {
+    $this->setUpdatedAt(new \DateTime('now'));
+        if ($this->getCreatedAt() === null) {
+            $this->setCreatedAt(new \DateTime('now'));
+        }
     }
 
     public function getId(): ?int
@@ -131,15 +145,5 @@ class Tag
         return $this;
     }
 
-    /**
-    * @ORM\PrePersist
-    * @ORM\PreUpdate
-    */
-    public function updatedTimestamps(): void
-    {
-    $this->setUpdatedAt(new \DateTime('now'));
-        if ($this->getCreatedAt() === null) {
-            $this->setCreatedAt(new \DateTime('now'));
-        }
-    }
+    
 }

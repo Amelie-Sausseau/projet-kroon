@@ -39,9 +39,9 @@ class CommentController extends AbstractController
         $infoFromClient = json_decode($request->getContent(), true);
 
         $comment = new Comment();
-        //$comment->setpost($comment->find($infoFromClient['post']));
-        //$comment->setTitle(($infoFromClient['title']));
-        // dd($comment);
+
+        $comment->setBody(($infoFromClient['body']));
+        // dd($tag);
         $em->persist($comment);
         $em->flush();
 

@@ -59,11 +59,10 @@ class TagController extends AbstractController
     /**
      * @Route("/{id}", name="edit", methods="PUT", requirements={"id"="\d+"})
      */
-    public function edit(Request $request, EntityManagerInterface $em, TagRepository $tag): Response
+    public function edit(Request $request, EntityManagerInterface $em, Tag $tag): Response
     {
         $infoFromClient = json_decode($request->getContent(), true);
 
-        $tag = new Tag();
         //$tag->setPost($tag->find($infoFromClient['post']));
         $tag->setName(($infoFromClient['name']));
 

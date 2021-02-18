@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use DateTime;
+use phpDocumentor\Reflection\Types\Boolean;
 use App\Repository\CommentRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -82,6 +84,12 @@ class Comment
      * @Groups({"comment:one"})
      */
     private $post;
+
+    public function __construct()
+    {
+        $this->createdAt = new DateTime();
+        $this->isActive = new Boolean();
+    }
 
     public function getId(): ?int
     {
@@ -196,3 +204,4 @@ class Comment
         }
     }
 }
+
