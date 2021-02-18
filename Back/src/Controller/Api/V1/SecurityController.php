@@ -3,6 +3,7 @@
 namespace App\Controller\Api\V1;
 
 use App\Entity\User;
+use App\Form\LoginType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use LogicException;
