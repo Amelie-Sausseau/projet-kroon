@@ -47,7 +47,7 @@ class SecurityController extends AbstractController
             'login[_username]' => $lastUsername,
         ]);
 
-        return $this->json($lastUsername, 200);
+        return $this->json($lastUsername, 200, ['error' => $error]);
     }
 
     /**
