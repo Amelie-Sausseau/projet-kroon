@@ -38,12 +38,11 @@ class UserController extends AbstractController
     /**
      * @Route("/register", name="register", methods={"GET", "POST"})
      */
-    public function register(Request $request, UserPasswordEncoderInterface $encoder, UserRepository $userRepository): Response
+    public function register(Request $request, UserPasswordEncoderInterface $encoder, UserRepository $user, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
 
         $form = $this->createForm(RegisterType::class, $user);
-
 
         $form->handleRequest($request);
 
