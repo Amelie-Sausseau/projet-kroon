@@ -20,9 +20,7 @@ class CommentController extends AbstractController
      */
     public function browse(CommentRepository $commentRepo): Response
     {
-        return $this->json($commentRepo->findAll(), 200, [
-            'Access-Control-Allow-Origin' => '*'
-        ], ['groups' => 'comment:all']);
+        return $this->json($commentRepo->findAll(), 200, [], ['groups' => 'comment:all']);
     }
 
     /**

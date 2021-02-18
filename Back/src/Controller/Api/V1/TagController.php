@@ -20,9 +20,7 @@ class TagController extends AbstractController
      */
     public function browse(TagRepository $tagRepo): Response
     {
-        return $this->json($tagRepo->findAll(), 200, [
-            'Access-Control-Allow-Origin' => '*'
-        ], ['groups' => 'tag:all']);
+        return $this->json($tagRepo->findAll(), 200, [], ['groups' => 'tag:all']);
     }
 
     /**
@@ -67,7 +65,8 @@ class TagController extends AbstractController
 
         $tag = new Tag();
         //$tag->setPost($tag->find($infoFromClient['post']));
-        //$tag->setTitle(($infoFromClient['title']));
+        $tag->setName(($infoFromClient['name']));
+
         // dd($tag);
         $em->persist($tag);
         $em->flush();

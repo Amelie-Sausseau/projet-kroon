@@ -20,9 +20,7 @@ class PostController extends AbstractController
      */
     public function browse(PostRepository $postRepo): Response
     {
-        return $this->json($postRepo->findAll(), 200, [
-            'Access-Control-Allow-Origin' => '*'
-        ], ['groups' => 'post:all']);
+        return $this->json($postRepo->findAll(), 200, [], ['groups' => 'post:all']);
     }
 
     /**

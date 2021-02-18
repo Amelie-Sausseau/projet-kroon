@@ -23,9 +23,7 @@ class UserController extends AbstractController
      */
     public function browse(UserRepository $userRepo): Response
     {
-        return $this->json($userRepo->findAll(), 200, [
-            'Access-Control-Allow-Origin' => '*'
-        ], ['groups' => 'user:all']);
+        return $this->json($userRepo->findAll(), 200, [], ['groups' => 'user:all']);
     }
 
     /**
@@ -33,9 +31,7 @@ class UserController extends AbstractController
      */
     public function read(User $user)
     { 
-        return $this->json($user, 200, [
-            'Access-Control-Allow-Origin' => '*'
-        ], ['groups' => 'user:one']);
+        return $this->json($user, 200, [], ['groups' => 'user:one']);
     }
 
     /**
