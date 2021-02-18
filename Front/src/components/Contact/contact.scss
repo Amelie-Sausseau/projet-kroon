@@ -1,4 +1,4 @@
-input, textarea {
+.js-input {
     border-top: none;
     border-left: none;
     border-right: none;
@@ -6,13 +6,13 @@ input, textarea {
     margin-top: 3rem;
     font-family: 'Quicksand', sans-serif;
     width: 75%;
+    background-color: #f1f1f1;
 }
 
 button {
     color: #fff;
     background-color: #1f1f1f;
     border: none;
-    padding: 0.5rem;
     text-align: center;
     margin-top: 3rem;
         border: 1px solid #fff;
@@ -27,8 +27,9 @@ button {
     
 }
 
-.title {
+.contact {
     text-align: center;
+    font-size: xx-large;
 }
 
 ::placeholder {

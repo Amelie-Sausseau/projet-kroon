@@ -8,7 +8,7 @@ import { fetchPosts } from '../../actions';
 
 const mapStateToProps = (state) => ({
   loading: state.mic.loading,
-  homeLogin: state.users.homeLogin,
+  islogged: state.users.islogged,
 });
 
 const mapDispatchToProps = (dispatch) => ({

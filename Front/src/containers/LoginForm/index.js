@@ -11,13 +11,13 @@
 import { connect } from 'react-redux';
 
 import LoginForm from 'src/components/LoginForm';
-import { changeUserField, logIn, logOut } from '../../actions/user';
+import { changeUserField, logIn, logOut, clearField } from '../../actions/users';
 
 const mapStateToProps = (state) => ({
   email: state.users.email,
   password: state.users.password,
-  isLogged: state.users.logged,
-  loggedMessage: state.users.logged ? `connecté en tant que ${state.user.username}` : '',
+/*   isLogged: state.user.logged,
+  loggedMessage: state.user.logged ? `connecté en tant que ${state.user.username}` : '', */
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -30,6 +30,10 @@ const mapDispatchToProps = (dispatch) => ({
   handleLogout: () => {
     dispatch(logOut());
   },
+
+  clearFieldInput: () => {
+    dispatch(clearField());
+  }, 
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

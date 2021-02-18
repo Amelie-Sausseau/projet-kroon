@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Nav from 'src/components/Nav';
+import Nav from 'src/containers/Nav';
 // on importe la fonction classnames depuis la lib classnames
 import classnames from 'classnames';
 
@@ -18,7 +18,7 @@ const className = classnames('settings', { 'settings--closed active': !isClosed 
  return (
     <div className={className}>
 
-     <div className='button'>
+     <div className='buttonBurger'>
       <button
         type="button"
         className="settings__close m_button"

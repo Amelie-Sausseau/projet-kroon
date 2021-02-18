@@ -24,6 +24,7 @@ li {
   margin-right: 0.3rem; */
   padding-left: 5px;
   padding-right: 5px;
+  max-width: 5rem;
 }
 .auth {
   margin-top: 1rem;
@@ -35,13 +36,16 @@ li {
   margin-right: 5px;
 }
 img {
-  margin-left: 1rem;
   max-height: 18vh;
   max-width: 25vw;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-left: 1rem;
 }
 nav__link--active {
   text-decoration: underline;
   color: #f0f;
+}
+
+.deco{
+  margin-left: 6px;
+  margin-right: 6px;
 }
