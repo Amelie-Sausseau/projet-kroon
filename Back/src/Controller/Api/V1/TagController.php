@@ -48,7 +48,7 @@ class TagController extends AbstractController
 
         $tag = new Tag();
         //$tag->setpost($tag->find($infoFromClient['post']));
-        //$tag->setTitle(($infoFromClient['title']));
+        $tag->setName(($infoFromClient['name']));
         // dd($tag);
         $em->persist($tag);
         $em->flush();
