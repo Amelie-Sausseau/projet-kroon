@@ -55,7 +55,7 @@ class Comment
     private $isActive;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", options={"default": "CURRENT_TIMESTAMP"})
      * @Groups({"user:one"})
      * @Groups({"post:one"})
      * @Groups({"comment:all", "comment:one"})

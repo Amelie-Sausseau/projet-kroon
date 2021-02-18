@@ -35,7 +35,7 @@ class Tag
     private $name;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", options={"default": "CURRENT_TIMESTAMP"})
      * @Groups({"user:one"})
      * @Groups({"post:all", "post:one"})
      * @Groups({"comment:one"})

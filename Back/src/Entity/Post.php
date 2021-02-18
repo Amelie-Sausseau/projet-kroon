@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use App\Repository\PostRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -89,7 +90,7 @@ class Post
     private $isActive;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", options={"default": "CURRENT_TIMESTAMP"})
      * @Groups({"user:one"})
      * @Groups({"post:all", "post:one"})
      * @Groups({"comment:one"})
@@ -132,6 +133,7 @@ class Post
     {
         $this->tags = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->createdAt = new DateTime();
     }
 
     public function getId(): ?int
