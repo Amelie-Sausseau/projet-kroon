@@ -3,6 +3,7 @@
 namespace App\Controller\Api\V1;
 
 use App\Entity\User;
+use App\Form\RegisterType;
 use App\Form\UserEditType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManager;
@@ -37,21 +38,24 @@ class UserController extends AbstractController
     /**
      * @Route("/register", name="register", methods={"GET", "POST"})
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $manager, UserRepository $userRepo, User $user): Response
-    {{
-        $userData = json_decode($request->getContent(), true);
+    public function register(Request $request, UserPasswordEncoderInterface $encoder, UserRepository $userRepository): Response
+    {
         $user = new User();
-        $form = $this->createForm(RegisterType::class, $user);
-        $form->submit($userData, true);
-        
-        if($form->isSubmitted() && $form->isValid()) {
-            $plainPassword = $form->get('password')->getData();
-            $encodedPassword = $passwordEncoder->encodePassword($user, $plainPassword);
-            $user->setPassword($encodedPassword);
 
-            $manager = $this->getDoctrine()->getManager();
-            $manager->persist($user);
-            $manager->flush();
+        $form = $this->createForm(RegisterType::class, $user);
+
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Encodage du mot de passe
+            $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
+            //$role = $userRepository->findOneByRoleString('ROLE_USER');
+            //$user->setRole($role);
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
 
             return $this->json(
                 [
@@ -68,8 +72,8 @@ class UserController extends AbstractController
             ],
             Response::HTTP_BAD_REQUEST
         );
-    
     }
+    
     /**
      * @Route("/{id}", name="edit", methods="PUT", requirements={"id"="\d+"})
      */
