@@ -3,7 +3,9 @@
 namespace App\Controller\Api\V1;
 
 use App\Entity\User;
+use App\Form\UserEditType;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,7 +39,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/register", name="register", methods="POST")
+     * @Route("/register", name="register", methods={"GET", "POST"})
      */
     public function register(Request $request, UserPasswordEncoderInterface $encoder, EntityManagerInterface $entityManager, UserRepository $userRepo, User $user): Response
     {
@@ -84,18 +86,30 @@ class UserController extends AbstractController
     /**
      * @Route("/{id}", name="edit", methods="PUT", requirements={"id"="\d+"})
      */
-    public function edit(Request $request, EntityManagerInterface $em, UserRepository $user): Response
+    public function edit(Request $request, User $user): Response
     {
-        $infoFromClient = json_decode($request->getContent(), true);
+        // Contrainte pour qu'un utilisateur connecté modifie son propre compte
+        // if ($user !== $this->getUser()) {
+        //    throw $this->createAccessDeniedException();
+        // }
 
-        $user = new User();
-        //$post->setUser($user->find($infoFromClient['user']));
-        //$post->setTitle(($infoFromClient['title']));
-        // dd($post);
-        $em->persist($user);
-        $em->flush();
+        $form = $this->createForm(UserEditType::class, $user);
+        $form->handleRequest($request);
 
-        return $this->json($user, 200, [], ['groups' => 'user:edit']);
+        if ($form->isSubmitted() && $form->isValid()) { 
+
+        $this->getDoctrine()->getManager()->flush();
+
+        return $this->redirectToRoute('api_v1_user_read', [
+            'id' => $user->getId(),
+        ]);
+        }
+
+        return $this->render('user/edit.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
+
+        ]);
     }
 
     /**

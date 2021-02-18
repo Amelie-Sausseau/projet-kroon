@@ -3,12 +3,11 @@
 namespace App\Service;
 
 use App\Entity\User;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\String\Slugger\SluggerInterface;
+
 class FileUploader
 {
-        private $userFolder;
+    private $userFolder;
 
     public function __construct($userFolder)
     {
@@ -20,7 +19,7 @@ class FileUploader
      * @param UploadedFile|null $image on autorise le null si jamais aucune image n'a été fournie
      * @return string|null
      */
-    function moveImage(?UploadedFile $image, string $targetFolder, $prefix = ''): ?string
+    public function moveImage(?UploadedFile $image, string $targetFolder, $prefix = ''): ?string
     {
         $newFilename = null;
 
@@ -41,7 +40,7 @@ class FileUploader
         return $this->targetDirectory;
     }
 
-    function moveUserImage(?UploadedFile $image, User $user)
+    public function moveUserImage(?UploadedFile $image, User $user)
     {
         $imageName = $this->moveImage($image, $this->userFolder, 'user-');
         if ($imageName !== null) {
