@@ -41,7 +41,7 @@ class CommentController extends AbstractController
         $comment = new Comment();
 
         $comment->setBody(($infoFromClient['body']));
-        // dd($tag);
+        // dd($comment);
         $em->persist($comment);
         $em->flush();
 
@@ -55,9 +55,9 @@ class CommentController extends AbstractController
     {
         $infoFromClient = json_decode($request->getContent(), true);
         
-        $comment->setName(($infoFromClient['comment']));
-        // dd($tag);
-        $em->persist($tag);
+        $comment->setBody(($infoFromClient['body']));
+        // dd($comment);
+        $em->persist($comment);
         $em->flush();
 
         return $this->json($comment, 200, [], ['groups' => 'comment:edit']);
@@ -81,11 +81,10 @@ class CommentController extends AbstractController
      */
     public function addLike(Request $request, EntityManagerInterface $em, CommentRepository $comment): Response
     {
-        $infoFromClient = json_decode($request->getContent(), true);
+        // $infoFromClient = json_decode($request->getContent(), true);
 
         $comment = new Comment();
-        //$comment->setPost($comment->find($infoFromClient['post']));
-        //$comment->setTitle(($infoFromClient['title']));
+        $comment->setLikes($comment->getLikes() + 1 );
         // dd($comment);
         $em->persist($comment);
         $em->flush();
@@ -94,13 +93,16 @@ class CommentController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/like", name="delete_like", methods="DELETE")
+     * @Route("/{id}/like", name="delete_like", methods="POST")
      */
-    public function deleteLike(EntityManagerInterface $em, Comment $comment): Response
+    public function deleteLike(Request $request, EntityManagerInterface $em, CommentRepository $comment): Response
     {
-     
-        $em->remove($comment);
+        // $infoFromClient = json_decode($request->getContent(), true);
 
+        $comment = new Comment();
+        $comment->setLikes($comment->getLikes() - 1 );
+        // dd($comment);
+        $em->persist($comment);
         $em->flush();
 
         return $this->json($comment, 200, [], ['groups' => 'comment:deleteLike']);
