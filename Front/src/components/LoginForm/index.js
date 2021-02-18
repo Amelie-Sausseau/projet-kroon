@@ -9,21 +9,21 @@ import { NavLink } from 'react-router-dom';
 import './login.scss';
 import Field from './Field';
 
-const LoginForm = ({ 
+const LoginForm = ({
   email,
   password,
   changeField,
   handleLogin,
   clearFieldInput,
   handleLogout,
- }) => {
-  function handleSubmit(evt){
+}) => {
+  function handleSubmit(evt) {
     evt.preventDefault();
     handleLogin();
   }
 
   return (
-  <div className="login">
+    <div className="titre">
       <h4>Kroon</h4>
       <div className="loginContainer">
         <NavLink
@@ -32,7 +32,7 @@ const LoginForm = ({
           activeClassName="connexion--active"
           exact
         >
-          Je me connecte          
+          Je me connecte
         </NavLink>
         <NavLink
           className="connexion"
@@ -46,32 +46,31 @@ const LoginForm = ({
       </div>
 
       <form autoComplete="off" className="login-form-element" onSubmit={handleSubmit}>
-          <Field
+        <Field
           className="username"
-            name="email"
-            placeholder="Adresse Email"
-            onChange={changeField}
-            value={email}
-          />
-          <Field
+          name="email"
+          placeholder="Adresse Email"
+          onChange={changeField}
+          value={email}
+        />
+        <Field
           className="password"
-            name="password"
-            type="password"
-            placeholder="Mot de passe"
-            onChange={changeField}
-            value={password}
-          />
-          <button
-            type="submit"
-            className="login-form-button"
-          >
-            OK
-          </button>
-        </form>
-{/*         <button onClick={handleLogout}>la meche</button>
- */}
-  </div>
+          name="password"
+          type="password"
+          placeholder="Mot de passe"
+          onChange={changeField}
+          value={password}
+        />
+        <button
+          type="submit"
+          className="login-form-button"
+        >
+          OK
+        </button>
+      </form>
+    </div>
 
-)};
+  );
+};
 
 export default LoginForm;

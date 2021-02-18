@@ -48,3 +48,6 @@
    position: relative;
    bottom: 4.5rem;
  }
+.buttonContainer {
+  margin-bottom: 5vh;
+}

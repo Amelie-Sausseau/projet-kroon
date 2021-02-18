@@ -2,26 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import './signup.scss';
-import Field from './Field'
+import Field from './Field';
 
-const SignupForm = ({ 
-  email, 
-  password, 
-  name, 
-  handlesignUp, 
-  changeFieldCreate 
+const SignupForm = ({
+  email,
+  password,
+  name,
+  handlesignUp,
+  changeFieldCreate,
 }) => {
-
-  function handleSubmit(evt){
+  function handleSubmit(evt) {
     evt.preventDefault();
     handlesignUp();
   }
 
   return (
-<div className="titre">
-    <h4>Kroon</h4>
-
-  <div className="signup">
+    <div className="titre">
+      <h4>Kroon</h4>
       <div className="loginContainer">
         <NavLink
           className="connexion"
@@ -41,45 +38,46 @@ const SignupForm = ({
         </NavLink>
       </div>
       <form autoComplete="off" className="box" onSubmit={handleSubmit}>
-      <Field 
+        <Field
+          type="text"
+          placeholder="Username"
+          required
+          className="username"
+          name="name"
+          onChange={changeFieldCreate}
+          value={name}
+        />
+        <Field
+          type="text"
+          name="email"
+          placeholder="Email"
+          required
+          className="password"
+          onChange={changeFieldCreate}
+          value={email}
+        />
+        <Field
+          type="text"
+          name="password"
+          placeholder="Password"
+          required
+          className="password"
+          onChange={changeFieldCreate}
+          value={password}
+        />
+        {/*       <Field
       type="text"
-       placeholder="username" required 
-       className="username" 
-       name="name"
-       onChange={changeFieldCreate}
-       value={name}
-       />
-      <Field 
-      type="text" 
-      name="email"
-      placeholder="email" 
-      required className="password" 
-      onChange={changeFieldCreate}
-      value={email}
-      className="email" 
-
-      />
-      <Field 
-      type="text" 
-      name="password"
-      placeholder="password" required 
-      className="password" 
-      onChange={changeFieldCreate}
-      value={password}
-      />
-{/*       <Field 
-      type="text" 
       placeholder="confirm password"
-       required className="password" 
+       required className="password"
        onChange={changeFieldCreate}
        value={password}
        /> */}
-        <button type="submit" value="Submit" className="btn1">
+        <button type="submit" value="Submit" className="signup-form-button">
           Créer mon compte
         </button>
-    </form>
-  </div>
-  </div>
-)};
+      </form>
+    </div>
+  );
+};
 
 export default SignupForm;

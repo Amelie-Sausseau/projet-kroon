@@ -3,7 +3,6 @@
 import React, { useEffect } from 'react';
 import kroonLogo from './kroon_vFinale.svg';
 
-
 // On importe le composant Route qui permet d'afficher les composant
 // qu'il contient seulement si la route matche avec l'url courante.
 import { Route } from 'react-router-dom';
@@ -19,7 +18,6 @@ import Loader from 'src/components/Loader';
 import Burger from 'src/containers/Burger';
 import HomeLogin from 'src/components/HomeLogin';
 import HomeUsers from 'src/components/HomeUsers';
-
 
 /* import Mic from 'src/containers/Mic';
  import Posts from 'src/containers/Posts';
@@ -38,8 +36,8 @@ const App = ({ manageLoad, loading, islogged }) => {
       {loading && <Loader />}
       {!loading && !islogged && (
       <>
-        <img src={kroonLogo} alt="Logo Kroon" className="logo"/>
-        <Burger/>
+        <img src={kroonLogo} alt="Logo Kroon" className="logo" />
+        <Burger />
         <Route path="/categories" exact>
           <Categories />
           <Footer />
@@ -62,9 +60,9 @@ const App = ({ manageLoad, loading, islogged }) => {
       )}
       {!loading && islogged && (
       <>
-      <img src={kroonLogo} alt="Logo Kroon" />
-        <Burger/>
-       <Route path="/categories" exact>
+        <img src={kroonLogo} alt="Logo Kroon" />
+        <Burger />
+        <Route path="/categories" exact>
           <Categories />
           <Footer />
         </Route>
