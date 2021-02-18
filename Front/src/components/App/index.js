@@ -18,6 +18,8 @@ import Categories from 'src/components/Categories';
 import Loader from 'src/components/Loader';
 import Burger from 'src/containers/Burger';
 import HomeLogin from 'src/components/HomeLogin';
+import HomeUsers from 'src/components/HomeUsers';
+
 
 /* import Mic from 'src/containers/Mic';
  import Posts from 'src/containers/Posts';
@@ -36,10 +38,14 @@ const App = ({ manageLoad, loading, homeLogin }) => {
       {loading && <Loader />}
       {!loading && !homeLogin && (
       <>
-        <img src={kroonLogo} alt="Logo Kroon" />
+        <img src={kroonLogo} alt="Logo Kroon" className="logo"/>
         <Burger/>
         <Route path="/categories" exact>
           <Categories />
+          <Footer />
+        </Route>
+        <Route path="/" exact>
+          <HomeUsers />
           <Footer />
         </Route>
         <Route path="/connexion" exact>
@@ -60,6 +66,10 @@ const App = ({ manageLoad, loading, homeLogin }) => {
         <Burger/>
        <Route path="/categories" exact>
           <Categories />
+          <Footer />
+        </Route>
+        <Route path="/" exact>
+          <HomeUsers />
           <Footer />
         </Route>
         <Route path="/poster" exact>
