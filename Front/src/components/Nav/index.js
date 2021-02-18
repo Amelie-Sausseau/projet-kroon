@@ -37,6 +37,38 @@ const Nav = ({islogged, buttonClearField}) => {
           Catégories
         </NavLink>
       </li>
+
+      <li>
+      <NavLink
+          className="nav__link "
+          to="/poster"
+          activeClassName="nav__link--active"
+          exact
+        >
+          Poster
+        </NavLink>
+        </li>
+        <li>
+      <NavLink
+          className="nav__link "
+          to="/equipe"
+          activeClassName="nav__link--active"
+          exact
+        >
+          Equipe
+        </NavLink>
+        </li>
+        
+        <li>
+      <NavLink
+          className="nav__link "
+          to="/contact"
+          activeClassName="nav__link--active"
+          exact
+        >
+          Contact
+        </NavLink>
+        </li>
       <li className="auth">
         <NavLink
           className="nav__link deco"
@@ -76,6 +108,27 @@ const Nav = ({islogged, buttonClearField}) => {
           Catégories
         </NavLink>
       </li>
+      <li>
+      <NavLink
+          className="nav__link"
+          to="/poster"
+          activeClassName="nav__link--active"
+          exact
+          onClick={buttonClearField}
+        >
+          Team
+        </NavLink>
+        </li>
+        <li>
+      <NavLink
+          className="nav__link "
+          to="/contact"
+          activeClassName="nav__link--active"
+          exact
+        >
+          Contact
+        </NavLink>
+        </li>
       <li className="auth">
         <NavLink
           className="nav__link"
@@ -85,6 +138,7 @@ const Nav = ({islogged, buttonClearField}) => {
         >
           Connexion
         </NavLink>
+        
       </li>
     </ul>
   </nav>
