@@ -3,48 +3,52 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // == Import : local
-import 'src/components/SignupForm/field.scss';
+import './field.css';
 
 // == Composant
 const Field = ({
-    type, name, placeholder, value, setValue,
-}) => (
-    <div className='field'>
-            <label
-        className="field-label"
-      >
-        {placeholder}
-      </label>
+  value,
+  type,
+  name,
+  placeholder,
+  onChange,
+}) => {
+  const handleChange = (evt) => {
+    onChange(evt.target.value, name);
+  };
+
+  const inputId = `field-${name}`;
+
+  return (
+    <div >
       <input
-        type={type}
-        name={name}
+        // React - state
         value={value}
-        placeholder={placeholder}
+        onChange={handleChange}
+        // infos de base
+        id={inputId}
+        type={type}
         className="field-input"
-        onChange={
-            (e) => {
-        // on pourrait :
-        // - regarder au niveau du target de l'évènement le nom du champ,
-        // setValue(e.target.name, e.target.value);
-        // - utiliser le nom du champ pour transmettre l'info
-        // setValue(name, e.target.value);
-        // laisser la responsabilité à un composant de plus haut niveau
-        // de déterminer ce qu'il va faire de cette faire.
-        setValue(e.target.value);  
-            }
-        }
+        placeholder={placeholder}
+        name={name}
       />
-
-
     </div>
   );
+};
 
-// on définit la valeur de certaines props par défaut
-// on fixe des valeurs par défaut pour toutes les props non obligatoire (et seulement)
+ Field.propTypes = {
+  value: PropTypes.string,
+  type: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
+
+// Valeurs par défaut pour les props
 Field.defaultProps = {
-    type: 'text',
-    placeholder: '',
-  };  
+  value: '',
+  type: 'text',
+}; 
 
 // == Export
 export default Field;

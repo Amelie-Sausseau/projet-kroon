@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Nav from 'src/components/Nav';
+import Nav from 'src/containers/Nav';
 // on importe la fonction classnames depuis la lib classnames
 import classnames from 'classnames';
 

@@ -2,11 +2,26 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import './signup.scss';
+import Field from './Field'
 
-const SignupForm = ({ isClosed, toggle, manageSubmit }) => (
+const SignupForm = ({ 
+  email, 
+  password, 
+  name, 
+  handlesignUp, 
+  changeFieldCreate 
+}) => {
+
+  function handleSubmit(evt){
+    evt.preventDefault();
+    handlesignUp();
+  }
+
+  return (
+<div className="titre">
+    <h4>Kroon</h4>
+
   <div className="signup">
-    <form autoComplete="off" className="box">
-      <h4>Kroon</h4>
       <div className="loginContainer">
         <NavLink
           className="connexion"
@@ -25,17 +40,46 @@ const SignupForm = ({ isClosed, toggle, manageSubmit }) => (
           Je crée mon compte
         </NavLink>
       </div>
-      <input type="text" placeholder="username" required className="username" />
-      <input type="text" placeholder="email" required className="password" />
-      <input type="text" placeholder="password" required className="password" />
-      <input type="text" placeholder="confirm password" required className="password" />
-      <div className="btn-container">
+      <form autoComplete="off" className="box" onSubmit={handleSubmit}>
+      <Field 
+      type="text"
+       placeholder="username" required 
+       className="username" 
+       name="name"
+       onChange={changeFieldCreate}
+       value={name}
+       />
+      <Field 
+      type="text" 
+      name="email"
+      placeholder="email" 
+      required className="password" 
+      onChange={changeFieldCreate}
+      value={email}
+      className="email" 
+
+      />
+      <Field 
+      type="text" 
+      name="password"
+      placeholder="password" required 
+      className="password" 
+      onChange={changeFieldCreate}
+      value={password}
+      />
+{/*       <Field 
+      type="text" 
+      placeholder="confirm password"
+       required className="password" 
+       onChange={changeFieldCreate}
+       value={password}
+       /> */}
         <button type="submit" value="Submit" className="btn1">
           Créer mon compte
         </button>
-      </div>
     </form>
   </div>
-);
+  </div>
+)};
 
 export default SignupForm;

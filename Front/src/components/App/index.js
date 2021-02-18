@@ -10,8 +10,8 @@ import { Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 // == Import
 import './styles.css';
-import LoginForm from 'src/components/LoginForm';
-import SignupForm from 'src/components/SignupForm';
+import LoginForm from 'src/containers/LoginForm';
+import SignupForm from 'src/containers/SignupForm';
 import Footer from 'src/components/Footer';
 import Contact from 'src/components/Contact';
 import Categories from 'src/components/Categories';
@@ -27,7 +27,7 @@ import Nav from 'src/components/Nav';
 import LoginForm from 'src/containers/LoginForm'; */
 
 // == Composant
-const App = ({ manageLoad, loading, homeLogin }) => {
+const App = ({ manageLoad, loading, islogged }) => {
   useEffect(
     manageLoad,
     [],
@@ -36,7 +36,7 @@ const App = ({ manageLoad, loading, homeLogin }) => {
   return (
     <div className="app">
       {loading && <Loader />}
-      {!loading && !homeLogin && (
+      {!loading && !islogged && (
       <>
         <img src={kroonLogo} alt="Logo Kroon" className="logo"/>
         <Burger/>
@@ -60,7 +60,7 @@ const App = ({ manageLoad, loading, homeLogin }) => {
         </Route>
       </>
       )}
-      {!loading && homeLogin && (
+      {!loading && islogged && (
       <>
       <img src={kroonLogo} alt="Logo Kroon" />
         <Burger/>
@@ -88,7 +88,7 @@ const App = ({ manageLoad, loading, homeLogin }) => {
 App.propTypes = {
   manageLoad: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  homeLogin: PropTypes.bool.isRequired,
+  islogged: PropTypes.bool.isRequired,
 };
 
 // == Export

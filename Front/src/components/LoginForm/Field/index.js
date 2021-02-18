@@ -32,13 +32,6 @@ const Field = ({
         placeholder={placeholder}
         name={name}
       />
-
-      <label
-        htmlFor={inputId}
-        className="field-label"
-      >
-        {placeholder}
-      </label>
     </div>
   );
 };

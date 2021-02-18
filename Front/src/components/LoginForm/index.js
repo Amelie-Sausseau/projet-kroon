@@ -1,15 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-
+/* import Field from "./Field"
+ */
 // import Field from './Field';
 // import { useField } from './hooks';
 
 import './login.scss';
+import Field from './Field';
 
-const LoginForm = ({ isClosed, toggle, manageSubmit }) => (
+const LoginForm = ({ 
+  email,
+  password,
+  changeField,
+  handleLogin,
+  clearFieldInput,
+  handleLogout,
+ }) => {
+  function handleSubmit(evt){
+    evt.preventDefault();
+    handleLogin();
+  }
+
+  return (
   <div className="login">
-    <form autoComplete="off" className="box">
       <h4>Kroon</h4>
       <div className="loginContainer">
         <NavLink
@@ -18,28 +32,46 @@ const LoginForm = ({ isClosed, toggle, manageSubmit }) => (
           activeClassName="connexion--active"
           exact
         >
-          Je me connecte
+          Je me connecte          
         </NavLink>
         <NavLink
           className="connexion"
           to="/nouveaucompte"
           activeClassName="connexion--active"
           exact
+          onClick={handleLogout}
         >
           Je crée mon compte
         </NavLink>
       </div>
-      <input type="text" placeholder="username" required className="username" />
-      <input type="text" placeholder="password" required className="password" />
-      <p className="reset-pswd">Mot de passe oublié</p>
-      <div className="btn-container">
-        <button type="submit" value="Submit" className="btn1">
-          Connexion
-        </button>
-      </div>
-    </form>
+
+      <form autoComplete="off" className="login-form-element" onSubmit={handleSubmit}>
+          <Field
+          className="username"
+            name="email"
+            placeholder="Adresse Email"
+            onChange={changeField}
+            value={email}
+          />
+          <Field
+          className="password"
+            name="password"
+            type="password"
+            placeholder="Mot de passe"
+            onChange={changeField}
+            value={password}
+          />
+          <button
+            type="submit"
+            className="login-form-button"
+          >
+            OK
+          </button>
+        </form>
+{/*         <button onClick={handleLogout}>la meche</button>
+ */}
   </div>
 
-);
+)};
 
 export default LoginForm;

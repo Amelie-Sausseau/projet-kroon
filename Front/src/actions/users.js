@@ -3,6 +3,9 @@ export const LOG_OUT = "LOG_OUT";
 export const SAVE_USER_DATA = "SAVE_USER_DATA ";
 export const TOGGLE_MENU = "TOGGLE_MENU";
 export const CHANGE_USER_FIELD = 'CHANGE_USER_FIELD';
+export const SIGN_UP = 'SIGN_UP';
+export const CHANGE_FIELD_CREATE_USER = 'CHANGE_FIELD_CREATE_USER';
+export const CLEAR_FIELD = 'CLEAR_FIELD';
 
 
 export const logIn = () => ({
@@ -17,11 +20,27 @@ export const saveUserData = (data) => ({
     type: SAVE_USER_DATA,
     data,
   });
+
   export const toggleMenu = () => ({
     type: TOGGLE_MENU,
   });
+
+  export const changeFieldCreateUser = (fieldValue, fieldName) => ({
+    type: CHANGE_FIELD_CREATE_USER,
+    fieldValue,
+    fieldName,
+  });
+
+  export const signUp = () => ({
+    type: SIGN_UP
+  });
+
   export const changeUserField = (fieldValue, fieldName) => ({
     type: CHANGE_USER_FIELD,
     fieldValue,
     fieldName,
+  });
+
+  export const clearField = () => ({
+    type: CLEAR_FIELD,
   });
