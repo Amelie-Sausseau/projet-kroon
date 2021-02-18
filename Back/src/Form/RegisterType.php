@@ -34,17 +34,21 @@ class RegisterType extends AbstractType
             ->add('bio', TextType::class, [
                 'constraints' => new NotBlank,
             ])
+
             ->add('avatar', FileType::class, [
-                'label' => 'Image',
-                // on demande au composant formulaire de ne pas préremplir le champ 
-                // car on a le traitement du fichier à réaliser (renommage + déplacement)
-                'mapped' => false, 
                 'required' => false,
                 'constraints' => [
                     new File([
-                        'maxSize' => '2M'
+                        'maxSize' => '2M',
+                        'mimeTypes' => [
+                            'image/jpg',
+                            'image/jpeg',
+                            'image/png',
+                            'image/gif',
+                        ],
+                        'mimeTypesMessage' => 'Choisissez un format d\'image valide SVP',
                     ])
-                ]
+                ],
             ])
         ;
     }
@@ -53,6 +57,7 @@ class RegisterType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'csrf_protection' => false,
             'attr' => ['novalidate' => 'novalidate'],
         ]);
     }
