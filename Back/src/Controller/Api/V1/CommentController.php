@@ -51,13 +51,11 @@ class CommentController extends AbstractController
     /**
      * @Route("/{id}", name="edit", methods="PUT", requirements={"id"="\d+"})
      */
-    public function edit(Request $request, EntityManagerInterface $em, CommentRepository $comment): Response
+    public function edit(Request $request, EntityManagerInterface $em, Comment $comment): Response
     {
         $infoFromClient = json_decode($request->getContent(), true);
-
-        $comment = new Comment();
-        //$comment->setPost($comment->find($infoFromClient['post']));
-        //$comment->setTitle(($infoFromClient['title']));
+        
+        $comment->setBody(($infoFromClient['body']));
         // dd($comment);
         $em->persist($comment);
         $em->flush();

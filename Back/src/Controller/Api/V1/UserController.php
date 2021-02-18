@@ -37,48 +37,39 @@ class UserController extends AbstractController
     /**
      * @Route("/register", name="register", methods={"GET", "POST"})
      */
-    public function register(Request $request, UserPasswordEncoderInterface $encoder, EntityManagerInterface $entityManager, UserRepository $userRepo, User $user): Response
-    {
-        $infoFromClient = json_decode($request->getContent(), true);
-
+    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $manager, UserRepository $userRepo, User $user): Response
+    {{
+        $userData = json_decode($request->getContent(), true);
         $user = new User();
-
         $form = $this->createForm(RegisterType::class, $user);
-
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            // Assignation du rôle par défaut 
-            $user->setRoles(["ROLE_USER"]);
-            $user->setName($userRepo->find($infoFromClient['name']));
-            $user->setSlug($userRepo->find($infoFromClient['name']) . "#" . uniqid());
-            $user->setEmail($userRepo->find($infoFromClient['email']));
-
-            // récupérer le mot de passe en clair
-            $rawPassword = $user->getPassword($userRepo->find($infoFromClient['password']));
-
-            if (! empty($rawPassword))
-            {
-                // l'encoder
-                $encodedPassword = $encoder->encodePassword($user, $rawPassword);
-            
-                // le renseigner dans l'objet
-                $user->setPassword($encodedPassword);
-            }
-
-            $user->setBio($userRepo->find($infoFromClient['bio']));
-            $user->setAvatar($userRepo->find($infoFromClient['avatar']));
-
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('api_login'); // => REDIRECTION CONNEXION REACT
-        }
+        $form->submit($userData, true);
         
-        return $this->json($user, 201, [], ['groups' => 'user:add']);
-    }
+        if($form->isSubmitted() && $form->isValid()) {
+            $plainPassword = $form->get('password')->getData();
+            $encodedPassword = $passwordEncoder->encodePassword($user, $plainPassword);
+            $user->setPassword($encodedPassword);
 
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($user);
+            $manager->flush();
+
+            return $this->json(
+                [
+                    "success" => true
+                ],
+                Response::HTTP_OK
+            );
+        }
+
+        return $this->json(
+            [
+                "success" => false,
+                "errors" => $form->getErrors(true),
+            ],
+            Response::HTTP_BAD_REQUEST
+        );
+    
+    }
     /**
      * @Route("/{id}", name="edit", methods="PUT", requirements={"id"="\d+"})
      */
