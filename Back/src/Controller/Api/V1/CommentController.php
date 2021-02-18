@@ -39,9 +39,9 @@ class CommentController extends AbstractController
         $infoFromClient = json_decode($request->getContent(), true);
 
         $comment = new Comment();
-        //$comment->setpost($comment->find($infoFromClient['post']));
-        //$comment->setTitle(($infoFromClient['title']));
-        // dd($comment);
+
+        $comment->setBody(($infoFromClient['body']));
+        // dd($tag);
         $em->persist($comment);
         $em->flush();
 
@@ -51,15 +51,13 @@ class CommentController extends AbstractController
     /**
      * @Route("/{id}", name="edit", methods="PUT", requirements={"id"="\d+"})
      */
-    public function edit(Request $request, EntityManagerInterface $em, CommentRepository $comment): Response
+    public function edit(Request $request, EntityManagerInterface $em, Comment $comment): Response
     {
         $infoFromClient = json_decode($request->getContent(), true);
-
-        $comment = new Comment();
-        //$comment->setPost($comment->find($infoFromClient['post']));
-        //$comment->setTitle(($infoFromClient['title']));
-        // dd($comment);
-        $em->persist($comment);
+        
+        $comment->setName(($infoFromClient['comment']));
+        // dd($tag);
+        $em->persist($tag);
         $em->flush();
 
         return $this->json($comment, 200, [], ['groups' => 'comment:edit']);

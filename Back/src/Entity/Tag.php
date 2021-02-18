@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use App\Repository\TagRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -61,6 +62,7 @@ class Tag
     public function __construct()
     {
         $this->posts = new ArrayCollection();
+        $this->createdAt = new DateTime();
     }
 
     public function getId(): ?int

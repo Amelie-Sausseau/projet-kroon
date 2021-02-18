@@ -47,7 +47,7 @@ class TagController extends AbstractController
         $infoFromClient = json_decode($request->getContent(), true);
 
         $tag = new Tag();
-        //$tag->setpost($tag->find($infoFromClient['post']));
+
         $tag->setName(($infoFromClient['name']));
         // dd($tag);
         $em->persist($tag);
@@ -59,14 +59,11 @@ class TagController extends AbstractController
     /**
      * @Route("/{id}", name="edit", methods="PUT", requirements={"id"="\d+"})
      */
-    public function edit(Request $request, EntityManagerInterface $em, TagRepository $tag): Response
+    public function edit(Request $request, EntityManagerInterface $em, Tag $tag): Response
     {
         $infoFromClient = json_decode($request->getContent(), true);
-
-        $tag = new Tag();
-        //$tag->setPost($tag->find($infoFromClient['post']));
+        
         $tag->setName(($infoFromClient['name']));
-
         // dd($tag);
         $em->persist($tag);
         $em->flush();
@@ -85,6 +82,6 @@ class TagController extends AbstractController
 
         return $this->json($tag, 200, [], ['groups' => 'tag:delete']);
     }
-
+    
 
 }
