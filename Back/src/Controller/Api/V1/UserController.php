@@ -56,8 +56,10 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // Encodage du mot de passe
             $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
-
-            $user->setSlug($userData['name'] . "#" . uniqid());
+            // Filtrage du name pour créer un slug unique
+            $rawName = $userData['name'];
+            $slugName = $slugger->slug($rawName, "#");
+            $user->setSlug($slugName . uniqid());
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
