@@ -104,32 +104,6 @@ class UserController extends AbstractController
     /**
      * @Route("/{id}", name="edit", methods="PUT", requirements={"id"="\d+"})
      */
-<<<<<<< HEAD
-    public function edit(Request $request, User $user): Response
-    {
-        // Contrainte pour qu'un utilisateur connecté modifie son propre compte
-        // if ($user !== $this->getUser()) {
-        //    throw $this->createAccessDeniedException();
-        // }
-
-        $form = $this->createForm(UserEditType::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) { 
-
-        $this->getDoctrine()->getManager()->flush();
-
-        return $this->redirectToRoute('api_v1_user_read', [
-            'id' => $user->getId(),
-        ]);
-        }
-
-        return $this->render('user/edit.html.twig', [
-            'user' => $user,
-            'form' => $form->createView(),
-
-        ]);
-=======
     public function edit(Request $request, User $user, EntityManagerInterface $em,  SerializerInterface $serializer, ValidatorInterface $validator): Response
     {   
              //check if the user received in the request exist
@@ -161,7 +135,6 @@ class UserController extends AbstractController
             $em->flush();
     
             return $this->json(['status' => 'user edited'], Response::HTTP_OK);
->>>>>>> f8d409391a4f6da321336abecfc01f252fd3306a
     }
 
     /**
