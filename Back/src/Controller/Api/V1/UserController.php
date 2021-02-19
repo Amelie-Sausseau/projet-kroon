@@ -57,9 +57,7 @@ class UserController extends AbstractController
             // Encodage du mot de passe
             $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
             // Filtrage du name pour créer un slug unique
-            $rawName = $userData['name'];
-            $slugName = $slugger->slug($rawName, "#");
-            $user->setSlug($slugName . uniqid());
+            $user->setSlug($userData['name'] . "#" . mt_rand(1000,9999));
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
