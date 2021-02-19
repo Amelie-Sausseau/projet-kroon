@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Form\RegisterType;
 use App\Form\UserEditType;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,7 +39,7 @@ class UserController extends AbstractController
      * @Route("/register", name="register", methods={"GET", "POST"})
      */
     public function register(Request $request, UserPasswordEncoderInterface $encoder, UserRepository $user, EntityManagerInterface $entityManager): Response
-    {   
+    {
         $userData = json_decode($request->getContent(), true);
 
         $user = new User();
@@ -50,7 +51,7 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // Encodage du mot de passe
             $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
-            //$role = $userRepository->findOneByRoleString('ROLE_USER');
+
             //$user->setRole($role);
 
             $entityManager = $this->getDoctrine()->getManager();
@@ -75,47 +76,32 @@ class UserController extends AbstractController
     }
     
     /**
-     * @Route("/{id}", name="edit", methods={"PUT"}, requirements={"id"="\d+"})
+     * @Route("/{id}", name="edit", methods="PUT", requirements={"id"="\d+"})
      */
-    public function edit(Request $request, User $user, EntityManagerInterface $entityManager): Response
-    {   
+    public function edit(Request $request, User $user): Response
+    {
         // Contrainte pour qu'un utilisateur connecté modifie son propre compte
         // if ($user !== $this->getUser()) {
         //    throw $this->createAccessDeniedException();
         // }
-        $user = $this->getUser();
-
-        $userData = json_decode($request->getContent(), true);
 
         $form = $this->createForm(UserEditType::class, $user);
+        $form->handleRequest($request);
 
-        $form->submit($userData, true);
+        if ($form->isSubmitted() && $form->isValid()) { 
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        $this->getDoctrine()->getManager()->flush();
 
-            $entityManager = $this->getDoctrine()->getManager();
-            
-            //gestion de l'avatar
-            //$image = $form->get('avatar')->getData();
-            //$fileUploader->moveUserImage($image, $user);
-
-            $entityManager->flush();
-
-            return $this->json(
-            [
-                "success" => true
-            ],
-            Response::HTTP_OK
-            );
+        return $this->redirectToRoute('api_v1_user_read', [
+            'id' => $user->getId(),
+        ]);
         }
 
-        return $this->json(
-        [
-            "success" => false,
-            "errors" => $form->getErrors(true),
-        ],
-        Response::HTTP_BAD_REQUEST
-        );
+        return $this->render('user/edit.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
+
+        ]);
     }
 
     /**
