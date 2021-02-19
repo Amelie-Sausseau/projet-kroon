@@ -3,6 +3,8 @@
 namespace App\Controller\Api\V1;
 
 use App\Entity\Post;
+use App\Entity\Tag;
+use App\Form\CreatePostType;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -34,19 +36,37 @@ class PostController extends AbstractController
     /**
      * @Route("/", name="add", methods="POST")
      */
-    public function add(Request $request, EntityManagerInterface $em, PostRepository $post): Response
-    {
-        $infoFromClient = json_decode($request->getContent(), true);
+    public function add(Request $request, EntityManagerInterface $entityManager, PostRepository $post): Response
+    {   
+        $postData = json_decode($request->getContent(), true);
 
         $post = new Post();
-        //$post->setpost($post->find($infoFromClient['post']));
-        //$post->setTitle(($infoFromClient['title']));
-        // dd($post);
-        $em->persist($post);
-        $em->flush();
-        
 
-        return $this->json($post, 201, [], ['groups' => 'post:add']);
+        $form = $this->createForm(CreatePostType::class, $post);
+
+        $form->submit($postData, true);
+
+        if ($form->isValid()) {
+            $post->setUser($this->getUser());
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($post);
+            $entityManager->flush();
+
+            return $this->json(
+                [
+                    "success" => true
+                ],
+                Response::HTTP_OK
+            );
+        }
+
+        return $this->json(
+            [
+                "success" => false,
+                "errors" => $form->getErrors(true),
+            ],
+            Response::HTTP_BAD_REQUEST
+        );
     }
 
     /**
