@@ -8,8 +8,6 @@ import {
 } from 'src/actions/users'
 
 
-
-
 const initialState = {
     email:'',
     password:'',
@@ -25,7 +23,7 @@ const usersReducer = (state = initialState, action = {}) => {
         case LOG_OUT:
             return {
                 ...state,
-                logged: false,
+                logged: true,
                 name: '',
                 email: '',
                 password: '',
@@ -46,9 +44,6 @@ const usersReducer = (state = initialState, action = {}) => {
         case CHANGE_USER_FIELD:
             return {
                 ...state,
-                // on positionne dans le state la propriété correspondant
-                // au champ et on y place la valeur. ces 2 infos sont transmises 
-                // dans l'action
                 [action.fieldName]: action.fieldValue,
             };
         case CLEAR_FIELD: 
