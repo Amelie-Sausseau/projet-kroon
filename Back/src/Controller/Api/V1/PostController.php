@@ -90,6 +90,7 @@ class PostController extends AbstractController
     {
         $infoFromClient = json_decode($request->getContent(), true);
 
+        dd($user);
         if (empty($user)) {
 
             $post->setIsReported(true);
@@ -109,7 +110,6 @@ class PostController extends AbstractController
         return $this->json(
             [
                 "success" => false,
-                "errors" => $form->getErrors(true),
             ],
             Response::HTTP_BAD_REQUEST
         );
