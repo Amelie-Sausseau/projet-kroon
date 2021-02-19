@@ -42,13 +42,9 @@ class UserController extends AbstractController
     /**
      * @Route("/register", name="register", methods={"POST"})
      */
-<<<<<<< HEAD
-    public function register(Request $request, UserPasswordEncoderInterface $encoder, UserRepository $user, EntityManagerInterface $entityManager): Response
-    {
-=======
+
     public function register(Request $request, UserPasswordEncoderInterface $encoder, UserRepository $user, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {   
->>>>>>> f8d409391a4f6da321336abecfc01f252fd3306a
         $userData = json_decode($request->getContent(), true);
 
         $user = new User();
