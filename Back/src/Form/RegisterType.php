@@ -9,6 +9,8 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Email;
@@ -19,7 +21,7 @@ class RegisterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         // FIXME: Ligne + méthode onPreSetData crées par Mickael => à vérifier si erreur
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, ($this, 'onPreSetData'));
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, $this->onPreSetData());
 
         $builder
             ->add('name', TextType::class, [
@@ -59,13 +61,14 @@ class RegisterType extends AbstractType
 
     public function onPreSetData(FormEvent $event)
     {
-        $builder = $event->getForm()
-        $data = $event->getData()
+        $builder = $event->getForm();
+        $data = $event->getData();
         // par exemple 
         if($data->getId()){
-            $builder->add('bio')
+            $builder->add('bio');
         }
     }
+
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
