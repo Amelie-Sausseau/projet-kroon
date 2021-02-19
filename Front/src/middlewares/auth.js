@@ -1,15 +1,17 @@
 import axios from 'axios';
 
-import { LOG_IN, saveUserData } from 'src/actions/user';
-import { fetchFavorites } from 'src/actions/recipes';
+import { LOG_IN, saveUserData, SIGN_UP } from 'src/actions/users';
+/* import { fetchFavorites } from 'src/actions/recipes';
+ */import { url } from 'src/utils';
+
 
 export default (store) => (next) => (action) => {
   switch (action.type) {
     case LOG_IN: {
+      console.log('salut');
       const { email, password } = store.getState().users;
 
-      axios.post(
-        'http://localhost:3001/login',
+      axios.post('http://ec2-3-82-153-17.compute-1.amazonaws.com/api/login',
         {
           email,
           password,
@@ -17,6 +19,38 @@ export default (store) => (next) => (action) => {
       ).then((response) => {
         // on dispatche l'action de sauvegarde des infos utilisateur
         store.dispatch(saveUserData(response.data));
+        console.log(response);
+
+        // on pourrait fixer une valeur par défaut
+        // pour le header authorization de toutes nos futures
+        // requêtes axios. Est-ce une bonne idée si plusieurs
+        // api différentes étaient utilisées (à priori, pas vraiment...)
+        // axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
+
+        // au moment ou on se loggue, on va récupérer nos favoris
+        // store.dispatch(fetchFavorites());
+      }).catch((error) => {
+        console.log('error');
+      });
+      next(action);
+      break;
+    }
+    case SIGN_UP: {
+      const { email, password, name } = store.getState().users;
+      console.log(email, password, name );
+
+      axios.post('http://ec2-3-82-153-17.compute-1.amazonaws.com/api/v1/users/register',
+        {
+          
+          name,
+          password,
+          email,
+        },
+      ).then((response) => {
+        // on dispatche l'action de sauvegarde des infos utilisateur
+        console.log('then');
+        store.dispatch(saveUserData(response.data));
+        console.log(response);
 
         // on pourrait fixer une valeur par défaut
         // pour le header authorization de toutes nos futures

@@ -58,6 +58,9 @@ class CommentController extends AbstractController
         $comment->setBody(($infoFromClient['body']));
         // dd($comment);
         $em->persist($comment);
+
+        $comment->setUpdatedAt(new \DateTime());
+
         $em->flush();
 
         return $this->json($comment, 200, [], ['groups' => 'comment:edit']);

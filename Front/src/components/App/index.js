@@ -3,15 +3,14 @@
 import React, { useEffect } from 'react';
 import kroonLogo from './kroon_vFinale.svg';
 
-
 // On importe le composant Route qui permet d'afficher les composant
 // qu'il contient seulement si la route matche avec l'url courante.
 import { Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 // == Import
 import './styles.css';
-import LoginForm from 'src/components/LoginForm';
-import SignupForm from 'src/components/SignupForm';
+import LoginForm from 'src/containers/LoginForm';
+import SignupForm from 'src/containers/SignupForm';
 import Footer from 'src/components/Footer';
 import Contact from 'src/components/Contact';
 import Categories from 'src/components/Categories';
@@ -20,14 +19,13 @@ import Burger from 'src/containers/Burger';
 import HomeLogin from 'src/components/HomeLogin';
 import HomeUsers from 'src/components/HomeUsers';
 
-
 /* import Mic from 'src/containers/Mic';
  import Posts from 'src/containers/Posts';
 import Nav from 'src/components/Nav';
 import LoginForm from 'src/containers/LoginForm'; */
 
 // == Composant
-const App = ({ manageLoad, loading, homeLogin }) => {
+const App = ({ manageLoad, loading, islogged }) => {
   useEffect(
     manageLoad,
     [],
@@ -36,10 +34,10 @@ const App = ({ manageLoad, loading, homeLogin }) => {
   return (
     <div className="app">
       {loading && <Loader />}
-      {!loading && !homeLogin && (
+      {!loading && !islogged && (
       <>
-        <img src={kroonLogo} alt="Logo Kroon" className="logo"/>
-        <Burger/>
+        <img src={kroonLogo} alt="Logo Kroon" className="logo" />
+        <Burger />
         <Route path="/categories" exact>
           <Categories />
           <Footer />
@@ -60,11 +58,11 @@ const App = ({ manageLoad, loading, homeLogin }) => {
         </Route>
       </>
       )}
-      {!loading && homeLogin && (
+      {!loading && islogged && (
       <>
-      <img src={kroonLogo} alt="Logo Kroon" />
-        <Burger/>
-       <Route path="/categories" exact>
+        <img src={kroonLogo} alt="Logo Kroon" />
+        <Burger />
+        <Route path="/categories" exact>
           <Categories />
           <Footer />
         </Route>
@@ -88,7 +86,7 @@ const App = ({ manageLoad, loading, homeLogin }) => {
 App.propTypes = {
   manageLoad: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  homeLogin: PropTypes.bool.isRequired,
+  islogged: PropTypes.bool.isRequired,
 };
 
 // == Export

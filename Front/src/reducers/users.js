@@ -2,7 +2,9 @@ import {
     LOG_OUT,
     SAVE_USER_DATA,
     TOGGLE_MENU,
-    CHANGE_USER_FIELD
+    CHANGE_USER_FIELD,
+    CHANGE_FIELD_CREATE_USER,
+    CLEAR_FIELD
 } from 'src/actions/users'
 
 
@@ -12,9 +14,10 @@ const initialState = {
     email:'',
     password:'',
     logged: false,
-    username:'',
-    homeLogin: true,
+    name:'',
+    islogged: true,
     menuIsClosed: true,
+    token:'',
 }
 
 const usersReducer = (state = initialState, action = {}) => {
@@ -23,7 +26,7 @@ const usersReducer = (state = initialState, action = {}) => {
             return {
                 ...state,
                 logged: false,
-                username: null,
+                name: '',
                 email: '',
                 password: '',
               };
@@ -31,7 +34,7 @@ const usersReducer = (state = initialState, action = {}) => {
             return {
                 ...state,
                 logged: true,
-                username: action.data.username,
+                name: action.data.name,
                 token: action.data.token,
                 email: action.data.email,
             };
@@ -43,8 +46,24 @@ const usersReducer = (state = initialState, action = {}) => {
         case CHANGE_USER_FIELD:
             return {
                 ...state,
+                // on positionne dans le state la propriété correspondant
+                // au champ et on y place la valeur. ces 2 infos sont transmises 
+                // dans l'action
                 [action.fieldName]: action.fieldValue,
             };
+        case CLEAR_FIELD: 
+        return {
+            ...state,
+            email: '',
+            password: '',
+            name: '',
+            islogged: false,
+        };
+        case CHANGE_FIELD_CREATE_USER: 
+        return {
+            ...state,
+            [action.fieldName]: action.fieldValue,
+        }
               default:
                 return { ...state };
     }

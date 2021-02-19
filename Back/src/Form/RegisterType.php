@@ -22,18 +22,19 @@ class RegisterType extends AbstractType
             ->add('name', TextType::class, [
                 'constraints' => new NotBlank,
             ])
+
             ->add('password', PasswordType::class, [
                 'constraints' => new NotBlank,
             ])
+
             ->add('email', EmailType::class, [
                 'constraints' => [
                     new Email,
                     new NotBlank,
                 ],
             ])
-            ->add('bio', TextType::class, [
-                'constraints' => new NotBlank,
-            ])
+            
+            ->add('bio', TextType::class)
 
             ->add('avatar', FileType::class, [
                 'required' => false,

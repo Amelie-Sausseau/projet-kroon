@@ -62,6 +62,9 @@ class PostController extends AbstractController
         $post->setBody(($infoFromClient['body']));
         // dd($post);
         $em->persist($post);
+
+        $post->setUpdatedAt(new \DateTime());
+
         $em->flush();
 
         return $this->json($post, 200, [], ['groups' => 'post:edit']);
