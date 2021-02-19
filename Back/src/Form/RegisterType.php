@@ -21,7 +21,7 @@ class RegisterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         // FIXME: Ligne + méthode onPreSetData crées par Mickael => à vérifier si erreur
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, $this->onPreSetData());
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, [ $this, 'onPreSetData' ]);
 
         $builder
             ->add('name', TextType::class, [
