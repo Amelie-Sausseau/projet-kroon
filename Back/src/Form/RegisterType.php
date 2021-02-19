@@ -18,6 +18,9 @@ class RegisterType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        // FIXME: Ligne + méthode onPreSetData crées par Mickael => à vérifier si erreur
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, ($this, 'onPreSetData'));
+
         $builder
             ->add('name', TextType::class, [
                 'constraints' => new NotBlank,
@@ -54,6 +57,15 @@ class RegisterType extends AbstractType
         ;
     }
 
+    public function onPreSetData(FormEvent $event)
+    {
+        $builder = $event->getForm()
+        $data = $event->getData()
+        // par exemple 
+        if($data->getId()){
+            $builder->add('bio')
+        }
+    }
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
