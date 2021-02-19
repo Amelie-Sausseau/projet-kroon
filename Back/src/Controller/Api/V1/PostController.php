@@ -90,7 +90,7 @@ class PostController extends AbstractController
     {
         $infoFromClient = json_decode($request->getContent(), true);
 
-        if (! empty($user)) {
+        if (empty($user)) {
 
             $post->setIsReported(true);
             // dd($post);
