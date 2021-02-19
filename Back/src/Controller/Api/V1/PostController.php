@@ -89,9 +89,9 @@ class PostController extends AbstractController
     public function report(Request $request, EntityManagerInterface $em, Post $post, User $user): Response
     {
         $infoFromClient = json_decode($request->getContent(), true);
-
-        dd($user);
-        if (empty($user)) {
+        dd($infoFromClient);
+        // dd($user);
+        if (! empty($user)) {
 
             $post->setIsReported(true);
             // dd($post);
@@ -101,7 +101,8 @@ class PostController extends AbstractController
 
             return $this->json(
                 [
-                    "success" => true
+                    "success" => true,
+                    "message" => 'Post signalé par' . $infoFromClient
                 ],
                 Response::HTTP_OK
             );
