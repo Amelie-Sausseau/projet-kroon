@@ -63,7 +63,7 @@ class RegisterType extends AbstractType
         $data = $event->getData();
         // par exemple 
         if($data->getId()){
-            $builder->add('bio')
+            $builder->add('bio');
         }
     }
     public function configureOptions(OptionsResolver $resolver)
