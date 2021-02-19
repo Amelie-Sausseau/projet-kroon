@@ -26,7 +26,7 @@ class UserEditType extends AbstractType
         $builder
             ->add('name', TextType::class)
 
-            ->add('password', PasswordType::class)
+            // TODO v2 ? gestion de modification de MDP ->add('password', PasswordType::class)
 
             ->add('email', EmailType::class)
             
