@@ -84,7 +84,7 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="report", methods="PUT", requirements={"id"="\d+"})
+     * @Route("/{id}/report", name="report", methods="PUT", requirements={"id"="\d+"})
      */
     public function report(Request $request, EntityManagerInterface $em, Post $post, User $user): Response
     {
