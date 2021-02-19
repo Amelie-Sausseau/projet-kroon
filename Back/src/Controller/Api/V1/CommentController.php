@@ -3,6 +3,7 @@
 namespace App\Controller\Api\V1;
 
 use App\Entity\Comment;
+use App\Entity\User;
 use App\Repository\CommentRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -76,6 +77,38 @@ class CommentController extends AbstractController
         $em->flush();
 
         return $this->json($comment, 200, [], ['groups' => 'comment:delete']);;
+    }
+
+        /**
+     * @Route("/{id}/report", name="report", methods="PUT", requirements={"id"="\d+"})
+     */
+    public function report(Request $request, EntityManagerInterface $em, Comment $comment, User $user): Response
+    {
+        // $infoFromClient = json_decode($request->getContent(), true);
+        // dd($user, $this->getUser());
+        if (! empty($this->getUser())) {
+
+            $comment->setIsReported(true);
+            // dd($comment);
+            $em->persist($comment);
+
+            $em->flush();
+
+            return $this->json(
+                [
+                    "success" => true,
+                    "message" => 'Commentaire signalé'
+                ],
+                Response::HTTP_OK
+            );
+        }
+
+        return $this->json(
+            [
+                "success" => false,
+            ],
+            Response::HTTP_BAD_REQUEST
+        );
     }
 
 

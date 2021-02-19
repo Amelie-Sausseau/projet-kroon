@@ -121,7 +121,7 @@ class PostController extends AbstractController
             return $this->json(
                 [
                     "success" => true,
-                    "message" => 'Post signalé par' . $user['slug']
+                    "message" => 'Post signalé'
                 ],
                 Response::HTTP_OK
             );
