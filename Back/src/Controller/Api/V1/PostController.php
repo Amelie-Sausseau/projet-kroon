@@ -89,8 +89,7 @@ class PostController extends AbstractController
     public function report(Request $request, EntityManagerInterface $em, Post $post, User $user): Response
     {
         // $infoFromClient = json_decode($request->getContent(), true);
-        dd($this->getUser());
-        // dd($user);
+        // dd($user, $this->getUser());
         if (! empty($this->getUser())) {
 
             $post->setIsReported(true);
