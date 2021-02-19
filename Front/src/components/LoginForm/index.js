@@ -10,7 +10,7 @@ import './login.scss';
 import Field from './Field';
 
 const LoginForm = ({
-  email,
+  username,
   password,
   changeField,
   handleLogin,
@@ -48,10 +48,10 @@ const LoginForm = ({
       <form autoComplete="off" className="login-form-element" onSubmit={handleSubmit}>
         <Field
           className="username"
-          name="email"
+          name="username"
           placeholder="Adresse Email"
           onChange={changeField}
-          value={email}
+          value={username}
         />
         <Field
           className="password"

@@ -9,11 +9,11 @@ export default (store) => (next) => (action) => {
   switch (action.type) {
     case LOG_IN: {
       console.log('salut');
-      const { email, password } = store.getState().users;
-
-      axios.post('http://ec2-3-82-153-17.compute-1.amazonaws.com/api/login',
+      const { username, password } = store.getState().users;
+      console.log(username);
+      axios.post('http://ec2-3-82-153-17.compute-1.amazonaws.com/api/login_check',
         {
-          email,
+          username,
           password,
         },
       ).then((response) => {

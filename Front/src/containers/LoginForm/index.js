@@ -14,7 +14,7 @@ import LoginForm from 'src/components/LoginForm';
 import { changeUserField, logIn, logOut, clearField } from '../../actions/users';
 
 const mapStateToProps = (state) => ({
-  email: state.users.email,
+  username: state.users.username,
   password: state.users.password,
 /*   isLogged: state.user.logged,
   loggedMessage: state.user.logged ? `connecté en tant que ${state.user.username}` : '', */
