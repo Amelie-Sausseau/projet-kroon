@@ -16,7 +16,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\File;
 
-class RegisterType extends AbstractType
+class UserEditType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -24,20 +24,11 @@ class RegisterType extends AbstractType
         $builder->addEventListener(FormEvents::PRE_SET_DATA, [ $this, 'onPreSetData' ]);
 
         $builder
-            ->add('name', TextType::class, [
-                'constraints' => new NotBlank,
-            ])
+            ->add('name', TextType::class)
 
-            ->add('password', PasswordType::class, [
-                'constraints' => new NotBlank,
-            ])
+            ->add('password', PasswordType::class)
 
-            ->add('email', EmailType::class, [
-                'constraints' => [
-                    new Email,
-                    new NotBlank,
-                ],
-            ])
+            ->add('email', EmailType::class)
             
             ->add('bio', TextType::class)
 
