@@ -88,10 +88,10 @@ class PostController extends AbstractController
      */
     public function report(Request $request, EntityManagerInterface $em, Post $post, User $user): Response
     {
-        $infoFromClient = json_decode($request->getContent(), true);
-        dd($infoFromClient);
+        // $infoFromClient = json_decode($request->getContent(), true);
+        dd($this->getUser());
         // dd($user);
-        if (! empty($user)) {
+        if (! empty($this->getUser())) {
 
             $post->setIsReported(true);
             // dd($post);
@@ -102,7 +102,7 @@ class PostController extends AbstractController
             return $this->json(
                 [
                     "success" => true,
-                    "message" => 'Post signalé par' . $infoFromClient
+                    "message" => 'Post signalé par' . $user['slug']
                 ],
                 Response::HTTP_OK
             );
