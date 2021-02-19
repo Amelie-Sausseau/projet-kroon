@@ -59,8 +59,8 @@ class RegisterType extends AbstractType
 
     public function onPreSetData(FormEvent $event)
     {
-        $builder = $event->getForm()
-        $data = $event->getData()
+        $builder = $event->getForm();
+        $data = $event->getData();
         // par exemple 
         if($data->getId()){
             $builder->add('bio')
