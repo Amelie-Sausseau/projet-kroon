@@ -2,6 +2,7 @@
 
 namespace App\Controller\Api\V1;
 
+use App\Entity\User;
 use App\Entity\Post;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -80,6 +81,38 @@ class PostController extends AbstractController
         $em->flush();
 
         return $this->json($post, 200, [], ['groups' => 'post:delete']);;
+    }
+
+    /**
+     * @Route("/{id}", name="report", methods="PUT", requirements={"id"="\d+"})
+     */
+    public function report(Request $request, EntityManagerInterface $em, Post $post, User $user): Response
+    {
+        $infoFromClient = json_decode($request->getContent(), true);
+
+        if (! empty($user)) {
+
+            $post->setIsReported(true);
+            // dd($post);
+            $em->persist($post);
+
+            $em->flush();
+
+            return $this->json(
+                [
+                    "success" => true
+                ],
+                Response::HTTP_OK
+            );
+        }
+
+        return $this->json(
+            [
+                "success" => false,
+                "errors" => $form->getErrors(true),
+            ],
+            Response::HTTP_BAD_REQUEST
+        );
     }
 
 
