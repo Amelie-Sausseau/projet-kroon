@@ -53,11 +53,11 @@ class UserController extends AbstractController
 
         $form->submit($userData, true);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isValid()) {
             // Encodage du mot de passe
             $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
-
-            //$user->setRole($role);
+            // Filtrage du name pour créer un slug unique
+            $user->setSlug($userData['name'] . "#" . mt_rand(1000,9999));
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
@@ -104,37 +104,36 @@ class UserController extends AbstractController
     /**
      * @Route("/{id}", name="edit", methods="PUT", requirements={"id"="\d+"})
      */
-    public function edit(Request $request, User $user, EntityManagerInterface $em,  SerializerInterface $serializer, ValidatorInterface $validator): Response
-    {   
-             //check if the user received in the request exist
-             //if ($user === null) {
-             //   return $this->json(['error' => 'utiisateur non trouve'], Response::HTTP_NOT_FOUND);
-            //}
-    
-            //get the validations errors if there is any
-            $content = $request->getContent();
-            $updatedUser = $serializer->deserialize($content, User::class, 'json', ['object_to_populate' => $user]);
-            $errors = $validator->validate($updatedUser, null, ['edit-profile']);
-    
-            // if there is errors, return them in a json format
-    
-            if (count($errors) > 0) {
-    
-                $errorsArray = [];
-    
-                foreach ($errors as $error) {
-                    $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
-                }
-    
-                return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
-            }
-    
-            //Edit the updatedat vlue to the current time
-            $user->setUpdatedAt(new \DateTime());
-    
-            $em->flush();
-    
-            return $this->json(['status' => 'user edited'], Response::HTTP_OK);
+    public function edit(Request $request, User $user): Response
+    {
+        $postData = json_decode($request->getContent(), true);
+        // Contrainte pour qu'un utilisateur connecté modifie son propre compte
+        if ($user !== $this->getUser()) {
+            throw $this->createAccessDeniedException();
+         }
+        $user->setUpdatedAt(new \DateTime());
+        $form = $this->createForm(UserEditType::class, $user);
+        $form->submit($postData, false);
+
+        if ($form->isValid()) { 
+
+        $this->getDoctrine()->getManager()->flush();
+
+        return $this->json(
+            [
+                "success" => true
+            ],
+            Response::HTTP_OK
+        );
+    }
+
+    return $this->json(
+        [
+            "success" => false,
+            "errors" => $form->getErrors(true),
+        ],
+        Response::HTTP_BAD_REQUEST
+    );
     }
 
     /**

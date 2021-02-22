@@ -7,7 +7,7 @@ use App\Repository\PostRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-
+use phpDocumentor\Reflection\Types\Boolean;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
@@ -134,6 +134,7 @@ class Post
         $this->tags = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->createdAt = new DateTime();
+        $this->isActive = new Boolean();
     }
 
     public function getId(): ?int
