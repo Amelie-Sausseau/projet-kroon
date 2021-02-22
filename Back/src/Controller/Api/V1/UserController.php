@@ -106,14 +106,14 @@ class UserController extends AbstractController
      */
     public function edit(Request $request, User $user): Response
     {
-        $userData = json_decode($request->getContent(), true);
+        $postData = json_decode($request->getContent(), true);
         // Contrainte pour qu'un utilisateur connecté modifie son propre compte
-        // if ($user !== $this->getUser()) {
-        //    throw $this->createAccessDeniedException();
-        // }
+        if ($user !== $this->getUser()) {
+            throw $this->createAccessDeniedException();
+         }
         $user->setUpdatedAt(new \DateTime());
         $form = $this->createForm(UserEditType::class, $user);
-        $form->submit($userData, false);
+        $form->submit($postData, false);
 
         if ($form->isValid()) { 
 

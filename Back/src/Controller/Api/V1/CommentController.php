@@ -4,6 +4,7 @@ namespace App\Controller\Api\V1;
 
 use App\Entity\Comment;
 use App\Entity\User;
+use App\Form\CreateCommentType;
 use App\Repository\CommentRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,23 +31,6 @@ class CommentController extends AbstractController
     public function read(Comment $comment): Response
     {
         return $this->json($comment, 200, [], ['groups' => 'comment:one']);
-    }
-
-    /**
-     * @Route("/", name="add", methods="POST")
-     */
-    public function add(Request $request, EntityManagerInterface $em, CommentRepository $comment): Response
-    {
-        $infoFromClient = json_decode($request->getContent(), true);
-
-        $comment = new Comment();
-
-        $comment->setBody(($infoFromClient['body']));
-        // dd($comment);
-        $em->persist($comment);
-        $em->flush();
-
-        return $this->json($comment, 201, [], ['groups' => 'comment:add']);
     }
 
     /**
