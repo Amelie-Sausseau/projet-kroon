@@ -20,7 +20,7 @@ const Field = ({
   const inputId = `field-${name}`;
 
   return (
-    <div >
+    <div className="field">
       <input
         // React - state
         value={value}
@@ -28,7 +28,7 @@ const Field = ({
         // infos de base
         id={inputId}
         type={type}
-        className="field-input"
+        className="field-input-signup"
         placeholder={placeholder}
         name={name}
       />

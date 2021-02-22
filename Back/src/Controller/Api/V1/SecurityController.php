@@ -19,19 +19,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class SecurityController extends AbstractController
 {
-    /**
-     * @Route("/login_check", name="login_check")
-     * @return JsonResponse
-     */
-    public function api_login(): JsonResponse
-    {
-        $user = $this->getUser();
-
-        return new JsonResponse([
-            'email' => $user->getEmail(),
-            'roles' => $user->getRoles()
-        ]);
-    }
 
     /**
      * @Route("/login", name="login")

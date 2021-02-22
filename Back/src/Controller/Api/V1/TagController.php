@@ -48,7 +48,7 @@ class TagController extends AbstractController
 
         $tag = new Tag();
         //$tag->setpost($tag->find($infoFromClient['post']));
-        $tag->setName(($infoFromClient['name']));
+        $tag->setName($infoFromClient['name']);
         // dd($tag);
         $em->persist($tag);
         $em->flush();
@@ -64,10 +64,13 @@ class TagController extends AbstractController
         $infoFromClient = json_decode($request->getContent(), true);
 
         //$tag->setPost($tag->find($infoFromClient['post']));
-        $tag->setName(($infoFromClient['name']));
+        $tag->setName($infoFromClient['name']);
 
         // dd($tag);
         $em->persist($tag);
+
+        $tag->setUpdatedAt(new \DateTime());
+
         $em->flush();
 
         return $this->json($tag, 200, [], ['groups' => 'tag:edit']);

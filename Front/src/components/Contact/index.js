@@ -2,10 +2,12 @@ import React from 'react';
 
 import './contact.scss';
 
-const Contact = () => (
+const Contact = (props) => {
+  console.log(props)
+  return (
   <div className="container">
 
-    <h1 className="title">Get in touch</h1>
+    <h1 className="contact">Get in touch</h1>
     <form className="contact-form row" />
     <div className="form-field col x-50">
       <input id="name" className="input-text js-input" type="text" placeholder="Name" required />
@@ -26,5 +28,6 @@ const Contact = () => (
   </div>
 
 );
+  };
 
 export default Contact;

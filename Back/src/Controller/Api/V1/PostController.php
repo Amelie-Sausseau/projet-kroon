@@ -52,15 +52,19 @@ class PostController extends AbstractController
     /**
      * @Route("/{id}", name="edit", methods="PUT", requirements={"id"="\d+"})
      */
-    public function edit(Request $request, EntityManagerInterface $em, PostRepository $post): Response
+    public function edit(Request $request, EntityManagerInterface $em, Post $post): Response
     {
         $infoFromClient = json_decode($request->getContent(), true);
 
-        $post = new Post();
-        //$post->setPost($post->find($infoFromClient['post']));
-        //$post->setTitle(($infoFromClient['title']));
+        $post->setUser($this->getUser());
+
+        $post->setTitle(($infoFromClient['title']));
+        $post->setBody(($infoFromClient['body']));
         // dd($post);
         $em->persist($post);
+
+        $post->setUpdatedAt(new \DateTime());
+
         $em->flush();
 
         return $this->json($post, 200, [], ['groups' => 'post:edit']);

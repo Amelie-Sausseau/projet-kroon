@@ -18,7 +18,7 @@ const className = classnames('settings', { 'settings--closed active': !isClosed 
  return (
     <div className={className}>
 
-     <div className='button'>
+     <div className='buttonBurger'>
       <button
         type="button"
         className="settings__close m_button"
