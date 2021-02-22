@@ -50,6 +50,16 @@ const Nav = ({islogged, buttonClearField}) => {
         </NavLink>
         </li>
         <li>
+          <NavLink
+            className="nav__link "
+            to="/publications"
+            activeClassName="nav__link--active"
+            exact
+          >
+            Mes sons
+          </NavLink>
+        </li>
+        <li>
       <NavLink
           className="nav__link "
           to="/equipe"
@@ -106,6 +116,7 @@ const Nav = ({islogged, buttonClearField}) => {
           Catégories
         </NavLink>
       </li>
+      
       <li>
       <NavLink
           className="nav__link"
@@ -114,7 +125,7 @@ const Nav = ({islogged, buttonClearField}) => {
           exact
           onClick={buttonClearField}
         >
-          Team
+          Equipe
         </NavLink>
         </li>
         <li>

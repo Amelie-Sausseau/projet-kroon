@@ -14,8 +14,9 @@ import Contact from 'src/components/Contact';
 import Categories from 'src/components/Categories';
 import Loader from 'src/components/Loader';
 import Burger from 'src/containers/Burger';
-import HomeLogin from 'src/components/HomeLogin';
+import PostForm from 'src/containers/PostForm';
 import HomeUsers from 'src/components/HomeUsers';
+import Publications from 'src/components/Publications';
 
 
 // == Composant
@@ -64,14 +65,17 @@ const App = ({ manageLoad, loading, islogged }) => {
         <HomeUsers />
         <Footer />
       </Route>
-      <Redirect from="/connexion" to="/poster" />
+      <Redirect from="/connexion" to="/poster" exact/>
       <Route path="/poster" exact>
-        <HomeLogin />
+        <PostForm />
       </Route>
       <Route path="/contact" exact>
         <Contact />
         <Footer />
       </Route>
+      <Route path="/publications" exact>
+          <Publications />
+        </Route>
     </>
       )}
     </div>

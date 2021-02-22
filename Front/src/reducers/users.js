@@ -6,16 +6,21 @@ import {
   CHANGE_FIELD_CREATE_USER,
   CLEAR_FIELD,
 } from 'src/actions/users';
+import {
+  ADD_RECEIVED_COMMENT, SAVE_COMMENTS, SEND_COMMENTS_TO_SERVER, SET_NEW_COMMENT,
+} from '../actions/comments';
 
 const initialState = {
   email: '',
   password: '',
   logged: false,
   name: '',
-  islogged: false,
+  islogged: true,
   menuIsClosed: true,
   token: '',
   username: '',
+  newCommentValue: '',
+  comments: [],
 };
 
 const usersReducer = (state = initialState, action = {}) => {
@@ -62,6 +67,33 @@ const usersReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         [action.fieldName]: action.fieldValue,
+      };
+    case SEND_COMMENTS_TO_SERVER:
+      return {
+        ...state,
+        newCommentValue: '',
+      };
+    case ADD_RECEIVED_COMMENT:
+      return {
+        ...state,
+        comments: [
+          ...state.comments,
+          action.newComment,
+        ],
+      };
+    case SET_NEW_COMMENT:
+      // on crée une copie du state
+      // et on met à jour la valeur de la
+      // propriété newCommentValue avec
+      // la valeur reçue dans le payload de l'action
+      return {
+        ...state,
+        newCommentValue: action.newValue,
+      };
+    case SAVE_COMMENTS:
+      return {
+        ...state,
+        comments: action.comments,
       };
     default:
       return { ...state };
