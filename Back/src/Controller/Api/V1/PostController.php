@@ -13,7 +13,7 @@ use App\Form\PostEditType;
 use App\Repository\CommentRepository;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Proxies\__CG__\App\Entity\User as EntityUser;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -188,19 +188,19 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="add_comment", methods={"POST"}, requirements={"id"="\d+"})
+     * @Route("/{id}/comment", name="add_comment", methods={"POST"}, requirements={"id"="\d+"})
      */
     public function addComment(Request $request, EntityManagerInterface $entityManager, CommentRepository $comment, Post $post): Response
     {
         $commentData = json_decode($request->getContent(), true);
-
+        // dd($commentData);
         $comment = new Comment();
 
         $form = $this->createForm(CreateCommentType::class, $comment);
 
         $form->submit($commentData, true);
 
-        if ($post->getIsActive(true) && $form->isValid()) {
+        if ($post->getIsActive() && !$post->getIsClosed() && $form->isValid()) {
             $comment->setPost($post);
             $comment->setUser($this->getUser());
 
@@ -224,42 +224,6 @@ class PostController extends AbstractController
             ],
             Response::HTTP_BAD_REQUEST
         );
-    }
-
-    /**
-     * @Route("/{id}/", name="edit_comment", methods="PUT", requirements={"id"="\d+"})
-     */
-    public function editComment(Request $request, Comment $comment, User $user): Response
-    {
-        $commentData = json_decode($request->getContent(), true);
-        // Contrainte pour qu'un utilisateur connecté modifie son propre commentaire
-        if ($user !== $this->getUser()) {
-           throw $this->createAccessDeniedException();
-        }
-
-        $comment->setUpdatedAt(new \DateTime());
-        $form = $this->createForm(CommentEditType::class, $comment);
-        $form->submit($commentData, false);
-
-        if ($form->isValid()) { 
-        $comment->setUser($this->getUser());
-        $this->getDoctrine()->getManager()->flush();
-
-        return $this->json(
-            [
-                "success" => true
-            ],
-            Response::HTTP_OK
-        );
-    }
-
-    return $this->json(
-        [
-            "success" => false,
-            "errors" => $form->getErrors(true),
-        ],
-        Response::HTTP_BAD_REQUEST
-    );
     }
 
 }

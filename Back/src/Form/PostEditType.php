@@ -19,7 +19,7 @@ class PostEditType extends AbstractType
 
         $builder
             ->add('title', TextType::class)
-            //TODO : gérer ls contraintes de fichier ->add('sound', FileType::class)
+            //TODO : gérer les contraintes de fichier ->add('sound', FileType::class)
             ->add('body', TextType::class)
             //TODO : passer en ChoiceType ->add('tags', TextType::class)
         ;

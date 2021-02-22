@@ -4,8 +4,9 @@ namespace App\Controller\Api\V1;
 
 use App\Entity\Comment;
 use App\Entity\User;
-use App\Form\CreateCommentType;
+use App\Form\CommentEditType;
 use App\Repository\CommentRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -36,20 +37,41 @@ class CommentController extends AbstractController
     /**
      * @Route("/{id}", name="edit", methods="PUT", requirements={"id"="\d+"})
      */
-    public function edit(Request $request, EntityManagerInterface $em, Comment $comment): Response
+    public function edit(Request $request, Comment $comment, UserRepository $user): Response
     {
-        $infoFromClient = json_decode($request->getContent(), true);
-        
-        $comment->setBody(($infoFromClient['body']));
-        // dd($comment);
-        $em->persist($comment);
-
+        $commentData = json_decode($request->getContent(), true);
+        // Contrainte pour qu'un utilisateur connecté modifie son propre post
+        // dd($comment->getPost()->getUser(), $this->getUser());
+        $author = $comment->getPost()->getUser();
+        if ($author !== $this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
         $comment->setUpdatedAt(new \DateTime());
+        $form = $this->createForm(CommentEditType::class, $comment);
+        $form->submit($commentData, false);
 
-        $em->flush();
+        if ($form->isValid()) {
+            $comment->setUser($author);
 
-        return $this->json($comment, 200, [], ['groups' => 'comment:edit']);
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->json(
+                [
+                "success" => true,
+            ],
+                Response::HTTP_OK
+            );
+        }
+
+        return $this->json(
+            [
+            "success" => false,
+            "errors" => $form->getErrors(true),
+        ],
+            Response::HTTP_BAD_REQUEST
+        );
     }
+    
 
     /**
      * @Route("/{id}", name="delete", methods="DELETE", requirements={"id"="\d+"})
@@ -97,13 +119,12 @@ class CommentController extends AbstractController
 
 
     /**
-     * @Route("/{id}/like", name="add_like", methods="POST")
+     * @Route("/{id}/like", name="add_like", methods="PUT")
      */
-    public function addLike(Request $request, EntityManagerInterface $em, CommentRepository $comment): Response
+    public function addLike(EntityManagerInterface $em, Comment $comment): Response
     {
-        // $infoFromClient = json_decode($request->getContent(), true);
+        //$infoFromClient = json_decode($request->getContent(), true);
 
-        $comment = new Comment();
         $comment->setLikes($comment->getLikes() + 1 );
         // dd($comment);
         $em->persist($comment);
@@ -113,13 +134,12 @@ class CommentController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/like", name="delete_like", methods="POST")
+     * @Route("/{id}/like", name="delete_like", methods="PUT")
      */
-    public function deleteLike(Request $request, EntityManagerInterface $em, CommentRepository $comment): Response
+    public function deleteLike(EntityManagerInterface $em, Comment $comment): Response
     {
         // $infoFromClient = json_decode($request->getContent(), true);
 
-        $comment = new Comment();
         $comment->setLikes($comment->getLikes() - 1 );
         // dd($comment);
         $em->persist($comment);
