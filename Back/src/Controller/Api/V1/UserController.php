@@ -5,6 +5,8 @@ namespace App\Controller\Api\V1;
 use App\Entity\User;
 use App\Form\RegisterType;
 use App\Form\UserEditType;
+use App\Repository\CommentRepository;
+use App\Repository\PostRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -141,22 +143,26 @@ class UserController extends AbstractController
      */
     public function bookmark(User $user): Response
     {
-        return $this->json($user, 200, [], ['groups' => 'user:bookmarks']);
+        return $this->json($user, 200, [], ['groups' => 'user:bookmarkedPosts']);
     }
 
     /**
-     * @Route("/{id}/comments", name="comment_browse", methods="GET")
+     * @Route("/{id}/comments", name="comment_browse", methods="GET", requirements={"id"="\d+"})
      */
-    public function comment(User $user): Response
+    public function comment(User $user, CommentRepository $commentRepo): Response
     {
-        return $this->json($user, 200, [], ['groups' => 'user:comments']);
+        $comments = $commentRepo->findBy(['user' => $user], ['createdAt' => 'DESC']);
+        //dd($comments);
+        return $this->json($comments, 200, [], ['groups' => 'user:commentedPosts']);
     }
 
     /**
-     * @Route("/{id}/posts", name="post_browse", methods="GET")
+     * @Route("/{id}/posts", name="post_browse", methods="GET", requirements={"id"="\d+"})
      */
-    public function post(User $user): Response
+    public function post(User $user, PostRepository $postRepo): Response
     {
-        return $this->json($user, 200, [], ['groups' => 'user:posts']);
+        $posts = $postRepo->findBy(['user' => $user], ['createdAt' => 'DESC']);
+        //dd($posts);
+        return $this->json($posts, 200, [], ['groups' => 'user:writtenPosts']);
     }
 }
