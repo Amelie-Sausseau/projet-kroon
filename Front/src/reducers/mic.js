@@ -3,6 +3,7 @@ import {
   STOP_RECORD,
   CHANGE_URL,
   SAVE_POSTS,
+  CHANGE_BLOB,
 
 } from '../actions';
 
@@ -13,6 +14,7 @@ const initialState = {
   url: '',
   data: [],
   loading: false,
+  blob:{},
 
 };
 export default (state = initialState, action = {}) => {
@@ -28,6 +30,11 @@ export default (state = initialState, action = {}) => {
         ...state,
         url: action.newValue,
       };
+    case CHANGE_BLOB:
+      return {
+        ...state,
+        blob: action.newValue,
+      }
     case STOP_RECORD:
       return {
         ...state,

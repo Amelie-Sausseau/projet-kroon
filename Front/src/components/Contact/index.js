@@ -2,7 +2,9 @@ import React from 'react';
 
 import './contact.scss';
 
-const Contact = () => (
+const Contact = (props) => {
+  console.log(props)
+  return (
   <div className="container">
 
     <h1 className="contact">Get in touch</h1>
@@ -26,5 +28,6 @@ const Contact = () => (
   </div>
 
 );
+  };
 
 export default Contact;

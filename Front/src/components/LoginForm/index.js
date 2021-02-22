@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useSelector } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import { browserHistory } from 'react-router';
 /* import Field from "./Field"
  */
 // import Field from './Field';
@@ -14,14 +15,22 @@ const LoginForm = ({
   password,
   changeField,
   handleLogin,
-  clearFieldInput,
   handleLogout,
+  Logged,
 }) => {
   function handleSubmit(evt) {
     evt.preventDefault();
     handleLogin();
-  }
 
+    () => {
+      browserHistory.push('/');
+    };
+
+    /*     setTimeout(() => {
+      props.history.push('/poster')
+    }, 2000)
+ */
+  }
   return (
     <div className="titre">
       <h4>Kroon</h4>
