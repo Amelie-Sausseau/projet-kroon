@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import Mic from 'src/components/Mic';
 
-import { playStart, stopRecord, changeUrl  } from 'src/actions';
+import { playStart, stopRecord, changeUrl,saveBlob  } from 'src/actions';
 
 
 
@@ -10,6 +10,7 @@ const mapStateToProps = (state) => ({
  record: state.mic.record,
  recordedSound: state.mic.recordedSound,
  url: state.mic.url,
+ blob: state.mic.blob,
 
 });
 
@@ -25,7 +26,9 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(changeUrl(value))
   },
 
-  
+  saveNewBlob: (value) =>{
+     dispatch(saveBlob(value)) 
+  }
 
 });
 

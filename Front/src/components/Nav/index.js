@@ -5,12 +5,22 @@ import { NavLink } from 'react-router-dom';
  */
 // on importe notre fonction utilitaire permettant de
 // transformer le slug en url
+import PropTypes from 'prop-types';
 
 import './nav.scss';
 
+<<<<<<< HEAD
 const Nav = ({ islogged, buttonClearField }) => (
   <div>
     {islogged && (
+=======
+const Nav = ({islogged, buttonClearField}) => {
+
+
+  return (
+<div>
+    {islogged ? (
+>>>>>>> 4580870b93867ef2fb3f6b5d2a2877e6c9b94c70
     <nav className="nav">
 
       <ul>
@@ -76,6 +86,7 @@ const Nav = ({ islogged, buttonClearField }) => (
             Contact
           </NavLink>
         </li>
+<<<<<<< HEAD
         <li className="auth">
           <NavLink
             className="nav__link deco"
@@ -93,6 +104,22 @@ const Nav = ({ islogged, buttonClearField }) => (
 
     {!islogged && (
     <nav className="nav">
+=======
+      <li className="auth">
+        <NavLink
+          className="nav__link deco"
+          to="/connexion"
+          activeClassName="nav__link--active"
+          exact
+          onClick={buttonClearField}
+        >
+          Log out
+        </NavLink>
+      </li>
+    </ul>
+  </nav>
+    ) : (  <nav className="nav">
+>>>>>>> 4580870b93867ef2fb3f6b5d2a2877e6c9b94c70
 
       <ul>
         <li>
@@ -126,6 +153,7 @@ const Nav = ({ islogged, buttonClearField }) => (
             Team
           </NavLink>
         </li>
+<<<<<<< HEAD
         <li>
           <NavLink
             className="nav__link "
@@ -150,8 +178,28 @@ const Nav = ({ islogged, buttonClearField }) => (
       </ul>
     </nav>
     )}
+=======
+      <li className="auth">
+        <NavLink
+          className="nav__link"
+          to="/connexion"
+          activeClassName="nav__link--active"
+          exact
+        >
+          Connexion
+        </NavLink>
+        
+      </li>
+    </ul>
+  </nav>)}
+
+>>>>>>> 4580870b93867ef2fb3f6b5d2a2877e6c9b94c70
   </div>
 );
 // TODO : ternaire si Logged or not
+Nav.propTypes = {
+  buttonClearField: PropTypes.func.isRequired,
+  islogged: PropTypes.bool.isRequired,
+};
 
 export default Nav;

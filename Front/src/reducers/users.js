@@ -15,7 +15,7 @@ const initialState = {
   password: '',
   logged: false,
   name: '',
-  islogged: false,
+  islogged: true,
   menuIsClosed: true,
   token: '',
   username: '',

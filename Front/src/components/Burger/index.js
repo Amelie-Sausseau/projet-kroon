@@ -10,10 +10,7 @@ import './style.scss';
 
 
 const Burger = ({ isClosed, toggleFunction }) => {
-  // const className = isClosed ? 'settings ' : 'settings';
- console.log(toggleFunction);
-  // ici, on veut toujours la classe settings
-  // et seulement la classe settings--closed si isClosed est vrai
+
 const className = classnames('settings', { 'settings--closed active': !isClosed });
  return (
     <div className={className}>
@@ -40,10 +37,9 @@ const className = classnames('settings', { 'settings--closed active': !isClosed 
   );
 };
 
-/* Settings.propTypes = {
+Burger.propTypes = {
   isClosed: PropTypes.bool.isRequired,
-  toggle: PropTypes.func.isRequired,
-  manageSubmit: PropTypes.func.isRequired,
-}; */
+  toggleFunction: PropTypes.func.isRequired,
+};
 
 export default Burger;
