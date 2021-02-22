@@ -5,7 +5,7 @@ import kroonLogo from './kroon_vFinale.svg';
 
 // On importe le composant Route qui permet d'afficher les composant
 // qu'il contient seulement si la route matche avec l'url courante.
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 // == Import
 import './styles.css';
@@ -34,7 +34,7 @@ const App = ({ manageLoad, loading, islogged }) => {
   return (
     <div className="app">
       {loading && <Loader />}
-      {!loading && !islogged && (
+      {!loading && !islogged ? (
       <>
         <img src={kroonLogo} alt="Logo Kroon" className="logo" />
         <Burger />
@@ -46,7 +46,8 @@ const App = ({ manageLoad, loading, islogged }) => {
           <HomeUsers />
           <Footer />
         </Route>
-        <Route path="/connexion" exact>
+        <Redirect from="/poster" to="/connexion" />
+      <Route path="/connexion" exact>
           <LoginForm />
         </Route>
         <Route path="/nouveaucompte" exact>
@@ -57,27 +58,27 @@ const App = ({ manageLoad, loading, islogged }) => {
           <Footer />
         </Route>
       </>
-      )}
-      {!loading && islogged && (
+      ) : ( 
       <>
-        <img src={kroonLogo} alt="Logo Kroon" />
-        <Burger />
-        <Route path="/categories" exact>
-          <Categories />
-          <Footer />
-        </Route>
-        <Route path="/" exact>
-          <HomeUsers />
-          <Footer />
-        </Route>
-        <Route path="/poster" exact>
-          <HomeLogin />
-        </Route>
-        <Route path="/contact" exact>
-          <Contact />
-          <Footer />
-        </Route>
-      </>
+      <img src={kroonLogo} alt="Logo Kroon" />
+      <Burger />
+      <Route path="/categories" exact>
+        <Categories />
+        <Footer />
+      </Route>
+      <Route path="/" exact>
+        <HomeUsers />
+        <Footer />
+      </Route>
+      <Redirect from="/connexion" to="/poster" />
+      <Route path="/poster" exact>
+        <HomeLogin />
+      </Route>
+      <Route path="/contact" exact>
+        <Contact />
+        <Footer />
+      </Route>
+    </>
       )}
     </div>
   );

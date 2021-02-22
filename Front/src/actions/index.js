@@ -3,7 +3,7 @@ export const STOP_RECORD = "STOP_RECORD";
 export const CHANGE_URL= "CHANGE_URL";
 export const FETCH_POSTS = 'FETCH_POSTS';
 export const SAVE_POSTS = 'SAVE_POSTS';
-
+export const CHANGE_BLOB = 'CHANGE_BLOB';
 
 
 export const playStart = () => ({
@@ -20,6 +20,12 @@ export const stopRecord = () => ({
 export const changeUrl = (value) => ({
 
   type: CHANGE_URL,
+  newValue: value,
+})
+
+export const saveBlob = (value) => ({
+
+  type: CHANGE_BLOB,
   newValue: value,
 })
 

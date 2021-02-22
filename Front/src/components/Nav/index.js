@@ -13,7 +13,7 @@ const Nav = ({islogged, buttonClearField}) => {
 
   return (
 <div>
-    {islogged && (
+    {islogged ? (
     <nav className="nav">
 
     <ul>
@@ -82,10 +82,7 @@ const Nav = ({islogged, buttonClearField}) => {
       </li>
     </ul>
   </nav>
-    )}
-
-    {!islogged && (
-  <nav className="nav">
+    ) : (  <nav className="nav">
 
     <ul>
       <li>
@@ -141,8 +138,8 @@ const Nav = ({islogged, buttonClearField}) => {
         
       </li>
     </ul>
-  </nav>
-  )}
+  </nav>)}
+
   </div>
 )};
 // TODO : ternaire si Logged or not
