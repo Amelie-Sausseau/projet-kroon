@@ -12,7 +12,7 @@ const initialState = {
   password: '',
   logged: false,
   name: '',
-  islogged: true,
+  islogged: false,
   menuIsClosed: true,
   token: '',
   username: '',
