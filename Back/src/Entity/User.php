@@ -21,21 +21,21 @@ class User implements UserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"user:all", "user:one"})
+     * @Groups({"user:all", "user:one", "user:writtenPosts", "user:commentedPosts"})
      * @Groups({"post:all", "post:one"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=64)
-     * @Groups({"user:all", "user:one"})
+     * @Groups({"user:all", "user:one", "user:writtenPosts", "user:commentedPosts"})
      * @Groups({"post:all", "post:one"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="json")
-     * @Groups({"user:all", "user:one"})
+     * @Groups({"user:all", "user:one", "user:writtenPosts", "user:commentedPosts"})
      */
     private $roles = [];
 
@@ -46,21 +46,21 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="datetime", options={"default": "CURRENT_TIMESTAMP"})
-     * @Groups({"user:all", "user:one"})
+     * @Groups({"user:all", "user:one", "user:writtenPosts", "user:commentedPosts"})
      * @Groups({"post:all", "post:one"})
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
-     * @Groups({"user:all", "user:one"})
+     * @Groups({"user:all", "user:one", "user:writtenPosts", "user:commentedPosts"})
      * @Groups({"post:all", "post:one"})
      */
     private $updatedAt;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"user:all", "user:one"})
+     * @Groups({"user:all", "user:one", "user:writtenPosts", "user:commentedPosts"})
      * @Groups({"post:all", "post:one"})
      */
     private $slug;
@@ -88,7 +88,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="boolean", options={"default":true})
-     * @Groups({"user:all", "user:one"})
+     * @Groups({"user:all", "user:one", "user:writtenPosts", "user:commentedPosts"})
      * @Groups({"post:all", "post:one"})
      */
     private $isActive;

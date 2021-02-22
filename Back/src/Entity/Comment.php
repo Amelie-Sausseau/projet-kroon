@@ -18,7 +18,7 @@ class Comment
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"user:one"})
+     * @Groups({"user:one", "user:commentedPosts"})
      * @Groups({"post:one"})
      * @Groups({"comment:all", "comment:one"})
      */
@@ -26,7 +26,7 @@ class Comment
 
     /**
      * @ORM\Column(type="text")
-     * @Groups({"user:one"})
+     * @Groups({"user:one", "user:commentedPosts"})
      * @Groups({"post:one"})
      * @Groups({"comment:all", "comment:one"})
      */
@@ -34,7 +34,7 @@ class Comment
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Groups({"user:one"})
+     * @Groups({"user:one", "user:commentedPosts"})
      * @Groups({"post:one"})
      * @Groups({"comment:all", "comment:one"})
      */
@@ -42,7 +42,7 @@ class Comment
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
-     * @Groups({"user:one"})
+     * @Groups({"user:one", "user:commentedPosts"})
      * @Groups({"post:one"})
      * @Groups({"comment:all", "comment:one"})
      */
@@ -50,7 +50,7 @@ class Comment
 
     /**
      * @ORM\Column(type="boolean", options={"default":true})
-     * @Groups({"user:one"})
+     * @Groups({"user:one", "user:commentedPosts"})
      * @Groups({"post:one"})
      * @Groups({"comment:all", "comment:one"})
      */
@@ -58,7 +58,7 @@ class Comment
 
     /**
      * @ORM\Column(type="datetime", options={"default": "CURRENT_TIMESTAMP"})
-     * @Groups({"user:one"})
+     * @Groups({"user:one", "user:commentedPosts"})
      * @Groups({"post:one"})
      * @Groups({"comment:all", "comment:one"})
      */
@@ -66,7 +66,7 @@ class Comment
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
-     * @Groups({"user:one"})
+     * @Groups({"user:one", "user:commentedPosts"})
      * @Groups({"post:one"})
      * @Groups({"comment:all", "comment:one"})
      */
@@ -75,12 +75,14 @@ class Comment
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"user:commentedPosts"})
      * @Groups({"comment:all", "comment:one"})
      */
     private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity=Post::class, inversedBy="comments")
+     * @Groups({"user:commentedPosts"})
      * @Groups({"comment:one"})
      */
     private $post;

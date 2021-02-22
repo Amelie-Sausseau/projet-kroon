@@ -12,6 +12,7 @@ use App\Form\CreatePostType;
 use App\Form\PostEditType;
 use App\Repository\CommentRepository;
 use App\Repository\PostRepository;
+use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -43,7 +44,7 @@ class PostController extends AbstractController
     /**
      * @Route("/", name="add", methods="POST")
      */
-    public function add(Request $request, EntityManagerInterface $entityManager, PostRepository $post): Response
+    public function add(Request $request, EntityManagerInterface $entityManager, PostRepository $post, FileUploader $fileUploader, Post $postSound): Response
     {   
         $postData = json_decode($request->getContent(), true);
 
@@ -57,6 +58,10 @@ class PostController extends AbstractController
             $post->setUser($this->getUser());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($post);
+            $entityManager->flush();
+
+            $sound = $form->get('sound')->getData();
+            $fileUploader->moveSound($sound, $postSound);
             $entityManager->flush();
 
             return $this->json(
@@ -83,7 +88,8 @@ class PostController extends AbstractController
     {
         $userData = json_decode($request->getContent(), true);
         // Contrainte pour qu'un utilisateur connecté modifie son propre post
-        if ($user !== $this->getUser()) {
+        $author = $post->getUser();
+        if ($author !== $this->getUser()) {
             throw $this->createAccessDeniedException();
         }
         $post->setUpdatedAt(new \DateTime());
@@ -127,7 +133,7 @@ class PostController extends AbstractController
     /**
      * @Route("/{id}/report", name="report", methods="PUT", requirements={"id"="\d+"})
      */
-    public function report(Request $request, EntityManagerInterface $em, Post $post, User $user): Response
+    public function report(EntityManagerInterface $em, Post $post): Response
     {
         // $infoFromClient = json_decode($request->getContent(), true);
         // dd($user, $this->getUser());
@@ -155,6 +161,44 @@ class PostController extends AbstractController
             Response::HTTP_BAD_REQUEST
         );
     }
+
+    /**
+     * @Route("/{id}/solve", name="solve", methods="PUT", requirements={"id"="\d+"})
+     */
+    public function solve(EntityManagerInterface $em, Post $post): Response
+    {
+        // $infoFromClient = json_decode($request->getContent(), true);
+        // dd($user, $this->getUser());
+        $author = $post->getUser();
+        if ($author !== $this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
+        
+        if (! empty($this->getUser())) {
+
+            $post->setIsSolved(true);
+            // dd($post);
+            $em->persist($post);
+
+            $em->flush();
+
+            return $this->json(
+                [
+                    "success" => true,
+                    "message" => 'Post résolu'
+                ],
+                Response::HTTP_OK
+            );
+        }
+
+        return $this->json(
+            [
+                "success" => false,
+            ],
+            Response::HTTP_BAD_REQUEST
+        );
+    }
+
 
 
     /**
