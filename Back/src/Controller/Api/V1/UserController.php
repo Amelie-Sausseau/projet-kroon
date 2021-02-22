@@ -8,6 +8,7 @@ use App\Form\UserEditType;
 use App\Repository\CommentRepository;
 use App\Repository\PostRepository;
 use App\Repository\UserRepository;
+use App\Service\FileUploader;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -45,7 +46,7 @@ class UserController extends AbstractController
      * @Route("/register", name="register", methods={"POST"})
      */
 
-    public function register(Request $request, UserPasswordEncoderInterface $encoder, UserRepository $user, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+    public function register(Request $request, UserPasswordEncoderInterface $encoder, UserRepository $user, EntityManagerInterface $entityManager, FileUploader $fileUploader): Response
     {   
         $userData = json_decode($request->getContent(), true);
 
@@ -65,25 +66,11 @@ class UserController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $userFile = $form->get('avatar')->getData();
+            // on gère l'image après un 1er flush car on a besoin de l'id pour générer le nom
+            $avatar = $form->get('avatar')->getData();
+            $fileUploader->moveUserAvatar($avatar, $user);
 
-            if ($userFile) {
-                $originalFilename = pathinfo($userFile->getClientOriginalName(), PATHINFO_FILENAME);
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename.'-'.uniqid().'.'.$userFile->guessExtension();
-
-                try {
-                    $userFile->move(
-                        $this->getParameter('avatar_directory'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-        
-                }
-
-                $user->setAvatar($newFilename);
-            }
-
+            // il faut penser à flush à nouveau pour prendre en compte le nom de l'image
             $entityManager->flush();
 
             return $this->json(
@@ -106,7 +93,7 @@ class UserController extends AbstractController
     /**
      * @Route("/{id}", name="edit", methods="PUT", requirements={"id"="\d+"})
      */
-    public function edit(Request $request, User $user): Response
+    public function edit(Request $request, User $user, FileUploader $fileUploader, $userAvatar, EntityManagerInterface $entityManager): Response
     {
         $postData = json_decode($request->getContent(), true);
         // Contrainte pour qu'un utilisateur connecté modifie son propre compte
@@ -120,6 +107,13 @@ class UserController extends AbstractController
         if ($form->isValid()) { 
 
         $this->getDoctrine()->getManager()->flush();
+
+        // on gère l'image après un 1er flush car on a besoin de l'id pour générer le nom
+        $avatar = $form->get('avatar')->getData();
+        $fileUploader->moveAvatar($avatar, $user);
+
+        // il faut penser à flush à nouveau pour prendre en compte le nom de l'image
+        $entityManager->flush();
 
         return $this->json(
             [
