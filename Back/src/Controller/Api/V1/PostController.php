@@ -12,6 +12,7 @@ use App\Form\CreatePostType;
 use App\Form\PostEditType;
 use App\Repository\CommentRepository;
 use App\Repository\PostRepository;
+use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -43,7 +44,7 @@ class PostController extends AbstractController
     /**
      * @Route("/", name="add", methods="POST")
      */
-    public function add(Request $request, EntityManagerInterface $entityManager, PostRepository $post): Response
+    public function add(Request $request, EntityManagerInterface $entityManager, PostRepository $post, FileUploader $fileUploader): Response
     {   
         $postData = json_decode($request->getContent(), true);
 
@@ -57,6 +58,10 @@ class PostController extends AbstractController
             $post->setUser($this->getUser());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($post);
+            $entityManager->flush();
+
+            $sound = $form->get('sound')->getData();
+            $fileUploader->moveSound($sound, $post);
             $entityManager->flush();
 
             return $this->json(

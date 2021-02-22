@@ -36,7 +36,7 @@ class Post
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="blob")
      * @Groups({"user:one", "user:writtenPosts", "user:commentedPosts"})
      * @Groups({"post:all", "post:one"})
      * @Groups({"comment:one"})

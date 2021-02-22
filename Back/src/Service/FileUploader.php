@@ -10,10 +10,12 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class FileUploader
 {
     private $userAvatar;
+    private $userSound;
 
-    public function __construct($userAvatar)
+    public function __construct($userAvatar, $userSound)
     {
         $this->userAvatar= $userAvatar;
+        $this->userSound = $userSound;
     }
 
     /**
@@ -32,6 +34,21 @@ class FileUploader
 
             // Move the file to the directory where brochures are stored
             $avatar->move(
+                $targetFolder,
+                $newFilename
+            );
+        }
+        return $newFilename;
+    }
+
+    function moveSound(?UploadedFile $sound, string $targetFolder, $prefix = ''): ?string
+    {
+        $newFilename = null;
+
+        if ($sound !== null) {
+            $newFilename = $prefix . uniqid() . '.' . $sound->guessExtension();
+
+            $sound->move(
                 $targetFolder,
                 $newFilename
             );
