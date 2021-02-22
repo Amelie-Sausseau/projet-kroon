@@ -4,7 +4,6 @@ import { LOG_IN, saveUserData, SIGN_UP } from 'src/actions/users';
 /* import { fetchFavorites } from 'src/actions/recipes';
  */import { url } from 'src/utils';
 import React from 'react';
-import { Redirect } from 'react-router';
 
 export default (store) => (next) => (action) => {
   switch (action.type) {
