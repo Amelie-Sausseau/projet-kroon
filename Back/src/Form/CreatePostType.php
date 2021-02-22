@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Post;
+use App\Entity\Tag;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -25,11 +27,16 @@ class CreatePostType extends AbstractType
                 'constraints' => new NotBlank,
             ])
 
-            //->add('tags', ChoiceType::class, [
+            //->add('tags', EntityType::class, [
             //    'constraints' => new NotBlank,
+            //    "class" => Tag::class,
+            //    "choice_label" => function ($tag) {
+            //        return $tag->getName();
+            //    },
+                //Pour permettre de choisir plusieurs catégories : "multiple" => true,
             //])
 
-            ->add('sound', FileType::class, [
+            ->add('sound', TextType::class, [
                 'required' => false,
             ])
         ;

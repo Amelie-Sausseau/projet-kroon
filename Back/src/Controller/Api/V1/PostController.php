@@ -83,7 +83,8 @@ class PostController extends AbstractController
     {
         $userData = json_decode($request->getContent(), true);
         // Contrainte pour qu'un utilisateur connecté modifie son propre post
-        if ($user !== $this->getUser()) {
+        $author = $post->getUser();
+        if ($author !== $this->getUser()) {
             throw $this->createAccessDeniedException();
         }
         $post->setUpdatedAt(new \DateTime());
@@ -127,7 +128,7 @@ class PostController extends AbstractController
     /**
      * @Route("/{id}/report", name="report", methods="PUT", requirements={"id"="\d+"})
      */
-    public function report(Request $request, EntityManagerInterface $em, Post $post, User $user): Response
+    public function report(EntityManagerInterface $em, Post $post): Response
     {
         // $infoFromClient = json_decode($request->getContent(), true);
         // dd($user, $this->getUser());
@@ -155,6 +156,44 @@ class PostController extends AbstractController
             Response::HTTP_BAD_REQUEST
         );
     }
+
+    /**
+     * @Route("/{id}/solve", name="solve", methods="PUT", requirements={"id"="\d+"})
+     */
+    public function solve(EntityManagerInterface $em, Post $post): Response
+    {
+        // $infoFromClient = json_decode($request->getContent(), true);
+        // dd($user, $this->getUser());
+        $author = $post->getUser();
+        if ($author !== $this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
+        
+        if (! empty($this->getUser())) {
+
+            $post->setIsSolved(true);
+            // dd($post);
+            $em->persist($post);
+
+            $em->flush();
+
+            return $this->json(
+                [
+                    "success" => true,
+                    "message" => 'Post résolu'
+                ],
+                Response::HTTP_OK
+            );
+        }
+
+        return $this->json(
+            [
+                "success" => false,
+            ],
+            Response::HTTP_BAD_REQUEST
+        );
+    }
+
 
 
     /**

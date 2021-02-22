@@ -88,7 +88,7 @@ class CommentController extends AbstractController
         /**
      * @Route("/{id}/report", name="report", methods="PUT", requirements={"id"="\d+"})
      */
-    public function report(Request $request, EntityManagerInterface $em, Comment $comment, User $user): Response
+    public function report(EntityManagerInterface $em, Comment $comment): Response
     {
         // $infoFromClient = json_decode($request->getContent(), true);
         // dd($user, $this->getUser());

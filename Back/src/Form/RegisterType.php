@@ -30,6 +30,10 @@ class RegisterType extends AbstractType
 
             ->add('password', PasswordType::class, [
                 'constraints' => new NotBlank,
+                //'type' => PasswordType::class,
+                //'invalid_message' => 'Les deux mot de passe ne sont pas identiques',
+                //'first_options'  => ['label' => 'Mot de passe'],
+                //'second_options' => ['label' => 'Repeter le mot de passe'],
             ])
 
             ->add('email', EmailType::class, [
