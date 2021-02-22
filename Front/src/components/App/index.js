@@ -13,7 +13,7 @@ import Contact from 'src/components/Contact';
 import Categories from 'src/components/Categories';
 import Loader from 'src/components/Loader';
 import Burger from 'src/containers/Burger';
-import HomeLogin from 'src/components/HomeLogin';
+import PostForm from 'src/containers/PostForm';
 import HomeUsers from 'src/components/HomeUsers';
 import Publications from 'src/components/Publications';
 import MyAccount from 'src/components/Account';
@@ -73,7 +73,7 @@ const App = ({ manageLoad, loading, islogged }) => {
             <Footer />
           </Route>
           <Route path="/poster" exact>
-            <HomeLogin />
+            <PostForm />
           </Route>
           <Route path="/contact" exact>
             <Contact />

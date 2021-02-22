@@ -34,6 +34,7 @@ class UserEditType extends AbstractType
 
             ->add('avatar', FileType::class, [
                 'required' => false,
+                'mapped' => false,
                 'constraints' => [
                     new File([
                         'maxSize' => '2M',
@@ -57,6 +58,7 @@ class UserEditType extends AbstractType
         // par exemple 
         if($data->getId()){
             $builder->add('bio');
+            $builder->add('avatar');
         }
     }
 

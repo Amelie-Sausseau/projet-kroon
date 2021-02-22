@@ -34,7 +34,6 @@ class CreatePostType extends AbstractType
             //    "choice_label" => function ($tag) {
             //        return $tag->getName();
             //    },
-                //Pour permettre de choisir plusieurs catégories : "multiple" => true,
             //])
 
             ->add('sound', FileType::class, [

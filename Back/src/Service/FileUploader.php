@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Entity\Post;
 use App\Entity\User;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -58,9 +59,17 @@ class FileUploader
 
     function moveUserAvatar(?UploadedFile $avatar, User $user)
     {
-        $avatarName = $this->moveAvatar($avatar, $this->userFolder, 'user-');
+        $avatarName = $this->moveAvatar($avatar, $this->userAvatar, 'user-');
         if ($avatarName !== null) {
             $user->setAvatar($avatarName);
+        }
+    }
+
+    function moveUserSound(?UploadedFile $sound, Post $post)
+    {
+        $soundName = $this->moveSound($sound, $this->userSound, 'post-');
+        if ($soundName !== null) {
+            $post->setSound($soundName);
         }
     }
 }

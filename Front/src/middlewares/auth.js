@@ -10,7 +10,6 @@ export default (store) => (next) => (action) => {
     case LOG_IN: {
       console.log('salut');
       const { username, password } = store.getState().users;
-      console.log(username);
       axios.post('http://ec2-3-82-153-17.compute-1.amazonaws.com/api/login_check',
         {
           username,
