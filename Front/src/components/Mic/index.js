@@ -1,5 +1,6 @@
 import { ReactMic } from 'react-mic';
 import ReactAudioPlayer from 'react-audio-player';
+import PropTypes from 'prop-types';
 
 import React from 'react';
 
@@ -87,5 +88,16 @@ const htmlClass = record ? 'button_play' : 'button_start';
     </div>
   );
 };
+
+Mic.propTypes = {
+  playStart: PropTypes.func.isRequired,
+  stopRecord: PropTypes.func.isRequired,
+  changeNewUrl: PropTypes.func.isRequired,
+  saveNewBlob: PropTypes.func.isRequired,
+  recordedSound: PropTypes.bool.isRequired,
+  record: PropTypes.bool.isRequired,
+  url: PropTypes.string.isRequired,
+};
+
 
 export default Mic;

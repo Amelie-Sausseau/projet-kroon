@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
  */
 // on importe notre fonction utilitaire permettant de
 // transformer le slug en url
+import PropTypes from 'prop-types';
 
 import './nav.scss';
 
@@ -143,5 +144,9 @@ const Nav = ({islogged, buttonClearField}) => {
   </div>
 )};
 // TODO : ternaire si Logged or not
+Nav.propTypes = {
+  buttonClearField: PropTypes.func.isRequired,
+  islogged: PropTypes.bool.isRequired,
+};
 
 export default Nav;

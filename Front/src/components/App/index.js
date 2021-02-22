@@ -1,14 +1,12 @@
 /* eslint-disable import/no-unresolved */
-// == Import npm
+// == Import yarn
 import React, { useEffect } from 'react';
-import kroonLogo from './kroon_vFinale.svg';
-
-// On importe le composant Route qui permet d'afficher les composant
-// qu'il contient seulement si la route matche avec l'url courante.
 import { Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-// == Import
+
+// == Import local
 import './styles.css';
+import kroonLogo from './kroon_vFinale.svg';
 import LoginForm from 'src/containers/LoginForm';
 import SignupForm from 'src/containers/SignupForm';
 import Footer from 'src/components/Footer';
@@ -19,10 +17,6 @@ import Burger from 'src/containers/Burger';
 import HomeLogin from 'src/components/HomeLogin';
 import HomeUsers from 'src/components/HomeUsers';
 
-/* import Mic from 'src/containers/Mic';
- import Posts from 'src/containers/Posts';
-import Nav from 'src/components/Nav';
-import LoginForm from 'src/containers/LoginForm'; */
 
 // == Composant
 const App = ({ manageLoad, loading, islogged }) => {
@@ -47,7 +41,7 @@ const App = ({ manageLoad, loading, islogged }) => {
           <Footer />
         </Route>
         <Redirect from="/poster" to="/connexion" />
-      <Route path="/connexion" exact>
+        <Route path="/connexion" exact>
           <LoginForm />
         </Route>
         <Route path="/nouveaucompte" exact>

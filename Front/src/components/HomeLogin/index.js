@@ -27,16 +27,9 @@ const HomeLogin = () => (
   </div>
 );
 
-/* HomeUsers.propTypes = {
-  // je veux que ma props recipes soit un tableau
-  recipes: PropTypes.arrayOf(
-    // plus précisément un tableau d'objet (d'une forme particulière)
-    PropTypes.shape({
-      // un objet, oui, mais un objet qui a une propriété id de type numérique
-      id: PropTypes.number.isRequired,
-    }).isRequired,
-  ).isRequired,
-  title: PropTypes.string.isRequired,
+/* HomeLogin.propTypes = {
+  buttonClearField: PropTypes.func.isRequired,
+  islogged: PropTypes.bool.isRequired,
 }; */
 
 export default HomeLogin;
