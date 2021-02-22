@@ -33,7 +33,8 @@ class UserEditType extends AbstractType
             ->add('bio', TextType::class)
 
             ->add('avatar', FileType::class, [
-                //'required' => false,
+                'required' => false,
+                'mapped' => false,
                 'constraints' => [
                     new File([
                         'maxSize' => '2M',

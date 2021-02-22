@@ -93,7 +93,7 @@ class UserController extends AbstractController
     /**
      * @Route("/{id}", name="edit", methods="PUT", requirements={"id"="\d+"})
      */
-    public function edit(Request $request, User $user, FileUploader $fileUploader, $userAvatar, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, User $user, FileUploader $fileUploader, EntityManagerInterface $entityManager): Response
     {
         $postData = json_decode($request->getContent(), true);
         // Contrainte pour qu'un utilisateur connecté modifie son propre compte
@@ -110,7 +110,7 @@ class UserController extends AbstractController
 
         // on gère l'image après un 1er flush car on a besoin de l'id pour générer le nom
         $avatar = $form->get('avatar')->getData();
-        $fileUploader->moveAvatar($avatar, $user);
+        $fileUploader->moveUserAvatar($avatar, $user);
 
         // il faut penser à flush à nouveau pour prendre en compte le nom de l'image
         $entityManager->flush();
