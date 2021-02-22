@@ -1,4 +1,4 @@
-import React, { useSelector }  from 'react';
+import React, { useSelector } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { browserHistory } from 'react-router';
@@ -16,18 +16,17 @@ const LoginForm = ({
   changeField,
   handleLogin,
   handleLogout,
-  Logged
+  Logged,
 }) => {
-
   function handleSubmit(evt) {
     evt.preventDefault();
     handleLogin();
 
-     ()=>{
-      browserHistory.push('/')
-     }
+    () => {
+      browserHistory.push('/');
+    };
 
-/*     setTimeout(() => {
+    /*     setTimeout(() => {
       props.history.push('/poster')
     }, 2000)
  */

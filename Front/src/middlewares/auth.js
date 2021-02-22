@@ -3,8 +3,8 @@ import axios from 'axios';
 import { LOG_IN, saveUserData, SIGN_UP } from 'src/actions/users';
 /* import { fetchFavorites } from 'src/actions/recipes';
  */import { url } from 'src/utils';
- import React from 'react';
- import { Redirect } from 'react-router';
+import React from 'react';
+import { Redirect } from 'react-router';
 
 export default (store) => (next) => (action) => {
   switch (action.type) {
@@ -16,18 +16,14 @@ export default (store) => (next) => (action) => {
         {
           username,
           password,
-        },
-      ).then((response) => {
+        }).then((response) => {
         /* window.location = '/poster' */
 
         // on dispatche l'action de sauvegarde des infos utilisateur
         store.dispatch(saveUserData(response.data));
         console.log(response);
-        
-        store.getState().users.islogged = true;
-        
 
-       
+        store.getState().users.islogged = true;
       }).catch((error) => {
         console.log('error');
       });
@@ -36,16 +32,15 @@ export default (store) => (next) => (action) => {
     }
     case SIGN_UP: {
       const { email, password, name } = store.getState().users;
-      console.log(email, password, name );
+      console.log(email, password, name);
 
       axios.post('http://ec2-3-82-153-17.compute-1.amazonaws.com/api/v1/users/register',
         {
-          
+
           name,
           password,
           email,
-        },
-      ).then((response) => {
+        }).then((response) => {
         // on dispatche l'action de sauvegarde des infos utilisateur
         console.log('then');
         store.dispatch(saveUserData(response.data));

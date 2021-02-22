@@ -1,7 +1,6 @@
 /* eslint-disable import/no-unresolved */
 // == Import npm
 import React, { useEffect } from 'react';
-import kroonLogo from './kroon_vFinale.svg';
 
 // On importe le composant Route qui permet d'afficher les composant
 // qu'il contient seulement si la route matche avec l'url courante.
@@ -18,7 +17,8 @@ import Loader from 'src/components/Loader';
 import Burger from 'src/containers/Burger';
 import HomeLogin from 'src/components/HomeLogin';
 import HomeUsers from 'src/components/HomeUsers';
-
+import Publications from 'src/components/Publications';
+import kroonLogo from './kroon_vFinale.svg';
 /* import Mic from 'src/containers/Mic';
  import Posts from 'src/containers/Posts';
 import Nav from 'src/components/Nav';
@@ -56,6 +56,7 @@ const App = ({ manageLoad, loading, islogged }) => {
           <Contact />
           <Footer />
         </Route>
+
       </>
       )}
       {!loading && islogged && (
@@ -76,6 +77,9 @@ const App = ({ manageLoad, loading, islogged }) => {
         <Route path="/contact" exact>
           <Contact />
           <Footer />
+        </Route>
+        <Route path="/publications" exact>
+          <Publications />
         </Route>
       </>
       )}

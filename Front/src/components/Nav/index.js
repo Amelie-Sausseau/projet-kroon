@@ -8,143 +8,150 @@ import { NavLink } from 'react-router-dom';
 
 import './nav.scss';
 
-const Nav = ({islogged, buttonClearField}) => {
-
-
-  return (
-<div>
+const Nav = ({ islogged, buttonClearField }) => (
+  <div>
     {islogged && (
     <nav className="nav">
 
-    <ul>
-      <li>
-        <NavLink
-          className="nav__link"
-          to="/"
-          activeClassName="nav__link--active"
-          exact
-        >
-          Accueil
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          className="nav__link"
-          to="/categories"
-          activeClassName="nav__link--active"
-          exact
-        >
-          Catégories
-        </NavLink>
-      </li>
+      <ul>
+        <li>
+          <NavLink
+            className="nav__link"
+            to="/"
+            activeClassName="nav__link--active"
+            exact
+          >
+            Accueil
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            className="nav__link"
+            to="/categories"
+            activeClassName="nav__link--active"
+            exact
+          >
+            Catégories
+          </NavLink>
+        </li>
 
-      <li>
-      <NavLink
-          className="nav__link "
-          to="/poster"
-          activeClassName="nav__link--active"
-          exact
-        >
-          Poster
-        </NavLink>
+        <li>
+          <NavLink
+            className="nav__link "
+            to="/poster"
+            activeClassName="nav__link--active"
+            exact
+          >
+            Poster
+          </NavLink>
         </li>
         <li>
-      <NavLink
-          className="nav__link "
-          to="/equipe"
-          activeClassName="nav__link--active"
-          exact
-        >
-          Equipe
-        </NavLink>
+          <NavLink
+            className="nav__link "
+            to="/publications"
+            activeClassName="nav__link--active"
+            exact
+          >
+            Publications
+          </NavLink>
         </li>
-        
         <li>
-      <NavLink
-          className="nav__link "
-          to="/contact"
-          activeClassName="nav__link--active"
-          exact
-        >
-          Contact
-        </NavLink>
+          <NavLink
+            className="nav__link "
+            to="/equipe"
+            activeClassName="nav__link--active"
+            exact
+          >
+            Equipe
+          </NavLink>
         </li>
-      <li className="auth">
-        <NavLink
-          className="nav__link deco"
-          to="/connexion"
-          activeClassName="nav__link--active"
-          exact
-          onClick={buttonClearField}
-        >
-          Log out
-        </NavLink>
-      </li>
-    </ul>
-  </nav>
+
+        <li>
+          <NavLink
+            className="nav__link "
+            to="/contact"
+            activeClassName="nav__link--active"
+            exact
+          >
+            Contact
+          </NavLink>
+        </li>
+        <li className="auth">
+          <NavLink
+            className="nav__link deco"
+            to="/connexion"
+            activeClassName="nav__link--active"
+            exact
+            onClick={buttonClearField}
+          >
+            Log out
+          </NavLink>
+        </li>
+      </ul>
+    </nav>
     )}
 
     {!islogged && (
-  <nav className="nav">
+    <nav className="nav">
 
-    <ul>
-      <li>
-        <NavLink
-          className="nav__link"
-          to="/"
-          activeClassName="nav__link--active"
-          exact
-        >
-          Accueil
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          className="nav__link"
-          to="/categories"
-          activeClassName="nav__link--active"
-          exact
-        >
-          Catégories
-        </NavLink>
-      </li>
-      <li>
-      <NavLink
-          className="nav__link"
-          to="/poster"
-          activeClassName="nav__link--active"
-          exact
-          onClick={buttonClearField}
-        >
-          Team
-        </NavLink>
+      <ul>
+        <li>
+          <NavLink
+            className="nav__link"
+            to="/"
+            activeClassName="nav__link--active"
+            exact
+          >
+            Accueil
+          </NavLink>
         </li>
         <li>
-      <NavLink
-          className="nav__link "
-          to="/contact"
-          activeClassName="nav__link--active"
-          exact
-        >
-          Contact
-        </NavLink>
+          <NavLink
+            className="nav__link"
+            to="/categories"
+            activeClassName="nav__link--active"
+            exact
+          >
+            Catégories
+          </NavLink>
         </li>
-      <li className="auth">
-        <NavLink
-          className="nav__link"
-          to="/connexion"
-          activeClassName="nav__link--active"
-          exact
-        >
-          Connexion
-        </NavLink>
-        
-      </li>
-    </ul>
-  </nav>
-  )}
+        <li>
+          <NavLink
+            className="nav__link"
+            to="/poster"
+            activeClassName="nav__link--active"
+            exact
+            onClick={buttonClearField}
+          >
+            Team
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            className="nav__link "
+            to="/contact"
+            activeClassName="nav__link--active"
+            exact
+          >
+            Contact
+          </NavLink>
+        </li>
+        <li className="auth">
+          <NavLink
+            className="nav__link"
+            to="/connexion"
+            activeClassName="nav__link--active"
+            exact
+          >
+            Connexion
+          </NavLink>
+
+        </li>
+      </ul>
+    </nav>
+    )}
   </div>
-)};
+);
 // TODO : ternaire si Logged or not
 
 export default Nav;
