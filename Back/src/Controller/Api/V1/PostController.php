@@ -49,6 +49,7 @@ class PostController extends AbstractController
 
         return $this->json([
             "here" =>$request->request->all(),
+            "there" => $request->files->all(),
             "overthere" => $request->getContent(),
         
         ]);
