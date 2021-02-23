@@ -9,10 +9,12 @@ use App\Repository\CommentRepository;
 use App\Repository\PostRepository;
 use App\Repository\UserRepository;
 use App\Service\FileUploader;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -68,7 +70,7 @@ class UserController extends AbstractController
 
             // on gère l'image après un 1er flush car on a besoin de l'id pour générer le nom
             $avatar = $form->get('avatar')->getData();
-            $fileUploader->moveUserAvatar($avatar, $user);
+            // $fileUploader->moveUserAvatar($avatar, $user);
 
             // il faut penser à flush à nouveau pour prendre en compte le nom de l'image
             $entityManager->flush();
@@ -97,43 +99,42 @@ class UserController extends AbstractController
     {
         $postData = json_decode($request->getContent(), true);
         // Contrainte pour qu'un utilisateur connecté modifie son propre compte
+        // dd($postData);
         if ($user !== $this->getUser()) {
             throw $this->createAccessDeniedException();
-         }
+        }
         $user->setUpdatedAt(new \DateTime());
         $form = $this->createForm(UserEditType::class, $user);
         $form->submit($postData, false);
 
-        if ($form->isValid()) { 
+        
+        if ($form->isValid()) {
+            $avatar = $form->getData();
+            $avatarFile = $form->get('avatar')->getData();
+            // dd($avatarFile);
 
-        $this->getDoctrine()->getManager()->flush();
+            if ($avatarFile) {
+                // $originalFilename = pathinfo($avatarFile->getClientOriginalName(), PATHINFO_FILENAME);
+                // dd($originalFilename);
+                // $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $avatarFile.'-'.uniqid().'.png';
 
-         /** @var UploadedFile $avatarFile */
-         $avatarFile = $form->get('avatar')->getData();
+                try {
+                    $avatar->move(
+                        $this->getParameter('avatar_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+        
+                }
 
-         // this condition is needed because the 'avatar' field is not required
-         if ($avatarFile) {
-             $originalFilename = pathinfo($avatarFile->getClientOriginalName(), PATHINFO_FILENAME);
-             // this is needed to safely include the file name as part of the URL
-             $safeFilename = $slugger->slug($originalFilename);
-             $newFilename = $safeFilename.'-'.uniqid().'.'.$avatarFile->guessExtension();
+                $avatar->setAvatar($newFilename);
+            }
 
-             // Move the file to the directory where avatars are stored
-             try {
-                 $avatarFile->move(
-                     $this->getParameter('avatars_directory'),
-                     $newFilename
-                 );
-             } catch (FileException $e) {
-                 // ... handle exception if something happens during file upload
-             }
 
-             // updates the 'brochureFilename' property to store the PDF file name
-             // instead of its contents
-             $user->setAvatar($newFilename);
-         }
-
-        $entityManager->flush();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($avatar);
+            $entityManager->flush();
 
         return $this->json(
             [

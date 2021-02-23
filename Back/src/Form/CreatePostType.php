@@ -20,13 +20,15 @@ class CreatePostType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class, [
-                'constraints' => new NotBlank,
-            ])
+            ->add('title', TextType::class) 
+            //[
+            //    'constraints' => new NotBlank,
+            //])
 
-            ->add('body', TextType::class, [
-                'constraints' => new NotBlank,
-            ])
+            ->add('body', TextType::class)
+            //[
+                //'constraints' => new NotBlank,
+            //])
 
             //->add('tags', EntityType::class, [
             //    'constraints' => new NotBlank,
@@ -36,7 +38,7 @@ class CreatePostType extends AbstractType
             //    },
             //])
 
-            ->add('sound', FileType::class, //[
+            ->add('sound', TextType::class//, [
                 // unmapped means that this field is not associated to any entity property
                 // 'mapped' => false,
 
