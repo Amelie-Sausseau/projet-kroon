@@ -21,9 +21,9 @@ const LoginForm = ({
     evt.preventDefault();
     handleLogin();
 
-    () => {
+ /*    () => {
       browserHistory.push('/');
-    };
+    }; */
 
     /*     setTimeout(() => {
       props.history.push('/poster')

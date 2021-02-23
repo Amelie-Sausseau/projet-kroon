@@ -1,31 +1,38 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { ReactMic } from 'react-mic';
 import ReactAudioPlayer from 'react-audio-player';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import './postform.scss';
 
-const PostForm = ({ playStart, stopRecord, record, recordedSound, url, changeNewUrl, saveNewBlob, token }) => {
+const PostForm = ({ playStart, stopRecord, record, recordedSound, url, changeNewUrl, saveNewBlob, token, blob }) => {
+
+/*   function sendApi(evt){
+  evt.preventDefault();
+    send();
+  } */
 
 
   function send(blob){
-    axios.post("http://ec2-3-82-153-17.compute-1.amazonaws.com/api/v1/posts/",{
-      sound: blob,
-/*      name:"admin@kroon.fr",*/
-      title: "test title",
-      body:"test body",
-      /* tag: "1", */
-    },{
-      'headers' : {
-        "content-type" :  "form/multiParts",
+    const formData  =new FormData();
+    const file = new File([blob], {
+      type: blob.type,
+  });
+  formData.append('sound',file)
+
+    axios.post("http://ec2-3-82-153-17.compute-1.amazonaws.com/api/v1/posts/",formData,{
+     headers : {
+        'Content-Type': 'multipart/form-data',
         Authorization: `Bearer ${token}`,
       }
+      
     })
     .then((response) => response.data)
+
     .catch((error) => {
-      console.log(blob);
     })
   }
+  
 
   function onData(recorded) {
     console.log('recordedBlob play is: ', recorded);
@@ -37,7 +44,7 @@ const PostForm = ({ playStart, stopRecord, record, recordedSound, url, changeNew
     let blobUrl = URL.createObjectURL(blob);
     console.log(blobUrl)
     changeNewUrl(blobUrl);
-    send(blob);
+
 }
 
 
@@ -45,9 +52,19 @@ const PostForm = ({ playStart, stopRecord, record, recordedSound, url, changeNew
     console.log('chunk of real-time data is: ', recordedBlob);
     recordedSound = true;
     downloadBlob(recordedBlob);
+    setBlobux(recordedBlob.blob);
+    blob = recordedBlob.blob
+    send(blob)
   }
 
+
+
 const htmlClass = record ? 'button_play' : 'button_start';
+
+
+const [blobux, setBlobux] = useState({});  
+console.log('pour toi public',blobux);
+
 
   return (
     <div className="idk">
@@ -91,7 +108,7 @@ const htmlClass = record ? 'button_play' : 'button_start';
     </select>
     <input type="text" placeholder="Tître" required className="title" />
     <input type="text" placeholder="Description" required className="description" />
-    <div className="buttonSubmit" ><span>Envoyer</span></div>
+    <div className="buttonSubmit"  /* onClick={sendApi} */ ><span>Envoyer</span></div>
 
   </form>
     </div>
