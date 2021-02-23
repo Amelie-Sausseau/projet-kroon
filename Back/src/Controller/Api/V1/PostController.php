@@ -44,8 +44,10 @@ class PostController extends AbstractController
     /**
      * @Route("/", name="add", methods="POST")
      */
-    public function add(Request $request, EntityManagerInterface $entityManager, PostRepository $post, FileUploader $fileUploader, Post $postSound): Response
+    public function add(Request $request, EntityManagerInterface $entityManager, PostRepository $postRepo, FileUploader $fileUploader, Post $post): Response
     {   
+
+        return $this->json($request->request->all());
         $postData = json_decode($request->getContent(), true);
 
         $post = new Post();
@@ -58,10 +60,6 @@ class PostController extends AbstractController
             $post->setUser($this->getUser());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($post);
-            $entityManager->flush();
-
-            $sound = $form->get('sound')->getData();
-            $fileUploader->moveSound($sound, $postSound);
             $entityManager->flush();
 
             return $this->json(
