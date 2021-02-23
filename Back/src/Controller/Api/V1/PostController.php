@@ -59,11 +59,17 @@ class PostController extends AbstractController
         $post = new Post();
 
         $form = $this->createForm(CreatePostType::class, $post);
-
         $form->submit($postData, true);
 
         if ($form->isValid()) {
             $post->setUser($this->getUser());
+
+            $sound = $form->get('sound')->getData();
+            dd($sound);
+            $emptySound = $sound .'-'.uniqid().'.mp3';
+
+            file_put_contents($emptySound, $sound);
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($post);
             $entityManager->flush();
