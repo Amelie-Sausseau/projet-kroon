@@ -25,7 +25,7 @@ class CreatePostType extends AbstractType
             //    'constraints' => new NotBlank,
             //])
 
-            ->add('body', TextType::class)
+            //->add('body', TextType::class)
             //[
                 //'constraints' => new NotBlank,
             //])
