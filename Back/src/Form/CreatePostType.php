@@ -38,7 +38,7 @@ class CreatePostType extends AbstractType
             //    },
             //])
 
-            ->add('sound', FileType::class//, [
+            ->add('sound', TextType::class//, [
                 // unmapped means that this field is not associated to any entity property
                 // 'mapped' => false,
 
