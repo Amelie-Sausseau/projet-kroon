@@ -57,4 +57,66 @@
       /* border: solid #e3e3e3 1px; */
     }
    
- 
+
+    .button_start {
+      margin: 50px auto;
+      outline: none;
+      display: block;
+      border: none;
+      background-image:url("./playbutton_blue.png");
+      background-size:11.5rem;
+      background-position: 79.65rem;
+      width: 10rem;
+      height: 10rem;
+      border-radius: 50%;
+      text-indent: -1000em;
+    }
+  
+  
+    
+    .button_play  {
+      margin: 50px auto;
+      outline: none;
+      display: block;
+      border: none;
+      background-image:url("./playbutton_red.png");
+      background-size:11rem;
+      background-position: 76.5rem;
+      width: 10rem;
+      height: 10rem;
+      border-radius: 50%;
+      text-indent: -1000em;
+      cursor: pointer;
+    
+    }
+  
+    .button_stop{
+      background: rgb(177,177,177);
+      background: linear-gradient(315deg, rgba(177,177,177,1) 0%, rgba(227,227,227,1) 53%, rgba(225,225,225,1) 100%);
+      width: 3rem;
+      height: 2rem;
+      border-radius: 50%;
+      border: solid 0px;
+      position: relative;
+      bottom: 7.5rem;
+      border: solid 3px #e3e3e3;
+      padding-bottom: 25px;
+      
+   }
+  
+   .audioPlayer{
+     position: relative;
+     bottom: 3rem;
+   }
+  .buttonContainer {
+    position: relative;
+  }
+
+  h1 {
+    font-size: xx-large;
+  }
+
+  .box{
+    position: relative;
+    bottom: 3rem;
+  }

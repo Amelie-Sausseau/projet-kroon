@@ -4,14 +4,12 @@ import { LOG_IN, saveUserData, SIGN_UP } from 'src/actions/users';
 /* import { fetchFavorites } from 'src/actions/recipes';
  */import { url } from 'src/utils';
 import React from 'react';
-import { Redirect } from 'react-router';
 
 export default (store) => (next) => (action) => {
   switch (action.type) {
     case LOG_IN: {
       console.log('salut');
       const { username, password } = store.getState().users;
-      console.log(username);
       axios.post('http://ec2-3-82-153-17.compute-1.amazonaws.com/api/login_check',
         {
           username,

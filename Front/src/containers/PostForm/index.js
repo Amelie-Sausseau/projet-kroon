@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 
-import Mic from 'src/components/Mic';
+import PostForm from 'src/components/PostForm';
 
-import { playStart, stopRecord, changeUrl,saveBlob  } from 'src/actions';
+import { playStart, stopRecord, changeUrl, saveBlob  } from 'src/actions';
 
 
 
@@ -33,4 +33,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Mic);
+export default connect(mapStateToProps, mapDispatchToProps)(PostForm);
