@@ -47,13 +47,18 @@
       box-shadow: 
         12px 12px 16px 0 rgba(0, 0, 0, 0.25),
         -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
+        border: solid 2px #d8d8d8;
+
       border-radius: 50px;
       display: flex;
       height: 45px;
       justify-content: center;
-      margin-right: 4rem;
-      width: auto;
-      margin: 0 2rem 0 2rem;
+      width: 20rem;
+      margin: auto 2rem auto 2rem;
+      font-weight: bold;
+      max-width: 20rem;
+      margin-left: auto;
+      margin-right: auto;
       /* border: solid #e3e3e3 1px; */
     }
    
@@ -70,6 +75,8 @@
       height: 10rem;
       border-radius: 50%;
       text-indent: -1000em;
+      border: solid 3px #e3e3e3;
+
     }
   
   
@@ -87,6 +94,7 @@
       border-radius: 50%;
       text-indent: -1000em;
       cursor: pointer;
+
     
     }
   

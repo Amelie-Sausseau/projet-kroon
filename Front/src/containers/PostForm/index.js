@@ -2,7 +2,8 @@ import { connect } from 'react-redux';
 
 import PostForm from 'src/components/PostForm';
 
-import { playStart, stopRecord, changeUrl, saveBlob  } from 'src/actions';
+import { playStart, stopRecord, changeUrl, saveBlob } from 'src/actions';
+import { fetchCategories } from 'src/actions/posts';
 
 
 
@@ -11,7 +12,8 @@ const mapStateToProps = (state) => ({
  recordedSound: state.mic.recordedSound,
  url: state.mic.url,
  blob: state.mic.blob,
- token: state.users.token
+ token: state.users.token,
+ categories: state.posts.categories
 
 });
 
@@ -29,6 +31,10 @@ const mapDispatchToProps = (dispatch) => ({
 
   saveNewBlob: (value) =>{
      dispatch(saveBlob(value)) 
+  },
+
+  fetchCategories: () => {
+    dispatch(fetchCategories())
   }
 
 });

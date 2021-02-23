@@ -5,7 +5,6 @@ export const FETCH_POSTS = 'FETCH_POSTS';
 export const SAVE_POSTS = 'SAVE_POSTS';
 export const CHANGE_BLOB = 'CHANGE_BLOB';
 
-
 export const playStart = () => ({
 
   type: PLAY_START,

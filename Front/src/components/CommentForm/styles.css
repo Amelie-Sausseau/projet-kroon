@@ -1,3 +1,16 @@
 .comment--form {
     padding-top: 10rem;
 }
+
+.form__input{
+    height: 10rem;
+    width: 20rem;
+    border-radius: 1rem;
+    border: 1px solid transparent;
+    border-top: none;
+    border-bottom: 1px solid #DDD;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #FFF, 0 1px 0 #FFF;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3vh;
+}

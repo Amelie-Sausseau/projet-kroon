@@ -1,5 +1,9 @@
 import axios from 'axios';
 
+import { FETCH_POSTS_USER_LOGIN, savePostsUser } from 'src/actions/users';
+
+import { FETCH_CATEGORIES, saveCategories} from 'src/actions/posts';
+
 import { FETCH_POSTS, savePosts } from 'src/actions';
 
 import { url } from 'src/utils';
@@ -14,20 +18,32 @@ export default (store) => (next) => (action) => {
         }).catch((error) => {
           console.error('error');
         });
+      next(action);
+      break;
+
+      case FETCH_CATEGORIES:
+      axios.get(`${url}/api/v1/tags/`)
+        .then((response) => {
+          console.log(response.data);
+          store.dispatch(saveCategories(response.data));
+        }).catch((error) => {
+          console.error('error');
+        });
 
       next(action);
       break;
-      /* case FETCH_POSTS_USER_LOGIN: {
-        const { token } = store.getState().user;
 
-        axios.post('http://localhost:3001/favorites', {},
+       case FETCH_POSTS_USER_LOGIN: {
+        const { token } = store.getState().users;
+        console.log(token);
+        axios.post('http://ec2-3-82-153-17.compute-1.amazonaws.com/api/v1/users/3/posts', {},
           {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           })
           .then((response) => {
-            store.dispatch(saveFavorites(response.data.favorites));
+            store.dispatch(savePostsUser(response.data));
             console.log(response.data);
           }).catch((error) => {
             // TODO
@@ -37,7 +53,7 @@ export default (store) => (next) => (action) => {
           });
         next(action);
         break;
-      } */
+      } 
     default:
       next(action);
   }

@@ -50,7 +50,7 @@ const CommentForm = ({ manageCommentSubmit, inputCommentValue, setInputCommentVa
           className="form__submit"
           type="submit"
         >
-          &gt;
+          Envoyer &gt;
         </button>
       </form>
     </div>

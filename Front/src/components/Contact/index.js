@@ -16,13 +16,13 @@ const Contact = (props) => {
       <input id="email" className="input-text js-input" type="text" placeholder="Email" required />
 
     </div>
-    <div className="form-field col x-100">
-      <textarea id="message" className="input-text js-input" type="text" rows="6" cols="40" placeholder="Message" required />
+    <div className="form-field col x-100 ">
+      <textarea id="message" className="input-text js-input message" type="text" rows="6" cols="40" placeholder="Message" required />
 
     </div>
 
     <div className="form-field col x-100 align-center">
-      <button className="submit-btn" type="submit" value="Submit">Submit</button>
+      <button className="submit-btn" type="submit" value="Submit">Envoyer</button>
     </div>
 
   </div>

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import HomeUsers from 'src/components/Posts';
+import HomeUsers from 'src/components/HomeUsers';
 
 const mapStateToProps = (state) => ({
 

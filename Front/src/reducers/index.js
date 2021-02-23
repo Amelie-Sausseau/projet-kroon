@@ -5,6 +5,10 @@ import usersReducer from 'src/reducers/users';
 // étape 2-a : on importe le reducer userReducer
 import micReducer from 'src/reducers/mic';
 
+import commentsReducer from 'src/reducers/comments';
+
+import postsReducer from 'src/reducers/posts'
+
 
 // on exporte le résultat d'une fonction
 // à qui on passe en argument un objet précisant
@@ -13,6 +17,8 @@ import micReducer from 'src/reducers/mic';
 const combinedReducer = combineReducers({
   mic: micReducer,
   users: usersReducer,
+  comments: commentsReducer,
+  posts: postsReducer,
 });
 
 // une fois le super reducer construit,

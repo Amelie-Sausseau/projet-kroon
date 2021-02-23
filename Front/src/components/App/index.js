@@ -10,15 +10,16 @@ import LoginForm from 'src/containers/LoginForm';
 import SignupForm from 'src/containers/SignupForm';
 import Footer from 'src/components/Footer';
 import Contact from 'src/components/Contact';
-import Categories from 'src/components/Categories';
+import Categories from 'src/containers/Categories';
 import Loader from 'src/components/Loader';
 import Burger from 'src/containers/Burger';
 import PostForm from 'src/containers/PostForm';
-import HomeUsers from 'src/components/HomeUsers';
+import HomeUsers from 'src/containers/HomeUsers';
 import Publications from 'src/components/Publications';
-import MyAccount from 'src/components/Account';
-import Account2 from 'src/components/account2';
-import Account3 from 'src/components/account3';
+// import MyAccount from 'src/containers/Account';
+// import Account2 from 'src/components/account2';
+// import Account3 from 'src/components/account3';
+import Compte from 'src/containers/Compte';
 import kroonLogo from './kroon_vFinale.svg';
 /* import Mic from 'src/containers/Mic';
  import Posts from 'src/containers/Posts';
@@ -72,7 +73,8 @@ const App = ({ manageLoad, loading, islogged }) => {
             <HomeUsers />
             <Footer />
           </Route>
-          <Route path="/poster" exact>
+{/*           <Redirect from="/connexion" to="/poster" />
+ */}          <Route path="/poster" exact>
             <PostForm />
           </Route>
           <Route path="/contact" exact>
@@ -83,9 +85,7 @@ const App = ({ manageLoad, loading, islogged }) => {
             <Publications />
           </Route>
           <Route path="/moncompte" exact>
-            <MyAccount />
-            <Account2 />
-            <Account3 />
+            <Compte />
           </Route>
         </>
       )}

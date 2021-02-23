@@ -8,7 +8,7 @@ import { sendCommentsToServer, setNewComment } from '../../actions/comments';
 // on branche la propriété du composant de présentation
 // Form sur la propriété newMessageValue du state du store.
 const mapStateToProps = (state) => ({
-  inputCommentValue: state.newCommentValue,
+  inputCommentValue: state.comments.newCommentValue,
 });
 
 // on branche notre propriété de type fonction

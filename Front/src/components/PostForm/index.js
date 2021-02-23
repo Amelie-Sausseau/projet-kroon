@@ -1,26 +1,34 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { ReactMic } from 'react-mic';
 import ReactAudioPlayer from 'react-audio-player';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import './postform.scss';
 
-const PostForm = ({ playStart, stopRecord, record, recordedSound, url, changeNewUrl, saveNewBlob, token, blob }) => {
+const PostForm = ({ playStart, stopRecord, record, recordedSound, url, changeNewUrl, saveNewBlob, token, blob, fetchCategories, categories }) => {
 
 /*   function sendApi(evt){
   evt.preventDefault();
     send();
   } */
 
+  useEffect(
+    fetchCategories,
+    [],
+  )
+
 
   function send(blob){
     const formData  =new FormData();
-    const file = new File([blob], {
+    const file = new File([blob],  {
       type: blob.type,
+
   });
   formData.append('sound',file)
 
-    axios.post("http://ec2-3-82-153-17.compute-1.amazonaws.com/api/v1/posts/",formData,{
+    axios.post("http://ec2-3-82-153-17.compute-1.amazonaws.com/api/v1/posts/",formData,
+
+    {
      headers : {
         'Content-Type': 'multipart/form-data',
         Authorization: `Bearer ${token}`,
@@ -45,7 +53,24 @@ const PostForm = ({ playStart, stopRecord, record, recordedSound, url, changeNew
     console.log(blobUrl)
     changeNewUrl(blobUrl);
 
+    
+
 }
+
+/* function downloadFile(recordedBlob, name = 'file', type = 'text/plain') {
+  const { createElement } = document
+  const { URL: { createObjectURL, revokeObjectURL }, setTimeout } = window
+
+  const blob = new Blob([recordedBlob], { type })
+  const url = createObjectURL(blob)
+
+  const anchor = createElement('a')
+  anchor.setAttribute('href', url)
+  anchor.setAttribute('download', name)
+  anchor.click()
+  
+  setTimeout(() => { revokeObjectURL(url) }, 100)
+} */
 
 
   function onStop(recordedBlob) {
@@ -55,7 +80,36 @@ const PostForm = ({ playStart, stopRecord, record, recordedSound, url, changeNew
     setBlobux(recordedBlob.blob);
     blob = recordedBlob.blob
     send(blob)
-  }
+
+ /*      if (
+      window.navigator && 
+      window.navigator.msSaveOrOpenBlob
+    ) return window.navigator.msSaveOrOpenBlob(recordedBlob);
+
+    // For other browsers:
+    // Create a link pointing to the ObjectURL containing the blob.
+    const data = window.URL.createObjectURL(recordedBlob.blob);
+   
+
+    const link = document.createElement('a');
+    link.href = data;
+    link.download = 'file.mp3';
+
+    // this is necessary as link.click() does not work on the latest firefox
+    link.dispatchEvent(
+      new MouseEvent('click', { 
+        bubbles: true, 
+        cancelable: true, 
+        view: window 
+      })
+    );
+
+    setTimeout(() => {
+      // For Firefox it is necessary to delay revoking the ObjectURL
+      window.URL.revokeObjectURL(data);
+      link.remove();
+    }, 100);  */
+    }
 
 
 
@@ -97,13 +151,11 @@ console.log('pour toi public',blobux);
 }
 <form autoComplete="off" className="box" type="submit">
     <select className="categories" placeholder="Catégories">
-      <option className="categories">Film</option>
-      <option className="categories">Série</option>
-      <option className="categories">Musique</option>
-      <option className="categories">Générique</option>
-      <option className="categories">Vidéo</option>
-      <option className="categories">Animaux</option>
-      <option className="categories">Autre</option>
+      {
+        categories.map((categorie) => (
+          <option className="categories"  key={categorie.id}>{categorie.name}</option>
+        ))
+      }
 
     </select>
     <input type="text" placeholder="Tître" required className="title" />

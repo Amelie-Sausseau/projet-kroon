@@ -8,7 +8,7 @@ const PostCard = ({data }) =>
 /*   console.log(data);
  */ (
    <div>
-     <h1>Titre</h1>
+     <h2>Titre</h2>
      <ReactAudioPlayer
         /* src={url} */
        controls

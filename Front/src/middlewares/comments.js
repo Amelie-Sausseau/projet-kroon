@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { saveComments, FETCH_COMMENTS } from '../actions/comments';
+import { saveComments, FETCH_COMMENTS, SEND_COMMENTS_TO_SERVER } from '../actions/comments';
 
 export default (store) => (next) => (action) => {
   switch (action.type) {
@@ -17,11 +17,24 @@ export default (store) => (next) => (action) => {
         });
       next(action);
       break;
+      case SEND_COMMENTS_TO_SERVER:
+      axios.get('http://ec2-3-82-153-17.compute-1.amazonaws.com/api/v1/posts/4')
+        .then((response) => {
+          console.log('then',response);
+        }).catch((error) => {
+          // TODO
+        }).finally((response) => {
+          // TODO
+        });
+      next(action);
+      break;
+
 
     default:
       next(action);
   }
 };
+
 
 // import axios from 'axios';
 // import { url } from 'src/utils';
