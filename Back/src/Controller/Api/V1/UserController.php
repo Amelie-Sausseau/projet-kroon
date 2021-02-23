@@ -93,7 +93,7 @@ class UserController extends AbstractController
     /**
      * @Route("/{id}", name="edit", methods="PUT", requirements={"id"="\d+"})
      */
-    public function edit(Request $request, User $user, FileUploader $fileUploader, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, User $user, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
         $postData = json_decode($request->getContent(), true);
         // Contrainte pour qu'un utilisateur connecté modifie son propre compte
@@ -108,11 +108,32 @@ class UserController extends AbstractController
 
         $this->getDoctrine()->getManager()->flush();
 
-        // on gère l'image après un 1er flush car on a besoin de l'id pour générer le nom
-        $avatar = $form->get('avatar')->getData();
-        $fileUploader->moveUserAvatar($avatar, $user);
+         /** @var UploadedFile $avatarFile */
+         $avatarFile = $form->get('avatar')->getData();
 
-        // il faut penser à flush à nouveau pour prendre en compte le nom de l'image
+         // this condition is needed because the 'avatar' field is not required
+         // so the PDF file must be processed only when a file is uploaded
+         if ($avatarFile) {
+             $originalFilename = pathinfo($avatarFile->getClientOriginalName(), PATHINFO_FILENAME);
+             // this is needed to safely include the file name as part of the URL
+             $safeFilename = $slugger->slug($originalFilename);
+             $newFilename = $safeFilename.'-'.uniqid().'.'.$avatarFile->guessExtension();
+
+             // Move the file to the directory where avatars are stored
+             try {
+                 $avatarFile->move(
+                     $this->getParameter('avatars_directory'),
+                     $newFilename
+                 );
+             } catch (FileException $e) {
+                 // ... handle exception if something happens during file upload
+             }
+
+             // updates the 'brochureFilename' property to store the PDF file name
+             // instead of its contents
+             $user->setAvatar($newFilename);
+         }
+
         $entityManager->flush();
 
         return $this->json(

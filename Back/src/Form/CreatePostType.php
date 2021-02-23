@@ -36,7 +36,7 @@ class CreatePostType extends AbstractType
             //    },
             //])
 
-            ->add('sound', FileType::class, [
+            ->add('sound', FileType::class, //[
                 // unmapped means that this field is not associated to any entity property
                 // 'mapped' => false,
 
@@ -46,15 +46,15 @@ class CreatePostType extends AbstractType
 
                 // unmapped fields can't define their validation using annotations
                 // in the associated entity, so you can use the PHP constraint classes
-                'constraints' => [
-                    new File([
-                        'maxSize' => '5M',
-                        'mimeTypes' => [
-                            'audio/webm',
-                            'audio/mp3'
-                        ],
-                    ])
-                ]]
+                //'constraints' => [
+                //    new File([
+                //        'maxSize' => '5M',
+                //        'mimeTypes' => [
+                //            'audio/webm',
+                //            'audio/mp3'
+                //        ],
+                //    ])
+                //]]
             );
     }
 

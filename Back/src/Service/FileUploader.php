@@ -10,66 +10,32 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 
 class FileUploader
 {
-    private $userAvatar;
-    private $userSound;
+    private $targetDirectory;
+    private $slugger;
 
-    public function __construct($userAvatar, $userSound)
+    public function __construct($targetDirectory, SluggerInterface $slugger)
     {
-        $this->userAvatar= $userAvatar;
-        $this->userSound = $userSound;
+        $this->targetDirectory = $targetDirectory;
+        $this->slugger = $slugger;
     }
 
-    /**
-     * Et la j'ai la meme fonctionnalité dédiée à un cas particulier
-     *
-     * @param UploadedFile|null $avatar on autorise le null si jamais aucun avatar n'a été fourni
-     * @return string|null
-     */
-    function moveAvatar(?UploadedFile $avatar, string $targetFolder, $prefix = ''): ?string
+    public function upload(UploadedFile $file)
     {
-        $newFilename = null;
+        $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+        $safeFilename = $this->slugger->slug($originalFilename);
+        $fileName = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
 
-        if ($avatar !== null) {
-            // on a décidé d'appeler notre fichier
-            $newFilename = $prefix . uniqid() . '.' . $avatar->guessExtension();
-
-            // Move the file to the directory where brochures are stored
-            $avatar->move(
-                $targetFolder,
-                $newFilename
-            );
+        try {
+            $file->move($this->getTargetDirectory(), $fileName);
+        } catch (FileException $e) {
+            // ... handle exception if something happens during file upload
         }
-        return $newFilename;
+
+        return $fileName;
     }
 
-    function moveSound(?UploadedFile $sound, string $targetFolder, $prefix = ''): ?string
+    public function getTargetDirectory()
     {
-        $newFilename = null;
-
-        if ($sound !== null) {
-            $newFilename = $prefix . uniqid() . '.' . $sound->guessExtension();
-
-            $sound->move(
-                $targetFolder,
-                $newFilename
-            );
-        }
-        return $newFilename;
-    }
-
-    function moveUserAvatar(?UploadedFile $avatar, User $user)
-    {
-        $avatarName = $this->moveAvatar($avatar, $this->userAvatar, 'user-');
-        if ($avatarName !== null) {
-            $user->setAvatar($avatarName);
-        }
-    }
-
-    function moveUserSound(?UploadedFile $sound, Post $post)
-    {
-        $soundName = $this->moveSound($sound, $this->userSound, 'post-');
-        if ($soundName !== null) {
-            $post->setSound($soundName);
-        }
+        return $this->targetDirectory;
     }
 }

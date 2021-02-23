@@ -7,7 +7,8 @@ export default (store) => (next) => (action) => {
     case FETCH_COMMENTS:
       axios.get('http://ec2-3-82-153-17.compute-1.amazonaws.com/api/v1/posts/4')
         .then((response) => {
-            console.log('je passe par then');
+          console.log('je passe par then');
+          console.log(response);
           store.dispatch(saveComments(response.data));
         }).catch((error) => {
           // TODO

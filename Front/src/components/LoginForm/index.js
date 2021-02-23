@@ -20,15 +20,6 @@ const LoginForm = ({
   function handleSubmit(evt) {
     evt.preventDefault();
     handleLogin();
-
- /*    () => {
-      browserHistory.push('/');
-    }; */
-
-    /*     setTimeout(() => {
-      props.history.push('/poster')
-    }, 2000)
- */
   }
   return (
     <div className="titre">
