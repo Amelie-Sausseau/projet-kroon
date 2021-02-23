@@ -25,7 +25,7 @@ class CreatePostType extends AbstractType
             //    'constraints' => new NotBlank,
             //])
 
-            //->add('body', TextType::class)
+            ->add('body', TextType::class)
             //[
                 //'constraints' => new NotBlank,
             //])
@@ -38,7 +38,7 @@ class CreatePostType extends AbstractType
             //    },
             //])
 
-            ->add('sound', FileType::class, //[
+            ->add('sound', FileType::class//, [
                 // unmapped means that this field is not associated to any entity property
                 // 'mapped' => false,
 
