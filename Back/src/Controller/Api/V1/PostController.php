@@ -53,6 +53,7 @@ class PostController extends AbstractController
             "overthere" => $request->getContent(),
         
         ]);
+        
         $postData = json_decode($request->getContent(), true);
 
         $post = new Post();
