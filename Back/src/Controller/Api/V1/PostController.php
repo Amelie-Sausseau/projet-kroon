@@ -65,7 +65,7 @@ class PostController extends AbstractController
             $post->setUser($this->getUser());
 
             $sound = $form->get('sound')->getData();
-            dd($sound);
+            // dd($sound);
             $emptySound = $sound .'-'.uniqid().'.mp3';
 
             file_put_contents($emptySound, $sound);
