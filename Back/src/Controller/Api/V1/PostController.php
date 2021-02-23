@@ -47,7 +47,11 @@ class PostController extends AbstractController
     public function add(Request $request, EntityManagerInterface $entityManager, PostRepository $postRepo): Response
     {   
 
-        return $this->json($request->request->all());
+        return $this->json([
+            "here" =>$request->request->all(),
+            "overthere" => $request->getContent(),
+        
+        ]);
         $postData = json_decode($request->getContent(), true);
 
         $post = new Post();
