@@ -44,7 +44,7 @@ class PostController extends AbstractController
     /**
      * @Route("/", name="add", methods="POST")
      */
-    public function add(Request $request, EntityManagerInterface $entityManager, PostRepository $postRepo, FileUploader $fileUploader, Post $post): Response
+    public function add(Request $request, EntityManagerInterface $entityManager, PostRepository $postRepo): Response
     {   
 
         return $this->json($request->request->all());
