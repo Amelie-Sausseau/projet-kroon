@@ -33,6 +33,7 @@ class UserEditType extends AbstractType
             ->add('bio', TextType::class)
 
             ->add('avatar', FileType::class, [
+                'label' => 'Image',
                 'required' => false,
                 'mapped' => false,
                 'constraints' => [
@@ -58,7 +59,23 @@ class UserEditType extends AbstractType
         // par exemple 
         if($data->getId()){
             $builder->add('bio');
-            $builder->add('avatar');
+            $builder->add('avatar', FileType::class, [
+                'label' => 'Image',
+                'required' => false,
+                'mapped' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '2M',
+                        'mimeTypes' => [
+                            'image/jpg',
+                            'image/jpeg',
+                            'image/png',
+                            'image/gif',
+                        ],
+                        'mimeTypesMessage' => 'Choisissez un format d\'image valide SVP',
+                    ])
+                ],
+            ]);
         }
     }
 

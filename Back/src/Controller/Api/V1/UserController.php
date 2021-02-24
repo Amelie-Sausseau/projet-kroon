@@ -93,16 +93,16 @@ class UserController extends AbstractController
     }
     
     /**
-     * @Route("/{id}", name="edit", methods={"GET", "PUT"}, requirements={"id"="\d+"})
+     * @Route("/edit/{id}", name="edit", methods={"GET", "PUT"}, requirements={"id"="\d+"})
      */
     public function edit(Request $request, User $user, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
         $postData = json_decode($request->getContent(), true);
         // Contrainte pour qu'un utilisateur connecté modifie son propre compte
         // dd($postData);
-        if ($user !== $this->getUser()) {
-            throw $this->createAccessDeniedException();
-        }
+        //if ($user !== $this->getUser()) {
+        //    throw $this->createAccessDeniedException();
+        //}
         $user->setUpdatedAt(new \DateTime());
         $form = $this->createForm(UserEditType::class, $user);
         $form->submit($postData, false);
@@ -136,12 +136,14 @@ class UserController extends AbstractController
             $entityManager->persist($avatar);
             $entityManager->flush();
 
-        return $this->json(
-            [
-                "success" => true
-            ],
-            Response::HTTP_OK
-        );
+            return $this->redirectToRoute('api_v1_user_edit', ['id' => $user->getId()]);
+
+        //return $this->json(
+        //    [
+        //        "success" => true
+        //    ],
+        //    Response::HTTP_OK
+        //);
     }
 
     return $this->render('user/edit.html.twig', [
@@ -179,7 +181,9 @@ class UserController extends AbstractController
      */
     public function comment(User $user, CommentRepository $commentRepo): Response
     {
-        if ($user !== $this->getUser()) {
+        $author = $comment->getPost()->getUser();
+        
+        if ($user == $this->getUser()) {
             $comments = $commentRepo->findBy(['user' => $user], ['createdAt' => 'DESC']);
             //dd($comments);
 
@@ -199,7 +203,7 @@ class UserController extends AbstractController
      */
     public function post(User $user, PostRepository $postRepo): Response
     {
-        if ($user !== $this->getUser()) {
+        if ($user == $this->getUser()) {
             $posts = $postRepo->findBy(['user' => $user], ['createdAt' => 'DESC']);
             //dd($posts);
 
