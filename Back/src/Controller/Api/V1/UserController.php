@@ -103,8 +103,8 @@ class UserController extends AbstractController
         //if ($user !== $this->getUser()) {
         //    throw $this->createAccessDeniedException();
         //}
-        $user->setUpdatedAt(new \DateTime());
         $form = $this->createForm(UserEditType::class, $user);
+        $user->setUpdatedAt(new \DateTime());
         $form->submit($postData, false);
 
         
@@ -136,7 +136,9 @@ class UserController extends AbstractController
             $entityManager->persist($avatar);
             $entityManager->flush();
 
-            return $this->redirectToRoute('api_v1_user_edit', ['id' => $user->getId()]);
+            $this->addFlash('success', 'Utilisateur modifié');
+
+            return $this->redirectToRoute('api_v1_user_read', ['id' => $user->getId()]);
 
         //return $this->json(
         //    [
@@ -180,9 +182,7 @@ class UserController extends AbstractController
      * @Route("/{id}/comments", name="comment_browse", methods="GET", requirements={"id"="\d+"})
      */
     public function comment(User $user, CommentRepository $commentRepo): Response
-    {
-        $author = $comment->getPost()->getUser();
-        
+    {     
         if ($user == $this->getUser()) {
             $comments = $commentRepo->findBy(['user' => $user], ['createdAt' => 'DESC']);
             //dd($comments);
@@ -194,7 +194,7 @@ class UserController extends AbstractController
             [
                 "success" => false
             ],
-            Response::HTTP_BAD_REQUEST
+            Response::HTTP_UNAUTHORIZED
         );
     }
 
@@ -214,7 +214,7 @@ class UserController extends AbstractController
             [
                 "success" => false
             ],
-            Response::HTTP_BAD_REQUEST
+            Response::HTTP_UNAUTHORIZED
         );
     }
 }
