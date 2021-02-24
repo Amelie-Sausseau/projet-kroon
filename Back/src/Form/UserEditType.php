@@ -15,6 +15,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\File;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class UserEditType extends AbstractType
 {
@@ -32,26 +33,25 @@ class UserEditType extends AbstractType
             
             ->add('bio', TextType::class)
 
-            ->add('avatar', FileType::class, [
+            ->add('avatarFile', VichImageType::class, [
                 'label' => 'Image',
                 'required' => false,
                 'mapped' => false,
-                'constraints' => [
-                    new File([
-                        'maxSize' => '2M',
-                        'mimeTypes' => [
-                            'image/jpg',
-                            'image/jpeg',
-                            'image/png',
-                            'image/gif',
-                        ],
-                        'mimeTypesMessage' => 'Choisissez un format d\'image valide SVP',
-                    ])
-                ],
+                //'constraints' => [
+                //    new File([
+                //        'maxSize' => '2M',
+                //        'mimeTypes' => [
+                //            'image/jpg',
+                //            'image/jpeg',
+                //            'image/png',
+                //            'image/gif',
+                //        ],
+                //        'mimeTypesMessage' => 'Choisissez un format d\'image valide SVP',
+                //    ])
+                //],
             ])
         ;
     }
-
 
 
     public function configureOptions(OptionsResolver $resolver)

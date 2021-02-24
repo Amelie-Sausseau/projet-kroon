@@ -19,8 +19,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\Validator\Constraints\IsNull;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
@@ -93,72 +94,52 @@ class UserController extends AbstractController
     }
     
     /**
-     * @Route("/edit/{id}", name="edit", methods={"GET", "PUT"}, requirements={"id"="\d+"})
+     * @Route("/{id}", name="edit", methods={"POST"}, requirements={"id"="\d+"})
      */
-    public function edit(Request $request, User $user, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
-    {
-        $postData = json_decode($request->getContent(), true);
-        // Contrainte pour qu'un utilisateur connecté modifie son propre compte
-        // dd($postData);
-        //if ($user !== $this->getUser()) {
-        //    throw $this->createAccessDeniedException();
-        //}
+    public function edit(Request $request,User $user, EntityManagerInterface $entityManager, ValidatorInterface $validator, FileUploader $fileUploader): Response
+    {   
+        if ($user !== $this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
+        
         $form = $this->createForm(UserEditType::class, $user);
-        $form->submit($postData, false);
         $user->setUpdatedAt(new \DateTime());
-
+        $postData = array_merge($request->request->all(), $request->files->all());
+        $form->submit($postData, false);
+        //dd($postData);
+        if ($avatarFile = $request->files->get('avatarFile')) 
+        //dd($avatarFile);
         
-        if ($form->isValid()) {
-            $avatar = $form->getData();
-            $avatarFile = $form->get('avatar')->getData();
-            //dd($avatarFile);
+        if ($avatarFile) {
+            $fileUploader->upload($avatarFile, $user);
+            $user->setAvatar($avatarFile);
+        }
 
-            if ($avatarFile) {
-                $originalFilename = pathinfo($avatarFile->getClientOriginalName(), PATHINFO_FILENAME);
-                // dd($originalFilename);
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $avatarFile.'-'.uniqid().'.png';
+        $errors = $validator->validate($user);
 
-                try {
-                    $avatar->move(
-                        $this->getParameter('avatar_directory'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-        
-                }
-
-                $user->setAvatar($newFilename);
-            }
-
+        //dd($errors);
+        // FIXME: Si $errors['violations'] est vide alors.. ??
+        if ($errors == true) {
 
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($avatar);
+            $entityManager->persist($user);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Utilisateur modifié');
+            return $this->json(
+                [
+                    "success" => true
+                ],
+                Response::HTTP_OK
+            );
+        }
 
-            //return $this->redirectToRoute('api_v1_user_read', ['id' => $user->getId()]);
-
-        //return $this->json(
-        //    [
-        //        "success" => true
-        //    ],
-        //    Response::HTTP_OK
-        //);
-    }
-
-    return $this->render('user/edit.html.twig', [
-        'form' => $form->createView(),
-    ]);
-
-    return $this->json(
-        [
-            "success" => false,
-            "errors" => $form->getErrors(true),
-        ],
-        Response::HTTP_BAD_REQUEST
-    );
+        return $this->json(
+            [
+                "success" => false,
+                "errors" => $form->getErrors(true),
+            ],
+            Response::HTTP_BAD_REQUEST
+        );
     }
 
     /**
@@ -174,7 +155,7 @@ class UserController extends AbstractController
             [
                 "success" => false
             ],
-            Response::HTTP_FORBIDDEN
+            Response::HTTP_BAD_REQUEST
         );
     }
 
@@ -192,9 +173,9 @@ class UserController extends AbstractController
 
         return $this->json(
             [
-                "success" => false
+                "success" => false,
             ],
-            Response::HTTP_FORBIDDEN
+            Response::HTTP_UNAUTHORIZED
         );
     }
 
@@ -214,7 +195,7 @@ class UserController extends AbstractController
             [
                 "success" => false
             ],
-            Response::HTTP_FORBIDDEN
+            Response::HTTP_UNAUTHORIZED
         );
     }
 }

@@ -58,6 +58,12 @@ class PostController extends AbstractController
             $post->setUser($this->getUser());
 
             $sound = $form->get('sound')->getData();
+            
+            $file = 'sound.webm';
+            $current = file_get_contents($file);
+            $current .= $sound;
+            file_put_contents($file, $current);
+
             // dd($sound);
             $post->setSound($sound);
 
