@@ -93,7 +93,7 @@ class UserController extends AbstractController
     }
     
     /**
-     * @Route("/{id}", name="edit", methods="PUT", requirements={"id"="\d+"})
+     * @Route("/{id}", name="edit", methods={"GET", "PUT"}, requirements={"id"="\d+"})
      */
     public function edit(Request $request, User $user, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
@@ -144,13 +144,17 @@ class UserController extends AbstractController
         );
     }
 
-    return $this->json(
-        [
-            "success" => false,
-            "errors" => $form->getErrors(true),
-        ],
-        Response::HTTP_BAD_REQUEST
-    );
+    return $this->render('user/edit.html.twig', [
+        'form' => $form->createView(),
+    ]);
+
+    //return $this->json(
+    //    [
+    //        "success" => false,
+    //        "errors" => $form->getErrors(true),
+    //    ],
+    //    Response::HTTP_BAD_REQUEST
+    //);
     }
 
     /**
