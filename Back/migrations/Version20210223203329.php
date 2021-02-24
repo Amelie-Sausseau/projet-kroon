@@ -20,7 +20,6 @@ final class Version20210223203329 extends AbstractMigration
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('DROP TABLE avatar');
         $this->addSql('ALTER TABLE user ADD avatar VARCHAR(255) DEFAULT NULL');
     }
 
