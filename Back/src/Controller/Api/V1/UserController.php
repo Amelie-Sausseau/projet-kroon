@@ -96,22 +96,22 @@ class UserController extends AbstractController
     /**
      * @Route("/{id}", name="edit", methods={"POST"}, requirements={"id"="\d+"})
      */
-    public function edit(Request $request,User $user, EntityManagerInterface $entityManager, ValidatorInterface $validator, FileUploader $fileUploader): Response
+    public function edit(Request $request, User $user, EntityManagerInterface $entityManager, ValidatorInterface $validator, FileUploader $fileUploader): Response
     {   
         if ($user !== $this->getUser()) {
             throw $this->createAccessDeniedException();
         }
-        
+
         $form = $this->createForm(UserEditType::class, $user);
         $user->setUpdatedAt(new \DateTime());
         $postData = array_merge($request->request->all(), $request->files->all());
         $form->submit($postData, false);
         //dd($postData);
-        if ($avatarFile = $request->files->get('avatarFile')) 
+        $avatarFile = $request->files->get('avatarFile'); 
         //dd($avatarFile);
         
         if ($avatarFile) {
-            $fileUploader->upload($avatarFile, $user);
+            $fileUploader->uploadAvatar($avatarFile, $user);
             $user->setAvatar($avatarFile);
         }
 

@@ -8,10 +8,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use phpDocumentor\Reflection\Types\Boolean;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=PostRepository::class)
+ * @Vich\Uploadable
  */
 class Post
 {
@@ -43,6 +46,13 @@ class Post
      * @Groups({"tag:allPosts"})
      */
     private $sound;
+
+    /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     * @Vich\UploadableField(mapping="post", fileNameProperty="sound")
+     * 
+     */
+    private $soundFile;
 
     /**
      * @ORM\Column(type="text")
@@ -165,6 +175,22 @@ class Post
         $this->sound = $sound;
 
         return $this;
+    }
+
+    public function setSoundFile(?File $soundFile = null): void
+    {
+        $this->soundFile = $soundFile;
+
+        if (null !== $soundFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getSoundFile(): ?File
+    {
+        return $this->soundFile;
     }
 
     public function getBody(): ?string

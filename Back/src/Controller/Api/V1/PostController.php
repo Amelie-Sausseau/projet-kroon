@@ -19,6 +19,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * @Route("api/v1/posts", name="api_v1_post_")
@@ -44,28 +45,30 @@ class PostController extends AbstractController
     /**
      * @Route("/", name="add", methods="POST")
      */
-    public function add(Request $request, EntityManagerInterface $entityManager, PostRepository $postRepo): Response
+    public function add(Request $request, EntityManagerInterface $entityManager, ValidatorInterface $validator, FileUploader $fileUploader): Response
     {   
       
-        $postData = json_decode($request->getContent(), true);
+        //$postData = json_decode($request->getContent(), true);
 
         $post = new Post();
 
         $form = $this->createForm(CreatePostType::class, $post);
+        $postData = array_merge($request->request->all(), $request->files->all());
         $form->submit($postData, true);
 
-        if ($form->isValid()) {
+        $soundFile = $request->files->get('soundFile');
+        // dd($soundFile);
+        if ($soundFile) {
+            $fileUploader->uploadSound($soundFile, $post);
+            $post->setSound($soundFile);
+        }
+
             $post->setUser($this->getUser());
 
-            $sound = $form->get('sound')->getData();
-            
-            $file = 'sound.webm';
-            $current = file_get_contents($file);
-            $current .= $sound;
-            file_put_contents($file, $current);
-
-            // dd($sound);
-            $post->setSound($sound);
+            // $file = 'sound.webm';
+            // $current = file_get_contents($file);
+            // $current .= $sound;
+            // file_put_contents($file, $current);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($post);
@@ -77,7 +80,7 @@ class PostController extends AbstractController
                 ],
                 Response::HTTP_OK
             );
-        }
+        
 
         return $this->json(
             [

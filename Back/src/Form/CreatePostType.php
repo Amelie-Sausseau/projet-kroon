@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\File\File as FileFile;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class CreatePostType extends AbstractType
 {
@@ -38,7 +39,13 @@ class CreatePostType extends AbstractType
             //    },
             //])
 
-            ->add('sound', TextType::class//, [
+            ->add('soundFile', VichFileType::class, [
+                'label' => 'Son',
+                'required' => false,
+                'mapped' => false,
+                
+                ]
+                //, [
                 // unmapped means that this field is not associated to any entity property
                 // 'mapped' => false,
 

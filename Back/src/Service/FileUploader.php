@@ -8,23 +8,25 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 
 class FileUploader
 {
-    private $targetDirectory;
+    private $avatarDirectory;
+    private $soundDirectory;
     private $slugger;
 
-    public function __construct($targetDirectory, SluggerInterface $slugger)
+    public function __construct($avatarDirectory, $soundDirectory, SluggerInterface $slugger)
     {
-        $this->targetDirectory = $targetDirectory;
+        $this->avatarDirectory = $avatarDirectory;
+        $this->soundDirectory = $soundDirectory;
         $this->slugger = $slugger;
     }
 
-    public function upload(UploadedFile $file)
+    public function uploadAvatar(UploadedFile $file)
     {
         $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
         $safeFilename = $this->slugger->slug($originalFilename);
         $fileName = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
 
         try {
-            $file->move($this->getTargetDirectory(), $fileName);
+            $file->move($this->getAvatarDirectory(), $fileName);
         } catch (FileException $e) {
             // ... handle exception if something happens during file upload
         }
@@ -32,8 +34,28 @@ class FileUploader
         return $fileName;
     }
 
-    public function getTargetDirectory()
+    public function uploadSound(UploadedFile $file)
     {
-        return $this->targetDirectory;
+        $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+        $safeFilename = $this->slugger->slug($originalFilename);
+        $fileName = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
+
+        try {
+            $file->move($this->getSoundDirectory(), $fileName);
+        } catch (FileException $e) {
+            // ... handle exception if something happens during file upload
+        }
+
+        return $fileName;
+    }
+
+    public function getAvatarDirectory()
+    {
+        return $this->avatarDirectory;
+    }
+
+    public function getSoundDirectory()
+    {
+        return $this->soundDirectory;
     }
 }
