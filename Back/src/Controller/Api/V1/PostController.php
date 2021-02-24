@@ -16,6 +16,7 @@ use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -92,54 +93,53 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="edit", methods="PUT", requirements={"id"="\d+"})
+     * @Route("/{id}", name="edit", methods="POST", requirements={"id"="\d+"})
      */
-    public function edit(Request $request, Post $post, User $user): Response
+    public function edit(Request $request, Post $post, User $user, FileUploader $fileUploader, ValidatorInterface $validator): Response
     {
-        //$userData = json_decode($request->getContent(), true);
-        // Contrainte pour qu'un utilisateur connecté modifie son propre post
-        $author = $post->getUser();
-        if ($author !== $this->getUser()) {
+        if ($user !== $this->getUser()) {
             throw $this->createAccessDeniedException();
         }
-        
-        $form = $this->createForm(CreatePostType::class, $post);
-        $postData = array_merge($request->request->all(), $request->files->all());
-        $form->submit($postData, true);
 
-        $soundFile = $request->files->get('soundFile');
-        // dd($soundFile);
+        $form = $this->createForm(PostEditType::class, $post);
+        $post->setUpdatedAt(new \DateTime());
+        $postData = array_merge($request->request->all(), $request->files->all());
+        $form->submit($postData, false);
+        //dd($postData);
+        $soundFile = $request->files->get('soundFile'); 
+        //dd($soundFile);
+        
         if ($soundFile) {
             $fileUploader->uploadSound($soundFile, $post);
             $post->setSound($soundFile);
         }
 
-            $post->setUser($this->getUser());
+        $errors = $validator->validate($post);
 
-            // $file = 'sound.webm';
-            // $current = file_get_contents($file);
-            // $current .= $sound;
-            // file_put_contents($file, $current);
+        //dd($errors);
+        // FIXME: Si $errors['violations'] est vide alors.. ??
+        if ($errors == true) {
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($post);
             $entityManager->flush();
 
+            return $this->json(
+                [
+                    "success" => true
+                ],
+                Response::HTTP_OK
+            );
+        }
+
         return $this->json(
             [
-                "success" => true
+                "success" => false,
+                "errors" => $form->getErrors(true),
             ],
-            Response::HTTP_OK
+            Response::HTTP_BAD_REQUEST
         );
-    }
-
-    return $this->json(
-        [
-            "success" => false,
-            "errors" => $form->getErrors(true),
-        ],
-        Response::HTTP_BAD_REQUEST
-    );
+    
     }
     
 
