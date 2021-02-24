@@ -104,8 +104,8 @@ class UserController extends AbstractController
         //    throw $this->createAccessDeniedException();
         //}
         $form = $this->createForm(UserEditType::class, $user);
-        $user->setUpdatedAt(new \DateTime());
         $form->submit($postData, false);
+        $user->setUpdatedAt(new \DateTime());
 
         
         if ($form->isValid()) {
@@ -214,7 +214,7 @@ class UserController extends AbstractController
             [
                 "success" => false
             ],
-            Response::HTTP_UNAUTHORIZED
+            Response::HTTP_FORBIDDEN
         );
     }
 }

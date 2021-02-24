@@ -21,7 +21,7 @@ class UserEditType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         // FIXME: Ligne + méthode onPreSetData crées par Mickael => à vérifier si erreur
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, [ $this, 'onPreSetData' ]);
+        //$builder->addEventListener(FormEvents::PRE_SET_DATA, [ $this, 'onPreSetData' ]);
 
         $builder
             ->add('name', TextType::class)
@@ -52,32 +52,7 @@ class UserEditType extends AbstractType
         ;
     }
 
-    public function onPreSetData(FormEvent $event)
-    {
-        $builder = $event->getForm();
-        $data = $event->getData();
-        // par exemple 
-        if($data->getId()){
-            $builder->add('bio', TextType::class);
-            $builder->add('avatar', FileType::class, [
-                'label' => 'Image',
-                'required' => false,
-                'mapped' => false,
-                'constraints' => [
-                    new File([
-                        'maxSize' => '2M',
-                        'mimeTypes' => [
-                            'image/jpg',
-                            'image/jpeg',
-                            'image/png',
-                            'image/gif',
-                        ],
-                        'mimeTypesMessage' => 'Choisissez un format d\'image valide SVP',
-                    ])
-                ],
-            ]);
-        }
-    }
+
 
     public function configureOptions(OptionsResolver $resolver)
     {
