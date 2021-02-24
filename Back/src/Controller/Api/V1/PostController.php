@@ -96,19 +96,34 @@ class PostController extends AbstractController
      */
     public function edit(Request $request, Post $post, User $user): Response
     {
-        $userData = json_decode($request->getContent(), true);
+        //$userData = json_decode($request->getContent(), true);
         // Contrainte pour qu'un utilisateur connecté modifie son propre post
         $author = $post->getUser();
         if ($author !== $this->getUser()) {
             throw $this->createAccessDeniedException();
         }
-        $post->setUpdatedAt(new \DateTime());
-        $form = $this->createForm(PostEditType::class, $post);
-        $form->submit($userData, false);
+        
+        $form = $this->createForm(CreatePostType::class, $post);
+        $postData = array_merge($request->request->all(), $request->files->all());
+        $form->submit($postData, true);
 
-        if ($form->isValid()) { 
+        $soundFile = $request->files->get('soundFile');
+        // dd($soundFile);
+        if ($soundFile) {
+            $fileUploader->uploadSound($soundFile, $post);
+            $post->setSound($soundFile);
+        }
 
-        $this->getDoctrine()->getManager()->flush();
+            $post->setUser($this->getUser());
+
+            // $file = 'sound.webm';
+            // $current = file_get_contents($file);
+            // $current .= $sound;
+            // file_put_contents($file, $current);
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($post);
+            $entityManager->flush();
 
         return $this->json(
             [

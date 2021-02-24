@@ -11,6 +11,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class PostEditType extends AbstractType
 {
@@ -22,6 +23,10 @@ class PostEditType extends AbstractType
             //TODO : gérer les contraintes de fichier ->add('sound', FileType::class)
             ->add('body', TextType::class)
             //TODO : passer en ChoiceType ->add('tags', TextType::class)
+            ->add('soundFile', VichFileType::class, [
+                'label' => 'Son',
+                'required' => false,
+                'mapped' => false])
         ;
     }
 
