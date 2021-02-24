@@ -43,23 +43,6 @@ class RegisterType extends AbstractType
                 ],
             ])
             
-            ->add('bio', TextType::class)
-
-            ->add('avatar', FileType::class, [
-                'required' => false,
-                'constraints' => [
-                    new File([
-                        'maxSize' => '2M',
-                        'mimeTypes' => [
-                            'image/jpg',
-                            'image/jpeg',
-                            'image/png',
-                            'image/gif',
-                        ],
-                        'mimeTypesMessage' => 'Choisissez un format d\'image valide SVP',
-                    ])
-                ],
-            ])
         ;
     }
 

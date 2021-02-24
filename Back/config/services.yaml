@@ -4,7 +4,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    avatar_directory: '%kernel.project_dir%/Back/public/uploads/avatar'
+    # avatar_directory: '%kernel.project_dir%/Back/public/uploads/avatar'
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -15,7 +15,6 @@ services:
             # that's created in this file (including controller arguments)
             $avatarDirectory : '%kernel.project_dir%/public/uploads/images'
             $soundDirectory : '%kernel.project_dir%/public/uploads/sounds'
-            #$userSound: '%kernel.project_dir%/public/uploads/sounds'
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     App\:

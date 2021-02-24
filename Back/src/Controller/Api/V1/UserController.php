@@ -23,6 +23,9 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\Validator\Constraints\IsNull;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Mailer\MailerInterface;
+use SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface;
 
 /**
  * @Route("api/v1/users", name="api_v1_user_")
@@ -36,7 +39,7 @@ class UserController extends AbstractController
     {
         return $this->json($userRepo->findAll(), 200, [], ['groups' => 'user:all']);
     }
-
+    
     /**
      * @Route("/{id}", name="read", methods="GET", requirements={"id"="\d+"})
      */
@@ -48,7 +51,6 @@ class UserController extends AbstractController
     /**
      * @Route("/register", name="register", methods={"POST"})
      */
-
     public function register(Request $request, UserPasswordEncoderInterface $encoder, UserRepository $user, EntityManagerInterface $entityManager, FileUploader $fileUploader): Response
     {   
         $userData = json_decode($request->getContent(), true);
@@ -70,7 +72,7 @@ class UserController extends AbstractController
             $entityManager->flush();
 
             // on gère l'image après un 1er flush car on a besoin de l'id pour générer le nom
-            $avatar = $form->get('avatar')->getData();
+            // $avatar = $form->get('avatar')->getData();
             // $fileUploader->moveUserAvatar($avatar, $user);
 
             // il faut penser à flush à nouveau pour prendre en compte le nom de l'image

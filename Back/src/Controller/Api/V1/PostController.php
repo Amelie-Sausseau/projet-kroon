@@ -97,10 +97,11 @@ class PostController extends AbstractController
      */
     public function edit(Request $request, Post $post, User $user, FileUploader $fileUploader, ValidatorInterface $validator): Response
     {
-        //if ($user !== $this->getUser()) {
-        //    throw $this->createAccessDeniedException();
-        //}
-        //TODO : Gérer voters pour l'édit
+        $author = $post->getUser();
+        if ($author !== $this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
+
         $form = $this->createForm(PostEditType::class, $post);
         $post->setUpdatedAt(new \DateTime());
         $postData = array_merge($request->request->all(), $request->files->all());
