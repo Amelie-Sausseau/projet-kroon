@@ -138,7 +138,7 @@ class UserController extends AbstractController
 
             $this->addFlash('success', 'Utilisateur modifié');
 
-            return $this->redirectToRoute('api_v1_user_read', ['id' => $user->getId()]);
+            //return $this->redirectToRoute('api_v1_user_read', ['id' => $user->getId()]);
 
         //return $this->json(
         //    [
@@ -152,13 +152,13 @@ class UserController extends AbstractController
         'form' => $form->createView(),
     ]);
 
-    //return $this->json(
-    //    [
-    //        "success" => false,
-    //        "errors" => $form->getErrors(true),
-    //    ],
-    //    Response::HTTP_BAD_REQUEST
-    //);
+    return $this->json(
+        [
+            "success" => false,
+            "errors" => $form->getErrors(true),
+        ],
+        Response::HTTP_BAD_REQUEST
+    );
     }
 
     /**
@@ -174,7 +174,7 @@ class UserController extends AbstractController
             [
                 "success" => false
             ],
-            Response::HTTP_BAD_REQUEST
+            Response::HTTP_FORBIDDEN
         );
     }
 
@@ -194,7 +194,7 @@ class UserController extends AbstractController
             [
                 "success" => false
             ],
-            Response::HTTP_UNAUTHORIZED
+            Response::HTTP_FORBIDDEN
         );
     }
 

@@ -58,7 +58,7 @@ class UserEditType extends AbstractType
         $data = $event->getData();
         // par exemple 
         if($data->getId()){
-            $builder->add('bio');
+            $builder->add('bio', TextType::class);
             $builder->add('avatar', FileType::class, [
                 'label' => 'Image',
                 'required' => false,
