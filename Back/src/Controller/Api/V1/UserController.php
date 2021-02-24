@@ -111,12 +111,12 @@ class UserController extends AbstractController
         if ($form->isValid()) {
             $avatar = $form->getData();
             $avatarFile = $form->get('avatar')->getData();
-            // dd($avatarFile);
+            //dd($avatarFile);
 
             if ($avatarFile) {
-                // $originalFilename = pathinfo($avatarFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $originalFilename = pathinfo($avatarFile->getClientOriginalName(), PATHINFO_FILENAME);
                 // dd($originalFilename);
-                // $safeFilename = $slugger->slug($originalFilename);
+                $safeFilename = $slugger->slug($originalFilename);
                 $newFilename = $avatarFile.'-'.uniqid().'.png';
 
                 try {
@@ -128,7 +128,7 @@ class UserController extends AbstractController
         
                 }
 
-                $avatar->setAvatar($newFilename);
+                $user->setAvatar($newFilename);
             }
 
 
@@ -158,7 +158,16 @@ class UserController extends AbstractController
      */
     public function bookmark(User $user): Response
     {
-        return $this->json($user, 200, [], ['groups' => 'user:bookmarkedPosts']);
+        if ($user !== $this->getUser()) {
+            return $this->json($user, 200, [], ['groups' => 'user:bookmarkedPosts']);
+        }
+
+        return $this->json(
+            [
+                "success" => false
+            ],
+            Response::HTTP_BAD_REQUEST
+        );
     }
 
     /**
@@ -166,9 +175,19 @@ class UserController extends AbstractController
      */
     public function comment(User $user, CommentRepository $commentRepo): Response
     {
-        $comments = $commentRepo->findBy(['user' => $user], ['createdAt' => 'DESC']);
-        //dd($comments);
-        return $this->json($comments, 200, [], ['groups' => 'user:commentedPosts']);
+        if ($user !== $this->getUser()) {
+            $comments = $commentRepo->findBy(['user' => $user], ['createdAt' => 'DESC']);
+            //dd($comments);
+
+            return $this->json($comments, 200, [], ['groups' => 'user:commentedPosts']);
+        }
+
+        return $this->json(
+            [
+                "success" => false
+            ],
+            Response::HTTP_BAD_REQUEST
+        );
     }
 
     /**
@@ -176,8 +195,18 @@ class UserController extends AbstractController
      */
     public function post(User $user, PostRepository $postRepo): Response
     {
-        $posts = $postRepo->findBy(['user' => $user], ['createdAt' => 'DESC']);
-        //dd($posts);
-        return $this->json($posts, 200, [], ['groups' => 'user:writtenPosts']);
+        if ($user !== $this->getUser()) {
+            $posts = $postRepo->findBy(['user' => $user], ['createdAt' => 'DESC']);
+            //dd($posts);
+
+            return $this->json($posts, 200, [], ['groups' => 'user:writtenPosts']);
+        }
+
+        return $this->json(
+            [
+                "success" => false
+            ],
+            Response::HTTP_BAD_REQUEST
+        );
     }
 }
