@@ -2,6 +2,6 @@
     flex-direction: row;
     flex-wrap: wrap;
     width: 100%;
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
     justify-content: space-around;
 }

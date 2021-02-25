@@ -12,4 +12,7 @@ export const changeInputPostValue = (fieldValue, fieldName ) => ({
   fieldName,
 })
 
-// export const
+export const saveCategories = (data) => ({
+  type: SAVE_CATEGORIES,
+  data,
+})

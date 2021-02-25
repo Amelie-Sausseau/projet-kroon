@@ -27,10 +27,13 @@ const publi = "/publications/"
      
     { 
         posts.map((post) => (
+          
           <NavLink to={publi + post.id}>
+            <div>Username</div>
           <div className="last_posts" >
         <h3 id={post.id}>{post.title} </h3> 
         </div>
+
 
         <ReactAudioPlayer
          src={post.sound}

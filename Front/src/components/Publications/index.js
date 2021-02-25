@@ -17,7 +17,7 @@ function Publications({post}) {
 
  return(
     <div className="publication">
-<Avatar />
+<Avatar className="avatar"/>
 {/* {
         posts.map((categorie) =>        <h1 className="titlepost">Titre du son</h1>
         )

@@ -25,7 +25,7 @@ const Field = ({
         value={value}
         onChange={handleChange}
         // infos de base
-        id={inputId}
+        // id={inputId}
         type={type}
         className="field-input-signup"
         placeholder={placeholder}

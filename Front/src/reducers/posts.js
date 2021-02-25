@@ -18,7 +18,7 @@ import {
         return {
           ...state,
           categories: action.data,
-          loading: false,
+     
         };
         
       case CHANGE_POSTS_VALUE:
