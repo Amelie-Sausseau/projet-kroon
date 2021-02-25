@@ -57,7 +57,7 @@ const SignupForm = ({
           value={email}
         />
         <Field
-          type="text"
+          type="password"
           name="password"
           placeholder="Password"
           required
