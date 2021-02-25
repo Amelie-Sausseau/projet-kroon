@@ -125,8 +125,8 @@ class UserController extends AbstractController
                 } catch (FileException $e) {
         
                 }
-
-                $user->setAvatar('/uploads/avatar/'.$newFilename);
+            $url = 'http://ec2-3-82-153-17.compute-1.amazonaws.com/';
+            $user->setAvatar($url.'uploads/avatar/'.$newFilename);
         }
 
         $errors = $validator->validate($user);
