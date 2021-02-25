@@ -98,7 +98,7 @@ class UserController extends AbstractController
     /**
      * @Route("/{id}", name="edit", methods={"POST"}, requirements={"id"="\d+"})
      */
-    public function edit(Request $request, User $user, EntityManagerInterface $entityManager, ValidatorInterface $validator, FileUploader $fileUploader): Response
+    public function edit(Request $request, User $user, EntityManagerInterface $entityManager, SluggerInterface $slugger ,ValidatorInterface $validator, FileUploader $fileUploader): Response
     {   
         if ($user !== $this->getUser()) {
             throw $this->createAccessDeniedException();
@@ -109,16 +109,24 @@ class UserController extends AbstractController
         $postData = array_merge($request->request->all(), $request->files->all());
         $form->submit($postData, false);
         //dd($postData);
-        $avatarFile = $request->files->get('avatarFile'); 
-        dd($avatarFile);
+        $avatarFile = $request->files->get('avatarFile');
+        //dd($avatarFile);
         
         if ($avatarFile) {
-            $fileUploader->uploadAvatar($avatarFile, $user);
-            //dd($avatarFile);
-            $fileUploader->moveUserAvatar($avatarFile, $user);
-            //dd($avatarFile);
-            $user->setAvatar($avatarFile);
-            //dd($avatarFile);
+            $originalFilename = pathinfo($avatarFile->getClientOriginalName(), PATHINFO_FILENAME);
+            $safeFilename = $slugger->slug($originalFilename);
+            $newFilename = $safeFilename.'-'.uniqid().'.'.$avatarFile->guessExtension();
+
+                try {
+                    $avatarFile->move(
+                        $this->getParameter('avatar_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+        
+                }
+
+                $user->setAvatar('/uploads/avatar/'.$newFilename);
         }
 
         $errors = $validator->validate($user);
