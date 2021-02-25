@@ -6,6 +6,7 @@ import React from 'react';
 import CommentForm from '../../containers/CommentForm';
 import Sound from './Sound';
 import Comments from './Comments';
+import Avatar from '../../utils/avatar';
 
 // Style
 import './publications.scss';
@@ -16,7 +17,7 @@ function Publications({post}) {
 
  return(
     <div className="publication">
-
+<Avatar />
 {/* {
         posts.map((categorie) =>        <h1 className="titlepost">Titre du son</h1>
         )

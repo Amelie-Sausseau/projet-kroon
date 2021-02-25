@@ -1,8 +1,11 @@
 import React from 'react';
+import AvatarComment from '../../../utils/avatarComment';
 
 const Comment = () => (
+     
   <div className="commentaire">
-    <div className="message__username">pseudo</div>
+ <AvatarComment className="avatarComment"/>
+    {/* <div className="message__username">pseudo</div> */}
     <div className="message__content">le commentaire du man</div>
   </div>
 );

@@ -15,8 +15,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(changeFieldSendMessage(fieldValue, fieldName));
   },
 
-  sendMessage: () => {
-    dispatch(sendMessage());
+  sendMessage2: () => {
+    alert('ok');
   },
 
 });

@@ -78,7 +78,7 @@ const App = ({ manageLoad, loading, islogged }) => {
             <HomeUsers />
             <Footer />
           </Route>
-{/*           <Redirect from="/connexion" to="/poster" />
+{/*           <Redirect from="/connexion" to="/poster" exact/>
  */}          <Route path="/poster" exact>
             <PostForm />
           </Route>
