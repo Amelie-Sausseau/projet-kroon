@@ -74,7 +74,8 @@ class PostController extends AbstractController
                 } catch (FileException $e) {
         
                 }
-            $post->setSound('/uploads/sound/'.$newFilename);
+            $url = 'http://ec2-3-82-153-17.compute-1.amazonaws.com/';
+            $post->setSound($url.'uploads/sound/'.$newFilename);
             
         }
 
