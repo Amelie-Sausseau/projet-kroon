@@ -196,24 +196,24 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/posts", name="post_browse", methods="GET", requirements={"id"="\d+"})
+     * @Route("/posts", name="post_browse", methods="GET")
      */
     public function post(PostRepository $postRepo): Response
     {
         $user = $this->getUser();
         //dd($user);
-        
-        $posts = $postRepo->findBy(['user' => $user], ['createdAt' => 'DESC']);
+        if ($this->getUser()) {
+            $posts = $postRepo->findBy(['user' => $user], ['createdAt' => 'DESC']);
             //dd($posts);
 
-        return $this->json($posts, 200, [], ['groups' => 'user:writtenPosts']);
+            return $this->json($posts, 200, [], ['groups' => 'user:writtenPosts']);
+        }
 
-
-        // return $this->json(
-        //     [
-        //         "success" => false
-        //     ],
-        //     Response::HTTP_UNAUTHORIZED
-        // );
+        return $this->json(
+            [
+                "success" => false
+            ],
+            Response::HTTP_UNAUTHORIZED
+        );
     }
 }
