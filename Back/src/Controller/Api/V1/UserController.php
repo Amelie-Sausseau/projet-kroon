@@ -202,18 +202,18 @@ class UserController extends AbstractController
     {
         $user = $this->getUser();
         //dd($user);
-        if (!empty($user)) {
-            $posts = $postRepo->findBy(['user' => $user], ['createdAt' => 'DESC']);
+        
+        $posts = $postRepo->findBy(['user' => $user], ['createdAt' => 'DESC']);
             //dd($posts);
 
-            return $this->json($posts, 200, [], ['groups' => 'user:writtenPosts']);
-        }
+        return $this->json($posts, 200, [], ['groups' => 'user:writtenPosts']);
 
-        return $this->json(
-            [
-                "success" => false
-            ],
-            Response::HTTP_UNAUTHORIZED
-        );
+
+        // return $this->json(
+        //     [
+        //         "success" => false
+        //     ],
+        //     Response::HTTP_UNAUTHORIZED
+        // );
     }
 }
