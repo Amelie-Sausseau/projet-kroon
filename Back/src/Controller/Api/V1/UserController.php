@@ -198,7 +198,7 @@ class UserController extends AbstractController
     /**
      * @Route("/posts", name="post_browse", methods="GET")
      */
-    public function post(Request $request, PostRepository $postRepo): Response
+    public function post(Request $request, User $user, PostRepository $postRepo): Response
     {
         $user = $this->getUser();
         //dd($user);
@@ -207,7 +207,7 @@ class UserController extends AbstractController
             //dd($posts);
 
             return $this->json($posts, 200, [], ['groups' => 'user:writtenPosts']);
-        ////}
+        //}
 
         //return $this->json(
         //    [
