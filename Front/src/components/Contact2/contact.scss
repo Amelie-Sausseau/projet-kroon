@@ -1,0 +1,54 @@
+.js-input {
+    color: black;
+    height: 34px;
+    width: 20rem;
+    border-radius: 1rem;
+    border: 1px solid transparent;
+    border-top: none;
+    border-bottom: 1px solid #DDD;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #FFF, 0 1px 0 #FFF;
+    text-align: left;
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+}
+
+button {
+    background: rgb(177,177,177);
+    background: linear-gradient(318deg, rgba(177,177,177,1) 10%, rgba(227,227,227,1) 66%, rgba(225,225,225,1) 100%);    
+    box-shadow: 
+      12px 12px 16px 0 rgba(0, 0, 0, 0.25),
+      -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
+    border-radius: 50px;    padding-top: 1rem;
+    border: solid 2px #d8d8d8;
+/*     color: #fff;
+    background-color: #1f1f1f;
+    border: none; */
+    text-align: center;
+    margin-top: 3rem;
+/*         border: 1px solid #fff;
+        background-color: #1f1f1f; */
+      font-size: small;
+/*         color: #fff;
+ */        font-weight: bold;
+        width: 80vw;
+/*         border-radius: 1rem;
+ */        padding-top: 1rem;
+        padding-bottom: 1rem;
+    
+}
+
+.contact {
+    text-align: center;
+    font-size: xx-large;
+}
+
+::placeholder {
+    font-weight: bold;
+}
+
+.message{
+    height: 5rem;
+    vertical-align: middle;
+}

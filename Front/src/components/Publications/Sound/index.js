@@ -3,8 +3,11 @@ import React from 'react';
 // == Import : local
 import './styles.css';
 
+import ReactAudioPlayer from 'react-audio-player';
+
+
 // == Composant
-const Sound = () => (
+const Sound = ({auteur, titre}) => (
   <header className="presentation">
     {/* <img
       src={thumbnail}
@@ -12,8 +15,14 @@ const Sound = () => (
       className="presentation-image"
     /> */}
     <div className="presentation-content">
-      <h1 className="presentation-title">title du sound</h1>
-      <p className="presentation-infos">auteur</p>
+      <h1 className="presentation-title">{titre}</h1>
+      <p className="presentation-infos">{auteur}</p>
+      <ReactAudioPlayer
+     /* src={url} */
+     controls
+     preload="auto"
+     className="audioPlayer"
+   />
     </div>
   </header>
 );

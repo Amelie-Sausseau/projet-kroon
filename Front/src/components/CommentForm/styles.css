@@ -3,7 +3,7 @@
 }
 
 .form__input{
-    height: 10rem;
+    height: 6rem;
     width: 20rem;
     border-radius: 1rem;
     border: 1px solid transparent;
@@ -13,4 +13,9 @@
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 3vh;
+}
+
+
+.form__submit{
+    margin-top: 0;
 }

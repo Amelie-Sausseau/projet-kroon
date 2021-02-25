@@ -4,6 +4,7 @@ import {
   CHANGE_URL,
   SAVE_POSTS,
   CHANGE_BLOB,
+  SAVE_POST,
 
 } from '../actions';
 
@@ -47,6 +48,12 @@ export default (state = initialState, action = {}) => {
         data: action.data,
         loading: false,
       };
+      case SAVE_POST:
+        return {
+          ...state,
+          data: action.data,
+          loading: false,
+        };
     default:
       return state;
   }

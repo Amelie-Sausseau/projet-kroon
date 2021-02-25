@@ -4,6 +4,8 @@ export const CHANGE_URL= "CHANGE_URL";
 export const FETCH_POSTS = 'FETCH_POSTS';
 export const SAVE_POSTS = 'SAVE_POSTS';
 export const CHANGE_BLOB = 'CHANGE_BLOB';
+export const FETCH_POST = 'FETCH_POST';
+export const SAVE_POST = 'SAVE_POST';
 
 export const playStart = () => ({
 
@@ -36,5 +38,16 @@ export const fetchPosts = () => ({
 export const savePosts = (data) => ({
 
   type: SAVE_POSTS,
+  data,
+})
+
+export const fetchPost = () => ({
+
+  type:FETCH_POST,
+})
+
+export const savePost = (data) => ({
+
+  type: SAVE_POST,
   data,
 })

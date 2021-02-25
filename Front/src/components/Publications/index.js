@@ -11,15 +11,26 @@ import Comments from './Comments';
 import './publications.scss';
 
 // == Composant
-function Publications() {
-  return (
+function Publications({post}) {
+  console.log('console log pour Amélie', post);
+
+ return(
     <div className="publication">
-      <Sound />
-      <Comments />
-      <CommentForm />
+
+{/* {
+        posts.map((categorie) =>        <h1 className="titlepost">Titre du son</h1>
+        )
+      } */}
+    <h1 className="titlepost">Titre du son</h1>
+      <Sound 
+/*       titre={post.title} 
+      auteur={post.user.name} */
+      />
+      <Comments className="comments"/>
+      <CommentForm className="form"/>
     </div>
-  );
-}
+  
+)};
 
 // == Export
 export default Publications;
