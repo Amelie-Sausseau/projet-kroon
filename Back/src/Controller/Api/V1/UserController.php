@@ -202,7 +202,7 @@ class UserController extends AbstractController
     {
         $user = $this->getUser();
         //dd($user);
-        if ($this->getUser()) {
+        if (!empty($user)) {
             $posts = $postRepo->findBy(['user' => $user], ['createdAt' => 'DESC']);
             //dd($posts);
 

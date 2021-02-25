@@ -75,7 +75,7 @@ class PostController extends AbstractController
         
                 }
             $post->setSound('/uploads/sound/'.$newFilename);
-            //dd($soundFile);
+            
         }
 
             $post->setUser($this->getUser());
