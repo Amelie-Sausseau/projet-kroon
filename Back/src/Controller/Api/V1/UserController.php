@@ -110,14 +110,14 @@ class UserController extends AbstractController
         $form->submit($postData, false);
         //dd($postData);
         $avatarFile = $request->files->get('avatarFile'); 
-        //dd($avatarFile);
+        dd($avatarFile);
         
         if ($avatarFile) {
             $fileUploader->uploadAvatar($avatarFile, $user);
-            //dd($uploadedFile);
-            $uploadedFile = $avatarFile->move($fileUploader->getAvatarDirectory(), $avatarFile);
-            //dd($uploadedFile);
-            $user->setAvatar($uploadedFile);
+            //dd($avatarFile);
+            $fileUploader->moveUserAvatar($avatarFile, $user);
+            //dd($avatarFile);
+            $user->setAvatar($avatarFile);
             //dd($avatarFile);
         }
 
