@@ -7,7 +7,10 @@ import micReducer from 'src/reducers/mic';
 
 import commentsReducer from 'src/reducers/comments';
 
-import postsReducer from 'src/reducers/posts'
+import postsReducer from 'src/reducers/posts';
+
+import contactReducer from 'src/reducers/contact'
+
 
 
 // on exporte le résultat d'une fonction
@@ -19,6 +22,7 @@ const combinedReducer = combineReducers({
   users: usersReducer,
   comments: commentsReducer,
   posts: postsReducer,
+  contact: contactReducer,
 });
 
 // une fois le super reducer construit,

@@ -1,11 +1,12 @@
 import React from 'react';
-
+import { NavLink } from 'react-router-dom';
+import PostCard from 'src/components/PostCard';
 import './style.scss';
 
 const HomeUsers = ({ posts }) => {
 
   console.log(posts);
-
+const publi = "/publications/"
   return (
 
   <div className="home">
@@ -17,17 +18,16 @@ const HomeUsers = ({ posts }) => {
         took a galley of type and scrambled it to make a type specimen book.
       </div>
      <h2>Derniers sons</h2>
-    {
-        posts.map((post) => (
-          <div className="last_posts" >
-          <h3 id={post.id}>{post.title}</h3>
-          <div>Img Cat</div>
-        </div>
-                ))
-      }
- 
-
      
+    { 
+        posts.map((post) => (
+          <NavLink to={publi + post.id}>
+          <div className="last_posts" >
+        <h3 id={post.id}>{post.title} </h3> 
+        </div></NavLink>
+                ))
+        } 
+
 
       <div>
         Where does it come from?

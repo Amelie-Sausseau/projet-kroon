@@ -19,12 +19,14 @@ const PostForm = ({ playStart, stopRecord, record, recordedSound, url, changeNew
 
 
   function send(blob){
-    const formData  =new FormData();
+    const formData = new FormData();
     const file = new File([blob],  {
       type: blob.type,
 
   });
-  formData.append('sound',file)
+  formData.append('soundFile', file)
+  formData.append('title', 'titre essai dim')
+  formData.append('body', 'essai body dim')
 
     axios.post("http://ec2-3-82-153-17.compute-1.amazonaws.com/api/v1/posts/",formData,
 
@@ -77,8 +79,8 @@ const PostForm = ({ playStart, stopRecord, record, recordedSound, url, changeNew
     console.log('chunk of real-time data is: ', recordedBlob);
     recordedSound = true;
     downloadBlob(recordedBlob);
-    setBlobux(recordedBlob.blob);
-    blob = recordedBlob.blob
+/*     setBlobux(recordedBlob.blob);
+ */    blob = recordedBlob.blob
     send(blob)
 
  /*      if (
@@ -116,15 +118,14 @@ const PostForm = ({ playStart, stopRecord, record, recordedSound, url, changeNew
 const htmlClass = record ? 'button_play' : 'button_start';
 
 
-const [blobux, setBlobux] = useState({});  
-console.log('pour toi public',blobux);
+/* const [blobux, setBlobux] = useState({});  
+console.log('pour toi public',blobux); */
 
 
   return (
     <div className="idk">
       <div className="buttonContainer">
-      <h1>Propose ton son!</h1>
-
+       <h1>Propose ton son!</h1>
         <button onClick={playStart} type="button" className={htmlClass}>
           <ReactMic
             noiseSuppression
@@ -149,7 +150,7 @@ console.log('pour toi public',blobux);
    </div>
    )
 }
-<form autoComplete="off" className="box" type="submit">
+<form autoComplete="off" className="box" type="submit" >
     <select className="categories" placeholder="Catégories">
       {
         categories.map((categorie) => (
@@ -158,9 +159,9 @@ console.log('pour toi public',blobux);
       }
 
     </select>
-    <input type="text" placeholder="Tître" required className="title" />
-    <input type="text" placeholder="Description" required className="description" />
-    <div className="buttonSubmit"  /* onClick={sendApi} */ ><span>Envoyer</span></div>
+    <input type="text" placeholder="Titre" className="title" /* value={title} */ />
+    <input type="text" placeholder="Description" className="description" /* value={description} */ />
+    <div className="buttonSubmit"   ><span>Envoyer</span></div>
 
   </form>
     </div>

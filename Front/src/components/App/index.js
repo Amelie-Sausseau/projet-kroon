@@ -15,12 +15,14 @@ import Loader from 'src/components/Loader';
 import Burger from 'src/containers/Burger';
 import PostForm from 'src/containers/PostForm';
 import HomeUsers from 'src/containers/HomeUsers';
-import Publications from 'src/components/Publications';
+import Publications from 'src/containers/Publications';
 // import MyAccount from 'src/containers/Account';
 // import Account2 from 'src/components/account2';
 // import Account3 from 'src/components/account3';
+import MyEnhancedForm from 'src/components/Contact2';
 import Compte from 'src/containers/Compte';
 import kroonLogo from './kroon_vFinale.svg';
+
 /* import Mic from 'src/containers/Mic';
  import Posts from 'src/containers/Posts';
 import Nav from 'src/components/Nav';
@@ -56,7 +58,7 @@ const App = ({ manageLoad, loading, islogged }) => {
             <SignupForm />
           </Route>
           <Route path="/contact" exact>
-            <Contact />
+            <MyEnhancedForm />
             <Footer />
           </Route>
 
@@ -69,6 +71,9 @@ const App = ({ manageLoad, loading, islogged }) => {
             <Categories />
             <Footer />
           </Route>
+          <Route  path="/publications/:slug" >
+            <Publications  />
+          </Route>
           <Route path="/" exact>
             <HomeUsers />
             <Footer />
@@ -78,7 +83,7 @@ const App = ({ manageLoad, loading, islogged }) => {
             <PostForm />
           </Route>
           <Route path="/contact" exact>
-            <Contact />
+            <MyEnhancedForm />
             <Footer />
           </Route>
           <Route path="/publications" exact>

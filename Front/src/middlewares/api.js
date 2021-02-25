@@ -4,7 +4,7 @@ import { FETCH_POSTS_USER_LOGIN, savePostsUser } from 'src/actions/users';
 
 import { FETCH_CATEGORIES, saveCategories} from 'src/actions/posts';
 
-import { FETCH_POSTS, savePosts } from 'src/actions';
+import { FETCH_POSTS, savePosts, FETCH_POST } from 'src/actions';
 
 import { url } from 'src/utils';
 
@@ -29,21 +29,20 @@ export default (store) => (next) => (action) => {
         }).catch((error) => {
           console.error('error');
         });
-
       next(action);
       break;
 
-       case FETCH_POSTS_USER_LOGIN: {
+       case FETCH_POSTS_USER_LOGIN:
         const { token } = store.getState().users;
         console.log(token);
-        axios.post('http://ec2-3-82-153-17.compute-1.amazonaws.com/api/v1/users/3/posts', {},
+        axios.get('http://ec2-3-82-153-17.compute-1.amazonaws.com/api/v1/users/3/posts', {},
           {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           })
           .then((response) => {
-            store.dispatch(savePostsUser(response.data));
+            store.dispatch(savePostsUser(response));
             console.log(response.data);
           }).catch((error) => {
             // TODO
@@ -53,7 +52,18 @@ export default (store) => (next) => (action) => {
           });
         next(action);
         break;
-      } 
+
+        case FETCH_POST:
+          axios.get(`${url}/api/v1/posts/8`)
+            .then((response) => {
+              console.log(response.data);
+              store.dispatch(savePost(response.data));
+            }).catch((error) => {
+              console.error('error');
+            });
+          next(action);
+          break;
+      
     default:
       next(action);
   }

@@ -64,7 +64,7 @@
    
 
     .button_start {
-      margin: 50px auto;
+      margin:  auto;
       outline: none;
       display: block;
       border: none;
@@ -76,13 +76,14 @@
       border-radius: 50%;
       text-indent: -1000em;
       border: solid 3px #e3e3e3;
+      margin-top: 2rem;
 
     }
   
   
     
     .button_play  {
-      margin: 50px auto;
+      margin:  auto;
       outline: none;
       display: block;
       border: none;
@@ -94,6 +95,7 @@
       border-radius: 50%;
       text-indent: -1000em;
       cursor: pointer;
+      margin-top: 2rem;
 
     
     }
@@ -106,19 +108,22 @@
       border-radius: 50%;
       border: solid 0px;
       position: relative;
-      bottom: 7.5rem;
+      bottom: 4.5rem;
       border: solid 3px #e3e3e3;
       padding-bottom: 25px;
       
    }
   
    .audioPlayer{
-     position: relative;
-     bottom: 3rem;
-   }
+display: block;  
+margin: auto;
+}
+   
   .buttonContainer {
-    position: relative;
-  }
+    height: 17rem;
+display: block;
+margin: auto;
+}
 
   h1 {
     font-size: xx-large;
