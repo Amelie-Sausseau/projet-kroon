@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Entity\User;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\String\Slugger\SluggerInterface;
@@ -11,13 +12,6 @@ class FileUploader
     private $avatarDirectory;
     private $soundDirectory;
     private $slugger;
-
-    public function __construct($avatarDirectory, $soundDirectory, SluggerInterface $slugger)
-    {
-        $this->avatarDirectory = $avatarDirectory;
-        $this->soundDirectory = $soundDirectory;
-        $this->slugger = $slugger;
-    }
 
     public function uploadAvatar(UploadedFile $file)
     {

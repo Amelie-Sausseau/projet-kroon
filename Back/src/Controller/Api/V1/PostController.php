@@ -16,10 +16,12 @@ use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
@@ -46,7 +48,7 @@ class PostController extends AbstractController
     /**
      * @Route("/", name="add", methods="POST")
      */
-    public function add(Request $request, EntityManagerInterface $entityManager, ValidatorInterface $validator, FileUploader $fileUploader): Response
+    public function add(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {   
       
         //$postData = json_decode($request->getContent(), true);
@@ -60,8 +62,20 @@ class PostController extends AbstractController
         $soundFile = $request->files->get('soundFile');
         // dd($soundFile);
         if ($soundFile) {
-            $fileUploader->uploadSound($soundFile, $post);
-            $post->setSound($soundFile);
+            $originalFilename = pathinfo($soundFile->getClientOriginalName(), PATHINFO_FILENAME);
+            $safeFilename = $slugger->slug($originalFilename);
+            $newFilename = $safeFilename.'-'.uniqid().'.'.$soundFile->guessExtension();
+                
+                try {
+                    $soundFile->move(
+                        $this->getParameter('sound_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+        
+                }
+            $post->setSound('/uploads/sound/'.$newFilename);
+            
         }
 
             $post->setUser($this->getUser());
@@ -95,7 +109,7 @@ class PostController extends AbstractController
     /**
      * @Route("/{id}", name="edit", methods="POST", requirements={"id"="\d+"})
      */
-    public function edit(Request $request, Post $post, User $user, FileUploader $fileUploader, ValidatorInterface $validator): Response
+    public function edit(Request $request, Post $post, SluggerInterface $slugger, ValidatorInterface $validator): Response
     {
         $author = $post->getUser();
         if ($author !== $this->getUser()) {
@@ -111,8 +125,20 @@ class PostController extends AbstractController
         //dd($soundFile);
         
         if ($soundFile) {
-            $fileUploader->uploadSound($soundFile, $post);
-            $post->setSound($soundFile);
+            $originalFilename = pathinfo($soundFile->getClientOriginalName(), PATHINFO_FILENAME);
+            $safeFilename = $slugger->slug($originalFilename);
+            $newFilename = $safeFilename.'-'.uniqid().'.'.$soundFile->guessExtension();
+
+                try {
+                    $soundFile->move(
+                        $this->getParameter('sound_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+        
+                }
+
+            $post->setSound('/uploads/sound/'.$soundFile);
         }
 
         $errors = $validator->validate($post);

@@ -98,7 +98,7 @@ class UserController extends AbstractController
     /**
      * @Route("/{id}", name="edit", methods={"POST"}, requirements={"id"="\d+"})
      */
-    public function edit(Request $request, User $user, EntityManagerInterface $entityManager, ValidatorInterface $validator, FileUploader $fileUploader): Response
+    public function edit(Request $request, User $user, EntityManagerInterface $entityManager, SluggerInterface $slugger ,ValidatorInterface $validator, FileUploader $fileUploader): Response
     {   
         if ($user !== $this->getUser()) {
             throw $this->createAccessDeniedException();
@@ -109,12 +109,24 @@ class UserController extends AbstractController
         $postData = array_merge($request->request->all(), $request->files->all());
         $form->submit($postData, false);
         //dd($postData);
-        $avatarFile = $request->files->get('avatarFile'); 
-        dd($avatarFile);
+        $avatarFile = $request->files->get('avatarFile');
+        //dd($avatarFile);
         
         if ($avatarFile) {
-            $fileUploader->uploadAvatar($avatarFile, $user);
-            $user->setAvatar($avatarFile);
+            $originalFilename = pathinfo($avatarFile->getClientOriginalName(), PATHINFO_FILENAME);
+            $safeFilename = $slugger->slug($originalFilename);
+            $newFilename = $safeFilename.'-'.uniqid().'.'.$avatarFile->guessExtension();
+
+                try {
+                    $avatarFile->move(
+                        $this->getParameter('avatar_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+        
+                }
+
+                $user->setAvatar('/uploads/avatar/'.$newFilename);
         }
 
         $errors = $validator->validate($user);
@@ -162,11 +174,13 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/comments", name="comment_browse", methods="GET", requirements={"id"="\d+"})
+     * @Route("/comments", name="comment_browse", methods="GET", requirements={"id"="\d+"})
      */
-    public function comment(User $user, CommentRepository $commentRepo): Response
+    public function comment(CommentRepository $commentRepo): Response
     {     
-        if ($user == $this->getUser()) {
+        $user = $this->getUser();
+        //dd($user);
+        if ($this->getUser()) {
             $comments = $commentRepo->findBy(['user' => $user], ['createdAt' => 'DESC']);
             //dd($comments);
 
@@ -182,22 +196,24 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/posts", name="post_browse", methods="GET", requirements={"id"="\d+"})
+     * @Route("/posts", name="post_browse", methods="GET")
      */
-    public function post(User $user, PostRepository $postRepo): Response
+    public function post(PostRepository $postRepo): Response
     {
-        if ($user == $this->getUser()) {
+        $user = $this->getUser();
+        //dd($user);
+        //if ($this->getUser()) {
             $posts = $postRepo->findBy(['user' => $user], ['createdAt' => 'DESC']);
             //dd($posts);
 
             return $this->json($posts, 200, [], ['groups' => 'user:writtenPosts']);
-        }
+        ////}
 
-        return $this->json(
-            [
-                "success" => false
-            ],
-            Response::HTTP_UNAUTHORIZED
-        );
+        //return $this->json(
+        //    [
+        //        "success" => false
+        //    ],
+        //    Response::HTTP_UNAUTHORIZED
+        //);
     }
 }
