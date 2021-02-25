@@ -63,9 +63,9 @@ class PostController extends AbstractController
         // dd($soundFile);
         if ($soundFile) {
             $originalFilename = pathinfo($soundFile->getClientOriginalName(), PATHINFO_FILENAME);
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename.'-'.uniqid().'.'.$soundFile->guessExtension();
-
+            $safeFilename = $slugger->slug($originalFilename);
+            $newFilename = $safeFilename.'-'.uniqid().'.'.$soundFile->guessExtension();
+                
                 try {
                     $soundFile->move(
                         $this->getParameter('sound_directory'),
@@ -74,7 +74,7 @@ class PostController extends AbstractController
                 } catch (FileException $e) {
         
                 }
-            $post->setSound('/uploads/sound/'.$soundFile);
+            $post->setSound('/uploads/sound/'.$newFilename);
             //dd($soundFile);
         }
 
