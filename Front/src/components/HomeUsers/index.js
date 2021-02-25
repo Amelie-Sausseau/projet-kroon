@@ -19,9 +19,7 @@ const publi = "/publications/"
 
     <div>
     <h1 /* className="titleHome" */>Kroon c'est quoi?</h1>
-      <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-        has been the industry's standard dummy text ever since the 1500s, when an unknown printer
-        took a galley of type and scrambled it to make a type specimen book.
+      <div>L'application qui te permet de retrouver un son qui te reste en tête, grâce à l'aide de la communauté !
       </div>
      <h2 className="titleHome">Derniers sons</h2>
      
