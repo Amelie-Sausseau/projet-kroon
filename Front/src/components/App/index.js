@@ -78,8 +78,8 @@ const App = ({ manageLoad, loading, islogged }) => {
             <HomeUsers />
             <Footer />
           </Route>
-{/*           <Redirect from="/connexion" to="/poster" exact/>
- */}          <Route path="/poster" exact>
+           <Redirect from="/connexion" to="/" exact/>
+           <Route path="/poster" exact>
             <PostForm />
           </Route>
           <Route path="/contact" exact>

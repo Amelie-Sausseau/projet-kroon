@@ -175,7 +175,7 @@ const htmlClass = record ? 'button_play' : 'button_start';
     name="titre"
     />
     <Field 
-    type="text" 
+    type="textarea"
     placeholder="Description" 
     id="description" 
     value={body} 
