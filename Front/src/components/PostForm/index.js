@@ -4,13 +4,25 @@ import ReactAudioPlayer from 'react-audio-player';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import './postform.scss';
+import Field from './Field';
 
-const PostForm = ({ playStart, stopRecord, record, recordedSound, url, changeNewUrl, saveNewBlob, token, blob, fetchCategories, categories }) => {
 
-/*   function sendApi(evt){
-  evt.preventDefault();
-    send();
-  } */
+const PostForm = ({ 
+  playStart, 
+  stopRecord,
+  record, 
+  recordedSound, 
+  url, 
+  changeNewUrl, 
+  saveNewBlob, 
+  token, 
+  blob, 
+  fetchCategories, 
+  categories, 
+  changeInputPostValueComp,
+  titre,
+  body,
+}) => {
 
   useEffect(
     fetchCategories,
@@ -25,8 +37,8 @@ const PostForm = ({ playStart, stopRecord, record, recordedSound, url, changeNew
 
   });
   formData.append('soundFile', file)
-  formData.append('title', 'titre essai dim')
-  formData.append('body', 'essai body dim')
+  formData.append('title', titre)
+  formData.append('body', body)
 
     axios.post("http://ec2-3-82-153-17.compute-1.amazonaws.com/api/v1/posts/",formData,
 
@@ -117,11 +129,6 @@ const PostForm = ({ playStart, stopRecord, record, recordedSound, url, changeNew
 
 const htmlClass = record ? 'button_play' : 'button_start';
 
-
-/* const [blobux, setBlobux] = useState({});  
-console.log('pour toi public',blobux); */
-
-
   return (
     <div className="idk">
       <div className="buttonContainer">
@@ -159,9 +166,25 @@ console.log('pour toi public',blobux); */
       }
 
     </select>
-    <input type="text" placeholder="Titre" className="title" /* value={title} */ />
-    <input type="text" placeholder="Description" className="description" /* value={description} */ />
-    <div className="buttonSubmit"   ><span>Envoyer</span></div>
+    <Field 
+    type="text"
+    placeholder="Titre" 
+    className="title" 
+    value={titre} 
+    onChange={changeInputPostValueComp} 
+    name="titre"
+    />
+    <Field 
+    type="text" 
+    placeholder="Description" 
+    className="description" 
+    value={body} 
+    onChange={changeInputPostValueComp} 
+    name="body"
+    />
+    <div className="buttonSubmit">
+      <span>Envoyer</span>
+    </div>
 
   </form>
     </div>

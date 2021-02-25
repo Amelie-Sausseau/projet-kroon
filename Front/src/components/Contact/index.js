@@ -6,7 +6,7 @@ import './contact.scss';
 
 const Contact = ({
   changeFieldSendMessage, 
-  sendMessage,
+  sendMessage2,
   message,
   email,
   name,
@@ -27,7 +27,7 @@ const Contact = ({
         .max(15, 'Must be 15 characters or less')
         .required('Required'),
       message: Yup.string()
-        .max(500, 'Must be 50 characters or less')
+        .max(500, 'Must be 500 characters or less')
         .required('Required'),
       email: Yup.string().email('Invalid email address').required('Required'),
     })}
@@ -35,7 +35,7 @@ const Contact = ({
       setTimeout(() => {
         alert(JSON.stringify(values, null, 2));
         setSubmitting(false);
-        sendMessage();
+        sendMessage2();
       }, 400);
     }}
     

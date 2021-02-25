@@ -17,10 +17,9 @@ const Field = ({
     onChange(evt.target.value, name);
   };
 
-  const inputId = `field-${name}`;
 
   return (
-    <div className="field">
+    <div >
       <input
         // React - state
         value={value}

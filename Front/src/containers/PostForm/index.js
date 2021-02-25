@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PostForm from 'src/components/PostForm';
 
 import { playStart, stopRecord, changeUrl, saveBlob } from 'src/actions';
-import { fetchCategories } from 'src/actions/posts';
+import { fetchCategories, changeInputPostValue } from 'src/actions/posts';
 
 
 
@@ -13,7 +13,9 @@ const mapStateToProps = (state) => ({
  url: state.mic.url,
  blob: state.mic.blob,
  token: state.users.token,
- categories: state.posts.categories
+ categories: state.posts.categories,
+ titre: state.posts.titre,
+ body: state.posts.body,
 
 });
 
@@ -35,6 +37,10 @@ const mapDispatchToProps = (dispatch) => ({
 
   fetchCategories: () => {
     dispatch(fetchCategories())
+  },
+
+  changeInputPostValueComp: (fieldValue, fieldName) => {
+    dispatch(changeInputPostValue(fieldValue, fieldName))
   }
 
 });

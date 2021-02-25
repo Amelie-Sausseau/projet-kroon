@@ -1,10 +1,14 @@
 import {
     SAVE_CATEGORIES,
+    CHANGE_POSTS_VALUE,
+
   } from '../actions/posts';
   
   const initialState = {
 
     categories: [],
+    titre: '',
+    body: '',
  
   
   };
@@ -15,6 +19,12 @@ import {
           ...state,
           categories: action.data,
           loading: false,
+        };
+        
+      case CHANGE_POSTS_VALUE:
+        return {
+          ...state,
+          [action.fieldName]: action.fieldValue,
         };
       default:
         return state;
