@@ -110,11 +110,15 @@ class UserController extends AbstractController
         $form->submit($postData, false);
         //dd($postData);
         $avatarFile = $request->files->get('avatarFile'); 
-        dd($avatarFile);
+        //dd($avatarFile);
         
         if ($avatarFile) {
             $fileUploader->uploadAvatar($avatarFile, $user);
-            $user->setAvatar($avatarFile);
+            //dd($uploadedFile);
+            $uploadedFile = $avatarFile->move($fileUploader->getAvatarDirectory(), $avatarFile);
+            //dd($uploadedFile);
+            $user->setAvatar($uploadedFile);
+            //dd($avatarFile);
         }
 
         $errors = $validator->validate($user);
@@ -162,11 +166,13 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/comments", name="comment_browse", methods="GET", requirements={"id"="\d+"})
+     * @Route("/comments", name="comment_browse", methods="GET", requirements={"id"="\d+"})
      */
-    public function comment(User $user, CommentRepository $commentRepo): Response
+    public function comment(CommentRepository $commentRepo): Response
     {     
-        if ($user == $this->getUser()) {
+        $user = $this->getUser();
+        //dd($user);
+        if ($this->getUser()) {
             $comments = $commentRepo->findBy(['user' => $user], ['createdAt' => 'DESC']);
             //dd($comments);
 
@@ -182,11 +188,13 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/posts", name="post_browse", methods="GET", requirements={"id"="\d+"})
+     * @Route("/posts", name="post_browse", methods="GET", requirements={"id"="\d+"})
      */
-    public function post(User $user, PostRepository $postRepo): Response
+    public function post(PostRepository $postRepo): Response
     {
-        if ($user == $this->getUser()) {
+        $user = $this->getUser();
+        //dd($user);
+        if ($this->getUser()) {
             $posts = $postRepo->findBy(['user' => $user], ['createdAt' => 'DESC']);
             //dd($posts);
 
