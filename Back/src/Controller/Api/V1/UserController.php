@@ -150,19 +150,24 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/bookmarks", name="bookmark_browse", methods="GET")
+     * @Route("/{id}/bookmarks", name="bookmark_browse", methods="GET", requirements={"id"="\d+"})
      */
     public function bookmark(User $user): Response
     {
-        if ($user !== $this->getUser()) {
-            return $this->json($user, 200, [], ['groups' => 'user:bookmarkedPosts']);
+        $this->user = $this->getUser();
+        //dd($user);
+        if ($this->getUser()) {
+            $bookmarks = $user->getBookmark();
+            //dd($bookmarks);
+
+            return $this->json($bookmarks, 200, [], ['groups' => 'user:bookmarkedPosts']);
         }
 
         return $this->json(
             [
                 "success" => false
             ],
-            Response::HTTP_BAD_REQUEST
+            Response::HTTP_UNAUTHORIZED
         );
     }
 
@@ -191,7 +196,7 @@ class UserController extends AbstractController
     /**
      * @Route("/posts", name="post_browse", methods="GET")
      */
-    public function post(Request $request, PostRepository $postRepo): Response
+    public function post(PostRepository $postRepo): Response
     {
         $user = $this->getUser();
         //dd($user);

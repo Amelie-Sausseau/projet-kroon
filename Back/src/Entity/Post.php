@@ -22,7 +22,7 @@ class Post
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"user:one", "user:writtenPosts", "user:commentedPosts"})
+     * @Groups({"user:one", "user:writtenPosts", "user:commentedPosts", "user:bookmarkedPosts"})
      * @Groups({"post:all", "post:one"})
      * @Groups({"comment:one"})
      * @Groups({"tag:allPosts"})
@@ -31,7 +31,7 @@ class Post
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"user:one", "user:writtenPosts", "user:commentedPosts"})
+     * @Groups({"user:one", "user:writtenPosts", "user:commentedPosts", "user:bookmarkedPosts"})
      * @Groups({"post:all", "post:one"})
      * @Groups({"comment:one"})
      * @Groups({"tag:allPosts"})
@@ -40,7 +40,7 @@ class Post
 
     /**
      * @ORM\Column(type="string")
-     * @Groups({"user:one", "user:writtenPosts", "user:commentedPosts"})
+     * @Groups({"user:one", "user:writtenPosts", "user:commentedPosts", "user:bookmarkedPosts"})
      * @Groups({"post:all", "post:one"})
      * @Groups({"comment:one"})
      * @Groups({"tag:allPosts"})
@@ -55,7 +55,7 @@ class Post
 
     /**
      * @ORM\Column(type="text")
-     * @Groups({"user:one", "user:writtenPosts", "user:commentedPosts"})
+     * @Groups({"user:one", "user:writtenPosts", "user:commentedPosts", "user:bookmarkedPosts"})
      * @Groups({"post:all", "post:one"})
      * @Groups({"comment:one"})
      * @Groups({"tag:allPosts"})
@@ -64,7 +64,7 @@ class Post
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
-     * @Groups({"user:one", "user:writtenPosts", "user:commentedPosts"})
+     * @Groups({"user:one", "user:writtenPosts", "user:commentedPosts", "user:bookmarkedPosts"})
      * @Groups({"post:all", "post:one"})
      * @Groups({"comment:one"})
      * @Groups({"tag:allPosts"})
@@ -73,7 +73,7 @@ class Post
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
-     * @Groups({"user:one", "user:writtenPosts", "user:commentedPosts"})
+     * @Groups({"user:one", "user:writtenPosts", "user:commentedPosts", "user:bookmarkedPosts"})
      * @Groups({"post:all", "post:one"})
      * @Groups({"comment:one"})
      * @Groups({"tag:allPosts"})
@@ -82,7 +82,7 @@ class Post
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
-     * @Groups({"user:one", "user:writtenPosts", "user:commentedPosts"})
+     * @Groups({"user:one", "user:writtenPosts", "user:commentedPosts", "user:bookmarkedPosts"})
      * @Groups({"post:all", "post:one"})
      * @Groups({"comment:one"})
      * @Groups({"tag:allPosts"})
@@ -91,7 +91,7 @@ class Post
 
     /**
      * @ORM\Column(type="boolean", options={"default":true})
-     * @Groups({"user:one", "user:writtenPosts", "user:commentedPosts"})
+     * @Groups({"user:one", "user:writtenPosts", "user:commentedPosts", "user:bookmarkedPosts"})
      * @Groups({"post:all", "post:one"})
      * @Groups({"comment:one"})
      * @Groups({"tag:allPosts"})
@@ -100,7 +100,7 @@ class Post
 
     /**
      * @ORM\Column(type="datetime", options={"default": "CURRENT_TIMESTAMP"})
-     * @Groups({"user:one", "user:writtenPosts", "user:commentedPosts"})
+     * @Groups({"user:one", "user:writtenPosts", "user:commentedPosts", "user:bookmarkedPosts"})
      * @Groups({"post:all", "post:one"})
      * @Groups({"comment:one"})
      * @Groups({"tag:allPosts"})
@@ -109,7 +109,7 @@ class Post
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
-     * @Groups({"user:one", "user:writtenPosts", "user:commentedPosts"})
+     * @Groups({"user:one", "user:writtenPosts", "user:commentedPosts", "user:bookmarkedPosts"})
      * @Groups({"post:all", "post:one"})
      * @Groups({"comment:one"})
      * @Groups({"tag:allPosts"})
@@ -118,7 +118,7 @@ class Post
 
     /**
      * @ORM\ManyToMany(targetEntity=Tag::class, inversedBy="posts")
-     * @Groups({"user:one", "user:writtenPosts", "user:commentedPosts"})
+     * @Groups({"user:one", "user:writtenPosts", "user:commentedPosts", "user:bookmarkedPosts"})
      * @Groups({"post:all", "post:one"})
      * @Groups({"comment:one"})
      */
@@ -127,7 +127,7 @@ class Post
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="posts")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"user:writtenPosts"})
+     * @Groups({"user:writtenPosts", "user:bookmarkedPosts"})
      * @Groups({"post:all", "post:one"})
      * @Groups({"tag:allPosts"})
      */

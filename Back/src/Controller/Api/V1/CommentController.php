@@ -35,6 +35,14 @@ class CommentController extends AbstractController
     }
 
     /**
+    * @Route("/liked", name="lasts", methods={"GET"})
+    */
+    public function commentsMostLiked(CommentRepository $commentRepo)
+    {
+        return $this->json($commentRepo->commentsMostLiked(), 200, [], ['groups' => 'comment:one']);
+    }
+
+    /**
      * @Route("/{id}", name="edit", methods="PUT", requirements={"id"="\d+"})
      */
     public function edit(Request $request, Comment $comment, UserRepository $user): Response

@@ -22,6 +22,9 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -47,9 +50,17 @@ class PostController extends AbstractController
     }
 
     /**
+    * @Route("/lasts", name="lasts", methods={"GET"})
+    */
+    public function findLastsFivePosts(PostRepository $postRepo)
+    {
+        return $this->json($postRepo->findLastsFivePosts(), 200, [], ['groups' => 'post:all']);
+    }
+
+    /**
      * @Route("/", name="add", methods="POST")
      */
-    public function add(Request $request, TagRepository $tagRepo ,EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+    public function add(Request $request ,EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {   
       
         //$postData = json_decode($request->getContent(), true);

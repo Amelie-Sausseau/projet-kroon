@@ -19,6 +19,16 @@ class CommentRepository extends ServiceEntityRepository
         parent::__construct($registry, Comment::class);
     }
 
+    public function commentsMostLiked()
+    {
+        $queryBuilder = $this->createQueryBuilder('comment');
+        $queryBuilder->addOrderBy('comment.likes', 'DESC');
+        $queryBuilder->setMaxResults(5);
+        $query = $queryBuilder->getQuery();
+
+        return $query->getResult();        
+    }
+
     // /**
     //  * @return Comment[] Returns an array of Comment objects
     //  */

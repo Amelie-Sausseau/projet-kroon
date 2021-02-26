@@ -18,7 +18,18 @@ class PostRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Post::class);
     }
-    
+
+    public function findLastsFivePosts()
+    {
+        $queryBuilder = $this->createQueryBuilder('post');
+        $queryBuilder->where('post.isActive = 1');
+        $queryBuilder->addOrderBy('post.updatedAt', 'DESC');
+        $queryBuilder->setMaxResults(5);
+        $query = $queryBuilder->getQuery();
+
+        return $query->getResult();        
+    }
+  
 
     // /**
     //  * @return Post[] Returns an array of Post objects
