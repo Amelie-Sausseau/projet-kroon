@@ -12,6 +12,7 @@ use App\Form\CreatePostType;
 use App\Form\PostEditType;
 use App\Repository\CommentRepository;
 use App\Repository\PostRepository;
+use App\Repository\TagRepository;
 use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -48,7 +49,7 @@ class PostController extends AbstractController
     /**
      * @Route("/", name="add", methods="POST")
      */
-    public function add(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+    public function add(Request $request, TagRepository $tagRepo ,EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {   
       
         //$postData = json_decode($request->getContent(), true);
@@ -78,13 +79,7 @@ class PostController extends AbstractController
             $post->setSound($url.'uploads/sound/'.$newFilename);
             
         }
-
             $post->setUser($this->getUser());
-
-            // $file = 'sound.webm';
-            // $current = file_get_contents($file);
-            // $current .= $sound;
-            // file_put_contents($file, $current);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($post);

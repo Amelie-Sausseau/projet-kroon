@@ -113,6 +113,11 @@ class User implements UserInterface
      */
     private $comments;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Post::class)
+     */
+    private $bookmark;
+
 
     public function __construct()
     {
@@ -120,6 +125,7 @@ class User implements UserInterface
         $this->comments = new ArrayCollection();
         $this->createdAt = new DateTime();
         $this->isActive = new Boolean();
+        $this->bookmark = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -372,6 +378,30 @@ class User implements UserInterface
         if ($this->getCreatedAt() === null) {
             $this->setCreatedAt(new \DateTime('now'));
         }
+    }
+
+    /**
+     * @return Collection|Post[]
+     */
+    public function getBookmark(): Collection
+    {
+        return $this->bookmark;
+    }
+
+    public function addBookmark(Post $bookmark): self
+    {
+        if (!$this->bookmark->contains($bookmark)) {
+            $this->bookmark[] = $bookmark;
+        }
+
+        return $this;
+    }
+
+    public function removeBookmark(Post $bookmark): self
+    {
+        $this->bookmark->removeElement($bookmark);
+
+        return $this;
     }
 
 }
