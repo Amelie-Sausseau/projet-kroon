@@ -7,7 +7,7 @@ import ReactAudioPlayer from 'react-audio-player';
 
 
 // == Composant
-const Sound = ({auteur, titre}) => (
+const Sound = ({auteur, titre, sound, body}) => (
   <header className="presentation">
     {/* <img
       src={thumbnail}
@@ -16,9 +16,9 @@ const Sound = ({auteur, titre}) => (
     /> */}
     <div className="presentation-content">
       <h1 className="presentation-title">{titre}</h1>
-      <p className="presentation-infos">{auteur}</p>
+      <p className="presentation-infos">{body}</p>
       <ReactAudioPlayer
-     /* src={url} */
+     src={sound}
      controls
      preload="auto"
      className="audioPlayer"

@@ -5,8 +5,10 @@ import React from 'react';
 // Composants
 import CommentForm from '../../containers/CommentForm';
 import Sound from './Sound';
-import Comments from './Comments';
+import Comment from 'src/components/Publications/Comments';
 import Avatar from '../../utils/avatar';
+import Loader from 'src/components/Loader';
+
 
 // Style
 import './publications.scss';
@@ -21,16 +23,16 @@ function Publications({post}) {
     <div className="publication">
   <Avatar className="avatar"/>
 
-    <h1 className="titlepost">Titre du son</h1>
+    <h1 className="titlepost">{post.title}</h1>
       <Sound 
-       titre={post.title } 
-      auteur={post.user.name} 
+      body={post.body}
+      sound={post.sound} 
       />
-      <Comments className="comments"/>
+      <Comment className="comments"/>
       <CommentForm className="form"/>
     </div>
 
-    : "Patiente vilain "}
+    : <Loader/>}
     </>
   
 )};

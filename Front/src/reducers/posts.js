@@ -1,7 +1,7 @@
 import {
     SAVE_CATEGORIES,
     CHANGE_POSTS_VALUE,
-
+    SAVE_POSTS_FROM_TAGS
   } from '../actions/posts';
   
   const initialState = {
@@ -9,6 +9,7 @@ import {
     categories: [],
     titre: 'Titre',
     body: 'Description',
+    posts: [],
  
   
   };
@@ -26,6 +27,12 @@ import {
           ...state,
           [action.fieldName]: action.fieldValue,
         };
+
+      case SAVE_POSTS_FROM_TAGS:
+        return {
+          ...state,
+          posts: action.data,
+        }
       default:
         return state;
     }

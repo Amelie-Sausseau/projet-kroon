@@ -3,14 +3,15 @@ import { connect } from 'react-redux';
 
 import Compte from '../../components/Compte';
 // on importe l'action creator
-import { fetchPostUser } from '../../actions/users';
+import { fetchPostUser, fetchCommentsUserLogin } from '../../actions/users';
 
 // on branche la propriété du composant de présentation
 // Form sur la propriété newMessageValue du state du store.
 const mapStateToProps = (state) => ({
   favories: state.users.favories,
-  commentaires: state.users.commentaires,
+  commentaires: state.users.comments,
   posts: state.users.posts,
+ 
 });
 
 // on branche notre propriété de type fonction
@@ -21,7 +22,9 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchPostUser())
   },
 
-  
+  fetchCommentsUserLogin: () => {
+    dispatch(fetchCommentsUserLogin())
+  },  
 
 });
 
