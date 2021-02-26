@@ -38,7 +38,7 @@ class PostController extends AbstractController
      */
     public function browse(PostRepository $postRepo): Response
     {
-        return $this->json($postRepo->findAll(), 200, [], ['groups' => 'post:all']);
+        return $this->json($postRepo->findAll(), 200, [], ['groups' => 'post:one']);
     }
 
     /**
@@ -258,23 +258,17 @@ class PostController extends AbstractController
         );
     }
 
-
-
     /**
      * @Route("/{id}/bookmark", name="add_bookmark", methods="POST", requirements={"id"="\d+"})
      */
-    public function addBookmark(Request $request, EntityManagerInterface $em, PostRepository $post): Response
+    public function addBookmark(Request $request, EntityManagerInterface $em, PostRepository $postRepo): Response
     {
-        $infoFromClient = json_decode($request->getContent(), true);
+        $user = $this->getUser();
 
-        $post = new Post();
-        //$post->setPost($post->find($infoFromClient['post']));
-        //$post->setTitle(($infoFromClient['title']));
-        // dd($post);
-        $em->persist($post);
+        $em->persist($postRepo);
         $em->flush();
 
-        return $this->json($post, 200, [], ['groups' => 'post:addBookmark']);
+        return $this->json($postRepo, 200, [], ['groups' => 'post:addBookmark']);
     }
 
     /**
@@ -282,7 +276,7 @@ class PostController extends AbstractController
      */
     public function deleteBookmark(EntityManagerInterface $em, Post $post): Response
     {
-     
+        
         $em->remove($post);
 
         $em->flush();
