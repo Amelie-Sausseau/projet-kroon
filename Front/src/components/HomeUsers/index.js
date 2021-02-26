@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import PostCard from 'src/components/PostCard';
 import './style.scss';
 import ReactAudioPlayer from 'react-audio-player';
 
 
-const HomeUsers = ({ posts }) => {
+const HomeUsers = ({ posts, manageLoad }) => {
+  useEffect(
+    manageLoad,
+    [],
+  );
 
   console.log(posts);
 const publi = "/publications/"
@@ -51,15 +55,15 @@ const publi = "/publications/"
 
     <div className="last_sounds">
       <div className="caontainer-users">
-    <h3>Titre du son</h3>
+    <h3>Username</h3>
         <div className="best-users">Img Cat</div>
       </div>
       <div className="caontainer-users">
-      <h3>Titre du son</h3>
+      <h3>Username</h3>
         <div className="best-users">Img Cat</div>
       </div>
       <div className="caontainer-users">
-      <h3>Titre du son</h3>
+      <h3>Username</h3>
         <div className="best-users">Img Cat</div>
       </div>
 

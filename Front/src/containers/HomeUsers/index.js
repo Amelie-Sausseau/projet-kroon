@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
 
 import HomeUsers from 'src/components/HomeUsers';
+import { fetchPosts } from '../../actions';
+
 
 const mapStateToProps = (state) => ({
 
@@ -8,4 +10,10 @@ posts: state.mic.data,
 
 });
 
-export default connect(mapStateToProps)(HomeUsers);
+const mapDispatchToProps = (dispatch) => ({
+    manageLoad: () => {
+      dispatch(fetchPosts());
+    },
+  });
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeUsers);

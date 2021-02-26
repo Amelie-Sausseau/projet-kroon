@@ -29,11 +29,8 @@ import Nav from 'src/components/Nav';
 import LoginForm from 'src/containers/LoginForm'; */
 
 // == Composant
-const App = ({ manageLoad, loading, islogged }) => {
-  useEffect(
-    manageLoad,
-    [],
-  );
+const App = ({loading, islogged }) => {
+
 
   return (
     <div className="app">
@@ -99,7 +96,6 @@ const App = ({ manageLoad, loading, islogged }) => {
 };
 
 App.propTypes = {
-  manageLoad: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   islogged: PropTypes.bool.isRequired,
 };

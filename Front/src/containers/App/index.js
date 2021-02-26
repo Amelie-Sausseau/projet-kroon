@@ -12,9 +12,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  manageLoad: () => {
-    dispatch(fetchPosts());
-  },
+
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

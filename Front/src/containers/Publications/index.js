@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import Publications from 'src/components/Publications';
 
 
-import { getPostsBySlug } from '../../selectors/posts';
+import { getPostsBySlug } from 'src/selectors/posts';
 
 
 const mapStateToProps = (state, ownProps) => {

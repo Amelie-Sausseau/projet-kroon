@@ -35,7 +35,7 @@ export default (store) => (next) => (action) => {
        case FETCH_POSTS_USER_LOGIN:
         const { token } = store.getState().users;
         console.log(token);
-        axios.get('http://ec2-3-82-153-17.compute-1.amazonaws.com/api/v1/users/posts', {},
+        axios.get('http://ec2-3-82-153-17.compute-1.amazonaws.com/api/v1/users/posts',
           {
             headers: {
               Authorization: `Bearer ${token}`,

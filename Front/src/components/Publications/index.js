@@ -13,23 +13,25 @@ import './publications.scss';
 
 // == Composant
 function Publications({post}) {
-  console.log('console log pour Amélie', post);
+  console.log('console log du post récupéré', post);
 
  return(
+  <>
+    { post ? 
     <div className="publication">
-<Avatar className="avatar"/>
-{/* {
-        posts.map((categorie) =>        <h1 className="titlepost">Titre du son</h1>
-        )
-      } */}
+  <Avatar className="avatar"/>
+
     <h1 className="titlepost">Titre du son</h1>
       <Sound 
-/*       titre={post.title} 
-      auteur={post.user.name} */
+       titre={post.title } 
+      auteur={post.user.name} 
       />
       <Comments className="comments"/>
       <CommentForm className="form"/>
     </div>
+
+    : "Patiente vilain "}
+    </>
   
 )};
 
