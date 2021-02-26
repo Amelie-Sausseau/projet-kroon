@@ -9,6 +9,8 @@ export const CLEAR_FIELD = 'CLEAR_FIELD';
 export const FETCH_DATA_USER = 'FETCH_DATA_USER';
 export const FETCH_POSTS_USER_LOGIN = 'FETCH_POSTS_USER_LOGIN';
 export const SAVE_POSTS_USER = 'SAVE_POSTS_USER';
+export const FETCH_COMMENTS_USER_LOGIN = 'FETCH_COMMENTS_USER_LOGIN';
+export const SAVE_COMMENTS_USER = 'SAVE_COMMENTS_LOGIN';
 
 export const logIn = () => ({
     type: LOG_IN,
@@ -57,5 +59,14 @@ export const saveUserData = (data) => ({
 
   export const savePostsUser = (data) => ({
     type: SAVE_POSTS_USER,
+    data,
+  })
+
+  export const fetchCommentsUserLogin = () => ({
+    type: FETCH_COMMENTS_USER_LOGIN,
+  })
+
+  export const saveCommentsUser = (data) => ({
+    type: SAVE_COMMENTS_USER,
     data,
   })

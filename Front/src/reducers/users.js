@@ -5,20 +5,22 @@ import {
   CHANGE_USER_FIELD,
   CHANGE_FIELD_CREATE_USER,
   CLEAR_FIELD,
-  SAVE_POSTS_USER
+  SAVE_POSTS_USER,
+  SAVE_COMMENTS_USER,
 } from 'src/actions/users';
 
 
 const initialState = {
   email: '',
-  password: '',
+  password: 'admin',
   logged: false,
   name: '',
-  islogged: true,
+  islogged: false,
   menuIsClosed: true,
   token: '',
-  username: '',
+  username: 'admin@kroon.fr',
   posts: [],
+  comments: [],
 
 };
 
@@ -71,8 +73,12 @@ const usersReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         posts: action.data
-      }
-
+      };
+      case SAVE_COMMENTS_USER:
+        return {
+          ...state,
+          comments: action.data
+        };
     default:
       return { ...state };
   }

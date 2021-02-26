@@ -48,16 +48,6 @@ const Nav = ({ islogged, buttonClearField }) => (
           <li>
             <NavLink
               className="nav__link "
-              to="/publications"
-              activeClassName="nav__link--active"
-              exact
-            >
-              Mes sons
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className="nav__link "
               to="/equipe"
               activeClassName="nav__link--active"
               exact
