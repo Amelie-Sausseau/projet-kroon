@@ -1,6 +1,6 @@
 // == Import : npm
-import React from 'react';
-
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 // == Import : local
 // Composants
 import CommentForm from '../../containers/CommentForm';
@@ -14,15 +14,14 @@ import Loader from 'src/components/Loader';
 import './publications.scss';
 
 // == Composant
-function Publications({post}) {
-  console.log('console log du post récupéré', post);
+function Publications({post, manageLoad}) {
 
  return(
   <>
     { post ? 
     <div className="publication">
   <Avatar className="avatar"/>
-
+    <div>{post.user.name}</div>
     <h1 className="titlepost">{post.title}</h1>
       <Sound 
       body={post.body}
@@ -34,8 +33,9 @@ function Publications({post}) {
 
     : <Loader/>}
     </>
-  
+
 )};
 
 // == Export
 export default Publications;
+

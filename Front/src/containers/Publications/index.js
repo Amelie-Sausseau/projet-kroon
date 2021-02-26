@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import Publications from 'src/components/Publications';
+import { saveCommentsUser } from '../../actions/posts';
 
 
 import { getPostsBySlug } from 'src/selectors/posts';
@@ -22,6 +23,13 @@ console.log(ownProps)
  }
 
 };
+
+const mapDispatchToProps = (dispatch) => ({
+    manageLoad: () => {
+      dispatch(saveCommentsUser());
+    },
+  });
+
 
 
 

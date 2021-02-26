@@ -6,7 +6,7 @@ import Nav from 'src/components/Nav';
 import { clearField } from '../../actions/users';
 
 const mapStateToProps = (state) => ({
-    islogged: state.users.islogged,
+    islogged: state.users.logged,
 });
 
 const mapDispatchToProps = (dispatch) => ({

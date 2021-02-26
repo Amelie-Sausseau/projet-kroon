@@ -11,7 +11,7 @@ import { url } from 'src/utils';
 export default (store) => (next) => (action) => {
   switch (action.type) {
     case FETCH_POSTS:
-      axios.get(`${url}/api/v1/posts/`)
+      axios.get(`${url}/api/v1/posts/lasts`)
         .then((response) => {
           console.log(response.data);
           store.dispatch(savePosts(response.data));

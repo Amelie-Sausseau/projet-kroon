@@ -29,13 +29,16 @@ const PostForm = ({
     [],
   )
 
-
+/*   const [title, setTtitle] = useState(value = '');
+ */
   function send(blob){
     const formData = new FormData();
     const file = new File([blob],  {
       type: blob.type,
-
   });
+console.log(titre)
+
+
   formData.append('soundFile', file)
   formData.append('title', titre)
   formData.append('body', body)
@@ -125,7 +128,9 @@ const PostForm = ({
     }, 100);  */
     }
 
-
+  /*   function handleChange(event) {
+      setTtitle({value: event.target.value});
+    } */
 
 const htmlClass = record ? 'button_play' : 'button_start';
 

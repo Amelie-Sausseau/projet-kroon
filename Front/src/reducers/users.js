@@ -9,6 +9,11 @@ import {
   SAVE_COMMENTS_USER,
 } from 'src/actions/users';
 
+import {
+  SAVE_POSTS_FROM_ID
+
+} from 'src/actions/posts'
+
 
 const initialState = {
   email: '',
@@ -34,14 +39,15 @@ const usersReducer = (state = initialState, action = {}) => {
         email: '',
         password: '',
         username: '',
+        token:'',
       };
     case SAVE_USER_DATA:
       return {
         ...state,
         logged: true,
-        name: action.data.name,
+        // name: action.data.name,
         token: action.data.token,
-        email: action.data.email,
+        // email: action.data.email,
       };
     case TOGGLE_MENU:
       return {
@@ -62,7 +68,8 @@ const usersReducer = (state = initialState, action = {}) => {
         email: '',
         password: '',
         name: '',
-        islogged: false,
+        logged: false,
+        token: '',
       };
     case CHANGE_FIELD_CREATE_USER:
       return {
@@ -79,6 +86,11 @@ const usersReducer = (state = initialState, action = {}) => {
           ...state,
           comments: action.data
         };
+        case SAVE_POSTS_FROM_ID:
+      return {
+        ...state,
+        posts: action.data
+      };
     default:
       return { ...state };
   }

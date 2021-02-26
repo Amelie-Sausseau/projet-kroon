@@ -29,13 +29,14 @@ import Nav from 'src/components/Nav';
 import LoginForm from 'src/containers/LoginForm'; */
 
 // == Composant
-const App = ({loading, islogged }) => {
+const App = ({loading, logged, fetchUserDataFromLocalStorage }) => {
 
+useEffect(fetchUserDataFromLocalStorage ,[]);
 
   return (
     <div className="app">
       {loading && <Loader />}
-      {!loading && !islogged ? (
+      {!loading && !logged ? (
         <>
           <img src={kroonLogo} alt="Logo Kroon" className="logo" />
           <Burger />
@@ -97,7 +98,7 @@ const App = ({loading, islogged }) => {
 
 App.propTypes = {
   loading: PropTypes.bool.isRequired,
-  islogged: PropTypes.bool.isRequired,
+  logged: PropTypes.bool.isRequired,
 };
 
 // == Export

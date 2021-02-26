@@ -11,6 +11,7 @@ export const FETCH_POSTS_USER_LOGIN = 'FETCH_POSTS_USER_LOGIN';
 export const SAVE_POSTS_USER = 'SAVE_POSTS_USER';
 export const FETCH_COMMENTS_USER_LOGIN = 'FETCH_COMMENTS_USER_LOGIN';
 export const SAVE_COMMENTS_USER = 'SAVE_COMMENTS_LOGIN';
+export const FETCH_DATA_FROM_LS = 'FETCH_DATA_FROM_LS';
 
 export const logIn = () => ({
     type: LOG_IN,
@@ -51,22 +52,26 @@ export const saveUserData = (data) => ({
 
   export const fetchDataUser = () => ({
     type: FETCH_DATA_USER,
-  })
+  });
 
   export const fetchPostUser = () => ({
     type: FETCH_POSTS_USER_LOGIN,
-  })
+  });
 
   export const savePostsUser = (data) => ({
     type: SAVE_POSTS_USER,
     data,
-  })
+  });
 
   export const fetchCommentsUserLogin = () => ({
     type: FETCH_COMMENTS_USER_LOGIN,
-  })
+  });
 
   export const saveCommentsUser = (data) => ({
     type: SAVE_COMMENTS_USER,
     data,
-  })
+  });
+
+  export const fetchDataFromLS = () => ({
+    type: FETCH_DATA_FROM_LS,
+  });
