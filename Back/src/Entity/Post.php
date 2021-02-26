@@ -50,10 +50,6 @@ class Post
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      * @Vich\UploadableField(mapping="post", fileNameProperty="sound")
-     * @Assert\File(
-     *     maxSize = "10k"
-     *     )
-     * 
      */
     private $soundFile;
 
