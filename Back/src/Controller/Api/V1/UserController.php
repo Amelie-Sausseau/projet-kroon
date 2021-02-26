@@ -71,13 +71,6 @@ class UserController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // on gère l'image après un 1er flush car on a besoin de l'id pour générer le nom
-            // $avatar = $form->get('avatar')->getData();
-            // $fileUploader->moveUserAvatar($avatar, $user);
-
-            // il faut penser à flush à nouveau pour prendre en compte le nom de l'image
-            $entityManager->flush();
-
             return $this->json(
                 [
                     "success" => true
@@ -198,7 +191,7 @@ class UserController extends AbstractController
     /**
      * @Route("/posts", name="post_browse", methods="GET")
      */
-    public function post(Request $request, User $user, PostRepository $postRepo): Response
+    public function post(Request $request, PostRepository $postRepo): Response
     {
         $user = $this->getUser();
         //dd($user);

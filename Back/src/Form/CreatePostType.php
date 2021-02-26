@@ -22,14 +22,9 @@ class CreatePostType extends AbstractType
     {
         $builder
             ->add('title', TextType::class) 
-            //[
-            //    'constraints' => new NotBlank,
-            //])
 
             ->add('body', TextType::class)
-            //[
-                //'constraints' => new NotBlank,
-            //])
+
 
             //->add('tags', EntityType::class, [
             //    'constraints' => new NotBlank,
@@ -45,13 +40,6 @@ class CreatePostType extends AbstractType
                 'mapped' => false,
                 
                 ]
-                //, [
-                // unmapped means that this field is not associated to any entity property
-                // 'mapped' => false,
-
-                // make it optional so you don't have to re-upload the PDF file
-                // everytime you edit the Product details
-                // 'required' => false,
 
                 // unmapped fields can't define their validation using annotations
                 // in the associated entity, so you can use the PHP constraint classes
