@@ -24,7 +24,7 @@ const formikEnhancer = withFormik({
     };
     setTimeout(() => {
       alert(JSON.stringify(payload, null, 2));
-      sendMessage();
+      sendMessage2();
       setSubmitting(false);
     }, 1000);
     console.log(sendMessage());
@@ -45,7 +45,7 @@ const MyForm = props => {
     setFieldValue,
     setFieldTouched,
     isSubmitting,
-    sendMessage,
+    sendMessage2,
   } = props;
 
   return (

@@ -7,8 +7,8 @@ import {
   const initialState = {
 
     categories: [],
-    titre: '',
-    body: '',
+    titre: 'Titre',
+    body: 'Description',
  
   
   };
@@ -18,7 +18,7 @@ import {
         return {
           ...state,
           categories: action.data,
-          loading: false,
+     
         };
         
       case CHANGE_POSTS_VALUE:

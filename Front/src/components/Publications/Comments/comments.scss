@@ -3,7 +3,7 @@
     height: auto;
     min-height: 3rem;
     width: 20rem;
-    border-radius: 3px;
+    border-radius: 20px;
     border: 1px solid transparent;
     border-top: none;
     border-bottom: 1px solid #DDD;
@@ -13,6 +13,11 @@
     margin-left: auto;
     margin-right: auto;
     background-color: white;
+    position: relative;
+    margin-left: -18rem;
+    margin-right: 2rem;
+    padding-left: 1rem;
+    padding-top: 0.5rem;
 }
 
 .message__username{
@@ -32,6 +37,12 @@
     width: 15rem;
 }
 
-.avatarComment {
-    border: 1px solid red;
+.MuiGrid-container {
+margin-bottom: 2rem;
+width: 1rem;
+}
+
+.MuiAvatar-root{
+    margin-bottom: -1rem;
+   
 }

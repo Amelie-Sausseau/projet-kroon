@@ -21,7 +21,7 @@ export default (store) => (next) => (action) => {
       next(action);
       break;
 
-/*       case FETCH_CATEGORIES:
+      case FETCH_CATEGORIES:
       axios.get(`${url}/api/v1/tags/`)
         .then((response) => {
           console.log(response.data);
@@ -30,7 +30,7 @@ export default (store) => (next) => (action) => {
           console.error('error');
         });
       next(action);
-      break; */
+      break;
 
        case FETCH_POSTS_USER_LOGIN:
         const { token } = store.getState().users;
