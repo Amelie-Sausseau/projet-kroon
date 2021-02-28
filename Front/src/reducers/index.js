@@ -9,7 +9,9 @@ import commentsReducer from 'src/reducers/comments';
 
 import postsReducer from 'src/reducers/posts';
 
-import contactReducer from 'src/reducers/contact'
+import contactReducer from 'src/reducers/contact';
+
+import categoriesReducer from 'src/reducers/categories'
 
 
 
@@ -23,6 +25,7 @@ const combinedReducer = combineReducers({
   comments: commentsReducer,
   posts: postsReducer,
   contact: contactReducer,
+  categories: categoriesReducer,
 });
 
 // une fois le super reducer construit,
