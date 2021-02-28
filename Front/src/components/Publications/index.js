@@ -15,6 +15,7 @@ import './publications.scss';
 
 // == Composant
 function Publications({post, manageLoad}) {
+  console.log(post.tags)
 
  return(
   <>
@@ -22,6 +23,7 @@ function Publications({post, manageLoad}) {
     <div className="publication">
   <Avatar className="avatar"/>
     <div>{post.user.name}</div>
+    {/* <h3>{post.tags.name}</h3> */}
     <h1 className="titlepost">{post.title}</h1>
       <Sound 
       body={post.body}
