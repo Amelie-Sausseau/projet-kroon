@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { FETCH_POSTS_USER_LOGIN, savePostsUser, FETCH_COMMENTS_USER_LOGIN, saveCommentsUser } from 'src/actions/users';
+import { FETCH_POSTS_USER_LOGIN, savePostsUser, FETCH_COMMENTS_USER_LOGIN, saveCommentsUser, FETCH_ALL_POSTS, saveAllPosts } from 'src/actions/users';
 
 import { FETCH_CATEGORIES, saveCategories, FETCH_POSTS_FROM_TAGS, savePostsFromTags } from 'src/actions/posts';
 
@@ -101,7 +101,18 @@ export default (store) => (next) => (action) => {
           console.error('error');
         });
       next(action);
-      break;      
+      break;
+      
+      case FETCH_ALL_POSTS:
+        axios.get(`${url}/api/v1/posts`)
+          .then((response) => {
+            console.log(response.data);
+            store.dispatch(saveAllPosts(response.data));
+          }).catch((error) => {
+            console.error('error');
+          });
+        next(action);
+        break;
 
     default:
       next(action);

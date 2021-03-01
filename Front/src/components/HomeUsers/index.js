@@ -30,7 +30,7 @@ const publi = "/publications/"
     { 
         posts.map((post) => (
           
-          <NavLink to={publi + post.id} >
+          <NavLink to={publi + post.id} key={post.id}>
             <div>{post.user.name}</div>
           <div className="last_posts" >
         <h3 id={post.id}>{post.title} </h3> 
