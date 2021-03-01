@@ -23,7 +23,7 @@ class PostRepository extends ServiceEntityRepository
     {
         $queryBuilder = $this->createQueryBuilder('post');
         $queryBuilder->where('post.isActive = 1');
-        $queryBuilder->addOrderBy('post.updatedAt', 'DESC');
+        $queryBuilder->addOrderBy('post.createdAt', 'DESC');
         $queryBuilder->setMaxResults(5);
         $query = $queryBuilder->getQuery();
 
