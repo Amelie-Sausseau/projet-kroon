@@ -20,25 +20,18 @@ class PostCrudController extends AbstractCrudController
         return Post::class;
     }
 
-    public function createEntity(string $entityFqcn)
-    {
-        $post = new Post();
-        
-        return $post;
-    }
-
     public function configureFields(string $pageName): iterable
     {
         return  [
             IdField::new('id')->hideOnForm(),
             TextField::new('title'),
             TextField::new('body'),
-            //AssociationField::new('tag', 'Tag'),
+            AssociationField::new('tags'),
             TextField::new('soundFile'),
-            BooleanField::new('isActive'),
-            BooleanField::new('isReported'),
-            BooleanField::new('isSolved'),
-            BooleanField::new('isClosed'),
+            BooleanField::new('isActive')->hideOnForm(),
+            BooleanField::new('isReported')->hideOnForm(),
+            BooleanField::new('isSolved')->hideOnForm(),
+            BooleanField::new('isClosed')->hideOnForm(),
             DateTimeField::new('createdAt')->hideOnForm(),
             DateTimeField::new('updatedAt')->hideOnForm(),
         ];

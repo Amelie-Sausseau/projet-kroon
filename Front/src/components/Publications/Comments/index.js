@@ -4,13 +4,40 @@ import React from 'react';
 import './comments.scss';
 import AvatarComment from '../../../utils/avatarComment';
 
+const Comments = ({ post }) => {
+  console.log(post);
+  return (
+    <div className="commentaires">
+      {/* <div className="message__username">{post.user.slug}</div> */}
 
-const Comments = () => (
-  <div className="commentaire">
- <AvatarComment className="avatarComment"/>
-    {/* <div className="message__username">pseudo</div> */}
-    <div className="message__content">le commentaire du man</div>
-  </div>
-);
+      {
+        post.comments.map((comment) => (
+          <div className="comment__content">{comment.body}</div>
+        ))
+
+      }
+    </div>
+  );
+};
 
 export default Comments;
+
+// const Posts = ({ posts }) => {
+//   console.log(posts);
+
+//   return (
+//     <div>
+//       {
+//   posts.map((data) => (
+//     <div>
+
+//       <h1>{data.title}</h1>
+//       <ReactAudioPlayer controls preload="auto" /* src={url} */ />
+//       <p>{data.body}</p>
+//     </div>
+
+//   ))
+// }
+//     </div>
+//   );
+// };

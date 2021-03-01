@@ -19,6 +19,8 @@
     .publication{
         display: block;
         margin-top: 1rem;
+        overflow-y: auto;
+        height: auto;
     }
     
     .comment--form{

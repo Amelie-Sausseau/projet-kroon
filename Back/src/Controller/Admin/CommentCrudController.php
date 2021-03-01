@@ -27,8 +27,8 @@ class CommentCrudController extends AbstractCrudController
             TextField::new('body'),
             AssociationField::new('user'),
             AssociationField::new('post'),
-            BooleanField::new('isActive'),
-            BooleanField::new('isReported'),
+            BooleanField::new('isReported')->hideOnForm(),
+            BooleanField::new('isActive')->hideOnForm(),
             DateTimeField::new('createdAt')->hideOnForm(),
             DateTimeField::new('updatedAt')->hideOnForm(),
         ];
