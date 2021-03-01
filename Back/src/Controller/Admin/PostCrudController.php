@@ -4,14 +4,9 @@ namespace App\Controller\Admin;
 
 use App\Entity\Post;
 use App\Entity\Tag;
-use App\Repository\PostRepository;
-use Doctrine\ORM\QueryBuilder;
 use EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection;
-use EasyCorp\Bundle\EasyAdminBundle\Collection\FilterCollection;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
-use EasyCorp\Bundle\EasyAdminBundle\Dto\SearchDto;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
@@ -25,25 +20,18 @@ class PostCrudController extends AbstractCrudController
         return Post::class;
     }
 
-    public function createEntity(string $entityFqcn)
-    {
-        $post = new Post();
-        
-        return $post;
-    }
-
     public function configureFields(string $pageName): iterable
     {
         return  [
             IdField::new('id')->hideOnForm(),
             TextField::new('title'),
             TextField::new('body'),
-            //AssociationField::new('tag', 'Tag'),
+            AssociationField::new('tags'),
             TextField::new('soundFile'),
-            BooleanField::new('isActive'),
-            BooleanField::new('isReported'),
-            BooleanField::new('isSolved'),
-            BooleanField::new('isClosed'),
+            BooleanField::new('isActive')->hideOnForm(),
+            BooleanField::new('isReported')->hideOnForm(),
+            BooleanField::new('isSolved')->hideOnForm(),
+            BooleanField::new('isClosed')->hideOnForm(),
             DateTimeField::new('createdAt')->hideOnForm(),
             DateTimeField::new('updatedAt')->hideOnForm(),
         ];

@@ -148,6 +148,11 @@ class Post
         $this->isActive = new Boolean();
     }
 
+    public function __toString()
+    {
+        return $this->title;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

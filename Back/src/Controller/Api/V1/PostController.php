@@ -54,7 +54,7 @@ class PostController extends AbstractController
     */
     public function findLastsFivePosts(PostRepository $postRepo)
     {
-        return $this->json($postRepo->findLastsFivePosts(), 200, [], ['groups' => 'post:all']);
+        return $this->json($postRepo->findLastsFivePosts(), 200, [], ['groups' => 'post:one']);
     }
 
     /**
