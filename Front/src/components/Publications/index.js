@@ -14,7 +14,7 @@ import './publications.scss';
 
 // == Composant
 function Publications({ post, manageLoad }) {
-  console.log(post.tags);
+  console.log(post);
 
   return (
     <>

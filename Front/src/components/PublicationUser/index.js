@@ -18,7 +18,7 @@ function PublicationUser({post, postBycomment}) {
 /*   console.log(post.tags)
  */
 
- console.log(post.comments)
+ /* console.log(post.comments) */
  return(
   <>
     { post ? 
