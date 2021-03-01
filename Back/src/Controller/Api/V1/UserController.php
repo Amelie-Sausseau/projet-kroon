@@ -150,47 +150,27 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/bookmarks", name="bookmark_browse", methods="GET", requirements={"id"="\d+"})
+     * @Route("/bookmarks", name="bookmark_browse", methods="GET")
      */
-    public function bookmark(User $user): Response
+    public function bookmark(): Response
     {
-        $this->user = $this->getUser();
-        //dd($user);
-        if ($this->getUser()) {
-            $bookmarks = $user->getBookmark();
-            //dd($bookmarks);
-
-            return $this->json($bookmarks, 200, [], ['groups' => 'user:bookmarkedPosts']);
-        }
-
-        return $this->json(
-            [
-                "success" => false
-            ],
-            Response::HTTP_UNAUTHORIZED
-        );
+        $user = $this->getUser();
+       
+        $bookmarks = $user->getBookmark();
+            
+        return $this->json($bookmarks, 200, [], ['groups' => 'user:bookmarkedPosts']);
     }
 
     /**
-     * @Route("/comments", name="comment_browse", methods="GET", requirements={"id"="\d+"})
+     * @Route("/comments", name="comment_browse", methods="GET")
      */
     public function comment(CommentRepository $commentRepo): Response
     {     
         $user = $this->getUser();
-        //dd($user);
-        if ($this->getUser()) {
-            $comments = $commentRepo->findBy(['user' => $user], ['createdAt' => 'DESC']);
-            //dd($comments);
 
-            return $this->json($comments, 200, [], ['groups' => 'user:commentedPosts']);
-        }
+        $comments = $commentRepo->findBy(['user' => $user], ['createdAt' => 'DESC']);
 
-        return $this->json(
-            [
-                "success" => false,
-            ],
-            Response::HTTP_UNAUTHORIZED
-        );
+        return $this->json($comments, 200, [], ['groups' => 'user:commentedPosts']);
     }
 
     /**
@@ -199,19 +179,9 @@ class UserController extends AbstractController
     public function post(PostRepository $postRepo): Response
     {
         $user = $this->getUser();
-        //dd($user);
-        if ($this->getUser()) {
-            $posts = $postRepo->findBy(['user' => $user], ['createdAt' => 'DESC']);
-            //dd($posts);
 
-            return $this->json($posts, 200, [], ['groups' => 'user:writtenPosts']);
-        }
+        $posts = $postRepo->findBy(['user' => $user], ['createdAt' => 'DESC']);
 
-        return $this->json(
-            [
-                "success" => false
-            ],
-            Response::HTTP_UNAUTHORIZED
-        );
+        return $this->json($posts, 200, [], ['groups' => 'user:writtenPosts']);
     }
 }

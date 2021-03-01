@@ -13,28 +13,34 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
 /**
  * @Route("/api", name="api_")
  */
 class SecurityController extends AbstractController
 {
+    /**
+    * @Route("/login_check", name="login_check")
+    */
+    public function apiLoginCheck()
+    {
+        throw new \LogicException('This method can be blank - it will be intercepted by the Lexik JWT key on your firewall.');
+    }
 
     /**
      * @Route("/login", name="login")
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
-        // }
-
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+
     }
 
     /**

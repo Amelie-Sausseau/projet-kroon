@@ -23,14 +23,14 @@ class CommentCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return  [
-            IdField::new('id')->hideOnForm(),
-            TextField::new('body'),
-            AssociationField::new('user'),
-            AssociationField::new('post'),
-            BooleanField::new('isReported')->hideOnForm(),
-            BooleanField::new('isActive')->hideOnForm(),
-            DateTimeField::new('createdAt')->hideOnForm(),
-            DateTimeField::new('updatedAt')->hideOnForm(),
+            IdField::new('id', 'ID')->hideOnForm(),
+            TextField::new('body', 'Commentaire'),
+            AssociationField::new('user', 'Auteur'),
+            AssociationField::new('post', 'Publication'),
+            BooleanField::new('isReported', 'Signalé')->hideOnForm(),
+            BooleanField::new('isActive', 'Actif')->hideOnForm(),
+            DateTimeField::new('createdAt', 'Créé le')->hideOnForm(),
+            DateTimeField::new('updatedAt', 'Modifié le')->hideOnForm(),
         ];
     }
 
