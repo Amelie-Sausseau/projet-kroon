@@ -26,7 +26,7 @@ class PostCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
             TextField::new('title'),
             TextField::new('body'),
-            //AssociationField::new('tag', 'Tag'),
+            AssociationField::new('tags'),
             TextField::new('soundFile'),
             BooleanField::new('isActive')->hideOnForm(),
             BooleanField::new('isReported')->hideOnForm(),
