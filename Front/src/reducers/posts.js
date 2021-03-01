@@ -10,7 +10,7 @@ import {
     titre: 'Titre',
     body: 'Description',
     posts: [],
- 
+ // id à creuser
   
   };
   export default (state = initialState, action = {}) => {

@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
-
 import './styles.css';
 
-const CommentForm = ({ manageCommentSubmit, inputCommentValue, setInputCommentValue }) => {
+const CommentForm = ({
+  handleAddCommentToDB, inputCommentValue, setInputCommentValue, manageCommentSubmit, id
+}) => {
   // étape 1 : on récupère une référence en appellant useRef !
   const inputCommentReference = useRef(null);
-
+  console.log(id);
   // étape 3, je peux m'en servir, ici dans un hook d'effet
   // on accède à l'élément actuellement référencé grâce à al propriété .current
   useEffect(
@@ -15,7 +15,6 @@ const CommentForm = ({ manageCommentSubmit, inputCommentValue, setInputCommentVa
     },
     [],
   );
-  console.log('toto');
 
   return (
     <div className="comment--form">
@@ -24,8 +23,9 @@ const CommentForm = ({ manageCommentSubmit, inputCommentValue, setInputCommentVa
         onSubmit={
       (event) => {
         event.preventDefault();
-        // le composant appelle la fonction
-        // qu'on lui transmet, sans savoir ce qu'elle fait
+        console.log(post.id);
+        handleAddCommentToDB(post.id);
+        console.log(post.id);
         manageCommentSubmit();
       }
     }
@@ -56,12 +56,6 @@ const CommentForm = ({ manageCommentSubmit, inputCommentValue, setInputCommentVa
       </form>
     </div>
   );
-};
-
-CommentForm.propTypes = {
-  manageCommentSubmit: PropTypes.func.isRequired,
-  inputCommentValue: PropTypes.string.isRequired,
-  setInputCommentValue: PropTypes.func.isRequired,
 };
 
 export default CommentForm;
