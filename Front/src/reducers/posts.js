@@ -7,8 +7,8 @@ import {
   const initialState = {
 
     categories: [],
-    titre: 'Titre',
-    body: 'Description',
+    titre: '',
+    body: '',
     posts: [],
  
   
