@@ -16,6 +16,7 @@ import Burger from 'src/containers/Burger';
 import PostForm from 'src/containers/PostForm';
 import HomeUsers from 'src/containers/HomeUsers';
 import Publications from 'src/containers/Publications';
+import CommentForm from 'src/components/CommentForm';
 // import MyAccount from 'src/containers/Account';
 // import Account2 from 'src/components/account2';
 // import Account3 from 'src/components/account3';

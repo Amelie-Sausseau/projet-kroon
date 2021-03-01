@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 
 import './styles.css';
 
@@ -55,6 +56,12 @@ const CommentForm = ({ manageCommentSubmit, inputCommentValue, setInputCommentVa
       </form>
     </div>
   );
+};
+
+CommentForm.propTypes = {
+  manageCommentSubmit: PropTypes.func.isRequired,
+  inputCommentValue: PropTypes.string.isRequired,
+  setInputCommentValue: PropTypes.func.isRequired,
 };
 
 export default CommentForm;
