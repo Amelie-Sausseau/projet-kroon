@@ -14,9 +14,11 @@ import Loader from 'src/components/Loader';
 import './publications.scss';
 
 // == Composant
-function Publications({post, manageLoad}) {
+function PublicationUser({post, postBycomment}) {
 /*   console.log(post.tags)
  */
+
+ console.log(post)
  return(
   <>
     { post ? 
@@ -33,11 +35,22 @@ function Publications({post, manageLoad}) {
       <CommentForm className="form"/>
     </div>
 
-    : <Loader/>}
+    : postBycomment ? <div className="publication">
+    <Avatar className="avatar"/>
+      <div>{/* {postBycomment.user.name} */}</div>
+      {/* <h3>{post.tags.name}</h3> */}
+      <h1 className="titlepost">{postBycomment.title}</h1>
+        <Sound 
+        body={post.body}
+        sound={post.sound} 
+        />
+        <Comment className="comments"/>
+        <CommentForm className="form"/>
+      </div> : <Loader/>}
     </>
 
 )};
 
 // == Export
-export default Publications;
+export default PublicationUser;
 

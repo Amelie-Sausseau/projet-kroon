@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Compte from '../../components/Compte';
 // on importe l'action creator
-import { fetchPostUser, fetchCommentsUserLogin } from '../../actions/users';
+import { fetchPostUser, fetchCommentsUserLogin, fetchAllPosts } from '../../actions/users';
 
 // on branche la propriété du composant de présentation
 // Form sur la propriété newMessageValue du state du store.
@@ -25,6 +25,10 @@ const mapDispatchToProps = (dispatch) => ({
   fetchCommentsUserLogin: () => {
     dispatch(fetchCommentsUserLogin())
   },  
+
+  fetchAllPosts: () => {
+    dispatch(fetchAllPosts())
+  },
 
 });
 

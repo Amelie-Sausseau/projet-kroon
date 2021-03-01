@@ -2,10 +2,18 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import ReactAudioPlayer from 'react-audio-player';
 import Comments from './Comments';
+import { NavLink } from 'react-router-dom';
+
 
 import './compte.scss';
 
-const Compte = ({ fetchPostUser, fetchCommentsUserLogin, posts, commentaires}) => {
+const Compte = ({ fetchPostUser, fetchCommentsUserLogin, posts, commentaires, fetchAllPosts}) => {
+  useEffect(
+    fetchAllPosts,
+    [],
+  );
+
+
 
   console.log(posts);
   console.log(commentaires);
@@ -13,6 +21,7 @@ const Compte = ({ fetchPostUser, fetchCommentsUserLogin, posts, commentaires}) =
   const [cat, setCat] = useState(false);
   const [comments, setComments] = useState(false);
   const [fav, setFav] = useState(false);
+  const publi = "/publicationsUser/"
 
   function onClickCat (){
     setCat(!cat)
@@ -40,23 +49,22 @@ return (
       {
         posts.map((post) => (
           
-            cat ? <div>     
+            cat ? 
+            <NavLink to={publi + post.id} >
+            <div>     
               <h2>{post.title}</h2>
               <ReactAudioPlayer
              src={post.sound} 
            controls
            preload="auto"
          />
-         </div> : null
+         </div> 
+         </NavLink>
+         : null
          
         ))
       }
-
-
-    
-    
-  
-
+      
   <div className="UserComments"
   onClick={onClickComment}>
     <h1>Mes Commentaires</h1> 
@@ -64,7 +72,11 @@ return (
 
    {
        commentaires.map((commentaire) => (
-        comments ? <Comments body={commentaire.body} title={commentaire.post.title}  /> : null
+        comments ? 
+        <NavLink to={publi + commentaire.post.id} >
+        <Comments body={commentaire.body} title={commentaire.post.title}  /> 
+        </NavLink>
+             : null
        ))
     }
 

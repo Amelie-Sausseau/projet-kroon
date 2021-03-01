@@ -7,6 +7,7 @@ import {
   CLEAR_FIELD,
   SAVE_POSTS_USER,
   SAVE_COMMENTS_USER,
+  SAVE_ALL_POSTS,
 } from 'src/actions/users';
 
 import {
@@ -26,6 +27,7 @@ const initialState = {
   username: 'admin@kroon.fr',
   posts: [],
   comments: [],
+  allPosts: [],
 
 };
 
@@ -81,6 +83,11 @@ const usersReducer = (state = initialState, action = {}) => {
         ...state,
         posts: action.data
       };
+      case SAVE_ALL_POSTS:
+        return {
+          ...state,
+          allPosts: action.data
+        };
       case SAVE_COMMENTS_USER:
         return {
           ...state,
