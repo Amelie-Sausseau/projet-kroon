@@ -16,7 +16,8 @@ import Burger from 'src/containers/Burger';
 import PostForm from 'src/containers/PostForm';
 import HomeUsers from 'src/containers/HomeUsers';
 import Publications from 'src/containers/Publications';
-import CommentForm from 'src/components/CommentForm';
+import PublicationUser from 'src/containers/PublicationUser';
+
 // import MyAccount from 'src/containers/Account';
 // import Account2 from 'src/components/account2';
 // import Account3 from 'src/components/account3';
@@ -72,6 +73,9 @@ useEffect(fetchUserDataFromLocalStorage ,[]);
           </Route>
           <Route  path="/publications/:slug" >
             <Publications  />
+          </Route>
+          <Route  path="/publicationsUser/:slug" >
+            <PublicationUser  />
           </Route>
           <Route path="/" exact>
             <HomeUsers />

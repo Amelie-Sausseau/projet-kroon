@@ -29,7 +29,6 @@ const mapDispatchToProps = (dispatch/*, ownProps*/) => ({
   handleAddCommentToDB: (postId) => {
     console.log('je passe dans handleAddCommentToDB', postId);
     dispatch(addCommentsToDB(postId));
-    dispatch(addCommentsToDB(postId));
   },
 });
 

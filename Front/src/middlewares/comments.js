@@ -32,10 +32,11 @@ export default (store) => (next) => (action) => {
       break;
     case ADD_COMMENTS_TO_DB:
       // eslint-disable-next-line no-case-declarations
-      const { id, body } = store.getState().comments;
+      const { body } = store.getState().comments;
       const { token } = store.getState().users;
-      console.log(id);
-
+      console.log(action.postId);
+      const id = action.postId;
+      
       console.log('je passe par le middleware comments', id);
 
       axios.post(`http://ec2-3-82-153-17.compute-1.amazonaws.com/api/v1/posts/${id}/comment`,

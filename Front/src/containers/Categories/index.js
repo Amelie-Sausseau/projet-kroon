@@ -6,6 +6,9 @@ import { fetchCategories } from 'src/actions/posts';
 
 import { fetchCategorie1, fetchCategorie2, fetchCategorie3, fetchCategorie4, fetchCategorie5 } from 'src/actions/categories';
 
+import { fetchAllPosts } from '../../actions/users';
+
+
 
 
 
@@ -44,6 +47,10 @@ const mapDispatchToProps = (dispatch) => ({
   fetchCategorie5: () => {
     dispatch(fetchCategorie5())
   },
+
+  fetchAllPosts: () => {
+    dispatch(fetchAllPosts())
+  }
 
 });
 

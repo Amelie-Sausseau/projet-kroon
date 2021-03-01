@@ -23,17 +23,17 @@ class PostCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return  [
-            IdField::new('id')->hideOnForm(),
-            TextField::new('title'),
-            TextField::new('body'),
-            AssociationField::new('tags'),
-            TextField::new('soundFile'),
-            BooleanField::new('isActive')->hideOnForm(),
-            BooleanField::new('isReported')->hideOnForm(),
-            BooleanField::new('isSolved')->hideOnForm(),
-            BooleanField::new('isClosed')->hideOnForm(),
-            DateTimeField::new('createdAt')->hideOnForm(),
-            DateTimeField::new('updatedAt')->hideOnForm(),
+            IdField::new('id', 'ID')->hideOnForm(),
+            TextField::new('title', 'Titre'),
+            TextField::new('body', 'Description'),
+            AssociationField::new('tags', 'Catégorie'),
+            TextField::new('soundFile', 'Son'),
+            BooleanField::new('isActive', 'Actif')->hideOnForm(),
+            BooleanField::new('isReported', 'Signalé')->hideOnForm(),
+            BooleanField::new('isSolved', 'Résolu')->hideOnForm(),
+            BooleanField::new('isClosed', 'Clos')->hideOnForm(),
+            DateTimeField::new('createdAt', 'Créé le')->hideOnForm(),
+            DateTimeField::new('updatedAt', 'Modifié le')->hideOnForm(),
         ];
     }
 

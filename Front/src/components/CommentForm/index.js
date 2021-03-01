@@ -23,9 +23,9 @@ const CommentForm = ({
         onSubmit={
       (event) => {
         event.preventDefault();
-        console.log(post.id);
-        handleAddCommentToDB(post.id);
-        console.log(post.id);
+        console.log(id);
+        handleAddCommentToDB(id);
+        console.log(id);
         manageCommentSubmit();
       }
     }

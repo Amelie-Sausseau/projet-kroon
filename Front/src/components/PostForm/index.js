@@ -29,8 +29,9 @@ const PostForm = ({
     [],
   )
 
-/*   const [title, setTtitle] = useState(value = '');
- */
+  const [mic, setMic] = useState(false);
+
+
   function send(blob){
     const formData = new FormData();
     const file = new File([blob],  {
@@ -132,12 +133,19 @@ console.log(titre)
       setTtitle({value: event.target.value});
     } */
 
+    function onClick(){
+      setMic(!mic)
+    }
+
 const htmlClass = record ? 'button_play' : 'button_start';
 
   return (
     <div className="idk">
       <div className="buttonContainer">
        <h1>Propose ton son!</h1>
+         {mic ? (
+                  <div>
+
         <button onClick={playStart} type="button" className={htmlClass}>
           <ReactMic
             noiseSuppression
@@ -149,6 +157,8 @@ const htmlClass = record ? 'button_play' : 'button_start';
           <div className="salut">salut</div>
         </button>
         <button onClick={stopRecord} type="button" className="button_stop">II</button>
+        </div> ) : <div> <div onClick={playStart} type="button" className='button_start'/>
+        <h3 className="consigne">Remplis le formulaire</h3></div>}
       </div>
       {
    recordedSound && (
@@ -188,7 +198,7 @@ const htmlClass = record ? 'button_play' : 'button_start';
     name="body"
     />
     <div className="buttonSubmit">
-      <span>Envoyer</span>
+      <span onClick={onClick}>Enregistrer</span>
     </div>
 
   </form>

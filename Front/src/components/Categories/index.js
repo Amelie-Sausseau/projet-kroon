@@ -8,8 +8,8 @@ import { NavLink } from 'react-router-dom';
 
 import './categories.scss';
 
-const Categories = ({categories, 
-  fetchCategories,
+const Categories = ({ 
+  fetchAllPosts,
   fetchCategorie1,
   fetchCategorie2,
   fetchCategorie3,
@@ -22,10 +22,9 @@ const Categories = ({categories,
   categorie5,
 }) => {
   useEffect(
-    fetchCategories,
+    fetchAllPosts,
     [],
-  )
-
+  );
 
 const [Music, setMusic] = useState(false);
 const [Animaux, setAnimaux] = useState(false);
@@ -58,6 +57,7 @@ function onClickMusic (){
           fetchCategorie5()
           }
 
+          const publi = "/publicationsUser/"
 
 return (
   <div className="catContainers">
@@ -66,16 +66,19 @@ return (
         <h1>Musique</h1> 
     </div>
     {
-       categorieMusic.map((cat) => (
+       categorieMusic.map((post) => (
         Music ? 
+        <NavLink to={publi + post.id} >
     <div>              
-        <h2>{cat.title}</h2>
+        <h2>{post.title}</h2>
         <ReactAudioPlayer
-         src={cat.sound} 
+         src={post.sound} 
          controls
           preload="auto"
          />
-   </div> : null
+         
+   </div> 
+   </NavLink>: null
        ))
     }
            <div className="UserComments"
@@ -83,14 +86,17 @@ return (
         <h1>Animaux</h1> 
     </div>
     {
-       categorie2.map((cat) => (
-        Animaux ? <div><h2>{cat.title}</h2>
+       categorie2.map((post) => (
+        Animaux ? 
+        <NavLink to={publi + post.id} >
+        <div><h2>{post.title}</h2>
         <ReactAudioPlayer
-         src={cat.sound} 
+         src={post.sound} 
          controls
           preload="auto"
          />
-         </div> : null
+         </div>
+         </NavLink> : null
        ))
     }
            <div className="UserComments"
@@ -98,14 +104,17 @@ return (
         <h1>Film/Série</h1> 
     </div>
     {
-       categorie3.map((cat) => (
-        Film ? <div><h2>{cat.title}</h2>
+       categorie3.map((post) => (
+        Film ? 
+        <NavLink to={publi + post.id} >
+        <div><h2>{post.title}</h2>
         <ReactAudioPlayer
-         src={cat.sound} 
+         src={post.sound} 
          controls
           preload="auto"
          />
-         </div> : null
+         </div>
+         </NavLink> : null
        ))
     }
            <div className="UserComments"
@@ -113,14 +122,17 @@ return (
         <h1>Vidéos</h1> 
     </div>
     {
-       categorie4.map((cat) => (
-        Video ? <div><h2>{cat.title}</h2>
+       categorie4.map((post) => (
+        Video ? 
+        <NavLink to={publi + post.id} >
+        <div><h2>{post.title}</h2>
         <ReactAudioPlayer
-         src={cat.sound} 
+         src={post.sound} 
          controls
           preload="auto"
          />
-         </div> : null
+         </div>
+         </NavLink> : null
        ))
     }
            <div className="UserComments"
@@ -128,14 +140,17 @@ return (
         <h1>Autres</h1> 
     </div>
     {
-       categorie5.map((cat) => (
-        Autres ? <div><h2>{cat.title}</h2>
+       categorie5.map((post) => (
+        Autres ? 
+        <NavLink to={publi + post.id} >
+        <div><h2>{post.title}</h2>
         <ReactAudioPlayer
-         src={cat.sound} 
+         src={post.sound} 
          controls
           preload="auto"
          />
-         </div> : null
+         </div>
+         </NavLink> : null
        ))
     }
   </div>
