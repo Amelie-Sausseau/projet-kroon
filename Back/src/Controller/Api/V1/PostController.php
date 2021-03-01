@@ -60,11 +60,8 @@ class PostController extends AbstractController
     /**
      * @Route("/", name="add", methods="POST")
      */
-    public function add(Request $request ,EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+    public function add(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger, TagRepository $tagRepo): Response
     {   
-      
-        //$postData = json_decode($request->getContent(), true);
-
         $post = new Post();
 
         $form = $this->createForm(CreatePostType::class, $post);
@@ -91,6 +88,10 @@ class PostController extends AbstractController
             
         }
             $post->setUser($this->getUser());
+
+            //$tag = $tagRepo->find($request->request->get('tag'));
+            //dd($tag);
+            //$post->addTag($tag);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($post);
@@ -261,14 +262,17 @@ class PostController extends AbstractController
     /**
      * @Route("/{id}/bookmark", name="add_bookmark", methods="POST", requirements={"id"="\d+"})
      */
-    public function addBookmark(Request $request, EntityManagerInterface $em, PostRepository $postRepo): Response
+    public function addBookmark(Request $request, EntityManagerInterface $em, Post $post): Response
     {
         $user = $this->getUser();
 
-        $em->persist($postRepo);
+        $bookmark = $user->addBookmark($post);
+        //dd($bookmark);
+
+        $em->persist($bookmark);
         $em->flush();
 
-        return $this->json($postRepo, 200, [], ['groups' => 'post:addBookmark']);
+        return $this->json($bookmark, 200, [], ['groups' => 'post:addBookmark']);
     }
 
     /**
@@ -276,9 +280,12 @@ class PostController extends AbstractController
      */
     public function deleteBookmark(EntityManagerInterface $em, Post $post): Response
     {
-        
-        $em->remove($post);
+        $user = $this->getUser();
 
+        $bookmark = $user->removeBookmark($post);
+        //dd($bookmark);
+
+        $em->persist($bookmark);
         $em->flush();
 
         return $this->json($post, 200, [], ['groups' => 'post:deleteBookmark']);
@@ -290,7 +297,6 @@ class PostController extends AbstractController
     public function addComment(Request $request, EntityManagerInterface $entityManager, CommentRepository $comment, Post $post): Response
     {
         $commentData = json_decode($request->getContent(), true);
-        // dd($commentData);
         $comment = new Comment();
 
         $form = $this->createForm(CreateCommentType::class, $comment);
