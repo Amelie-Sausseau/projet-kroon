@@ -136,6 +136,7 @@ class Post
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="post")
      * @Groups({"post:one"})
+     * @Groups({"tag:allPosts"})
      */
     private $comments;
 
