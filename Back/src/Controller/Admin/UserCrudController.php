@@ -40,7 +40,7 @@ class UserCrudController extends AbstractCrudController
             EmailField::new('email'),
             ArrayField::new('roles'),
             AvatarField::new('avatar'),
-            BooleanField::new('isActive'),
+            BooleanField::new('isActive')->hideOnForm(),
             DateTimeField::new('createdAt')->hideOnForm(),
             DateTimeField::new('updatedAt')->hideOnForm(),
         ];
