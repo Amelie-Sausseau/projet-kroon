@@ -19,7 +19,7 @@ import PublicationUser from 'src/containers/PublicationUser';
 
 import MyEnhancedForm from 'src/components/Contact2';
 import Compte from 'src/containers/Compte';
-import kroonLogo from './kroon_vFinale.svg';
+import kroonLogo from './kroon_vFinalee.svg';
 
 
 // == Composant

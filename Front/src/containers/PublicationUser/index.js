@@ -4,6 +4,12 @@ import { withRouter } from 'react-router-dom';
 import PublicationUser from 'src/components/PublicationUser';
 import { fetchAllPosts } from '../../actions/users';
 
+import {
+  saveCommentsUser,
+  setFavorites,
+  setDeleteFavorites,
+  setReportPost,
+} from '../../actions/posts';
 
 import { getPostsUserBySlug } from 'src/selectors/posts';
 
@@ -20,6 +26,18 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
+
+  clickFavComp: (postId) => {
+    dispatch(setFavorites(postId));
+  },
+
+  clickDeleteFavComp: (postId) => {
+    dispatch(setDeleteFavorites(postId));
+  },
+
+  clickReportPost: (postId) => {
+    dispatch(setReportPost(postId));
+  },
 
   });
 

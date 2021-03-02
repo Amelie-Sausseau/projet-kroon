@@ -13,5 +13,7 @@
 .logo{
   margin-top: 0px;
   margin-bottom: 0px;
-  position: sticky;
+  position: fixed;
+  padding-bottom: 1rem;
 }
+

@@ -2,7 +2,10 @@ import React, { useEffect, useRef } from 'react';
 import './styles.css';
 
 const CommentForm = ({
-  handleAddCommentToDB, inputCommentValue, setInputCommentValue, manageCommentSubmit, id
+  handleAddCommentToDB,
+  inputCommentValue,
+  setInputCommentValue,
+  id,
 }) => {
   // étape 1 : on récupère une référence en appellant useRef !
   const inputCommentReference = useRef(null);
@@ -23,10 +26,7 @@ const CommentForm = ({
         onSubmit={
       (event) => {
         event.preventDefault();
-        console.log(id);
         handleAddCommentToDB(id);
-        console.log(id);
-        manageCommentSubmit();
       }
     }
       >
@@ -39,7 +39,8 @@ const CommentForm = ({
       }
           className="form__input"
           type="textarea"
-          rows="5" cols="33"
+          rows="5"
+          cols="33"
           placeholder="Laisse ton commentaire ... "
           ref={inputCommentReference}
         />
@@ -52,7 +53,7 @@ const CommentForm = ({
           className="form__submit"
           type="submit"
         >
-          Envoyer &gt;
+          Envoyer
         </button>
       </form>
     </div>

@@ -66,3 +66,8 @@ export const setLikes = (likes) => ({
   type: SET_LIKES,
   likes,
 });
+
+// export const setReport = (report) => ({
+//   type: SET_REPORT,
+//   report,
+// });

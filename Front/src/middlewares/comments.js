@@ -19,17 +19,6 @@ export default (store) => (next) => (action) => {
         });
       next(action);
       break;
-    case SEND_COMMENTS_TO_SERVER:
-      axios.get('http://ec2-3-82-153-17.compute-1.amazonaws.com/api/v1/posts/4')
-        .then((response) => {
-          console.log('then', response);
-        }).catch((error) => {
-          // TODO
-        }).finally((response) => {
-          // TODO
-        });
-      next(action);
-      break;
     case ADD_COMMENTS_TO_DB:
       // eslint-disable-next-line no-case-declarations
       const { body } = store.getState().comments;
