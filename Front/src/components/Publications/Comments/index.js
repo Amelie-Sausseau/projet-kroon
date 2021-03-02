@@ -1,8 +1,6 @@
 import React from 'react';
-
 // import Message from 'src/containers/Messages/Message';
 import './comments.scss';
-import axios from 'axios';
 import AvatarComment from '../../../utils/avatarComment';
 
 // export const test = () => {
@@ -25,7 +23,9 @@ const Comments = ({ post }) => {
 
       {
         post.comments.map((comment) => (
-          <div className="comment__content" key={comment.id}>{comment.body}</div>
+          <div className="comment__container">
+            <div className="comment__content" key={comment.id}>{comment.body}<div className="comment__icons"><i className="lni lni-warning" /><i className="lni lni-thumbs-up" /></div></div>
+          </div>
         ))
 
       }
@@ -54,3 +54,4 @@ export default Comments;
 //     </div>
 //   );
 // };
+// </div><i className="lni lni-pencil">

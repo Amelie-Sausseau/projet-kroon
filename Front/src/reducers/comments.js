@@ -5,6 +5,7 @@ import {
   SET_NEW_COMMENT,
   SAVE_COMMENTS_DATA,
   ADD_COMMENTS_TO_DB,
+  SET_LIKES,
 } from '../actions/comments';
 // import { getHighestCommentId } from '../selectors/comments';
 
@@ -12,6 +13,7 @@ const initialState = {
   body: '',
   comments: [],
   id: null,
+  likes: [],
 };
 
 const commentsReducer = (state = initialState, action = {}) => {
@@ -56,6 +58,11 @@ const commentsReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         comments: action.comments,
+      };
+    case SET_LIKES:
+      return {
+        ...state,
+        likes: action.likes,
       };
     default:
       return { ...state };

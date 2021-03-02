@@ -8,6 +8,8 @@ export const FETCH_COMMENTS = 'FETCH_COMMENTS';
 export const SAVE_COMMENTS = 'SAVE_COMMENTS';
 export const ADD_COMMENTS_TO_DB = 'ADD_COMMENTS_TO_DB';
 export const SAVE_COMMENTS_DATA = 'SAVE_COMMENTS_DATA';
+export const SAVE_LIKES = 'SAVE_LIKES';
+export const SET_LIKES = 'SET_LIKES';
 
 // on définit et exporte l'action creator addMessage
 // on but est de créer pour nous un objet action de type ADD_MESSAGE
@@ -53,4 +55,14 @@ export const addCommentsToDB = (postId) => ({
 export const saveCommentsData = (comments) => ({
   type: SAVE_COMMENTS_DATA,
   comments,
+});
+
+export const saveLikes = (likes) => ({
+  type: SAVE_LIKES,
+  likes,
+});
+
+export const setLikes = (likes) => ({
+  type: SET_LIKES,
+  likes,
 });
