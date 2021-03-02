@@ -142,7 +142,7 @@ class CommentController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/like", name="delete_like", methods="PUT")
+     * @Route("/{id}/unlike", name="delete_like", methods="PUT")
      */
     public function deleteLike(EntityManagerInterface $em, Comment $comment): Response
     {
