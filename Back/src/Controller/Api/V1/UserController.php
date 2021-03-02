@@ -9,23 +9,18 @@ use App\Repository\CommentRepository;
 use App\Repository\PostRepository;
 use App\Repository\UserRepository;
 use App\Service\FileUploader;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Doctrine\ORM\EntityManager;
+use App\Service\Mailer;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Mailer as MailerMailer;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\String\Slugger\SluggerInterface;
-use Symfony\Component\Validator\Constraints\IsNull;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
-use Symfony\Component\Mailer\MailerInterface;
-use SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface;
+
 
 /**
  * @Route("api/v1/users", name="api_v1_user_")
@@ -51,7 +46,7 @@ class UserController extends AbstractController
     /**
      * @Route("/register", name="register", methods={"POST"})
      */
-    public function register(Request $request, UserPasswordEncoderInterface $encoder, UserRepository $user, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserPasswordEncoderInterface $encoder, UserRepository $user, EntityManagerInterface $entityManager, Mailer $mailer): Response
     {   
         $userData = json_decode($request->getContent(), true);
 
@@ -70,6 +65,8 @@ class UserController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
+
+            $mailer->sendEmail($user->getEmail());
 
             return $this->json(
                 [
