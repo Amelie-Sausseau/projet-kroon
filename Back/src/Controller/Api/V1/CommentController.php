@@ -35,7 +35,7 @@ class CommentController extends AbstractController
     }
 
     /**
-    * @Route("/liked", name="lasts", methods={"GET"})
+    * @Route("/liked", name="lasts", methods="GET")
     */
     public function commentsMostLiked(CommentRepository $commentRepo)
     {
@@ -49,7 +49,6 @@ class CommentController extends AbstractController
     {
         $commentData = json_decode($request->getContent(), true);
         // Contrainte pour qu'un utilisateur connecté modifie son propre post
-        // dd($comment->getPost()->getUser(), $this->getUser());
         $author = $comment->getPost()->getUser();
         if ($author !== $this->getUser()) {
             throw $this->createAccessDeniedException();
@@ -63,78 +62,51 @@ class CommentController extends AbstractController
 
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->json(
-                [
-                "success" => true,
-            ],
-                Response::HTTP_OK
-            );
+            return $this->json([ "success" => true ], Response::HTTP_OK );
         }
 
-        return $this->json(
-            [
-            "success" => false,
-            "errors" => $form->getErrors(true),
-        ],
-            Response::HTTP_BAD_REQUEST
-        );
+        return $this->json(["success" => false, "errors" => $form->getErrors(true),], Response::HTTP_BAD_REQUEST);
     }
     
-
     /**
      * @Route("/{id}", name="delete", methods="DELETE", requirements={"id"="\d+"})
      */
     public function delete(EntityManagerInterface $em, Comment $comment): Response
     {
+        $author = $comment->getPost()->getUser();
+        if ($author !== $this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
+        
         $em->remove($comment);
-
         $em->flush();
 
-        return $this->json($comment, 200, [], ['groups' => 'comment:delete']);;
+        return $this->json($comment, 200, [], ['groups' => 'comment:delete']);
     }
 
-        /**
+    /**
      * @Route("/{id}/report", name="report", methods="PUT", requirements={"id"="\d+"})
      */
     public function report(EntityManagerInterface $em, Comment $comment): Response
     {
-        // $infoFromClient = json_decode($request->getContent(), true);
-        // dd($user, $this->getUser());
         if (! empty($this->getUser())) {
 
             $comment->setIsReported(true);
-            // dd($comment);
             $em->persist($comment);
-
             $em->flush();
 
-            return $this->json(
-                [
-                    "success" => true,
-                    "message" => 'Commentaire signalé'
-                ],
-                Response::HTTP_OK
-            );
+            return $this->json(["success" => true, "message" => 'Commentaire signalé' ], Response::HTTP_OK );
         }
 
-        return $this->json(
-            [
-                "success" => false,
-            ],
-            Response::HTTP_BAD_REQUEST
-        );
+        return $this->json([ "success" => false ], Response::HTTP_BAD_REQUEST );
     }
 
-
     /**
-     * @Route("/{id}/like", name="add_like", methods="PUT")
+     * @Route("/{id}/like", name="add_like", methods="PUT", requirements={"id"="\d+"})
      */
     public function addLike(EntityManagerInterface $em, Comment $comment): Response
     {
-        //$infoFromClient = json_decode($request->getContent(), true);
-
         $comment->setLikes($comment->getLikes() + 1 );
-        // dd($comment);
         $em->persist($comment);
         $em->flush();
 
@@ -142,14 +114,11 @@ class CommentController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/unlike", name="delete_like", methods="PUT")
+     * @Route("/{id}/unlike", name="delete_like", methods="PUT", requirements={"id"="\d+"})
      */
     public function deleteLike(EntityManagerInterface $em, Comment $comment): Response
     {
-        // $infoFromClient = json_decode($request->getContent(), true);
-
         $comment->setLikes($comment->getLikes() - 1 );
-        // dd($comment);
         $em->persist($comment);
         $em->flush();
 

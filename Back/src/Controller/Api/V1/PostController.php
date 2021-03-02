@@ -50,7 +50,7 @@ class PostController extends AbstractController
     }
 
     /**
-    * @Route("/lasts", name="lasts", methods={"GET"})
+    * @Route("/lasts", name="lasts", methods="GET")
     */
     public function findLastsFivePosts(PostRepository $postRepo)
     {
@@ -69,7 +69,7 @@ class PostController extends AbstractController
         $form->submit($postData, true);
 
         $soundFile = $request->files->get('soundFile');
-        // dd($soundFile);
+        
         if ($soundFile) {
             $originalFilename = pathinfo($soundFile->getClientOriginalName(), PATHINFO_FILENAME);
             $safeFilename = $slugger->slug($originalFilename);
@@ -87,31 +87,18 @@ class PostController extends AbstractController
             $post->setSound($url.'uploads/sound/'.$newFilename);
             
         }
-            $post->setUser($this->getUser());
 
-            $tag = $tagRepo->find($request->request->get('tag'));
-            //dd($tag);
-            $post->addTag($tag);
+        $post->setUser($this->getUser());
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($post);
-            $entityManager->flush();
-
-            return $this->json(
-                [
-                    "success" => true
-                ],
-                Response::HTTP_OK
-            );
+        $tag = $tagRepo->find($request->request->get('tag'));
         
+        $post->addTag($tag);
 
-        return $this->json(
-            [
-                "success" => false,
-                "errors" => $form->getErrors(true),
-            ],
-            Response::HTTP_BAD_REQUEST
-        );
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($post);
+        $entityManager->flush();
+
+        return $this->json(["success" => true],Response::HTTP_OK);
     }
 
     /**
@@ -128,9 +115,8 @@ class PostController extends AbstractController
         $post->setUpdatedAt(new \DateTime());
         $postData = array_merge($request->request->all(), $request->files->all());
         $form->submit($postData, false);
-        //dd($postData);
         $soundFile = $request->files->get('soundFile'); 
-        //dd($soundFile);
+
         
         if ($soundFile) {
             $originalFilename = pathinfo($soundFile->getClientOriginalName(), PATHINFO_FILENAME);
@@ -151,7 +137,6 @@ class PostController extends AbstractController
 
         $errors = $validator->validate($post);
 
-        //dd($errors);
         // FIXME: Si $errors['violations'] est vide alors.. ??
         if ($errors == true) {
 
@@ -159,22 +144,9 @@ class PostController extends AbstractController
             $entityManager->persist($post);
             $entityManager->flush();
 
-            return $this->json(
-                [
-                    "success" => true
-                ],
-                Response::HTTP_OK
-            );
+            return $this->json(["success" => true], Response::HTTP_OK);
         }
-
-        return $this->json(
-            [
-                "success" => false,
-                "errors" => $form->getErrors(true),
-            ],
-            Response::HTTP_BAD_REQUEST
-        );
-    
+        return $this->json(["success" => false, "errors" => $form->getErrors(true),], Response::HTTP_BAD_REQUEST);
     }
     
 
@@ -183,8 +155,12 @@ class PostController extends AbstractController
      */
     public function delete(EntityManagerInterface $em, Post $post): Response
     {
+        $author = $post->getUser();
+        if ($author !== $this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
+        
         $em->remove($post);
-
         $em->flush();
 
         return $this->json($post, 200, [], ['groups' => 'post:delete']);;
@@ -195,31 +171,15 @@ class PostController extends AbstractController
      */
     public function report(EntityManagerInterface $em, Post $post): Response
     {
-        // $infoFromClient = json_decode($request->getContent(), true);
-        // dd($user, $this->getUser());
         if (! empty($this->getUser())) {
 
             $post->setIsReported(true);
-            // dd($post);
             $em->persist($post);
-
             $em->flush();
 
-            return $this->json(
-                [
-                    "success" => true,
-                    "message" => 'Post signalé'
-                ],
-                Response::HTTP_OK
-            );
+            return $this->json([ "success" => true, "message" => 'Post signalé' ], Response::HTTP_OK );
         }
-
-        return $this->json(
-            [
-                "success" => false,
-            ],
-            Response::HTTP_BAD_REQUEST
-        );
+        return $this->json([ "success" => false ], Response::HTTP_BAD_REQUEST );
     }
 
     /**
@@ -227,36 +187,19 @@ class PostController extends AbstractController
      */
     public function solve(EntityManagerInterface $em, Post $post): Response
     {
-        // $infoFromClient = json_decode($request->getContent(), true);
-        // dd($user, $this->getUser());
         $author = $post->getUser();
         if ($author !== $this->getUser()) {
             throw $this->createAccessDeniedException();
         }
         
         if (! empty($this->getUser())) {
-
             $post->setIsSolved(true);
-            // dd($post);
             $em->persist($post);
-
             $em->flush();
 
-            return $this->json(
-                [
-                    "success" => true,
-                    "message" => 'Post résolu'
-                ],
-                Response::HTTP_OK
-            );
+            return $this->json([ "success" => true, "message" => 'Post résolu' ], Response::HTTP_OK );
         }
-
-        return $this->json(
-            [
-                "success" => false,
-            ],
-            Response::HTTP_BAD_REQUEST
-        );
+        return $this->json([ "success" => false ], Response::HTTP_BAD_REQUEST );
     }
 
     /**
@@ -265,9 +208,7 @@ class PostController extends AbstractController
     public function addBookmark(Request $request, EntityManagerInterface $em, Post $post): Response
     {
         $user = $this->getUser();
-
         $bookmark = $user->addBookmark($post);
-        //dd($bookmark);
 
         $em->persist($bookmark);
         $em->flush();
@@ -281,9 +222,7 @@ class PostController extends AbstractController
     public function deleteBookmark(EntityManagerInterface $em, Post $post): Response
     {
         $user = $this->getUser();
-
         $bookmark = $user->removeBookmark($post);
-        //dd($bookmark);
 
         $em->persist($bookmark);
         $em->flush();
@@ -292,7 +231,7 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/comment", name="add_comment", methods={"POST"}, requirements={"id"="\d+"})
+     * @Route("/{id}/comment", name="add_comment", methods="POST", requirements={"id"="\d+"})
      */
     public function addComment(Request $request, EntityManagerInterface $entityManager, CommentRepository $comment, Post $post): Response
     {
@@ -311,22 +250,10 @@ class PostController extends AbstractController
             $entityManager->persist($comment);
             $entityManager->flush();
 
-            return $this->json(
-                [
-                    "success" => true,
-                    ['id' => $post->getId()]
-                ],
-                Response::HTTP_OK
-            );
+            return $this->json([ "success" => true, ['id' => $post->getId()] ], Response::HTTP_OK );
         }
 
-        return $this->json(
-            [
-                "success" => false,
-                "errors" => $form->getErrors(true),
-            ],
-            Response::HTTP_BAD_REQUEST
-        );
+        return $this->json([ "success" => false, "errors" => $form->getErrors(true) ], Response::HTTP_BAD_REQUEST );
     }
 
 }

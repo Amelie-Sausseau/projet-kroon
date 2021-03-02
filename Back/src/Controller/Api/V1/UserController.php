@@ -15,7 +15,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mailer\Mailer as MailerMailer;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
@@ -44,16 +43,14 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/register", name="register", methods={"POST"})
+     * @Route("/register", name="register", methods="POST")
      */
     public function register(Request $request, UserPasswordEncoderInterface $encoder, EntityManagerInterface $entityManager, Mailer $mailer): Response
     {   
         $userData = json_decode($request->getContent(), true);
 
         $user = new User();
-
         $form = $this->createForm(RegisterType::class, $user);
-
         $form->submit($userData, true);
 
         if ($form->isValid()) {
@@ -68,27 +65,16 @@ class UserController extends AbstractController
 
             $mailer->sendEmail($user->getEmail());
 
-            return $this->json(
-                [
-                    "success" => true
-                ],
-                Response::HTTP_OK
-            );
+            return $this->json([ "success" => true], Response::HTTP_OK);
         }
 
-        return $this->json(
-            [
-                "success" => false,
-                "errors" => $form->getErrors(true),
-            ],
-            Response::HTTP_BAD_REQUEST
-        );
+        return $this->json([ "success" => false, "errors" => $form->getErrors(true) ], Response::HTTP_BAD_REQUEST);
     }
     
     /**
-     * @Route("/{id}", name="edit", methods={"POST"}, requirements={"id"="\d+"})
+     * @Route("/{id}", name="edit", methods="POST", requirements={"id"="\d+"})
      */
-    public function edit(Request $request, User $user, EntityManagerInterface $entityManager, SluggerInterface $slugger ,ValidatorInterface $validator, FileUploader $fileUploader): Response
+    public function edit(Request $request, User $user, EntityManagerInterface $entityManager, SluggerInterface $slugger, ValidatorInterface $validator, FileUploader $fileUploader): Response
     {   
         if ($user !== $this->getUser()) {
             throw $this->createAccessDeniedException();
@@ -98,9 +84,8 @@ class UserController extends AbstractController
         $user->setUpdatedAt(new \DateTime());
         $postData = array_merge($request->request->all(), $request->files->all());
         $form->submit($postData, false);
-        //dd($postData);
+        
         $avatarFile = $request->files->get('avatarFile');
-        //dd($avatarFile);
         
         if ($avatarFile) {
             $originalFilename = pathinfo($avatarFile->getClientOriginalName(), PATHINFO_FILENAME);
@@ -121,7 +106,6 @@ class UserController extends AbstractController
 
         $errors = $validator->validate($user);
 
-        //dd($errors);
         // FIXME: Si $errors['violations'] est vide alors.. ??
         if ($errors == true) {
 
@@ -129,21 +113,9 @@ class UserController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->json(
-                [
-                    "success" => true
-                ],
-                Response::HTTP_OK
-            );
+            return $this->json([ "success" => true ], Response::HTTP_OK );
         }
-
-        return $this->json(
-            [
-                "success" => false,
-                "errors" => $form->getErrors(true),
-            ],
-            Response::HTTP_BAD_REQUEST
-        );
+        return $this->json([ "success" => false, "errors" => $form->getErrors(true) ], Response::HTTP_BAD_REQUEST );
     }
 
     /**
@@ -152,7 +124,6 @@ class UserController extends AbstractController
     public function bookmark(): Response
     {
         $user = $this->getUser();
-       
         $bookmarks = $user->getBookmark();
             
         return $this->json($bookmarks, 200, [], ['groups' => 'user:bookmarkedPosts']);
@@ -164,7 +135,6 @@ class UserController extends AbstractController
     public function comment(CommentRepository $commentRepo): Response
     {     
         $user = $this->getUser();
-
         $comments = $commentRepo->findBy(['user' => $user], ['createdAt' => 'DESC']);
 
         return $this->json($comments, 200, [], ['groups' => 'user:commentedPosts']);
@@ -176,7 +146,6 @@ class UserController extends AbstractController
     public function post(PostRepository $postRepo): Response
     {
         $user = $this->getUser();
-
         $posts = $postRepo->findBy(['user' => $user], ['createdAt' => 'DESC']);
 
         return $this->json($posts, 200, [], ['groups' => 'user:writtenPosts']);

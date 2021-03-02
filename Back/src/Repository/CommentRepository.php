@@ -23,6 +23,7 @@ class CommentRepository extends ServiceEntityRepository
     {
         $queryBuilder = $this->createQueryBuilder('comment');
         $queryBuilder->addOrderBy('comment.likes', 'DESC');
+        $queryBuilder->where('comment.isActive = 1');
         $queryBuilder->setMaxResults(5);
         $query = $queryBuilder->getQuery();
 
