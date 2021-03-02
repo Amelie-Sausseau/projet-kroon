@@ -51,9 +51,9 @@ const publi = "/publications/"
 
     </div>
 
-    <h2 className="titleHome">Meilleurs contributeurs</h2>
+    <h2 className="titleHome">Meilleurs commentaires</h2>
 
-    <div className="last_sounds">
+    <div className="comment.content">
       <div className="caontainer-users">
     <h3>Username</h3>
         <div className="best-users">Img Cat</div>

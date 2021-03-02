@@ -21,7 +21,7 @@ const Field = ({
 
   return (
     <div className="field">
-      <input
+      <textarea
         // React - state
         value={value}
         onChange={handleChange}

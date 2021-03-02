@@ -21,11 +21,8 @@ const Field = ({
   return (
     <div >
       <input
-        // React - state
         value={value}
         onChange={handleChange}
-        // infos de base
-        // id={inputId}
         type={type}
         className="field-input-signup"
         placeholder={placeholder}

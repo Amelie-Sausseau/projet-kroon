@@ -22,6 +22,8 @@ const PostForm = ({
   changeInputPostValueComp,
   titre,
   body,
+  categorieId,
+  changeSelectValueComp,
 }) => {
 
   useEffect(
@@ -43,6 +45,8 @@ console.log(titre)
   formData.append('soundFile', file)
   formData.append('title', titre)
   formData.append('body', body)
+  formData.append('tag', categorieId)
+
 
     axios.post("http://ec2-3-82-153-17.compute-1.amazonaws.com/api/v1/posts/",formData,
 
@@ -137,7 +141,14 @@ console.log(titre)
       setMic(!mic)
     }
 
+    function onClickSelect(event){
+      changeSelectValueComp(event.target.value)
+      console.log(event.target.value)
+    }
+
 const htmlClass = record ? 'button_play' : 'button_start';
+
+
 
   return (
     <div className="idk">
@@ -173,10 +184,10 @@ const htmlClass = record ? 'button_play' : 'button_start';
    )
 }
 <form autoComplete="off" className="box" type="submit" >
-    <select className="categories" placeholder="Catégories">
+    <select className="categories" placeholder="Catégories" onChange={onClickSelect}>
       {
         categories.map((categorie) => (
-          <option className="categories"  key={categorie.id} value={categorie.id}>{categorie.name}</option>
+          <option className="categories"  key={categorie.id} value={categorie.id} >{categorie.name}</option>
         ))
       }
 

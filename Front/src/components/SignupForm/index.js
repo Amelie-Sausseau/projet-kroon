@@ -65,13 +65,6 @@ const SignupForm = ({
           onChange={changeFieldCreate}
           value={password}
         />
-        {/*       <Field
-      type="text"
-      placeholder="confirm password"
-       required className="password"
-       onChange={changeFieldCreate}
-       value={password}
-       /> */}
         <button type="submit" value="Submit" className="signup-form-button">
           Créer mon compte
         </button>
