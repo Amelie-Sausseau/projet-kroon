@@ -16,6 +16,7 @@ import PostForm from 'src/containers/PostForm';
 import HomeUsers from 'src/containers/HomeUsers';
 import Publications from 'src/containers/Publications';
 import PublicationUser from 'src/containers/PublicationUser';
+import Ekip from 'src/components/Equipe';
 
 import MyEnhancedForm from 'src/components/Contact2';
 import Compte from 'src/containers/Compte';
@@ -32,7 +33,7 @@ useEffect(fetchUserDataFromLocalStorage ,[]);
       {loading && <Loader />}
       {!loading && !logged ? (
         <>
-          <img src={kroonLogo} alt="Logo Kroon" className="logo" />
+          <img src={kroonLogo} alt="Logo Kroon" className="logoKroon" />
           <Burger />
           <Route path="/categories" exact>
             <Categories />
@@ -57,7 +58,7 @@ useEffect(fetchUserDataFromLocalStorage ,[]);
         </>
       ) : (
         <>
-          <img src={kroonLogo} alt="Logo Kroon" />
+          <img src={kroonLogo} alt="Logo Kroon" className="logoKroon" />
           <Burger />
           <Route path="/categories" exact>
             <Categories />
@@ -80,6 +81,9 @@ useEffect(fetchUserDataFromLocalStorage ,[]);
           <Route path="/contact" exact>
             <MyEnhancedForm />
             <Footer />
+          </Route>
+          <Route path="/equipe" exact>
+            <Ekip />
           </Route>
           <Route path="/publications" exact>
             <Publications />
