@@ -57,11 +57,11 @@ function Publications({
                   onClick={handleClickFav}
                 />
               ) : (
-                  <i
-                    className="lni lni-heart-filled lni-heart-filled--active"
-                    onClick={handleClickDeleteFav}
-                  />
-                )}
+                <i
+                  className="lni lni-heart-filled lni-heart-filled--active"
+                  onClick={handleClickDeleteFav}
+                />
+              )}
               {!report ? (
                 <i
                   className="lni lni-warning"

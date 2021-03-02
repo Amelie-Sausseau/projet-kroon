@@ -32,9 +32,9 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(setDeleteFavorites(postId));
   },
 
-  // clickReportPost: (postId) => {
-  //   dispatch(setReportPost(postId));
-  // },
+  clickReportPost: (postId) => {
+    dispatch(setReportPost(postId));
+  },
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Publications));
