@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import {
-  saveComments, FETCH_COMMENTS, SEND_COMMENTS_TO_SERVER, ADD_COMMENTS_TO_DB,
+  saveComments, FETCH_COMMENTS, SEND_COMMENTS_TO_SERVER, ADD_COMMENTS_TO_DB, SET_LIKES,
 } from '../actions/comments';
 
 export default (store) => (next) => (action) => {
@@ -36,7 +36,7 @@ export default (store) => (next) => (action) => {
       const { token } = store.getState().users;
       console.log(action.postId);
       const id = action.postId;
-      
+
       console.log('je passe par le middleware comments', id);
 
       axios.post(`http://ec2-3-82-153-17.compute-1.amazonaws.com/api/v1/posts/${id}/comment`,
@@ -56,7 +56,19 @@ export default (store) => (next) => (action) => {
       // cette action sera traitée et permettra de RAZ le champ de saisie.
       next(action);
       break;
-
+    case SET_LIKES:
+      const { likes } = action.likes;
+      console.log(likes);
+      axios.get('http://ec2-3-82-153-17.compute-1.amazonaws.com/api/v1/posts/4')
+        .then((response) => {
+          console.log('then', response);
+        }).catch((error) => {
+          // TODO
+        }).finally((response) => {
+          // TODO
+        });
+      next(action);
+      break;
     default:
       next(action);
   }

@@ -15,6 +15,8 @@ import {
 
 } from 'src/actions/posts';
 
+import { SAVE_LIKES } from 'src/actions/comments';
+
 const initialState = {
   email: '',
   password: 'admin',
@@ -42,6 +44,7 @@ const usersReducer = (state = initialState, action = {}) => {
         password: '',
         username: '',
         token: '',
+        likes: [],
       };
     case SAVE_USER_DATA:
       return {
@@ -88,21 +91,20 @@ const usersReducer = (state = initialState, action = {}) => {
         ...state,
         comments: action.data,
       };
+    case SAVE_ALL_POSTS:
+      return {
+        ...state,
+        allPosts: action.data,
+      };
     case SAVE_POSTS_FROM_ID:
-      case SAVE_ALL_POSTS:
-        return {
-          ...state,
-          allPosts: action.data
-        };
-      case SAVE_COMMENTS_USER:
-        return {
-          ...state,
-          comments: action.data
-        };
-        case SAVE_POSTS_FROM_ID:
       return {
         ...state,
         posts: action.data,
+      };
+    case SAVE_LIKES:
+      return {
+        ...state,
+        likes: action.likes,
       };
     default:
       return { ...state };

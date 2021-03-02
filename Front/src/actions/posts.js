@@ -5,6 +5,7 @@ export const FETCH_POSTS_FROM_TAGS = 'FETCH_POSTS_FROM_TAGS';
 export const SAVE_POSTS_FROM_ID = 'SAVE_POSTS_FROM_ID';
 export const SAVE_FAVORITES = 'SAVE_FAVORITES';
 export const SET_FAVORITES = 'SET_FAVORITES';
+export const CHANGE_SELECT_VALUE = 'CHANGE_SELECT_VALUE';
 
 export const fetchCategories = () => ({
   type: FETCH_CATEGORIES,
@@ -38,4 +39,9 @@ export const saveFavorites = (favorites) => ({
 export const setFavorites = (favorites) => ({
   type: SET_FAVORITES,
   favorites,
+});
+
+export const changeSelectValue = (data) => ({
+  type: CHANGE_SELECT_VALUE,
+  data,
 });
