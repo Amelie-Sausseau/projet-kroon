@@ -11,10 +11,9 @@ import {
 } from 'src/actions/users';
 
 import {
-  SAVE_POSTS_FROM_ID
+  SAVE_POSTS_FROM_ID,
 
-} from 'src/actions/posts'
-
+} from 'src/actions/posts';
 
 const initialState = {
   email: '',
@@ -28,6 +27,7 @@ const initialState = {
   posts: [],
   comments: [],
   allPosts: [],
+  id: null,
 
 };
 
@@ -41,7 +41,7 @@ const usersReducer = (state = initialState, action = {}) => {
         email: '',
         password: '',
         username: '',
-        token:'',
+        token: '',
       };
     case SAVE_USER_DATA:
       return {
@@ -81,8 +81,14 @@ const usersReducer = (state = initialState, action = {}) => {
     case SAVE_POSTS_USER:
       return {
         ...state,
-        posts: action.data
+        posts: action.data,
       };
+    case SAVE_COMMENTS_USER:
+      return {
+        ...state,
+        comments: action.data,
+      };
+    case SAVE_POSTS_FROM_ID:
       case SAVE_ALL_POSTS:
         return {
           ...state,
@@ -96,7 +102,7 @@ const usersReducer = (state = initialState, action = {}) => {
         case SAVE_POSTS_FROM_ID:
       return {
         ...state,
-        posts: action.data
+        posts: action.data,
       };
     default:
       return { ...state };

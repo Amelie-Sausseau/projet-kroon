@@ -1,21 +1,25 @@
 import {
-    ADD_RECEIVED_COMMENT, SAVE_COMMENTS, SEND_COMMENTS_TO_SERVER, SET_NEW_COMMENT,
-  } from '../actions/comments';
-
+  ADD_RECEIVED_COMMENT,
+  SAVE_COMMENTS,
+  SEND_COMMENTS_TO_SERVER,
+  SET_NEW_COMMENT,
+  SAVE_COMMENTS_DATA,
+  ADD_COMMENTS_TO_DB,
+} from '../actions/comments';
+// import { getHighestCommentId } from '../selectors/comments';
 
 const initialState = {
-    newCommentValue: '',
-    comments: [],
-}
+  body: '',
+  comments: [],
+  id: null,
+};
 
-
-
-  const commentsReducer = (state = initialState, action = {}) => {
-    switch (action.type) {
-  case SEND_COMMENTS_TO_SERVER:
+const commentsReducer = (state = initialState, action = {}) => {
+  switch (action.type) {
+    case SEND_COMMENTS_TO_SERVER:
       return {
         ...state,
-        newCommentValue: '',
+        body: '',
       };
     case ADD_RECEIVED_COMMENT:
       return {
@@ -25,20 +29,37 @@ const initialState = {
           action.newComment,
         ],
       };
+    case ADD_COMMENTS_TO_DB: {
+      return {
+        ...state,
+        comments: [
+          ...state.comments,
+          {
+            body: state.comments.body,
+            id: action.postId,
+          },
+        ],
+        body: '',
+      };
+    }
     case SET_NEW_COMMENT:
       return {
         ...state,
-        newCommentValue: action.newValue,
+        body: action.newValue,
       };
     case SAVE_COMMENTS:
       return {
         ...state,
         comments: action.comments,
       };
+    case SAVE_COMMENTS_DATA:
+      return {
+        ...state,
+        comments: action.comments,
+      };
+    default:
+      return { ...state };
+  }
+};
 
-      default:
-        return { ...state };
-    }
-  };
-  
-  export default commentsReducer;
+export default commentsReducer;

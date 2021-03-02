@@ -33,5 +33,5 @@ const mapDispatchToProps = (dispatch) => ({
 
 
 
-export default withRouter(connect(mapStateToProps)(Publications));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Publications));
 

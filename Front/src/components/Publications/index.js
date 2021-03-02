@@ -14,8 +14,8 @@ import './publications.scss';
 
 // == Composant
 function Publications({ post, manageLoad }) {
-  console.log(post);
-
+  console.log(post.tags);
+  console.log(post.id);
   return (
     <>
       { post
@@ -30,7 +30,7 @@ function Publications({ post, manageLoad }) {
               sound={post.sound}
             />
             <Comment className="comments" post={post} />
-            <CommentForm className="form" />
+            <CommentForm className="form" {...post} />
           </div>
         )
 

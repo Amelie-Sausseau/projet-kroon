@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 
 import CommentForm from '../../components/CommentForm';
 // on importe l'action creator
-import { addMessage, setNewComment } from '../../actions/comments';
+import { addComments, setNewComment, addCommentsToDB } from '../../actions/comments';
 
 // on branche la propriété du composant de présentation
 // Form sur la propriété newMessageValue du state du store.
 const mapStateToProps = (state) => ({
-  inputCommentValue: state.comments.newCommentValue,
+  inputCommentValue: state.comments.body,
 });
 
 // on branche notre propriété de type fonction
@@ -19,10 +19,16 @@ const mapDispatchToProps = (dispatch/*, ownProps*/) => ({
     // on se sert de l'action creator pour qui nous fournisse
     // l'action à dispatcher
     // nous voulons envoyer le commentaire au serveur
-    dispatch(addMessage());
+    console.log('je passe dans manageCommentSubmit');
+    dispatch(addComments());
   },
   setInputCommentValue: (value) => {
     dispatch(setNewComment(value));
+  },
+
+  handleAddCommentToDB: (postId) => {
+    console.log('je passe dans handleAddCommentToDB', postId);
+    dispatch(addCommentsToDB(postId));
   },
 });
 
