@@ -89,9 +89,9 @@ class PostController extends AbstractController
         }
             $post->setUser($this->getUser());
 
-            //$tag = $tagRepo->find($request->request->get('tag'));
+            $tag = $tagRepo->find($request->request->get('tag'));
             //dd($tag);
-            //$post->addTag($tag);
+            $post->addTag($tag);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($post);
