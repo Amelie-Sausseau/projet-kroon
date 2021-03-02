@@ -15,7 +15,7 @@ const initialState = {
   url: '',
   data: [],
   loading: false,
-  blob:{},
+  blob: {},
 
 };
 export default (state = initialState, action = {}) => {
@@ -35,7 +35,7 @@ export default (state = initialState, action = {}) => {
       return {
         ...state,
         blob: action.newValue,
-      }
+      };
     case STOP_RECORD:
       return {
         ...state,
@@ -48,12 +48,12 @@ export default (state = initialState, action = {}) => {
         data: action.data,
         loading: false,
       };
-      case SAVE_POST:
-        return {
-          ...state,
-          data: action.data,
-          loading: false,
-        };
+    case SAVE_POST:
+      return {
+        ...state,
+        data: action.data,
+        loading: false,
+      };
     default:
       return state;
   }

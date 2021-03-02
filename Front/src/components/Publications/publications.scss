@@ -36,3 +36,11 @@
         max-width: 1rem;
     }
     
+    .lni-heart-filled {
+        margin-bottom: 1rem;
+        font-size: xx-large;
+
+        &--active {
+            color: red;
+        }
+    }

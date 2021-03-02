@@ -1,7 +1,8 @@
 import {
     SAVE_CATEGORIES,
     CHANGE_POSTS_VALUE,
-    SAVE_POSTS_FROM_TAGS
+    SAVE_POSTS_FROM_TAGS,
+    CHANGE_SELECT_VALUE
   } from '../actions/posts';
   
   const initialState = {
@@ -10,6 +11,7 @@ import {
     titre: '',
     body: '',
     posts: [],
+    categorieId: 1,
  // id à creuser
   
   };
@@ -32,7 +34,14 @@ import {
         return {
           ...state,
           posts: action.data,
-        }
+        };
+      
+        case CHANGE_SELECT_VALUE
+        :
+          return {
+            ...state,
+            categorieId: action.data,
+          }
       default:
         return state;
     }

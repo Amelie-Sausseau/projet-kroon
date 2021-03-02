@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 // == Import yarn
 import React, { useEffect } from 'react';
 import { Route, Redirect } from 'react-router-dom';
@@ -18,17 +17,10 @@ import HomeUsers from 'src/containers/HomeUsers';
 import Publications from 'src/containers/Publications';
 import PublicationUser from 'src/containers/PublicationUser';
 
-// import MyAccount from 'src/containers/Account';
-// import Account2 from 'src/components/account2';
-// import Account3 from 'src/components/account3';
 import MyEnhancedForm from 'src/components/Contact2';
 import Compte from 'src/containers/Compte';
 import kroonLogo from './kroon_vFinale.svg';
 
-/* import Mic from 'src/containers/Mic';
- import Posts from 'src/containers/Posts';
-import Nav from 'src/components/Nav';
-import LoginForm from 'src/containers/LoginForm'; */
 
 // == Composant
 const App = ({loading, logged, fetchUserDataFromLocalStorage }) => {

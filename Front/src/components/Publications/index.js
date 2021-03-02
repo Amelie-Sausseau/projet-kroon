@@ -25,10 +25,11 @@ function Publications({ post, manageLoad }) {
             <div>{post.user.name}</div>
             {/* <h3>{post.tags.name}</h3> */}
             <h1 className="titlepost">{post.title}</h1>
+            
             <Sound
               body={post.body}
               sound={post.sound}
-            />
+            /><i className="lni lni-heart-filled" />
             <Comment className="comments" post={post} />
             <CommentForm className="form" {...post} />
           </div>

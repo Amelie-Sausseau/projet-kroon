@@ -30,7 +30,7 @@ const CommentForm = ({
       }
     }
       >
-        <input
+        <textarea
           value={inputCommentValue}
           onChange={
         (event) => {
@@ -38,7 +38,8 @@ const CommentForm = ({
         }
       }
           className="form__input"
-          type="text"
+          type="textarea"
+          rows="5" cols="33"
           placeholder="Laisse ton commentaire ... "
           ref={inputCommentReference}
         />
