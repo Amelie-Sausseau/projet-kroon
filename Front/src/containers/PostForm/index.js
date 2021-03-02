@@ -16,6 +16,7 @@ const mapStateToProps = (state) => ({
  categories: state.posts.categories,
  titre: state.posts.titre,
  body: state.posts.body,
+ categorie: state.posts.categorie
 
 });
 
