@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import './field.css';
 
 // == Composant
-const Field = ({
+const Field1 = ({
   value,
   type,
   name,
@@ -32,7 +32,7 @@ const Field = ({
   );
 };
 
- Field.propTypes = {
+ Field1.propTypes = {
   value: PropTypes.string,
   type: PropTypes.string,
   name: PropTypes.string.isRequired,
@@ -41,10 +41,10 @@ const Field = ({
 };
 
 // Valeurs par défaut pour les props
-Field.defaultProps = {
+Field1.defaultProps = {
   value: '',
   type: 'text',
 }; 
 
 // == Export
-export default Field;
+export default Field1;

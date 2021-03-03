@@ -11,7 +11,7 @@ import './ekip.scss';
 const Ekip = () => (
   <div className="containerEquipe">
     <div className="TeamBack">
-      <h2 className="team">Team Back</h2>
+      <h2 className="titlepost">Team Back</h2>
       <div className="photos">
         <Card>
           <Image src={damien} className="Damien" />
@@ -47,7 +47,7 @@ const Ekip = () => (
       </div>
     </div>
     <div className="TeamBack">
-      <h2 className="team">Team Front</h2>
+      <h2 className="titlepost">Team Front</h2>
       <div className="photos">
         <Card>
           <img src={dimitri} alt="Dimitri" className="dimitrii" />

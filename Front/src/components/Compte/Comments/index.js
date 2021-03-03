@@ -7,7 +7,7 @@ const Comments = ({body, title}) => {
 console.log(body, title)
   return (
     <>
-    <div>{title}</div>
+    <div className="title-comment">{title}</div>
   <div className="commentaire">
 
     {/* <div className="message__username">pseudo</div> */}

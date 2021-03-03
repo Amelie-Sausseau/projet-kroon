@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import './signup.scss';
-import Field from './Field';
+import Field from './Field1';
 
 const SignupForm = ({
   email,
@@ -40,7 +40,7 @@ const SignupForm = ({
       <form autoComplete="off" className="box" onSubmit={handleSubmit}>
         <Field
           type="text"
-          placeholder="Username"
+          placeholder="Pseudo"
           required
           className="username"
           name="name"
@@ -59,7 +59,7 @@ const SignupForm = ({
         <Field
           type="password"
           name="password"
-          placeholder="Password"
+          placeholder="  Mot de passe"
           required
           className="password"
           onChange={changeFieldCreate}

@@ -14,8 +14,7 @@
     margin-right: auto;
     background-color: white;
     position: relative;
-    margin-right: 2rem;
-    padding-left: 1rem;
+
     padding-top: 0.5rem;
     overflow: scroll;
 }
@@ -45,4 +44,9 @@ width: 1rem;
 .MuiAvatar-root{
     margin-bottom: -1rem;
    
+}
+
+.title-comment{
+    max-width: 20rem;
+    margin:auto
 }

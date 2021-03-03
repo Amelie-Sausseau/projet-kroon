@@ -48,7 +48,7 @@ const LoginForm = ({
         <Field
           className="username"
           name="username"
-          placeholder="Adresse Email"
+          placeholder="Email"
           onChange={changeField}
           value={username}
         />

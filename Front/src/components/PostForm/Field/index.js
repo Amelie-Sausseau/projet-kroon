@@ -28,7 +28,7 @@ const Field = ({
         // infos de base
         id={inputId}
         type={type}
-        className="field-input-signup"
+        /* className="field-input" */
         placeholder={placeholder}
         name={name}
       />

@@ -19,8 +19,6 @@ function Publications({
   clickReportPost,
 
 }) {
-  console.log(post.tags.[0].name);
-  console.log(post.id);
 
   const [fav, setFav] = useState(false);
   const [report, setReport] = useState(false);

@@ -15,6 +15,10 @@
     font-size: smaller;
     display: flex;
     justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
 
 }
 
@@ -34,12 +38,12 @@
 .comment__container {
     width: 100vw;
     justify-content: center;
-    align-items: center;
+
+
 }
 .comment__icons {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+font-size: small;
+margin-left: 14rem;
 }
 .lni {
 padding-left: 0.2rem;
