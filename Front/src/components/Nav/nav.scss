@@ -35,14 +35,15 @@ li {
   border-radius: 7px;
   margin-right: 5px;
 }
-img {
-  max-height: 18vh;
-  max-width: 25vw;
+.logoKroon {
+  // height: 18vh;
+  // width: 25vw;
   margin-left: 1rem;
-}
-nav__link--active {
-  text-decoration: underline;
-  color: #f0f;
+  // margin-top: -2rem;
+  position: static;
+  width: 6rem;
+  height: 6rem;
+
 }
 
 .deco{

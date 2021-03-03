@@ -6,12 +6,15 @@ export const SAVE_POSTS_FROM_ID = 'SAVE_POSTS_FROM_ID';
 export const SAVE_FAVORITES = 'SAVE_FAVORITES';
 export const SET_FAVORITES = 'SET_FAVORITES';
 export const CHANGE_SELECT_VALUE = 'CHANGE_SELECT_VALUE';
+export const SET_DELETE_FAVORITES = 'SET_DELETE_FAVORITES';
+export const SET_REPORT_POST = 'SET_REPORT_POST';
+export const SET_DELETE = 'SET_DELETE';
 
 export const fetchCategories = () => ({
   type: FETCH_CATEGORIES,
 });
 
-export const changeInputPostValue = (fieldValue, fieldName ) => ({
+export const changeInputPostValue = (fieldValue, fieldName) => ({
   type: CHANGE_POSTS_VALUE,
   fieldValue,
   fieldName,
@@ -36,12 +39,27 @@ export const saveFavorites = (favorites) => ({
   favorites,
 });
 
-export const setFavorites = (favorites) => ({
+export const setFavorites = (postId) => ({
   type: SET_FAVORITES,
-  favorites,
+  postId,
+});
+
+export const setDeleteFavorites = (postId) => ({
+  type: SET_DELETE_FAVORITES,
+  postId,
 });
 
 export const changeSelectValue = (data) => ({
   type: CHANGE_SELECT_VALUE,
   data,
+});
+
+export const setReportPost = (postId) => ({
+  type: SET_REPORT_POST,
+  postId,
+});
+
+export const setDelete = (postId) => ({
+  type: SET_DELETE,
+  postId,
 });

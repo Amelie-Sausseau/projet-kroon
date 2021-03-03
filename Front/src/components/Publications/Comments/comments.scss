@@ -24,8 +24,8 @@
 }
 
 .commentaires{
-    overflow: auto;
-    height: auto;
+    overflow-y: auto;
+    height: 32vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -50,6 +50,7 @@ padding-top: 0.2rem;
 padding-bottom: 0.2rem;
 color: #cfcfcf;
 }
+
 // .MuiGrid-container {
 // margin-bottom: 2rem;
 // width: 1rem;

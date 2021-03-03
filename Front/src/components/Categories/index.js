@@ -61,6 +61,8 @@ function onClickMusic (){
 
 return (
   <div className="catContainers">
+
+    <div>SearchBarre O\</div>
        <div className="UserComments"
         onClick={onClickMusic}>
         <h1>Musique</h1> 

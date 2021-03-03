@@ -1,0 +1,59 @@
+.containerEquipe {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 70vh;
+    padding-top: 0.2rem;
+    font-size: smaller;
+    margin-top: -3rem;
+    
+}
+
+.TeamBack {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+}
+.card {
+    padding: 1rem;
+}
+
+.Damien, .Amelie, .dimitrii, .jordan {
+    border-radius: 50px;
+}
+
+.team {
+    display: flex;
+    margin-left: 1rem;
+    margin-top: 0.8rem;
+    margin-bottom: 2rem;
+}
+.photos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+}
+
+img {
+    width: 7rem;
+    height: 9rem;
+    margin-bottom: 0.5rem;
+}
+
+.socials {
+    margin-top: 0.5rem;
+    width: 2rem;
+    height: 2rem;
+}
+
+.socialsAmelie {
+    margin-top: 1.2rem;
+}
+
+.header {
+    font-weight: bold;
+}
