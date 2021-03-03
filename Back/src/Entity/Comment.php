@@ -75,6 +75,7 @@ class Comment
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"post:one"})
      * @Groups({"user:commentedPosts"})
      * @Groups({"comment:all", "comment:one"})
      */

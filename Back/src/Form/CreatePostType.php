@@ -13,6 +13,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\File\File as FileFile;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 
@@ -21,7 +22,13 @@ class CreatePostType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class) 
+            ->add('title', TextType::class, [
+                'constraints' => [
+                    new Length([
+                    'min' => 5,
+                    'max' => 50])
+                ]
+            ]) 
 
             ->add('body', TextType::class)
 
@@ -40,18 +47,6 @@ class CreatePostType extends AbstractType
                 'mapped' => false,
                 
                 ]
-
-                // unmapped fields can't define their validation using annotations
-                // in the associated entity, so you can use the PHP constraint classes
-                //'constraints' => [
-                //    new File([
-                //        'maxSize' => '5M',
-                //        'mimeTypes' => [
-                //            'audio/webm',
-                //            'audio/mp3'
-                //        ],
-                //    ])
-                //]]
             );
     }
 
