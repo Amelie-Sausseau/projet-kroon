@@ -17,11 +17,9 @@ class ContactController extends AbstractController
      */
     public function index(Request $request, MailerInterface $mailer): Response
     {
-
         $contactFormData = json_decode($request->getContent(), true);
         $form = $this->createForm(ContactType::class);
         $form->submit($contactFormData, true);
-
 
         if($form->isValid()) {
             
@@ -34,13 +32,8 @@ class ContactController extends AbstractController
                     'text/plain');
             $mailer->send($message);
 
-            return $this->json(["success" => true],Response::HTTP_OK);
+            return $this->json(["success" => true], Response::HTTP_OK);
         }
-
-
-
         return $this->json(["success" => false, "errors" => $form->getErrors(true),], Response::HTTP_BAD_REQUEST);
-        
     }
-    
 }

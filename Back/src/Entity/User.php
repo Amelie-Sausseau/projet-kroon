@@ -20,7 +20,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @Vich\Uploadable
- * @UniqueEntity("email")
  */
 class User implements UserInterface
 {
@@ -76,7 +75,6 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255, unique=true)
      * @Groups({"user:one"})
      * @Assert\NotBlank()
-     * @Assert\Email()
      */
     private $email;
 
