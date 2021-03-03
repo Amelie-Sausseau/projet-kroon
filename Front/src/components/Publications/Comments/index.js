@@ -14,8 +14,9 @@ const Comments = ({ post, clickReportPost }) => {
       {
         post.comments.map((comment) => (
           <div className="comment__container">
+            {/* <div className="user-comment">Posté par : {comment.user.name}</div> */}
             <div className="comment__content" key={comment.id}>{comment.body}
-              <div className="comment__icons"><i className="lni lni-warning" onClick={handleReportPost} /></div>
+              <div className="comment__icons">{comment.user.slug}</div>
             </div>
           </div>
         ))

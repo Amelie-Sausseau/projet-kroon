@@ -17,8 +17,6 @@ import HomeUsers from 'src/containers/HomeUsers';
 import Publications from 'src/containers/Publications';
 import PublicationUser from 'src/containers/PublicationUser';
 import Ekip from 'src/components/Equipe';
-
-import MyEnhancedForm from 'src/components/Contact2';
 import Compte from 'src/containers/Compte';
 import kroonLogo from './kroon_vFinalee.svg';
 
@@ -51,7 +49,7 @@ useEffect(fetchUserDataFromLocalStorage ,[]);
             <SignupForm />
           </Route>
           <Route path="/contact" exact>
-            <MyEnhancedForm />
+            <Contact />
             <Footer />
           </Route>
 
@@ -79,7 +77,7 @@ useEffect(fetchUserDataFromLocalStorage ,[]);
             <PostForm />
           </Route>
           <Route path="/contact" exact>
-            <MyEnhancedForm />
+            <Contact />
             <Footer />
           </Route>
           <Route path="/equipe" exact>

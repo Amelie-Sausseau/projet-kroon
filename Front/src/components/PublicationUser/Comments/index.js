@@ -6,9 +6,6 @@ import AvatarComment from '../../../utils/avatarComment';
 
 
 const Comments = ({ comments }) => {
-
-
-  console.log(comments);
   return (
     <>
     {/* {comments ? ( */}
