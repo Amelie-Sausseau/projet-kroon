@@ -1,7 +1,6 @@
 import {
   SAVE_CATEGORIES,
   CHANGE_POSTS_VALUE,
-  SAVE_POSTS_FROM_TAGS,
   CHANGE_SELECT_VALUE,
 } from '../actions/posts';
 
@@ -23,19 +22,11 @@ export default (state = initialState, action = {}) => {
         categories: action.data,
 
       };
-
     case CHANGE_POSTS_VALUE:
       return {
         ...state,
         [action.fieldName]: action.fieldValue,
       };
-
-    case SAVE_POSTS_FROM_TAGS:
-      return {
-        ...state,
-        posts: action.data,
-      };
-
     case CHANGE_SELECT_VALUE
       :
       return {

@@ -11,6 +11,8 @@ export const SAVE_LIKES = 'SAVE_LIKES';
 export const SET_LIKES = 'SET_LIKES';
 export const FETCH_LASTS_COMMENTS = 'FETCH_LASTS_COMMENTS';
 export const SAVE_LASTS_COMMENTS = 'SAVE_LASTS_COMMENTS';
+export const CLEAR_INPUT_COMMENT = 'CLEAR_INPUT_COMMENT';
+
 
 export const addComments = () => ({
   type: ADD_COMMENTS,
@@ -72,5 +74,8 @@ export const fetchLastsComments = () => ({
 export const saveLastsComments = (lastComments) => ({
   type: SAVE_LASTS_COMMENTS,
   lastComments,
-})
+});
 
+export const clearInputComment = () => ({
+  type: CLEAR_INPUT_COMMENT,
+});

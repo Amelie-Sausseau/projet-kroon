@@ -6,6 +6,7 @@ import {
   SET_LIKES,
   FETCH_LASTS_COMMENTS,
   saveLastsComments,
+  clearInputComment,
 } from '../actions/comments';
 
 export default (store) => (next) => (action) => {
@@ -29,6 +30,7 @@ export default (store) => (next) => (action) => {
           },
         }).then((response) => {
         console.log('then', response);
+        store.dispatch(clearInputComment());
       }).catch((error) => {
         console.log(error);
       });
