@@ -1,24 +1,15 @@
 import axios from 'axios';
 
+import { url } from 'src/utils';
 import {
-  saveComments, FETCH_COMMENTS, SEND_COMMENTS_TO_SERVER, ADD_COMMENTS_TO_DB, SET_LIKES,
+  ADD_COMMENTS_TO_DB,
+  SET_LIKES,
+  FETCH_LASTS_COMMENTS,
+  saveLastsComments,
 } from '../actions/comments';
 
 export default (store) => (next) => (action) => {
   switch (action.type) {
-    case FETCH_COMMENTS:
-      axios.get('http://ec2-3-82-153-17.compute-1.amazonaws.com/api/v1/posts/4')
-        .then((response) => {
-          console.log('je passe par then');
-          console.log(response);
-          store.dispatch(saveComments(response.data));
-        }).catch((error) => {
-          // TODO
-        }).finally((response) => {
-          // TODO
-        });
-      next(action);
-      break;
     case ADD_COMMENTS_TO_DB:
       // eslint-disable-next-line no-case-declarations
       const { body } = store.getState().comments;
@@ -58,6 +49,17 @@ export default (store) => (next) => (action) => {
         });
       next(action);
       break;
+    case FETCH_LASTS_COMMENTS:
+      axios.get(`${url}/api/v1/comments/lasts`)
+        .then((response) => {
+          console.log(response.data);
+          store.dispatch(saveLastsComments(response.data));
+        }).catch((error) => {
+          console.error('error');
+        });
+      next(action);
+      break;
+
     default:
       next(action);
   }

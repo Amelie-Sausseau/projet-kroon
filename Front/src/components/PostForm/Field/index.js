@@ -20,6 +20,8 @@ const Field = ({
   const inputId = `field-${name}`;
 
   return (
+    <>
+    <span className="mandatory">* champ obligatoire</span>
     <div className="field">
       <textarea
         // React - state
@@ -33,6 +35,7 @@ const Field = ({
         name={name}
       />
     </div>
+    </>
   );
 };
 

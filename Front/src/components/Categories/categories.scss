@@ -14,5 +14,18 @@
 
 .catContainers {
   overflow: auto;
-  height: 77.5vh;
+  height: 72vh;
+}
+
+.containerCat{
+  border-radius: 25px;
+  background: #f1f1f1;
+  box-shadow:  5px 5px 10px #dedede,
+               -5px -5px 10px #ffffff;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  max-width: 22.5rem;
+  margin-left: auto;
+  margin-right: auto;
+
 }

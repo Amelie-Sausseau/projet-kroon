@@ -4,23 +4,31 @@ import PostCard from 'src/components/PostCard';
 import './style.scss';
 import ReactAudioPlayer from 'react-audio-player';
 
-const HomeUsers = ({ posts, manageLoad }) => {
+const HomeUsers = ({ posts, manageLoad, comments, fetchLastsComments, lastComments }) => {
   useEffect(
     manageLoad,
     [],
   );
 
   console.log(posts);
+  console.log(lastComments);
   const publi = '/publications/';
+  const publiComment = '/publicationsUser/';
+
   /* const data = window.URL.createObjectURL(posts.sound);
  */
 
+/*   useEffect(
+    fetchLastsComments,
+    [],
+  );
+ */
   return (
 
     <div className="home">
 
       <div>
-        <h1>Kroon c'est quoi?</h1>
+        <h1>Kroon c'est quoi ?</h1>
         <div className="intro">L'application qui te permet de retrouver un son qui te reste en tête,
           grâce à l'aide de la communauté !
         </div>
@@ -30,17 +38,19 @@ const HomeUsers = ({ posts, manageLoad }) => {
         posts.map((post) => (
 
           <NavLink to={publi + post.id} key={post.id}>
-            <div>{post.user.name}</div>
-            <div className="last_posts">
-              <div id={post.id} className="titleHomeUser">{post.title} </div>
-            </div>
+            <div className="home-container">
+              <div>{post.user.slug}</div>
+              <div className="last_posts">
+                <div id={post.id} className="titleHomeUser">{post.title} </div>
+              </div>
 
-            <ReactAudioPlayer
-              src={post.sound}
-              controls
-              preload="auto"
-              className="audioPlayer"
-            />
+              <ReactAudioPlayer
+                src={post.sound}
+                controls
+                preload="auto"
+                className="audioPlayer"
+              />
+            </div>
           </NavLink>
         ))
 
@@ -48,23 +58,22 @@ const HomeUsers = ({ posts, manageLoad }) => {
 
       </div>
 
-      <h2 className="titleHome">Meilleurs commentaires</h2>
+      <h2 className="titleHome">Les derniers commentaires</h2>
 
-      <div className="comment.content">
-        <div className="caontainer-users">
-          <h3>Username</h3>
-          <div className="best-users">Img Cat</div>
-        </div>
-        <div className="caontainer-users">
-          <h3>Username</h3>
-          <div className="best-users">Img Cat</div>
-        </div>
-        <div className="caontainer-users">
-          <h3>Username</h3>
-          <div className="best-users">Img Cat</div>
-        </div>
+      {
+        lastComments.map((comment) => (
 
-      </div>
+          <NavLink to={publiComment + comment.post.id} key={comment.id}>
+            <div className="home-container">
+              <div>{comment.post.title}</div>
+              <div className="last_posts">
+                <div id={comment.id} className="body">{comment.body} </div>
+              </div>
+            </div>
+          </NavLink>
+        ))
+
+        }
     </div>
 
   );

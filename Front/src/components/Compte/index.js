@@ -15,6 +15,7 @@ const Compte = ({
   fetchFavoritesUserComp,
   favorites,
   setDelete,
+  username
 }) => {
   useEffect(
     fetchAllPosts,
@@ -52,24 +53,24 @@ const Compte = ({
  */
   return (
     <div className="container">
-
+      <h3 className="myAccount"> Connecté en tant que {username}</h3>
       <div
         onClick={onClickCat}
         className="UserSound"
       >
-        <h1>Mes Sons </h1>
+        <h1 >Mes Sons </h1>
 
       </div>
+      <div>
       {
         posts.map((post) => (
 
           cat
             ? (
               <NavLink to={publi + post.id}>
-                <div>
+                <div className="compte-sound-container">
                   <div className="poubelle">
                     <h2>{post.title}</h2>
-                   {/*  <i className="lni lni-trash" onClick={deletePost(post.id)} /> */}
                   </div>
                   <ReactAudioPlayer
                     src={post.sound}
@@ -83,7 +84,7 @@ const Compte = ({
 
         ))
       }
-
+      </div>
       <div
         className="UserComments"
         onClick={onClickComment}
@@ -95,9 +96,11 @@ const Compte = ({
        commentaires.map((commentaire) => (
          comments
            ? (
+             <div className="container-comment">
              <NavLink to={publi + commentaire.post.id}>
                <Comments body={commentaire.body} title={commentaire.post.title} />
              </NavLink>
+             </div>
            )
            : null
        ))
@@ -115,14 +118,14 @@ const Compte = ({
           fav
             ? (
               <NavLink to={publi + post.id}>
-                <div>
+                <div className="compte-sound-container">
                   <h2>{post.title}</h2>
                   <ReactAudioPlayer
                     src={post.sound}
                     controls
                     preload="auto"
                   />
-                </div>
+                  </div>
               </NavLink>
             )
             : null

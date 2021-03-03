@@ -120,7 +120,7 @@ const Categories = ({
          Music
            ? (
              <NavLink to={publi + post.id}>
-               <div>
+               <div className="containerCat">
                  <h2>{post.title}</h2>
                  <ReactAudioPlayer
                    src={post.sound}
@@ -144,7 +144,8 @@ const Categories = ({
          Animaux
            ? (
              <NavLink to={publi + post.id}>
-               <div><h2>{post.title}</h2>
+               <div className="containerCat">
+                 <h2>{post.title}</h2>
                  <ReactAudioPlayer
                    src={post.sound}
                    controls
@@ -166,7 +167,8 @@ const Categories = ({
          Film
            ? (
              <NavLink to={publi + post.id}>
-               <div><h2>{post.title}</h2>
+               <div className="containerCat">
+                 <h2>{post.title}</h2>
                  <ReactAudioPlayer
                    src={post.sound}
                    controls
@@ -188,7 +190,8 @@ const Categories = ({
          Video
            ? (
              <NavLink to={publi + post.id}>
-               <div><h2>{post.title}</h2>
+               <div className="containerCat">
+                 <h2>{post.title}</h2>
                  <ReactAudioPlayer
                    src={post.sound}
                    controls
@@ -210,7 +213,8 @@ const Categories = ({
          Autres
            ? (
              <NavLink to={publi + post.id}>
-               <div><h2>{post.title}</h2>
+               <div className="containerCat">
+                 <h2>{post.title}</h2>
                  <ReactAudioPlayer
                    src={post.sound}
                    controls

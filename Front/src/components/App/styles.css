@@ -1,3 +1,27 @@
+
+.appContainer {
+  height: 100vh;
+  width: auto;
+  font-size: xx-large;
+  text-align: center;
+  background-color: rgba(241,241,241,0.8);
+  font-family: 'Quicksand', sans-serif;
+}
+.alert {
+  padding-top: 15rem;
+  margin-bottom: 2rem;
+}
+
+.app {
+  display: none;
+}
+
+.ekipp {
+  text-align: right;
+  padding-top: 1rem;
+}
+
+@media screen and (max-width: 780px) {
 .app {
   width: 100vw;
   height: 100vh;
@@ -16,5 +40,10 @@
   margin-bottom: 0px;
   position: fixed;
   padding-bottom: 1rem;
+  margin-left: -17rem;
 }
 
+.appContainer {
+  display: none;
+  }  
+}

@@ -19,7 +19,6 @@ function Publications({
   clickReportPost,
 
 }) {
-
   const [fav, setFav] = useState(false);
   const [report, setReport] = useState(false);
 
@@ -48,35 +47,44 @@ function Publications({
             {/* <h3>{post.tags.name}</h3> */}
             <div className="postAttribute">
               <div className="titlepost">{post.title}</div>
-              <h3>Catégorie : {post.tags.[0].name}</h3>
-              {!fav ? (
-                <i
-                  className="lni lni-heart-filled"
-                  onClick={handleClickFav}
-                />
-              ) : (
-                <i
-                  className="lni lni-heart-filled lni-heart-filled--active"
-                  onClick={handleClickDeleteFav}
-                />
-              )}
-              {!report ? (
-                <i
-                  className="lni lni-warning"
-                  onClick={handleReportPost}
-                />
-              ) : (
-                <i
-                  className="lni lni-warning lni-warning--active"
-                />
-              )}
+              <div className="likes">
+                <h3>Catégorie : {post.tags.[0].name}</h3>
 
+              </div>
             </div>
             <Sound
               body={post.body}
               sound={post.sound}
-            />
+            /><div className="interac">
+              {!fav ? (
+                <i
+                  className="lni lni-heart-filled"
+                  onClick={handleClickFav}
+                > <span className="interaction">Favoris</span>
+                </i>
+              ) : (
+                <i
+                  className="lni lni-heart-filled lni-heart-filled--active"
+                  onClick={handleClickDeleteFav}
+                > <span className="interaction">Favoris</span>
+                </i>
+              )}
 
+              {!report ? (
+                <i
+                  className="lni lni-warning"
+                  onClick={handleReportPost}
+                >
+                  <span className="interaction">Signaler</span>
+                </i>
+              ) : (
+                <i
+                  className="lni lni-warning lni-warning--active"
+                >
+                  <span className="interaction">Signaler</span>
+                </i>
+              )}
+            </div>
             <Comment className="comments" post={post} />
             <CommentForm className="form" {...post} />
           </div>
