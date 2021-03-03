@@ -35,7 +35,7 @@ class CommentController extends AbstractController
     }
 
     /**
-    * @Route("/liked", name="lasts", methods="GET")
+    * @Route("/liked", name="liked", methods="GET")
     */
     public function commentsMostLiked(CommentRepository $commentRepo)
     {
