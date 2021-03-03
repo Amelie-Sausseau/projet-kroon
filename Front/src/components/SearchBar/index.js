@@ -11,7 +11,7 @@ const Search = ({ setSearch, search, dataSearch }) => {
     <div className="input__search">
       <form className="form" onSubmit={formSubmit}>
         <input
-          className="form-field"
+          className="searchbar"
           onChange={(event) => {
             setSearch(event.target.value);
           }}

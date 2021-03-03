@@ -75,7 +75,6 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255, unique=true)
      * @Groups({"user:one"})
      * @Assert\NotBlank()
-     * @Assert\Email(message="Veuillez renseigner un email valide")
      */
     private $email;
 
