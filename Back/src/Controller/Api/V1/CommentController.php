@@ -43,6 +43,14 @@ class CommentController extends AbstractController
     }
 
     /**
+    * @Route("/lasts", name="lasts", methods="GET")
+    */
+    public function findLastsFiveComments(CommentRepository $commentRepo)
+    {
+        return $this->json($commentRepo->findLastsFiveComments(), 200, [], ['groups' => 'comment:one']);
+    }
+
+    /**
      * @Route("/{id}", name="edit", methods="PUT", requirements={"id"="\d+"})
      */
     public function edit(Request $request, Comment $comment, UserRepository $user): Response

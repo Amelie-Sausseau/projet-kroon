@@ -31,6 +31,18 @@ class CommentRepository extends ServiceEntityRepository
     }
 
 
+    public function findLastsFiveComments()
+    {
+        $queryBuilder = $this->createQueryBuilder('comment');
+        $queryBuilder->where('comment.isActive = 1');
+        $queryBuilder->addOrderBy('comment.createdAt', 'DESC');
+        $queryBuilder->setMaxResults(5);
+        $query = $queryBuilder->getQuery();
+
+        return $query->getResult();        
+    }
+
+
     // /**
     //  * @return Comment[] Returns an array of Comment objects
     //  */
