@@ -22,7 +22,7 @@ const Compte = ({
     [],
   );
 
-  console.log(favorites);
+  console.log(username);
   console.log(commentaires);
 
   const [cat, setCat] = useState(false);
