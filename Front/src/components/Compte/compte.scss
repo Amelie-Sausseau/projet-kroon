@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    height: 70vh;
+    height: 85vh;
 }
 
 .UserComments{
@@ -15,7 +15,10 @@
       -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
     border-radius: 50px;    padding-top: 1rem;
     margin: 2rem;
+    margin-left: auto;
+    margin-right: auto;
     border: solid 2px #d8d8d8;
+    width: 20rem;
 
     h1{
         padding-bottom: 1rem;
@@ -42,6 +45,9 @@
     border-radius: 50px;    padding-top: 1rem;
     border: solid 2px #d8d8d8;
     margin-top: 0;
+    width: 20rem;
+    margin-left: auto;
+    margin-right: auto;
 
     div{
         background-color: #f1f1f1;
@@ -70,6 +76,9 @@
     border-radius: 50px;    padding-top: 1rem;
     margin: 2rem 2rem 0;
     border: solid 2px #d8d8d8;
+    width: 20rem;
+    margin-left: auto;
+    margin-right: auto;
 
     div{
         background-color: #f1f1f1;

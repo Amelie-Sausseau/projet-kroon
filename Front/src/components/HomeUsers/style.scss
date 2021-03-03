@@ -20,11 +20,14 @@
     margin: 2rem;
     border: solid 2px #d8d8d8;
     padding-bottom: 1rem;
+    width: 20rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .last_posts{
     color: black;
-    height: 34px;
+    height: auto;
     width: 20rem;
     border-radius: 25px;
     border: 1px solid transparent;
@@ -37,7 +40,10 @@
     margin-right: auto;
     background-color: white;
     text-align: center;
+
 }
+
+
 
 .best-users{
     color: black;
@@ -54,6 +60,8 @@
     padding: 0.5rem;
     background-color: white;
     font-size: smaller;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .caontainer-users{

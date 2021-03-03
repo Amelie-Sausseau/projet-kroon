@@ -185,9 +185,13 @@ const htmlClass = record ? 'button_play' : 'button_start';
 }
 <form autoComplete="off" className="box" type="submit" >
     <select className="categories" placeholder="Catégories" onChange={onClickSelect}>
+      <option value="" disabled selected>Choisi une catégorie</option> 
       {
         categories.map((categorie) => (
+       
+          
           <option className="categories"  key={categorie.id} value={categorie.id} >{categorie.name}</option>
+          
         ))
       }
 
@@ -201,6 +205,7 @@ const htmlClass = record ? 'button_play' : 'button_start';
     name="titre"
     />
     <Field 
+    className="description"
     type="textarea"
     placeholder="Description" 
     id="description" 

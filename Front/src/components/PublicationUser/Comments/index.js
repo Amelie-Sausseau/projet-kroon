@@ -14,7 +14,10 @@ const Comments = ({ comments }) => {
 
       {
         comments.map((comment) => (
+          <div>
+            <div className="comment__icons">{comment.user.slug}</div>
           <div className="comment__content">{comment.body}</div>
+          </div>
         ))
 
       }

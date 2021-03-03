@@ -1,7 +1,9 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import ReactAudioPlayer from 'react-audio-player';
 import { NavLink } from 'react-router-dom';
 import SearchBar from 'src/components/SearchBar';
+import { url } from 'src/utils';
 import './categories.scss';
 
 const Categories = ({
@@ -16,17 +18,46 @@ const Categories = ({
   categorie3,
   categorie4,
   categorie5,
+  allPosts,
+  manageChangeSearch,
+  search,
 }) => {
   useEffect(
     fetchAllPosts,
     [],
   );
-
+  console.log(allPosts);
   const [Music, setMusic] = useState(false);
   const [Animaux, setAnimaux] = useState(false);
   const [Film, setFilm] = useState(false);
   const [Video, setVideo] = useState(false);
   const [Autres, setAutres] = useState(false);
+  const [search2, setSearch] = useState('');
+  const [result, setResult] = useState(0);
+  const [posts, setPosts] = useState([]);
+
+  const dataSearch = () => {
+    if (search2 === '') {
+      setPosts([]);
+      setResult(0);
+    }
+    else {
+      axios.get(`${url}/api/v1/posts/`)
+        .then((response) => {
+          console.log(response);
+          setResult(response.total_count);
+          setPosts(response.items);
+        })
+        .catch(() => {
+          console.log('error');
+        })
+        .then(() => {
+
+        });
+    }
+  };
+
+  useEffect(dataSearch, [search2]);
 
   function onClickMusic() {
     setMusic(!Music);
@@ -55,10 +86,29 @@ const Categories = ({
 
   const publi = '/publicationsUser/';
 
+  function getFiltered(array) {
+    const loweredSearch = search.toLowerCase();
+    const filteredPostList = array.filter((item) => {
+      const loweredPostTitle = item.title.toLowerCase();
+      // on teste si la devise étudiée (en minuscule) contient
+      // notre chaine de recherche (en mlinuscule elle aussi).
+      // Et on renvoit le résultat...
+      return (loweredPostTitle.includes(loweredSearch));
+    });
+
+    return filteredPostList;
+  }
+
+  const categoryMusicFiltered = getFiltered(categorieMusic);
+  const categoryAnimauxFiltered = getFiltered(categorie2);
+  const categoryFilmSerieFiltered = getFiltered(categorie3);
+  const categoryVideoFiltered = getFiltered(categorie4);
+  const categoryOthersFiltered = getFiltered(categorie5);
+
   return (
     <>
+      <SearchBar setSearch={manageChangeSearch} search={search} dataSearch={dataSearch} />
       <div className="catContainers">
-
         <div
           className="UserComments"
           onClick={onClickMusic}
@@ -66,7 +116,7 @@ const Categories = ({
           <h1>Musique</h1>
         </div>
         {
-       categorieMusic.map((post) => (
+       categoryMusicFiltered.map((post) => (
          Music
            ? (
              <NavLink to={publi + post.id}>
@@ -90,7 +140,7 @@ const Categories = ({
           <h1>Animaux</h1>
         </div>
         {
-       categorie2.map((post) => (
+       categoryAnimauxFiltered.map((post) => (
          Animaux
            ? (
              <NavLink to={publi + post.id}>
@@ -112,7 +162,7 @@ const Categories = ({
           <h1>Film/Série</h1>
         </div>
         {
-       categorie3.map((post) => (
+       categoryFilmSerieFiltered.map((post) => (
          Film
            ? (
              <NavLink to={publi + post.id}>
@@ -134,7 +184,7 @@ const Categories = ({
           <h1>Vidéos</h1>
         </div>
         {
-       categorie4.map((post) => (
+       categoryVideoFiltered.map((post) => (
          Video
            ? (
              <NavLink to={publi + post.id}>
@@ -156,7 +206,7 @@ const Categories = ({
           <h1>Autres</h1>
         </div>
         {
-       categorie5.map((post) => (
+       categoryOthersFiltered.map((post) => (
          Autres
            ? (
              <NavLink to={publi + post.id}>
@@ -175,5 +225,4 @@ const Categories = ({
     </>
   );
 };
-
 export default Categories;
