@@ -32,6 +32,7 @@ const initialState = {
   allPosts: [],
   id: null,
   favorites: [],
+  slug: '',
 
 };
 
@@ -48,6 +49,7 @@ const usersReducer = (state = initialState, action = {}) => {
         token: '',
         likes: [],
         favorites: [],
+        slug: '',
       };
     case SAVE_USER_DATA:
       return {

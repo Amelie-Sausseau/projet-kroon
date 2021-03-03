@@ -2,7 +2,11 @@ import React from 'react';
 
 import './searchbar.scss';
 
-const Search = ({ setSearch, search, dataSearch }) => {
+const Search = ({
+  setSearch,
+  search,
+  dataSearch,
+}) => {
   const formSubmit = (event) => {
     event.preventDefault();
     dataSearch();
@@ -15,7 +19,7 @@ const Search = ({ setSearch, search, dataSearch }) => {
           onChange={(event) => {
             setSearch(event.target.value);
           }}
-          placeholder="Recherche un son"
+          placeholder="Choisis ta catégorie et recherche un son"
           value={search}
         />
 

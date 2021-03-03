@@ -50,31 +50,41 @@ function PublicationUser({
             <div className="dimitri">Publié par : {post.user.name}</div>
             <h1 className="titlepost">{post.title}</h1>
             <h3>Catégorie : {post.tags.[0].name}</h3>
-            {!fav ? (
-              <i
-                className="lni lni-heart-filled"
-                onClick={handleClickFav}
-              />
-            ) : (
-              <i
-                className="lni lni-heart-filled lni-heart-filled--active"
-                onClick={handleClickDeleteFav}
-              />
-            )}
-            {!report ? (
-              <i
-                className="lni lni-warning"
-                onClick={handleReportPost}
-              />
-            ) : (
-              <i
-                className="lni lni-warning lni-warning--active"
-              />
-            )}
             <Sound
               body={post.body}
               sound={post.sound}
             />
+            <div className="interac">
+              {!fav ? (
+                <i
+                  className="lni lni-heart-filled"
+                  onClick={handleClickFav}
+                > <span className="interaction">Favoris</span>
+                </i>
+              ) : (
+                <i
+                  className="lni lni-heart-filled lni-heart-filled--active"
+                  onClick={handleClickDeleteFav}
+                > <span className="interaction">Favoris</span>
+                </i>
+              )}
+
+              {!report ? (
+                <i
+                  className="lni lni-warning"
+                  onClick={handleReportPost}
+                >
+                  <span className="interaction">Signaler</span>
+                </i>
+              ) : (
+                <i
+                  className="lni lni-warning lni-warning--active"
+                >
+                  <span className="interaction">Signaler</span>
+                </i>
+              )}
+            </div>
+
             <Comment className="comments" comments={post.comments} />
             <CommentForm className="form" {...post} />
           </div>

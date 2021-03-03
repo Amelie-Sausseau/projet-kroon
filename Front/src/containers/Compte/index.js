@@ -13,7 +13,8 @@ const mapStateToProps = (state) => ({
   favories: state.users.favories,
   commentaires: state.users.comments,
   posts: state.users.posts,
-  favorites: state.users.favorites
+  favorites: state.users.favorites,
+  username: state.users.username,
  
 });
 
