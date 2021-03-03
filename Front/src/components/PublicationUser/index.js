@@ -15,10 +15,7 @@ import './publications.scss';
 
 // == Composant
 function PublicationUser({post, postBycomment}) {
-/*   console.log(post.tags)
- */
 
- /* console.log(post.comments) */
  return(
   <>
     { post ? 
@@ -31,7 +28,7 @@ function PublicationUser({post, postBycomment}) {
       sound={post.sound} 
       />
       <Comment className="comments" comments={post.comments}/>
-      <CommentForm className="form"/>
+      <CommentForm className="form" {...post}/>
     </div>
 
     : postBycomment ? <div className="publication">
@@ -43,7 +40,7 @@ function PublicationUser({post, postBycomment}) {
         sound={post.sound} 
         />
         <Comment className="comments" comments={post.comments}/>
-        <CommentForm className="form"/>
+        <CommentForm className="form" {...post}/>
       </div> : <Loader/>}
     </>
 

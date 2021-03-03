@@ -10,13 +10,8 @@ import { getPostsBySlug } from 'src/selectors/posts';
 
 const mapStateToProps = (state, ownProps) => {
 
-console.log(ownProps)
  const slug = ownProps.match.params.slug;
- console.log(slug)
 
- 
-
- 
  return {
      post: getPostsBySlug(state, slug),
 
