@@ -15,14 +15,14 @@ class CommentEditType extends AbstractType
         $builder
         ->add('body', TextType::class)
     ;
-}
+    }
 
-public function configureOptions(OptionsResolver $resolver)
-{
-    $resolver->setDefaults([
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
         'data_class' => Comment::class,
         'csrf_protection' => false,
         'attr' => ['novalidate' => 'novalidate'],
     ]);
-}
+    }
 }
