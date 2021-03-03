@@ -47,7 +47,7 @@ class CommentController extends AbstractController
     */
     public function findLastsFiveComments(CommentRepository $commentRepo)
     {
-        return $this->json($commentRepo->findLastsFivePosts(), 200, [], ['groups' => 'comment:one']);
+        return $this->json($commentRepo->findLastsFiveComments(), 200, [], ['groups' => 'comment:one']);
     }
 
     /**
