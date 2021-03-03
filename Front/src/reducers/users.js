@@ -8,6 +8,7 @@ import {
   SAVE_POSTS_USER,
   SAVE_COMMENTS_USER,
   SAVE_ALL_POSTS,
+  SAVE_FAVORITES_POSTS_USER,
 } from 'src/actions/users';
 
 import {
@@ -30,6 +31,7 @@ const initialState = {
   comments: [],
   allPosts: [],
   id: null,
+  favorites: [],
 
 };
 
@@ -45,6 +47,7 @@ const usersReducer = (state = initialState, action = {}) => {
         username: '',
         token: '',
         likes: [],
+        favorites: [],
       };
     case SAVE_USER_DATA:
       return {
@@ -106,6 +109,11 @@ const usersReducer = (state = initialState, action = {}) => {
         ...state,
         likes: action.likes,
       };
+    case SAVE_FAVORITES_POSTS_USER:
+      return {
+        ...state,
+        favorites: action.data,
+      }
     default:
       return { ...state };
   }

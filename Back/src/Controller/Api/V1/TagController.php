@@ -47,9 +47,7 @@ class TagController extends AbstractController
         $infoFromClient = json_decode($request->getContent(), true);
 
         $tag = new Tag();
-        //$tag->setpost($tag->find($infoFromClient['post']));
         $tag->setName($infoFromClient['name']);
-        // dd($tag);
         $em->persist($tag);
         $em->flush();
 
@@ -63,30 +61,11 @@ class TagController extends AbstractController
     {
         $infoFromClient = json_decode($request->getContent(), true);
 
-        //$tag->setPost($tag->find($infoFromClient['post']));
         $tag->setName($infoFromClient['name']);
-
-        // dd($tag);
-        $em->persist($tag);
-
         $tag->setUpdatedAt(new \DateTime());
-
+        $em->persist($tag);
         $em->flush();
 
         return $this->json($tag, 200, [], ['groups' => 'tag:edit']);
     }
-
-    /**
-     * @Route("/{id}", name="delete", methods="DELETE", requirements={"id"="\d+"})
-     */
-    public function delete(EntityManagerInterface $em, Tag $tag): Response
-    {
-        $em->remove($tag);
-
-        $em->flush();
-
-        return $this->json($tag, 200, [], ['groups' => 'tag:delete']);
-    }
-
-
 }

@@ -15,26 +15,20 @@
     font-size: smaller;
     display: flex;
     justify-content: space-between;
-
 }
-
 .message__username{
     text-align: left;
     margin-left: 2rem;
 }
-
 .commentaires{
-    overflow: auto;
-    height: auto;
-    display: flex;
+    overflow-y: auto;
+    height: 32vh;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-
 .comment__container {
     width: 100vw;
-    display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -48,23 +42,5 @@ padding-left: 0.2rem;
 padding-right: 0.2rem;
 padding-top: 0.2rem;
 padding-bottom: 0.2rem;
-color: #cfcfcf;
+color: #CFCFCF;
 }
-// .MuiGrid-container {
-// margin-bottom: 2rem;
-// width: 1rem;
-// }
-
-// .MuiAvatar-root{
-//     margin-bottom: -1rem;
-   
-// }
-// .lni-heart-filled:hover {
-//     color: red;
-// }
-
-// .lni-warning:hover {
-//     color: black;
-//     background-color: yellow;
-//     border-radius: 10px;
-// }

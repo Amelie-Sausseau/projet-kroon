@@ -40,7 +40,6 @@ export default (store) => (next) => (action) => {
     }
     case SIGN_UP: {
       const { email, password, name } = store.getState().users;
-      console.log(email, password, name);
 
       axios.post('http://ec2-3-82-153-17.compute-1.amazonaws.com/api/v1/users/register',
         {
