@@ -10,19 +10,9 @@ const HomeUsers = ({ posts, manageLoad, comments, fetchLastsComments, lastCommen
     [],
   );
 
-  console.log(posts);
-  console.log(lastComments);
   const publi = '/publications/';
   const publiComment = '/publicationsUser/';
 
-  /* const data = window.URL.createObjectURL(posts.sound);
- */
-
-/*   useEffect(
-    fetchLastsComments,
-    [],
-  );
- */
   return (
 
     <div className="home">

@@ -26,7 +26,7 @@ const initialState = {
   islogged: false,
   menuIsClosed: true,
   token: '',
-  username: 'admin@kroon.fr',
+  username: '',
   posts: [],
   comments: [],
   allPosts: [],

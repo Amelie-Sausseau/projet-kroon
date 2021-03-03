@@ -1,6 +1,6 @@
 // == Import yarn
 import React, { useEffect } from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 // == Import local
@@ -39,6 +39,7 @@ const App = ({ loading, logged, fetchUserDataFromLocalStorage }) => {
         {!loading && !logged ? (
           <>
             <img src={kroonLogo} alt="Logo Kroon" className="logoKroon" />
+
             <Burger />
             <Route path="/categories" exact>
               <Categories />
@@ -48,6 +49,7 @@ const App = ({ loading, logged, fetchUserDataFromLocalStorage }) => {
               <HomeUsers />
               <Footer />
             </Route>
+
             <Redirect from="/poster" to="/connexion" />
             <Route path="/connexion" exact>
               <LoginForm />
@@ -58,6 +60,9 @@ const App = ({ loading, logged, fetchUserDataFromLocalStorage }) => {
             <Route path="/contact" exact>
               <Contact />
               <Footer />
+            </Route>
+            <Route path="/equipe" exact>
+              <Ekip />
             </Route>
 
           </>

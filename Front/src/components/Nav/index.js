@@ -116,7 +116,7 @@ const Nav = ({ islogged, buttonClearField }) => (
           <li>
             <NavLink
               className="nav__link"
-              to="/poster"
+              to="/equipe"
               activeClassName="nav__link--active"
               exact
               onClick={buttonClearField}

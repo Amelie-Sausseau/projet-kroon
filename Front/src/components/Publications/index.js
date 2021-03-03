@@ -42,9 +42,7 @@ function Publications({
       { post
         ? (
           <div className="publication">
-            {/* <Avatar className="avatar" /> */}
             <div className="usernamePost">Publié par : {post.user.name}</div>
-            {/* <h3>{post.tags.name}</h3> */}
             <div className="postAttribute">
               <div className="titlepost">{post.title}</div>
               <div className="likes">
@@ -55,7 +53,8 @@ function Publications({
             <Sound
               body={post.body}
               sound={post.sound}
-            /><div className="interac">
+            />
+            <div className="interac">
               {!fav ? (
                 <i
                   className="lni lni-heart-filled"

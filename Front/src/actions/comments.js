@@ -1,4 +1,3 @@
-// on définit et exporte l'action type
 export const ADD_COMMENTS = 'ADD_COMMENTS';
 export const SET_NEW_COMMENT = 'SET_NEW_COMMENT';
 export const SAVE_USERNAME = 'SAVE_USERNAME';
@@ -12,14 +11,12 @@ export const SAVE_LIKES = 'SAVE_LIKES';
 export const SET_LIKES = 'SET_LIKES';
 export const FETCH_LASTS_COMMENTS = 'FETCH_LASTS_COMMENTS';
 export const SAVE_LASTS_COMMENTS = 'SAVE_LASTS_COMMENTS';
-// on définit et exporte l'action creator addMessage
-// on but est de créer pour nous un objet action de type ADD_MESSAGE
+
 export const addComments = () => ({
   type: ADD_COMMENTS,
 });
 
-// on définit un action creator avec un paramètre
-// qui permet de recueillir la valeur du champ de saisie
+
 export const setNewComment = (newValue) => ({
   type: SET_NEW_COMMENT,
   newValue,

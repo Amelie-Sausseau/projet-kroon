@@ -33,19 +33,7 @@ const commentsReducer = (state = initialState, action = {}) => {
           action.newComment,
         ],
       };
-/*     case ADD_COMMENTS_TO_DB: {
-      return {
-        ...state,
-        comments: [
-          ...state.comments,
-          {
-            body: state.comments.body,
-            id: action.postId,
-          },
-        ],
-        body: '',
-      };
-    } */
+
     case SET_NEW_COMMENT:
       return {
         ...state,
