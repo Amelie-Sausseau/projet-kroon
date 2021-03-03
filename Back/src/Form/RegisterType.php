@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\User;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntityValidator;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -40,7 +42,7 @@ class RegisterType extends AbstractType
             ->add('email', EmailType::class, [
                 'constraints' => [
                     new Email,
-                    new NotBlank,
+                    new NotBlank
                 ],
             ])
             
