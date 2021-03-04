@@ -16,6 +16,7 @@ export const FETCH_ALL_POSTS = 'FETCH_ALL_POSTS';
 export const SAVE_ALL_POSTS = 'SAVE_ALL_POSTS';
 export const FETCH_FAVORITES_USER_LOGIN = 'FETCH_FAVORITES_USER_LOGIN';
 export const SAVE_FAVORITES_POSTS_USER = 'SAVE_FAVORITES_POSTS_USER';
+export const SAVE_USER_DATA_SIGN_UP = 'SAVE_USER_DATA_SIGN_UP';
 
 export const logIn = () => ({
   type: LOG_IN,
@@ -96,4 +97,9 @@ export const saveFavoritesPostsUser = (data) => ({
 
 export const fetchFavoritesUser = () => ({
   type: FETCH_FAVORITES_USER_LOGIN,
+});
+
+export const saveUserDataSignUp = (data) => ({
+  type: SAVE_USER_DATA_SIGN_UP,
+  data,
 });

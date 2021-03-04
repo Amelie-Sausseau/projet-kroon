@@ -17,7 +17,7 @@ function Publications({
   clickFavComp,
   clickDeleteFavComp,
   clickReportPost,
-
+  logged,
 }) {
   const [fav, setFav] = useState(false);
   const [report, setReport] = useState(false);
@@ -85,13 +85,15 @@ function Publications({
               )}
             </div>
             <Comment className="comments" post={post} />
-            <CommentForm className="form" {...post} />
+            {logged ? (<CommentForm className="form" {...post} />) : (<p className="unlogged">Merci de vous connecter afin de proposer votre réponse !</p>) }
+
           </div>
         )
 
-        : <Loader />}
+        : (
+          <Loader />
+        )}
     </>
-
   );
 }
 

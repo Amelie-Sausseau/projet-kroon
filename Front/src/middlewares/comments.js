@@ -15,10 +15,7 @@ export default (store) => (next) => (action) => {
       // eslint-disable-next-line no-case-declarations
       const { body } = store.getState().comments;
       const { token } = store.getState().users;
-      console.log(action.postId);
       const id = action.postId;
-
-      console.log('je passe par le middleware comments', id);
 
       axios.post(`http://ec2-3-82-153-17.compute-1.amazonaws.com/api/v1/posts/${id}/comment`,
         {
@@ -29,7 +26,6 @@ export default (store) => (next) => (action) => {
             Authorization: `Bearer ${token}`,
           },
         }).then((response) => {
-        console.log('then', response);
         store.dispatch(clearInputComment());
       }).catch((error) => {
         console.log(error);
@@ -40,7 +36,6 @@ export default (store) => (next) => (action) => {
       break;
     case SET_LIKES:
       const { likes } = action.likes;
-      console.log(likes);
       axios.get('http://ec2-3-82-153-17.compute-1.amazonaws.com/api/v1/posts/4')
         .then((response) => {
           console.log('then', response);
@@ -54,7 +49,6 @@ export default (store) => (next) => (action) => {
     case FETCH_LASTS_COMMENTS:
       axios.get(`${url}/api/v1/comments/lasts`)
         .then((response) => {
-          console.log(response.data);
           store.dispatch(saveLastsComments(response.data));
         }).catch((error) => {
           console.error('error');

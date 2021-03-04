@@ -9,7 +9,6 @@ const CommentForm = ({
 }) => {
   // étape 1 : on récupère une référence en appellant useRef !
   const inputCommentReference = useRef(null);
-  console.log(id);
   // étape 3, je peux m'en servir, ici dans un hook d'effet
   // on accède à l'élément actuellement référencé grâce à al propriété .current
   useEffect(

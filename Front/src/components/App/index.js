@@ -49,7 +49,6 @@ const App = ({ loading, logged, fetchUserDataFromLocalStorage }) => {
               <HomeUsers />
               <Footer />
             </Route>
-
             <Redirect from="/poster" to="/connexion" />
             <Route path="/connexion" exact>
               <LoginForm />
@@ -63,6 +62,12 @@ const App = ({ loading, logged, fetchUserDataFromLocalStorage }) => {
             </Route>
             <Route path="/equipe" exact>
               <Ekip />
+            </Route>
+            <Route path="/publications/:slug">
+              <Publications />
+            </Route>
+            <Route path="/publicationsUser/:slug">
+              <PublicationUser />
             </Route>
 
           </>

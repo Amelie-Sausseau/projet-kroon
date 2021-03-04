@@ -9,11 +9,11 @@ import {
   setReportPost,
 } from '../../actions/posts';
 
-
 const mapStateToProps = (state, ownProps) => {
   const { slug } = ownProps.match.params;
   return {
     post: getPostsBySlug(state, slug),
+    logged: state.users.logged,
   };
 };
 

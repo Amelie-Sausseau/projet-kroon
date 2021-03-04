@@ -9,6 +9,7 @@ import { addComments, setNewComment, addCommentsToDB } from '../../actions/comme
 // Form sur la propriété newMessageValue du state du store.
 const mapStateToProps = (state) => ({
   inputCommentValue: state.comments.body,
+  logged: state.users.logged,
 });
 
 // on branche notre propriété de type fonction
@@ -19,7 +20,6 @@ const mapDispatchToProps = (dispatch/*, ownProps*/) => ({
     // on se sert de l'action creator pour qui nous fournisse
     // l'action à dispatcher
     // nous voulons envoyer le commentaire au serveur
-    console.log('je passe dans manageCommentSubmit');
     dispatch(addComments());
   },
   setInputCommentValue: (value) => {

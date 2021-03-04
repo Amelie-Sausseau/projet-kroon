@@ -36,7 +36,7 @@ const PostForm = ({
     const file = new File([blob], {
       type: blob.type,
     });
-    console.log(titre);
+
 
     formData.append('soundFile', file);
     formData.append('title', titre);
@@ -66,7 +66,6 @@ const PostForm = ({
     const { blob } = recordedBlob;
     saveNewBlob(blob);
     const blobUrl = URL.createObjectURL(blob);
-    console.log(blobUrl);
     changeNewUrl(blobUrl);
   }
 

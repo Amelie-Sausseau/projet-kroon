@@ -19,9 +19,8 @@ function PublicationUser({
   clickFavComp,
   clickDeleteFavComp,
   clickReportPost,
+  logged,
 }) {
-  console.log(post.tags.[0].name);
-  console.log(post.id);
 
   const [fav, setFav] = useState(false);
   const [report, setReport] = useState(false);
@@ -86,7 +85,7 @@ function PublicationUser({
             </div>
 
             <Comment className="comments" comments={post.comments} />
-            <CommentForm className="form" {...post} />
+            {logged ? (<CommentForm className="form" {...post} />) : (<p className="unlogged">Merci de vous connecter afin de proposer votre réponse !</p>) }
           </div>
         )
 
@@ -100,7 +99,7 @@ function PublicationUser({
               sound={post.sound}
             />
             <Comment className="comments" comments={post.comments} />
-            <CommentForm className="form" {...post} />
+            {logged ? (<CommentForm className="form" {...post} />) : (<p className="unlogged">Merci de vous connecter afin de proposer votre réponse !</p>) }
           </div>
         ) : <Loader />}
     </>

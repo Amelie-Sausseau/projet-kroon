@@ -9,6 +9,7 @@ import {
   SAVE_COMMENTS_USER,
   SAVE_ALL_POSTS,
   SAVE_FAVORITES_POSTS_USER,
+  SAVE_USER_DATA_SIGN_UP,
 } from 'src/actions/users';
 
 import {
@@ -20,7 +21,7 @@ import { SAVE_LIKES } from 'src/actions/comments';
 
 const initialState = {
   email: '',
-  password: 'admin',
+  password: '',
   logged: false,
   name: '',
   islogged: false,
@@ -55,10 +56,18 @@ const usersReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         logged: true,
-        // name: action.data.name,
         token: action.data.token,
-        // email: action.data.email,
+
       };
+    case SAVE_USER_DATA_SIGN_UP:
+       return {
+        ...state,
+        token: action.data.token,
+        name: '',
+        email: '',
+        password: '',
+        username: '',
+        };
     case TOGGLE_MENU:
       return {
         ...state,

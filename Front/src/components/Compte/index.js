@@ -22,9 +22,6 @@ const Compte = ({
     [],
   );
 
-  console.log(username);
-  console.log(commentaires);
-
   const [cat, setCat] = useState(false);
   const [comments, setComments] = useState(false);
   const [fav, setFav] = useState(false);

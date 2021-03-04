@@ -26,7 +26,6 @@ const Categories = ({
     fetchAllPosts,
     [],
   );
-  console.log(allPosts);
   const [Music, setMusic] = useState(false);
   const [Animaux, setAnimaux] = useState(false);
   const [Film, setFilm] = useState(false);
@@ -44,7 +43,6 @@ const Categories = ({
     else {
       axios.get(`${url}/api/v1/posts/`)
         .then((response) => {
-          console.log(response);
           setResult(response.total_count);
           setPosts(response.items);
         })

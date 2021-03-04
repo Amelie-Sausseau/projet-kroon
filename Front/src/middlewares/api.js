@@ -14,8 +14,6 @@ import {
 import {
   FETCH_CATEGORIES,
   saveCategories,
-  FETCH_POSTS_FROM_TAGS,
-  savePostsFromTags,
   SET_DELETE_FAVORITES,
   SET_FAVORITES,
   SET_REPORT_POST,
@@ -31,7 +29,6 @@ export default (store) => (next) => (action) => {
     case FETCH_POSTS:
       axios.get(`${url}/api/v1/posts/lasts`)
         .then((response) => {
-          console.log(response.data);
           store.dispatch(savePosts(response.data));
         }).catch((error) => {
           console.error('error');
@@ -42,7 +39,6 @@ export default (store) => (next) => (action) => {
     case FETCH_CATEGORIES:
       axios.get(`${url}/api/v1/tags/`)
         .then((response) => {
-          console.log(response.data);
           store.dispatch(saveCategories(response.data));
         }).catch((error) => {
           console.error('error');
@@ -52,7 +48,6 @@ export default (store) => (next) => (action) => {
 
     case FETCH_POSTS_USER_LOGIN:
       const { token } = store.getState().users;
-      console.log(token);
       axios.get(`${url}/api/v1/users/posts`,
         {
           headers: {
@@ -60,10 +55,7 @@ export default (store) => (next) => (action) => {
           },
         })
         .then((response) => {
-          console.log(response.data);
-          console.log(response);
           store.dispatch(savePostsUser(response.data));
-          console.log(response.data);
         }).catch((error) => {
           // TODO
           console.log('error');
@@ -76,7 +68,6 @@ export default (store) => (next) => (action) => {
     case FETCH_COMMENTS_USER_LOGIN:
       const token2 = store.getState().users.token;
 
-      console.log(token2);
       axios.get(`${url}/api/v1/users/comments`,
         {
           headers: {
@@ -84,13 +75,10 @@ export default (store) => (next) => (action) => {
           },
         })
         .then((response) => {
-          console.log(response.data);
-          console.log(response);
           store.dispatch(saveCommentsUser(response.data));
-          console.log(response.data);
         }).catch((error) => {
           // TODO
-          console.log('error');
+
         }).finally((response) => {
           // TODO
         });
@@ -100,21 +88,7 @@ export default (store) => (next) => (action) => {
     case FETCH_POST:
       axios.get(`${url}/api/v1/posts/8`)
         .then((response) => {
-          console.log(response.data);
           store.dispatch(savePost(response.data));
-        }).catch((error) => {
-          console.error('error');
-        });
-      next(action);
-      break;
-
-    case FETCH_POSTS_FROM_TAGS:
-      // axios.get(`${url}/api/v1/tags/${id}/posts`)
-      axios.get(`${url}/api/v1/tags/1/posts`)
-        .then((response) => {
-          console.log(response);
-          console.log(response.data);
-          store.dispatch(savePostsFromTags(response.data));
         }).catch((error) => {
           console.error('error');
         });
@@ -124,7 +98,6 @@ export default (store) => (next) => (action) => {
     case FETCH_ALL_POSTS:
       axios.get(`${url}/api/v1/posts`)
         .then((response) => {
-          console.log(response.data);
           store.dispatch(saveAllPosts(response.data));
         }).catch((error) => {
           console.error('error');
@@ -152,8 +125,6 @@ export default (store) => (next) => (action) => {
     case SET_DELETE_FAVORITES:
       const id2 = action.postId;
       const token4 = store.getState().users.token;
-
-      console.log(token4);
       axios.delete(`${url}/api/v1/posts/${id2}/bookmark`,
         {
           headers: {
@@ -169,8 +140,6 @@ export default (store) => (next) => (action) => {
 
     case FETCH_FAVORITES_USER_LOGIN:
       const token5 = store.getState().users.token;
-
-      console.log(token5);
       axios.get(`${url}/api/v1/users/bookmarks`,
         {
           headers: {
@@ -178,8 +147,6 @@ export default (store) => (next) => (action) => {
           },
         })
         .then((response) => {
-          console.log(response.data);
-          console.log(response);
           store.dispatch(saveFavoritesPostsUser(response.data));
         }).catch((error) => {
           // TODO
@@ -193,8 +160,6 @@ export default (store) => (next) => (action) => {
     case SET_REPORT_POST:
       const id3 = action.postId;
       const token6 = store.getState().users.token;
-
-      console.log(id3);
       axios.put(`${url}/api/v1/posts/${id3}/report`, {},
         {
           headers: {
@@ -208,11 +173,9 @@ export default (store) => (next) => (action) => {
       next(action);
       break;
 
-      case SET_DELETE:
+    case SET_DELETE:
       const id4 = action.postId;
       const token7 = store.getState().users.token;
-
-      console.log(id4);
       axios.delete(`${url}/api/v1/posts/${id4}`,
         {
           headers: {

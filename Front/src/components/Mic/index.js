@@ -27,7 +27,6 @@ const Mic = ({
     })
     .then((response) => response.data)
     .catch((error) => {
-      console.log(blob);
     })
 
   }
@@ -38,7 +37,6 @@ const Mic = ({
   }
 
   function downloadBlob(recordedBlob) {
-  console.log(recordedBlob.blob)
     let blob = recordedBlob.blob
 
     saveNewBlob(blob);
@@ -61,12 +59,7 @@ const Mic = ({
 
    reader.readAsDataURL(recoveredBlob);
 }; */
-
-   console.log(blobUrl)
-
    changeNewUrl(blobUrl);
-
-
     send(blob);
 /*     console.log(toto)
  */    /* if (

@@ -3,17 +3,17 @@ import React from 'react';
 // import Message from 'src/containers/Messages/Message';
 import './comments.scss';
 
-const Comments = ({body, title}) => {
-console.log(body, title)
-  return (
+const Comments = ({ body, title }) =>
+  // console.log(body, title);
+  (
     <>
-    <div className="title-comment">{title}</div>
-  <div className="commentaire">
+      <div className="title-comment">{title}</div>
+      <div className="commentaire">
 
-    {/* <div className="message__username">pseudo</div> */}
-    <div className="message__content">{body}</div>
-  </div>
-  </>
-)};
+        {/* <div className="message__username">pseudo</div> */}
+        <div className="message__content">{body}</div>
+      </div>
+    </>
+  );
 
 export default Comments;

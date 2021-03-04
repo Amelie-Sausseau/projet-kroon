@@ -20,6 +20,7 @@ const mapStateToProps = (state, ownProps) => {
  return {
      post: getPostsUserBySlug(state, slug),
      postBycomment: state.users.comments.post,
+     logged: state.users.logged,
  };
 
 
