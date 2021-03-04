@@ -54,14 +54,14 @@ class UserCrudController extends AbstractCrudController
         ;
     }
 
-    /**public function configureActions(Actions $actions): Actions
+    public function configureActions(Actions $actions): Actions
     {
         // This method is used to create the permissions according to roles for the CRUD methods
         return $actions
-        ->setPermission(Action::NEW, 'ROLE_ADMIN')
-        ->setPermission(Action::EDIT, 'ROLE_ADMIN')
+        ->setPermission(Action::NEW, 'ROLE_MODERATOR')
+        ->setPermission(Action::EDIT, 'ROLE_MODERATOR')
         ->setPermission(Action::DELETE, 'ROLE_ADMIN')
     ;
-    }  
-    */
+    } 
+    
 }
