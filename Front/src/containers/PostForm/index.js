@@ -2,22 +2,24 @@ import { connect } from 'react-redux';
 
 import PostForm from 'src/components/PostForm';
 
-import { playStart, stopRecord, changeUrl, saveBlob } from 'src/actions';
-import { fetchCategories, changeInputPostValue, changeSelectValue } from 'src/actions/posts';
-
-
+import {
+  playStart, stopRecord, changeUrl, saveBlob,
+} from 'src/actions';
+import {
+  fetchCategories, changeInputPostValue, changeSelectValue, clearInputPost,
+} from 'src/actions/posts';
 
 const mapStateToProps = (state) => ({
- record: state.mic.record,
- recordedSound: state.mic.recordedSound,
- url: state.mic.url,
- blob: state.mic.blob,
- token: state.users.token,
- categories: state.posts.categories,
- titre: state.posts.titre,
- body: state.posts.body,
- categorie: state.posts.categorie,
- categorieId: state.posts.categorieId,
+  record: state.mic.record,
+  recordedSound: state.mic.recordedSound,
+  url: state.mic.url,
+  blob: state.mic.blob,
+  token: state.users.token,
+  categories: state.posts.categories,
+  titre: state.posts.titre,
+  body: state.posts.body,
+  categorie: state.posts.categorie,
+  categorieId: state.posts.categorieId,
 
 });
 
@@ -29,27 +31,29 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(stopRecord());
   },
 
-  changeNewUrl :(value) =>{
-    dispatch(changeUrl(value))
+  changeNewUrl: (value) => {
+    dispatch(changeUrl(value));
   },
 
-  saveNewBlob: (value) =>{
-     dispatch(saveBlob(value)) 
+  saveNewBlob: (value) => {
+    dispatch(saveBlob(value));
   },
 
   fetchCategories: () => {
-    dispatch(fetchCategories())
+    dispatch(fetchCategories());
   },
 
   changeInputPostValueComp: (fieldValue, fieldName) => {
-    dispatch(changeInputPostValue(fieldValue, fieldName))
+    dispatch(changeInputPostValue(fieldValue, fieldName));
   },
 
-  changeSelectValueComp: (value) =>{
-    dispatch(changeSelectValue(value)) 
- },
+  changeSelectValueComp: (value) => {
+    dispatch(changeSelectValue(value));
+  },
 
-
+  clearInputPostComp: () => {
+    dispatch(clearInputPost());
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostForm);

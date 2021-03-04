@@ -19,7 +19,7 @@ const Search = ({
           onChange={(event) => {
             setSearch(event.target.value);
           }}
-          placeholder="Choisis ta catégorie et recherche un son"
+          placeholder="Sélectionne ta catégorie et recherche un son"
           value={search}
         />
 

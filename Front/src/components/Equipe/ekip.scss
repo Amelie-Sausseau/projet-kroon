@@ -2,14 +2,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    height: 70vh;
+    height: 85vh;
     padding-top: 0.2rem;
     font-size: smaller;
-    
+    overflow: auto;
 }
-
 .TeamBack {
-    display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
@@ -23,7 +21,6 @@
 .Damien, .Amelie, .dimitrii, .jordan {
     border-radius: 50px;
 }
-
 .team {
     display: flex;
     margin-left: 1rem;
@@ -56,3 +53,8 @@ img {
 .header {
     font-weight: bold;
 }
+
+@media screen and (max-width: 750px) {
+ 
+}
+    

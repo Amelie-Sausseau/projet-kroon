@@ -9,6 +9,7 @@ export const CHANGE_SELECT_VALUE = 'CHANGE_SELECT_VALUE';
 export const SET_DELETE_FAVORITES = 'SET_DELETE_FAVORITES';
 export const SET_REPORT_POST = 'SET_REPORT_POST';
 export const SET_DELETE = 'SET_DELETE';
+export const CLEAR_INPUT_POST = 'CLEAR_INPUT_POST';
 
 export const fetchCategories = () => ({
   type: FETCH_CATEGORIES,
@@ -62,4 +63,8 @@ export const setReportPost = (postId) => ({
 export const setDelete = (postId) => ({
   type: SET_DELETE,
   postId,
+});
+
+export const clearInputPost = () => ({
+  type: CLEAR_INPUT_POST,
 });

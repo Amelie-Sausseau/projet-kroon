@@ -23,10 +23,9 @@ const Ekip = () => (
             <Card.Description>
               Responsable Git
 
-              <a target="_blank" href="https://www.linkedin.com/in/damienvalet/" rel="noreferrer">
-                <img src={linkedin} alt="linkedin" className="socials" />
-              </a>
-            </Card.Description>
+            </Card.Description>              <a target="_blank" href="https://www.linkedin.com/in/damienvalet/" rel="noreferrer">
+              <img src={linkedin} alt="linkedin" className="socials" />
+            </a>
           </Card.Content>
 
         </Card>

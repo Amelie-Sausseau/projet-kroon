@@ -23,6 +23,7 @@ const PostForm = ({
   body,
   categorieId,
   changeSelectValueComp,
+  clearInputPostComp,
 }) => {
   useEffect(
     fetchCategories,
@@ -134,6 +135,10 @@ const PostForm = ({
     console.log(event.target.value);
   }
 
+  function onClickClear() {
+    clearInputPostComp();
+  }
+
   const htmlClass = record ? 'button_play' : 'button_start';
 
   return (
@@ -177,7 +182,7 @@ const PostForm = ({
       <form autoComplete="off" className="box" type="submit">
         <span className="mandatory-cat">* champ obligatoire</span>
         <select className="categories" placeholder="Catégories" onChange={onClickSelect}>
-          <option value="" disabled selected>Choisi une catégorie</option>
+          <option value="" disabled selected>Sélectionne une catégorie</option>
           {
         categories.map((categorie) => (
 
@@ -205,7 +210,7 @@ const PostForm = ({
           name="body"
         />
         <div className="buttonSubmit">
-          {!mic ? (<span onClick={onClick}>Enregistrer mon son</span>) : <span>Envoyer</span>}
+          {!mic ? (<span onClick={onClick}>Enregistrer mon son</span>) : <span onClick={onClickClear}>Envoyer</span>}
         </div>
 
       </form>
