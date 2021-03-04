@@ -1,9 +1,9 @@
+/* eslint-disable no-nested-ternary */
 // == Import : npm
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 // == Import : local
 // Composants
-import Comment from 'src/components/publicationUser/Comments';
+import Comments from 'src/components/publicationUser/Comments';
 import Loader from 'src/components/Loader';
 import CommentForm from '../../containers/CommentForm';
 import Sound from './Sound';
@@ -21,7 +21,6 @@ function PublicationUser({
   clickReportPost,
   logged,
 }) {
-
   const [fav, setFav] = useState(false);
   const [report, setReport] = useState(false);
 
@@ -84,7 +83,7 @@ function PublicationUser({
               )}
             </div>
 
-            <Comment className="comments" comments={post.comments} />
+            <Comments className="comments" comments={post.comments} />
             {logged ? (<CommentForm className="form" {...post} />) : (<p className="unlogged">Merci de vous connecter afin de proposer votre réponse !</p>) }
           </div>
         )
@@ -98,7 +97,7 @@ function PublicationUser({
               body={post.body}
               sound={post.sound}
             />
-            <Comment className="comments" comments={post.comments} />
+            <Comments className="comments" comments={post.comments} />
             {logged ? (<CommentForm className="form" {...post} />) : (<p className="unlogged">Merci de vous connecter afin de proposer votre réponse !</p>) }
           </div>
         ) : <Loader />}
