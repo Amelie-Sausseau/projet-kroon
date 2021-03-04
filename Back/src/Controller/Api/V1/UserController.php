@@ -135,7 +135,7 @@ class UserController extends AbstractController
     public function comment(CommentRepository $commentRepo): Response
     {     
         $user = $this->getUser();
-        $comments = $commentRepo->findBy(['user' => $user], ['createdAt' => 'DESC']);
+        $comments = $commentRepo->findBy(['user' => $user, 'isActive' => true], ['createdAt' => 'DESC']);
 
         return $this->json($comments, 200, [], ['groups' => 'user:commentedPosts']);
     }
@@ -146,7 +146,7 @@ class UserController extends AbstractController
     public function post(PostRepository $postRepo): Response
     {
         $user = $this->getUser();
-        $posts = $postRepo->findBy(['user' => $user], ['createdAt' => 'DESC']);
+        $posts = $postRepo->findBy(['user' => $user, 'isActive' => true], ['createdAt' => 'DESC']);
 
         return $this->json($posts, 200, [], ['groups' => 'user:writtenPosts']);
     }
