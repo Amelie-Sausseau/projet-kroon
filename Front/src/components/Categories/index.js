@@ -117,7 +117,7 @@ const Categories = ({
        categoryMusicFiltered.map((post) => (
          Music
            ? (
-             <NavLink to={publi + post.id}>
+             <NavLink to={publi + post.id} key={post.id}>
                <div className="containerCat">
                  <h2>{post.title}</h2>
                  <ReactAudioPlayer
@@ -141,7 +141,7 @@ const Categories = ({
        categoryAnimauxFiltered.map((post) => (
          Animaux
            ? (
-             <NavLink to={publi + post.id}>
+             <NavLink to={publi + post.id} key={post.id}>
                <div className="containerCat">
                  <h2>{post.title}</h2>
                  <ReactAudioPlayer
@@ -164,7 +164,7 @@ const Categories = ({
        categoryFilmSerieFiltered.map((post) => (
          Film
            ? (
-             <NavLink to={publi + post.id}>
+             <NavLink to={publi + post.id} key={post.id}>
                <div className="containerCat">
                  <h2>{post.title}</h2>
                  <ReactAudioPlayer
@@ -187,7 +187,7 @@ const Categories = ({
        categoryVideoFiltered.map((post) => (
          Video
            ? (
-             <NavLink to={publi + post.id}>
+             <NavLink to={publi + post.id} key={post.id}>
                <div className="containerCat">
                  <h2>{post.title}</h2>
                  <ReactAudioPlayer
@@ -210,7 +210,7 @@ const Categories = ({
        categoryOthersFiltered.map((post) => (
          Autres
            ? (
-             <NavLink to={publi + post.id}>
+             <NavLink to={publi + post.id} key={post.id}>
                <div className="containerCat">
                  <h2>{post.title}</h2>
                  <ReactAudioPlayer
