@@ -19,7 +19,7 @@ class RegisterType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        // FIXME: Ligne + méthode onPreSetData crées par Mickael => testée, devrait fonctionner dans un UserEditType
+    
         $builder->addEventListener(FormEvents::PRE_SET_DATA, [ $this, 'onPreSetData' ]);
 
         $builder
@@ -29,10 +29,7 @@ class RegisterType extends AbstractType
 
             ->add('password', PasswordType::class, [
                 'constraints' => new NotBlank,
-                //'type' => PasswordType::class,
-                //'invalid_message' => 'Les deux mot de passe ne sont pas identiques',
-                //'first_options'  => ['label' => 'Mot de passe'],
-                //'second_options' => ['label' => 'Repeter le mot de passe'],
+
             ])
 
             ->add('email', EmailType::class, [

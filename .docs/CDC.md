@@ -25,13 +25,14 @@ La définition des besoins (problèmes auxquels répond le projet) et des object
 - Signalements
 - Ajouter en favori
 - Mettre un like
-
-## Idées fonctionnalités supplémentaires
 - Créer un backoffice pour gérer le contenu et les utilisteurs
 - Trier les posts par catégories
+- Mail de confirmation à l'inscription
+
+## Idées fonctionnalités supplémentaires
+
 - Page de profil pour chaque utilisateur
 - Page de réinitialisation du mot de passe
-- Mail de confirmation à l'inscription
 - Intégration d'un mode nuit
 - Contraintes d'utilisation avant accès à toutes les fonctionnalités
 - Classer les meilleurs contributeurs de la communauté
@@ -128,68 +129,77 @@ MCD : Schema + Requête MOCODO dans le dossier ./MCD
 
 # Liste des routes - API
 
+## Admin
+
+| route      | method | description | controller      | nom       |
+| ---------- | ------ | ----------- | --------------- | --------- |
+| /api/login | POST   | Connexion   | Api Security    | api_login |
+| /api/admin | GET    | Accueil     | Admin Dashboard | admin     |
+
 ## Authentification
 
-| route                              | method | description     | controller         | nom                        |
-| ------------------                 | ------ | --------------- | -----------        | -------------------        |
-| /api/v1/signup                     | POST   | Inscription     | ApiAuth            | api_v1_account_signup      |
-| /api/v1/login                      | POST   | Formulaire      | ApiAuth            | api_v1_account_login       |
-| /api/v1/logout                     | POST   | Deconnexion     | ApiAuth            | api_v1_account_logout      | 
+| route            | method | description | controller   | nom             |
+| ---------------- | ------ | ----------- | ------------ | --------------- |
+| /api/login_check | POST   | Connexion   | Api Security | api_login_check |
+| /api/logout      | POST   | Deconnexion | Api Security | api_logout      |
 
-## Users 
+## Contact
 
-| route                              | method | description     | controller         | nom                        |
-| ------------------                 | ------ | --------------- | -----------        | -------------------        | 
-| /api/v1/users                      | GET    | Liste users     | ApiUser            | api_v1_user_browse         |
-| /api/v1/users/{id}                 | GET    | Détail user     | ApiUser            | api_v1_user_read           |
-| /api/v1/users/{id}                 | PUT    | Mise à jour     | ApiUser            | api_v1_user_edit           |
-| /api/v1/users                      | POST   | Ajout user      | ApiUser            | api_v1_user_add            |
-| /api/v1/users/{id}/bookmarks       | GET    | Liste favoris   | ApiUser            | api_v1_user_bookmark_browse|
-| /api/v1/users/{id}/comments        | GET    | Liste comments  | ApiUser            | api_v1_user_comment_browse |
-| /api/v1/users/{id}/posts           | GET    | Liste posts     | ApiUser            | api_v1_user_post_browse    |
+| route        | method | description | controller  | nom         |
+| ------------ | ------ | ----------- | ----------- | ----------- |
+| /api/contact | POST   | Formulaire  | Api Contact | api_contact |
+
+## Entité : User
+
+| route                        | method | description    | controller | nom                         |
+| ---------------------------- | ------ | -------------- | ---------- | --------------------------- |
+| /api/v1/users/               | GET    | Liste users    | Api User   | api_v1_user_browse          |
+| /api/v1/users/{id}           | GET    | Détail user    | Api User   | api_v1_user_read            |
+| /api/v1/users/register       | POST   | Inscription    | Api User   | api_v1_user_register        |
+| /api/v1/users/{id}           | POST   | Mise à jour    | Api User   | api_v1_user_edit            |
+| /api/v1/users/{id}/bookmarks | GET    | Liste favoris  | Api User   | api_v1_user_bookmark_browse |
+| /api/v1/users/{id}/comments  | GET    | Liste comments | Api User   | api_v1_user_comment_browse  |
+| /api/v1/users/{id}/posts     | GET    | Liste posts    | Api User   | api_v1_user_post_browse     |
 
 ## Entité : Post
 
-| route                              | method | description     | controller         | nom                        |
-| ------------------                 | ------ | --------------- | -----------        | -------------------        |
-| /api/v1/posts                      | GET    | Liste posts     | ApiPost            | api_v1_post_browse         |
-| /api/v1/posts/{id}                 | GET    | Détail post     | ApiPost            | api_v1_post_read           |
-| /api/v1/posts                      | POST   | Ajout post      | ApiPost            | api_v1_post_add            |
-| /api/v1/posts/{id}                 | PUT    | Mise à jour     | ApiPost            | api_v1_post_edit           |
-| /api/v1/posts/{id}                 | DELETE | Supprimer       | ApiPost            | api_v1_post_delete         |
-| /api/v1/posts/{id}/bookmark        | POST   | Ajouter favori  | ApiPost            | api_v1_post_add_bookmark   |
-| /api/v1/posts/{id}/bookmark        | DELETE | Supprimer favori| ApiPost            | api_v1_post_delete_bookmark|
+| route                       | method | description       | controller | nom                         |
+| --------------------------- | ------ | ----------------- | ---------- | --------------------------- |
+| /api/v1/posts/              | GET    | Liste posts       | Api Post   | api_v1_post_browse          |
+| /api/v1/posts/{id}          | GET    | Détail post       | Api Post   | api_v1_post_read            |
+| /api/v1/posts/lasts         | GET    | Liste 5 derniers  | Api Post   | api_v1_post_lasts           |
+| /api/v1/posts/              | POST   | Ajout post        | Api Post   | api_v1_post_add             |
+| /api/v1/posts/{id}          | PUT    | Mise à jour       | Api Post   | api_v1_post_edit            |
+| /api/v1/posts/{id}          | DELETE | Supprimer         | Api Post   | api_v1_post_delete          |
+| /api/v1/posts/report        | PUT    | Signaler          | Api Post   | api_v1_post_report          |
+| /api/v1/posts/{id}/bookmark | POST   | Ajouter favori    | Api Post   | api_v1_post_add_bookmark    |
+| /api/v1/posts/{id}/bookmark | DELETE | Supprimer favori  | Api Post   | api_v1_post_delete_bookmark |
+| /api/v1/posts/{id}/comment  | POST   | Ajout commentaire | Api Post   | api_v1_post_add_comment     |
 
 ## Entité : Comment
 
-| route                              | method | description     | controller         | nom                        |
-| ------------------                 | ------ | --------------- | -----------        | -------------------        |
-| /api/v1/comments                   | GET    | Liste comments  | ApiComment         | api_v1_comment_browse      |
-| /api/v1/comments/{id}              | GET    | Détail comment  | ApiComment         | api_v1_comment_read        |
-| /api/v1/comments                   | POST   | Ajout comment   | ApiComment         | api_v1_comment_add         |
-| /api/v1/comments/{id}              | PUT    | Modifier        | ApiComment         | api_v1_comment_edit        |
-| /api/v1/comments/{id}              | DELETE | Supprimer       | ApiComment         | api_v1_comment_delete      |
-| /api/v1/comments/{id}/like         | POST   | Ajouter like    | ApiComment         | api_v1_comment_add_like    |
-| /api/v1/comments/{id}/like         | DELETE | Supprimer like  | ApiComment         | api_v1_comment_delete_like |
+| route                        | method | description      | controller  | nom                        |
+| ---------------------------- | ------ | ---------------- | ----------- | -------------------------- |
+| /api/v1/comments/            | GET    | Liste comments   | Api Comment | api_v1_comment_browse      |
+| /api/v1/comments/{id}        | GET    | Détail comment   | Api Comment | api_v1_comment_read        |
+| /api/v1/comments/liked       | GET    | Les plus likés   | Api Comment | api_v1_comment_liked       |
+| /api/v1/comments/lasts       | GET    | Liste 5 derniers | Api Comment | api_v1_comment_lasts       |
+| /api/v1/comments/{id}        | PUT    | Modifier         | Api Comment | api_v1_comment_edit        |
+| /api/v1/comments/{id}        | DELETE | Supprimer        | Api Comment | api_v1_comment_delete      |
+| /api/v1/comments/{id}/report | PUT    | Signaler         | Api Comment | api_v1_comment_report      |
+| /api/v1/comments/{id}/like   | PUT    | Ajouter like     | Api Comment | api_v1_comment_add_like    |
+| /api/v1/comments/{id}/unlike | PUT    | Supprimer like   | Api Comment | api_v1_comment_delete_like |
 
 ## Entité : Tag
 
-| route                              | method | description     | controller         | nom                        |
-| ------------------                 | ------ | --------------- | -----------        | -------------------        |
-| /api/v1/tags                       | GET    | Liste tags      | Apitag             | api_v1_tag_browse          |
-| /api/v1/tags/{id}                  | GET    | Détail tag      | ApiTag             | api_v1_tag_read            |
-| /api/v1/tags/{id}/posts            | GET    | Posts / tag     | ApiTag             | api_v1_tag_read_posts      |
-| /api/v1/tags                       | POST   | Ajout tag       | Apitag             | api_v1_tag_add             |
-| /api/v1/tags/{id}                  | PUT    | Modifier tag    | Apitag             | api_v1_tag_edit            |
-| /api/v1/tags/{id}                  | DELETE | Supprimer tag   | Apitag             | api_v1_tag_delete          |
+| route                   | method | description  | controller | nom                   |
+| ----------------------- | ------ | ------------ | ---------- | --------------------- |
+| /api/v1/tags            | GET    | Liste tags   | Api Tag    | api_v1_tag_browse     |
+| /api/v1/tags/{id}       | GET    | Détail tag   | Api Tag    | api_v1_tag_read       |
+| /api/v1/tags/{id}/posts | GET    | Posts / tag  | Api Tag    | api_v1_tag_read_posts |
+| /api/v1/tags            | POST   | Ajout tag    | Api Tag    | api_v1_tag_add        |
+| /api/v1/tags/{id}       | PUT    | Modifier tag | Api Tag    | api_v1_tag_edit       |
 
-## Entité : Highlight
-
-| route                              | method | description     | controller         | nom                        |
-| ------------------                 | ------ | --------------- | -----------        | -------------------        |
-| /api/v1/best/posts/{limit}         | GET    | Liste X posts   | ApiHighlight       | api_v1_highlight_read_ps   |
-| /api/v1/best/lastposts/{limit}     | GET    | X last posts    | ApiHighlight       | api_v1_highlight_read_lps  |
-| /api/v1/best/users/{limit}         | GET    | Liste X best usr| ApiHighlight       | api_v1_highlight_read_bus  |
 
 # User stories
 
