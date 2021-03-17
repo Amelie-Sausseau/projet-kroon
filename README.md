@@ -1,5 +1,8 @@
 # projet-kroon
 
+http://kroon.surge.sh/
+/!\ Site déployé sur AWS pour le back et Surge pour le front mais actuellement non sécurisé : navigation possible (à mettre en format mobile ou tablette grâce à l'explorateur ou F12) mais enregistrement d'un son impossible en ligne.
+
 
 # Feuille de route
 
